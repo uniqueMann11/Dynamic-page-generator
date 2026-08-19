@@ -20,9 +20,6 @@ export default function ConfigPanel({ running, onRun }) {
   function set(key) {
     return (e) => setForm((f) => ({ ...f, [key]: e.target.value }));
   }
-  function setCheck(key) {
-    return (e) => setForm((f) => ({ ...f, [key]: e.target.checked }));
-  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -105,62 +102,6 @@ export default function ConfigPanel({ running, onRun }) {
               onChange={set("dominentIindustries")}
               placeholder="Key local industries..."
             />
-          </div>
-        </div>
-
-        {/* Model + output */}
-        <div className="panel-section">
-          <div className="panel-section-title">Generation</div>
-          <div className="field">
-            <label htmlFor="inputModel">AI Model</label>
-            <select id="inputModel" value={form.model} onChange={set("model")}>
-              <option value="openrouter/deepseek/deepseek-v4-flash">DeepSeek V4 Flash (Fast)</option>
-              <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
-              <option value="gemini-2.5-pro">Gemini 2.5 Pro</option>
-              <option value="gpt-4o">GPT-4o</option>
-            </select>
-          </div>
-          <div className="field">
-            <label htmlFor="inputOutput">Output Filename</label>
-            <input
-              id="inputOutput"
-              value={form.output_filename}
-              onChange={set("output_filename")}
-              placeholder="Auto (location-page-{city}.html)"
-            />
-          </div>
-        </div>
-
-        {/* Toggles */}
-        <div className="panel-section">
-          <div className="panel-section-title">Options</div>
-          <div className="toggle-row">
-            <div className="toggle-left">
-              <span className="toggle-label">Skip AI Generation</span>
-              <span className="toggle-sub">Use existing JSON files</span>
-            </div>
-            <label className="toggle-switch">
-              <input
-                type="checkbox"
-                checked={form.skip_generate}
-                onChange={setCheck("skip_generate")}
-              />
-              <span className="toggle-slider" />
-            </label>
-          </div>
-          <div className="toggle-row" style={{ marginTop: "8px" }}>
-            <div className="toggle-left">
-              <span className="toggle-label">Skip Widget Injection</span>
-              <span className="toggle-sub">Skip hero widget step</span>
-            </div>
-            <label className="toggle-switch">
-              <input
-                type="checkbox"
-                checked={form.skip_widget}
-                onChange={setCheck("skip_widget")}
-              />
-              <span className="toggle-slider" />
-            </label>
           </div>
         </div>
 
