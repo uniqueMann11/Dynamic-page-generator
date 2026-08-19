@@ -1,10 +1,10 @@
-﻿import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import Header from "./components/Header.jsx";
 import ConfigPanel from "./components/ConfigPanel.jsx";
 import PreviewPane from "./components/PreviewPane.jsx";
 import CodeViewer from "./components/CodeViewer.jsx";
 import TerminalLogs from "./components/TerminalLogs.jsx";
-import { fetchDecompose, previewUrl, openPipelineStream } from "./api.js";
+import { previewUrl, openPipelineStream } from "./api.js";
 import { FileText, Code, ScrollText, Eye } from "lucide-react";
 
 const TABS = [
@@ -29,7 +29,7 @@ export default function App() {
   const [components, setComponents] = useState(null);
   const [previewSrc, setPreviewSrc] = useState(null);
   const [statusBadge, setStatusBadge] = useState({ label: "Ready", cls: "" });
-  const [pageTitle, setPageTitle] = useState("Load a file or run the pipeline");
+  const [pageTitle, setPageTitle] = useState("Configure and run pipeline");
   const [pageFile, setPageFile] = useState(null);
   const [toast, setToast] = useState("");
   const toastTimer = useRef(null);
@@ -50,25 +50,6 @@ export default function App() {
     toastTimer.current = setTimeout(() => setToast(""), 2400);
   }
 
-  // Load & decompose an existing file
-  const handleFileLoad = useCallback(async (filename) => {
-    try {
-      setStatusBadge({ label: "Loading", cls: "running" });
-      setPageTitle(`Loading ${filename}...`);
-      const data = await fetchDecompose(filename);
-      setComponents(data);
-      setPreviewSrc(previewUrl(filename));
-      setPageTitle(data.title || filename);
-      setPageFile(filename);
-      setStatusBadge({ label: "Ready", cls: "ready" });
-      setActiveTab("preview");
-      showToast(`Loaded ${filename}`);
-    } catch (e) {
-      setStatusBadge({ label: "Error", cls: "error" });
-      showToast(`Error: ${e.message}`);
-    }
-  }, []);
-
   // Run pipeline with SSE streaming
   function handleRun(formData) {
     if (stopStream.current) stopStream.current();
@@ -84,8 +65,8 @@ export default function App() {
       setLogs([...newLogs]);
     }
 
-    addLog(`[START] Pipeline started — ${formData.role} in ${formData.city}, ${formData.state}`);
-    if (formData.skip_generate) addLog("[INFO] Skip AI generation — using existing JSONs.");
+    addLog(`[START] Pipeline started ? ${formData.role} in ${formData.city}, ${formData.state}`);
+    if (formData.skip_generate) addLog("[INFO] Skip AI generation ? using existing JSONs.");
     if (formData.skip_widget) addLog("[INFO] Skip hero widget injection.");
 
     const stop = openPipelineStream(
@@ -119,7 +100,6 @@ export default function App() {
       <Header
         theme={theme}
         toggleTheme={toggleTheme}
-        onFileLoad={handleFileLoad}
       />
 
       <div className="studio-body">
