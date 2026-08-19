@@ -1,258 +1,487 @@
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-.vw-card {
-  width: 100%;
-  max-width: 520px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
+  .vw-card {
+    width: 100%;
+    max-width: 520px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
 
-.vw-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 18px;
-  border-bottom: 1px solid var(--line-soft);
-}
+  .vw-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line-soft);
+  }
 
-.vw-top .t {
-  font-family: var(--ff-display);
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: var(--ink);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+  .vw-top .t {
+    font-family: var(--ff-display);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 
-.vw-top .t svg { width: 16px; height: 16px; color: var(--primary); }
+  .vw-top .t svg { width: 16px; height: 16px; color: var(--primary); }
 
-.vw-chip {
-  font-family: var(--ff-mono);
-  font-size: 0.66rem;
-  font-weight: 600;
-  padding: 3px 9px;
-  border-radius: 6px;
-  background: var(--green-tint);
-  color: var(--green);
-  border: 1px solid rgba(21, 154, 91, 0.25);
-}
+  .vw-chip {
+    font-family: var(--ff-mono);
+    font-size: 0.66rem;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 6px;
+    background: var(--primary-tint);
+    color: var(--primary-strong);
+    border: 1px solid rgba(36, 86, 230, 0.2);
+  }
 
-.vw-body {
-  padding: 16px 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+  .vw-body {
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
 
-.vw-horizon-bar {
-  display: flex;
-  gap: 6px;
-}
+  /* LOSS LANDSCAPE CHART */
+  .vw-sound-box {
+    background: #090E17;
+    border: 1px solid #1E293B;
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
 
-.vw-hz-btn {
-  flex: 1;
-  background: var(--surface-alt);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  padding: 6px 10px;
-  font-family: var(--ff-mono);
-  font-size: 0.68rem;
-  font-weight: 600;
-  color: var(--muted);
-  cursor: pointer;
-  text-align: center;
-  transition: all 0.15s;
-}
+  .vw-sound-meta {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--ff-mono);
+    font-size: 0.62rem;
+    color: #94A3B8;
+  }
 
-.vw-hz-btn:hover { border-color: var(--primary); color: var(--ink); }
-.vw-hz-btn.active { background: var(--primary-tint); border-color: var(--primary); color: var(--primary-strong); }
+  .vw-waves-track {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3px;
+    cursor: pointer;
+  }
 
-.vw-chart-box {
-  background: var(--surface-alt);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  padding: 12px;
-  position: relative;
-}
+  .vw-wave-bar {
+    flex: 1;
+    background: #334155;
+    border-radius: 999px;
+    transition: height 0.15s ease, background 0.2s;
+  }
 
-.vw-chart-legend {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.64rem;
-  font-family: var(--ff-mono);
-  color: var(--muted);
-  margin-bottom: 6px;
-}
+  .vw-wave-bar.passed { background: var(--primary); }
+  .vw-wave-bar.active { background: #38BDF8; box-shadow: 0 0 8px #38BDF8; }
+  .vw-wave-bar.passed.converged { background: var(--green); }
 
-.vw-leg-item { display: flex; align-items: center; gap: 5px; }
-.vw-dot-gray { width: 7px; height: 7px; border-radius: 50%; background: #94A3B8; }
-.vw-dot-blue { width: 7px; height: 7px; border-radius: 50%; background: var(--primary); }
+  /* TRAINING LOG */
+  .vw-transcript-box {
+    background: var(--surface-alt);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
 
-.vw-svg-chart {
-  width: 100%;
-  height: 95px;
-  overflow: visible;
-}
+  .vw-speaker-header {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--ff-mono);
+    font-size: 0.62rem;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
 
-.vw-metrics-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
-}
+  .vw-text-flow {
+    font-size: 0.84rem;
+    line-height: 1.6;
+    color: var(--body);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
 
-.vw-tile {
-  background: var(--surface-alt);
-  border: 1px solid var(--line-soft);
-  border-radius: var(--radius-sm);
-  padding: 6px 8px;
-  text-align: center;
-}
+  .vw-word-token {
+    padding: 1px 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: var(--ff-mono);
+    font-size: 0.72rem;
+    background: var(--surface);
+    border: 1px solid var(--line-soft);
+  }
 
-.vw-tile-val {
-  font-family: var(--ff-display);
-  font-size: 1rem;
-  font-weight: 800;
-  color: var(--ink);
-}
+  .vw-word-token:hover { background: var(--line); }
 
-.vw-tile-lbl {
-  font-family: var(--ff-mono);
-  font-size: 0.55rem;
-  color: var(--muted);
-  text-transform: uppercase;
-}
+  .vw-word-token.active {
+    background: var(--primary-tint);
+    color: var(--primary-strong);
+    font-weight: 700;
+    box-shadow: 0 0 0 1px var(--primary);
+    border-color: var(--primary);
+  }
 
-.vw-foot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 18px;
-  border-top: 1px solid var(--line-soft);
-  background: var(--surface-alt);
-  font-size: 0.72rem;
-  color: var(--muted);
-}
+  .vw-word-token.epoch-label {
+    color: var(--primary);
+    font-weight: 600;
+    border-color: transparent;
+    background: transparent;
+    cursor: default;
+  }
 
-@media (max-width: 480px) {
-  .vw-metrics-row { grid-template-columns: repeat(2, 1fr); }
-}
+  /* ACTION BAR */
+  .vw-action-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-family: var(--ff-mono);
+    font-size: 0.68rem;
+  }
+
+  .vw-btn-play {
+    background: var(--primary);
+    color: #FFFFFF;
+    border: none;
+    font-family: var(--ff-mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s;
+  }
+
+  .vw-btn-play:hover { background: var(--primary-strong); }
+
+  /* METRICS ROW */
+  .vw-metrics-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+
+  .vw-tile {
+    background: var(--surface-alt);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--radius-sm);
+    padding: 6px 8px;
+    text-align: center;
+  }
+
+  .vw-tile-val {
+    font-family: var(--ff-display);
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--ink);
+  }
+
+  .vw-tile-lbl {
+    font-family: var(--ff-mono);
+    font-size: 0.55rem;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .vw-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 18px;
+    border-top: 1px solid var(--line-soft);
+    background: var(--surface-alt);
+    font-size: 0.72rem;
+    color: var(--muted);
+    flex-wrap: wrap;
+    gap: 4px 8px;
+  }
+
+  @media (max-width: 480px) {
+    .vw-metrics-row { grid-template-columns: repeat(2, 1fr); }
+    .vw-foot { flex-direction: column; align-items: flex-start; }
+  }
 </style>
 
 <div class="vw-card">
   <div class="vw-top">
     <span class="t">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-      Training Pipeline Monitor
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+      </svg>
+      ML Model Training Pipeline
     </span>
-    <span class="vw-chip" id="vwChipState">Convergence Rate: 0.0231</span>
+    <span class="vw-chip" id="epochChip">Epoch 00/50</span>
   </div>
 
   <div class="vw-body">
-    <div class="vw-horizon-bar">
-      <button class="vw-hz-btn" data-horizon="7">Early Stopping</button>
-      <button class="vw-hz-btn active" data-horizon="30">Best Epoch</button>
-      <button class="vw-hz-btn" data-horizon="90">Full Run</button>
-    </div>
-
-    <div class="vw-chart-box">
-      <div class="vw-chart-legend">
-        <span class="vw-leg-item"><span class="vw-dot-gray"></span> Validation Loss</span>
-        <span class="vw-leg-item"><span class="vw-dot-blue"></span> Learning Schedule</span>
+    <!-- Loss Landscape Visualizer -->
+    <div class="vw-sound-box">
+      <div class="vw-sound-meta">
+        <span>Batch Loss Progression</span>
+        <span id="batchTimestamp">Step 000 / 180</span>
       </div>
-
-      <svg class="vw-svg-chart" viewBox="0 0 400 95">
-        <defs>
-          <linearGradient id="bandGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#2456E6" stop-opacity="0.18" />
-            <stop offset="100%" stop-color="#2456E6" stop-opacity="0.02" />
-          </linearGradient>
-        </defs>
-
-        <polygon id="expectedBand" points="200,45 250,38 300,30 350,24 390,18 390,65 350,70 300,75 250,80 200,45" fill="url(#bandGrad)" />
-
-        <polyline points="10,75 50,65 90,55 130,48 170,46 200,45" fill="none" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round" />
-
-        <polyline id="predLine" points="200,45 250,38 300,30 350,24 390,18" fill="none" stroke="#2456E6" stroke-width="2.5" stroke-dasharray="5 4" stroke-linecap="round" />
-
-        <circle cx="200" cy="45" r="4.5" fill="#2456E6" stroke="#FFFFFF" stroke-width="2" />
-      </svg>
+      <div class="vw-waves-track" id="lossTrack"></div>
     </div>
 
+    <!-- Training Log -->
+    <div class="vw-transcript-box">
+      <div class="vw-speaker-header">
+        <span>Training Log</span>
+        <span style="color: var(--green);" id="logStatus">Running</span>
+      </div>
+      <div class="vw-text-flow" id="logFlow">
+        <span class="vw-word-token epoch-label">Epoch 00</span>
+        <span class="vw-word-token active">loss: 0.000</span>
+        <span class="vw-word-token">acc: 0.000</span>
+        <span class="vw-word-token">lr: 1e-3</span>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="vw-action-row">
+      <button class="vw-btn-play" id="btnTrainToggle">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        <span>Pause Training</span>
+      </button>
+      <span style="color: var(--muted);">Click a log entry to jump to that epoch</span>
+    </div>
+
+    <!-- Metrics Grid -->
     <div class="vw-metrics-row">
       <div class="vw-tile">
-        <div class="vw-tile-val" id="valGrowth" style="color: var(--green);">0.0231</div>
-        <div class="vw-tile-lbl">Convergence Rate</div>
+        <div class="vw-tile-val" id="valAcc" style="color: var(--green);">0.000</div>
+        <div class="vw-tile-lbl">Val Accuracy</div>
       </div>
       <div class="vw-tile">
-        <div class="vw-tile-val" style="color: var(--green);">97.4%</div>
-        <div class="vw-tile-lbl">Validation Accuracy</div>
+        <div class="vw-tile-val" id="valLoss">0.000</div>
+        <div class="vw-tile-lbl">Training Loss</div>
       </div>
       <div class="vw-tile">
-        <div class="vw-tile-val">12/150</div>
-        <div class="vw-tile-lbl">Epoch Progress</div>
+        <div class="vw-tile-val" id="valEpoch">0</div>
+        <div class="vw-tile-lbl">Epochs Done</div>
       </div>
       <div class="vw-tile">
-        <div class="vw-tile-val">125K</div>
-        <div class="vw-tile-lbl">Parameters Trained</div>
+        <div class="vw-tile-val" id="valLR">1e-3</div>
+        <div class="vw-tile-lbl">Learning Rate</div>
       </div>
     </div>
   </div>
 
   <div class="vw-foot">
-    <span>Arch: XGBoost + LightGBM Ensemble</span>
-    <span>Jaipur • Handicraft Demand Data</span>
+    <span>Serving teams in Jaipur · IT/ITES &amp; Tourism</span>
+    <span>PyTorch · CUDA · Distributed Training</span>
   </div>
 </div>
 
 <script>
-(function () {
-  const hzBtns = document.querySelectorAll(".vw-hz-btn");
-  const vwChipState = document.getElementById("vwChipState");
-  const valGrowth = document.getElementById("valGrowth");
-  const predLine = document.getElementById("predLine");
-  const expectedBand = document.getElementById("expectedBand");
+  (function () {
+    const lossTrack = document.getElementById("lossTrack");
+    const tokens = document.querySelectorAll(".vw-word-token:not(.epoch-label)");
+    const btnTrain = document.getElementById("btnTrainToggle");
+    const batchTime = document.getElementById("batchTimestamp");
+    const epochChip = document.getElementById("epochChip");
+    const logFlow = document.getElementById("logFlow");
+    const logStatus = document.getElementById("logStatus");
+    const valAcc = document.getElementById("valAcc");
+    const valLoss = document.getElementById("valLoss");
+    const valEpoch = document.getElementById("valEpoch");
+    const valLR = document.getElementById("valLR");
 
-  const horizonData = {
-    "7": {
-      chip: "Early Stop Epoch: 7",
-      growth: "0.0418",
-      line: "200,45 250,42 300,39 350,37 390,35",
-      band: "200,45 250,38 300,32 350,28 390,25 390,48 350,50 300,52 250,50 200,45"
-    },
-    "30": {
-      chip: "Convergence Rate: 0.0231",
-      growth: "0.0231",
-      line: "200,45 250,38 300,30 350,24 390,18",
-      band: "200,45 250,30 300,20 350,15 390,10 390,65 350,70 300,75 250,80 200,45"
-    },
-    "90": {
-      chip: "Final Test Loss: 0.0098",
-      growth: "0.0098",
-      line: "200,45 250,32 300,22 350,16 390,8",
-      band: "200,45 250,22 300,12 350,8 390,2 390,75 350,80 300,85 250,82 200,45"
+    const numBars = 36;
+    const bars = [];
+    let activeIdx = 0;
+    let globalStep = 0;
+    const totalSteps = 180;
+    let isTraining = true;
+
+    // Simulated loss trajectory (starts high, converges with noise)
+    function lossForStep(step) {
+      const progress = Math.min(step / totalSteps, 1);
+      const base = 0.98 * Math.exp(-5.5 * progress) + 0.02;
+      const noise = 0.04 * Math.sin(step * 1.1) + 0.02 * Math.sin(step * 3.7);
+      return Math.max(0.005, Math.min(1.0, base + noise * (1 - progress * 0.6)));
     }
-  };
 
-  hzBtns.forEach(btn => {
-    btn.addEventListener("click", function () {
-      hzBtns.forEach(b => b.classList.remove("active"));
-      this.classList.add("active");
-      const key = this.getAttribute("data-horizon");
-      const d = horizonData[key];
-      if (d) {
-        vwChipState.textContent = d.chip;
-        valGrowth.textContent = d.growth;
-        predLine.setAttribute("points", d.line);
-        expectedBand.setAttribute("points", d.band);
-      }
+    function accuracyForStep(step) {
+      const progress = Math.min(step / totalSteps, 1);
+      const base = 0.92 * (1 - Math.exp(-4.8 * progress)) + 0.05;
+      const noise = 0.015 * Math.sin(step * 0.9);
+      return Math.min(0.995, Math.max(0.1, base + noise));
+    }
+
+    // Build bars
+    const baseHeights = [];
+    for (let i = 0; i < numBars; i++) {
+      const raw = 20 + 70 * (1 - i / numBars) + 15 * Math.sin(i * 1.8);
+      baseHeights.push(Math.max(15, Math.min(100, raw)));
+    }
+
+    for (let i = 0; i < numBars; i++) {
+      const bar = document.createElement("div");
+      bar.className = "vw-wave-bar";
+      bar.style.height = baseHeights[i] + "%";
+      bar.addEventListener("click", () => {
+        const targetStep = Math.floor((i / numBars) * totalSteps);
+        seekTo(targetStep);
+      });
+      lossTrack.appendChild(bar);
+      bars.push(bar);
+    }
+
+    // Tokens are the non-epoch-label tokens
+    const clickableTokens = [];
+    tokens.forEach((tok) => {
+      clickableTokens.push(tok);
+      tok.addEventListener("click", () => {
+        const idx = Array.from(clickableTokens).indexOf(tok);
+        if (idx >= 0) {
+          const epochStep = Math.floor((idx / clickableTokens.length) * totalSteps);
+          seekTo(epochStep);
+        }
+      });
     });
-  });
-})();
+
+    // Also allow clicking on epoch labels to jump
+    const epochLabels = document.querySelectorAll(".vw-word-token.epoch-label");
+    epochLabels.forEach((el, ei) => {
+      el.addEventListener("click", () => {
+        const epochStep = Math.floor((ei / Math.max(epochLabels.length, 1)) * totalSteps);
+        seekTo(epochStep);
+      });
+    });
+
+    function seekTo(step) {
+      globalStep = Math.max(0, Math.min(totalSteps - 1, step));
+      activeIdx = step;
+      updateDisplay();
+    }
+
+    function updateDisplay() {
+      const step = globalStep;
+      const progress = Math.min(step / totalSteps, 1);
+      const epochNum = Math.floor(progress * 50);
+      const epochStr = String(epochNum).padStart(2, "0");
+      epochChip.textContent = "Epoch " + epochStr + "/50";
+
+      const curLoss = lossForStep(step);
+      const curAcc = accuracyForStep(step);
+
+      // Update metrics
+      valAcc.textContent = curAcc.toFixed(3);
+      valLoss.textContent = curLoss.toFixed(3);
+      valEpoch.textContent = epochNum;
+      valLR.textContent = epochNum < 30 ? "1e-3" : "5e-4";
+
+      // Update bars
+      const barIdx = Math.floor((step / totalSteps) * numBars);
+      const converged = curLoss < 0.08;
+
+      bars.forEach((b, i) => {
+        let cls = "vw-wave-bar";
+        if (i < barIdx) {
+          cls += " passed";
+          if (converged && i > barIdx - 8) cls += " converged";
+        } else if (i === barIdx) {
+          cls += " active";
+        }
+        b.className = cls;
+
+        // Dynamic height: lower loss = lower bars
+        const lossVal = lossForStep(Math.floor((i / numBars) * totalSteps));
+        const h = 18 + 72 * (1 - lossVal * 0.9) + 8 * Math.sin(i * 0.7 + step * 0.2);
+        b.style.height = Math.max(12, Math.min(100, h)) + "%";
+      });
+
+      // Update batch timestamp
+      const batchNum = String(step).padStart(3, "0");
+      batchTime.textContent = "Step " + batchNum + " / " + String(totalSteps).padStart(3, "0");
+
+      // Update log tokens
+      const logEntries = [
+        { label: "Epoch " + epochStr, type: "epoch-label" },
+        { label: "loss: " + curLoss.toFixed(3), val: curLoss },
+        { label: "acc: " + curAcc.toFixed(3), val: curAcc },
+        { label: "lr: " + valLR.textContent, val: null }
+      ];
+
+      // Rebuild log flow
+      logFlow.innerHTML = "";
+      logEntries.forEach((entry, idx) => {
+        const span = document.createElement("span");
+        span.className = "vw-word-token";
+        if (entry.type === "epoch-label") {
+          span.classList.add("epoch-label");
+          span.style.cursor = "pointer";
+        }
+        span.textContent = entry.label;
+        if (idx === 0) {
+          span.classList.add("active");
+        }
+        if (entry.type !== "epoch-label") {
+          span.addEventListener("click", () => {
+            const clickIdx = Array.from(logFlow.children).indexOf(span);
+            const epochStep = Math.floor((clickIdx / logEntries.length) * totalSteps);
+            seekTo(epochStep);
+          });
+        } else {
+          span.addEventListener("click", () => {
+            const epochStep = Math.floor((idx / logEntries.length) * totalSteps);
+            seekTo(epochStep);
+          });
+        }
+        logFlow.appendChild(span);
+      });
+
+      // Log status
+      logStatus.textContent = isTraining ? "Running" : "Paused";
+      logStatus.style.color = isTraining ? "var(--green)" : "var(--amber)";
+    }
+
+    // Training loop
+    let intervalId = setInterval(() => {
+      if (isTraining) {
+        globalStep = (globalStep + 1) % totalSteps;
+        activeIdx = globalStep;
+        updateDisplay();
+      }
+    }, 320);
+
+    btnTrain.addEventListener("click", () => {
+      isTraining = !isTraining;
+      const span = btnTrain.querySelector("span");
+      if (isTraining) {
+        span.textContent = "Pause Training";
+        btnTrain.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> <span>Pause Training</span>';
+      } else {
+        span.textContent = "Resume Training";
+        btnTrain.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><polygon points="5,3 19,12 5,21"/></svg> <span>Resume Training</span>';
+      }
+      logStatus.textContent = isTraining ? "Running" : "Paused";
+      logStatus.style.color = isTraining ? "var(--green)" : "var(--amber)";
+    });
+
+    updateDisplay();
+  })();
 </script>

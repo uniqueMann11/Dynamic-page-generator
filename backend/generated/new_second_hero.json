@@ -1,3 +1,55 @@
 {
-  "": "{\n  \"value-strip\": {\n    \"center\": {\n      \"eyebrow\": \"Why direct access wins\",\n      \"h2\": \"What you get working with me\"\n    },\n    \"value-grid\": [\n      {\n        \"value-card\": {\n          \"h3\": \"Expert ML solutions\",\n          \"p\": \"Jaipur-based and available for local meetings, delivering tailored machine learning solutions to businesses across Rajasthan.\"\n        }\n      },\n      {\n        \"value-card\": {\n          \"h3\": \"Direct engineer access\",\n          \"p\": \"Collaborate directly with a seasoned Machine Learning Engineer from discovery to deployment, with clear, unbroken communication.\"\n        }\n      },\n      {\n        \"value-card\": {\n          \"h3\": \"Data security assurance\",\n          \"p\": \"An NDA is signed before any project data is shared, so the confidentiality and security of your business information are protected.\"\n        }\n      },\n      {\n        \"value-card\": {\n          \"h3\": \"Proven track record\",\n          \"p\": \"Review 12+ verifiable case studies with measurable outcomes that demonstrate real machine learning delivery, not a generic portfolio.\"\n        }\n      }\n    ]\n  },\n  \"quick-answer\": {\n    \"prose-grid\": {\n      \"eyebrow\": \"Plain answer\",\n      \"h2\": \"What does a Machine Learning Engineer in Jaipur actually do?\",\n      \"answer-card\": {\n        \"tag\": \"Quick answer\",\n        \"p\": \"A Machine Learning Engineer in Jaipur designs, develops and deploys custom ML models, natural language processing applications and computer vision systems for businesses, then integrates them into the tools your team already uses.\"\n      },\n      \"prose\": {\n        \"p\": [\n          \"Jaipur is a fast-growing technology hub in Rajasthan, with a strong base of engineering talent and a business community increasingly adopting AI for IT/ITES, tourism & handicrafts, and gems & jewellery. As an independent engineer, the focus is on delivering production-ready, integrated systems that move a business metric, not prototypes that stall after a demo.\",\n          \"The work spans the full lifecycle: framing the problem, preparing and validating data, selecting and training the right model, deploying it reliably, and monitoring it in production so accuracy holds as your data shifts. If you are still deciding whether machine learning fits at all, that assessment is part of the machine learning development services too.\"\n        ],\n        \"checklist\": [\n          \"Custom models tied to a real business outcome, scoped before any build starts.\",\n          \"Deployment and MLOps, so the model runs reliably and keeps working after launch.\",\n          \"In-person collaboration for Jaipur clients who prefer a local working relationship.\"\n        ]\n      }\n    }\n  }\n}"
+  "value-strip": {
+    "center": {
+      "eyebrow": "Why direct access wins",
+      "h2": "What you get working with me"
+    },
+    "value-grid": [
+      {
+        "value-card": {
+          "h3": "Expert ML solutions",
+          "p": "Jaipur-based and available for local meetings, delivering tailored machine learning solutions to businesses across Rajasthan."
+        }
+      },
+      {
+        "value-card": {
+          "h3": "Direct engineer access",
+          "p": "Collaborate directly with a seasoned Machine Learning Engineer from discovery to deployment, with clear, unbroken communication."
+        }
+      },
+      {
+        "value-card": {
+          "h3": "Data security assurance",
+          "p": "An NDA is signed before any project data is shared, so the confidentiality and security of your business information are protected."
+        }
+      },
+      {
+        "value-card": {
+          "h3": "Proven track record",
+          "p": "Review 12+ verifiable case studies with measurable outcomes that demonstrate real machine learning delivery, not a generic portfolio."
+        }
+      }
+    ]
+  },
+  "quick-answer": {
+    "prose-grid": {
+      "eyebrow": "Plain answer",
+      "h2": "What does a Machine Learning Engineer in Jaipur actually do?",
+      "answer-card": {
+        "tag": "Quick answer",
+        "p": "A Machine Learning Engineer in Jaipur designs, develops and deploys custom ML models, natural language processing applications and computer vision systems for businesses, then integrates them into the tools your team already uses."
+      },
+      "prose": {
+        "p": [
+          "Jaipur is a growing technology hub in Rajasthan, with a strong base of engineering talent and a fast-adopting business community, especially in IT/ITES, tourism & handicrafts, and gems & jewellery. As an independent engineer, the focus is on delivering production-ready, integrated systems that move a business metric, not prototypes that stall after a demo.",
+          "The work spans the full lifecycle: framing the problem, preparing and validating data, selecting and training the right model, deploying it reliably, and monitoring it in production so accuracy holds as your data shifts. If you are still deciding whether machine learning fits at all, that assessment is part of the machine learning development services too."
+        ],
+        "checklist": [
+          "Custom models tied to a real business outcome, scoped before any build starts.",
+          "Deployment and MLOps, so the model runs reliably and keeps working after launch.",
+          "In-person collaboration for Jaipur clients who prefer a local working relationship."
+        ]
+      }
+    }
+  }
 }

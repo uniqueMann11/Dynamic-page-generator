@@ -18,7 +18,14 @@ if hasattr(sys.stdout, "reconfigure"):
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BACKEND_DIR = os.path.dirname(os.path.abspath(__file__))
-HTML_PAGES_DIR = os.path.join(BASE_DIR, "HTML pages")
+
+IS_VERCEL = "VERCEL" in os.environ or "AWS_LAMBDA_FUNCTION_NAME" in os.environ
+if IS_VERCEL:
+    import tempfile
+    HTML_PAGES_DIR = os.path.join(tempfile.gettempdir(), "HTML pages")
+else:
+    HTML_PAGES_DIR = os.path.join(BASE_DIR, "HTML pages")
+
 os.makedirs(HTML_PAGES_DIR, exist_ok=True)
 
 load_dotenv(os.path.join(BASE_DIR, ".env"))

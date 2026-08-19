@@ -45,11 +45,21 @@ from generate_viwer import generate_viewer
 from inject_viewer import inject_widget_into_html
 
 # ── paths ─────────────────────────────────────────────────────────────────────
+IS_VERCEL = "VERCEL" in os.environ or "AWS_LAMBDA_FUNCTION_NAME" in os.environ
+
+if IS_VERCEL:
+    import tempfile
+    WORK_TMP = tempfile.gettempdir()
+    GENERATED_DIR = os.path.join(WORK_TMP, "generated")
+    HTML_PAGES_DIR = os.path.join(WORK_TMP, "HTML pages")
+else:
+    GENERATED_DIR = os.path.join(BASE_DIR, "generated")
+    HTML_PAGES_DIR = os.path.join(ROOT_DIR, "HTML pages")
+
 ACTUAL_DATA_DIR = os.path.join(BASE_DIR, "actual_data")
 RULES_DIR = os.path.join(BASE_DIR, "rules")
-GENERATED_DIR = os.path.join(BASE_DIR, "generated")
-HTML_PAGES_DIR = os.path.join(ROOT_DIR, "HTML pages")
 os.makedirs(HTML_PAGES_DIR, exist_ok=True)
+os.makedirs(GENERATED_DIR, exist_ok=True)
 
 TEMPLATE_PATH = os.path.join(ROOT_DIR, "hire-machine-learning-engineer-ahmedabad.html")
 if not os.path.exists(TEMPLATE_PATH):
@@ -199,6 +209,21 @@ Return ONLY valid JSON.
                 content = "\n".join(lines[1:-1])
 
         new_data = json.loads(content)
+
+        # --- Fix double-encoded JSON responses from LLM ---
+        # Some models wrap the entire response as a string inside a single-key object
+        # e.g. {"": "{"value-strip": ...}"} or {"response": "{...}"}
+        if isinstance(new_data, dict) and len(new_data) == 1:
+            only_key = list(new_data.keys())[0]
+            only_val = new_data[only_key]
+            if isinstance(only_val, str):
+                try:
+                    unwrapped = json.loads(only_val)
+                    if isinstance(unwrapped, dict) and len(unwrapped) > 0:
+                        print(f"  [FIX] Unwrapped double-encoded JSON (key was: {repr(only_key)})")
+                        new_data = unwrapped
+                except (json.JSONDecodeError, ValueError):
+                    pass  # Not double-encoded, leave as-is
 
         os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
         with open(output_path, "w", encoding="utf-8") as f:
@@ -408,6 +433,20 @@ def compile_html(role, city, state, geo_code, landmarks, dominent_industries, ou
         try:
             with open(path, "r", encoding="utf-8") as f:
                 data = json.load(f)
+
+                # Fix double-encoded JSON (LLM sometimes wraps output in a string)
+                if isinstance(data, dict) and len(data) == 1:
+                    only_key = list(data.keys())[0]
+                    only_val = data[only_key]
+                    if isinstance(only_val, str):
+                        try:
+                            unwrapped = json.loads(only_val)
+                            if isinstance(unwrapped, dict) and len(unwrapped) > 0:
+                                print(f"  [FIX] Unwrapped double-encoded JSON in {os.path.basename(path)}")
+                                data = unwrapped
+                        except (json.JSONDecodeError, ValueError):
+                            pass
+
                 raw = json.dumps(data)
                 for c in KNOWN_CITIES:
                     if c.lower() != city.lower():

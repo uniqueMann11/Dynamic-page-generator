@@ -34,7 +34,6 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: var(--ff-body); background: #F0F4FA; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
 
-    /* ============================ CARD FRAME ============================ */
     .vw-card {
       width: 100%;
       max-width: 520px;
@@ -92,7 +91,6 @@
       gap: 12px;
     }
 
-    /* ============================ SEARCH BAR ============================ */
     .vw-search-box {
       background: var(--surface-alt);
       border: 1px solid var(--line);
@@ -109,7 +107,6 @@
 
     .vw-query-display { font-size: 0.82rem; font-weight: 600; color: var(--ink); flex: 1; }
 
-    /* ============================ SAMPLE QUESTIONS ============================ */
     .vw-samples { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; }
 
     .vw-pill {
@@ -127,7 +124,6 @@
     .vw-pill:hover { border-color: var(--primary); color: var(--ink); }
     .vw-pill.active { background: var(--primary-tint); border-color: var(--primary); color: var(--primary-strong); font-weight: 600; }
 
-    /* ============================ RESULT BOX ============================ */
     .vw-result-box {
       background: #090E17;
       border: 1px solid #1E293B;
@@ -156,7 +152,6 @@
 
     .vw-citation { display: flex; align-items: center; gap: 6px; font-family: var(--ff-mono); font-size: 0.64rem; color: #34D399; }
 
-    /* ============================ METRICS ============================ */
     .vw-metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
 
     .vw-tile {
@@ -170,7 +165,6 @@
     .vw-tile-val { font-family: var(--ff-display); font-size: 1rem; font-weight: 800; color: var(--ink); }
     .vw-tile-lbl { font-family: var(--ff-mono); font-size: 0.55rem; color: var(--muted); text-transform: uppercase; }
 
-    /* ============================ FOOTER ============================ */
     .vw-foot {
       display: flex;
       align-items: center;
@@ -319,11 +313,9 @@
         const d = data[pill.getAttribute("data-q")];
         if (!d) return;
 
-        // 1. show the new question right away
         txtQuery.textContent = d.q;
         searchBox.classList.add("active");
 
-        // 2. brief "searching" state so the lookup is visible, not instant
         statusChip.textContent = "Searching…";
         statusChip.classList.add("busy");
         resultBox.classList.add("vw-loading");
