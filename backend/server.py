@@ -24,7 +24,7 @@ if IS_VERCEL:
     import tempfile
     HTML_PAGES_DIR = os.path.join(tempfile.gettempdir(), "HTML pages")
 else:
-    HTML_PAGES_DIR = os.path.join(BASE_DIR, "HTML pages")
+    HTML_PAGES_DIR = os.path.join(BACKEND_DIR, "HTML pages")
 
 os.makedirs(HTML_PAGES_DIR, exist_ok=True)
 

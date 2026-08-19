@@ -54,7 +54,7 @@ if IS_VERCEL:
     HTML_PAGES_DIR = os.path.join(WORK_TMP, "HTML pages")
 else:
     GENERATED_DIR = os.path.join(BASE_DIR, "generated")
-    HTML_PAGES_DIR = os.path.join(ROOT_DIR, "HTML pages")
+    HTML_PAGES_DIR = os.path.join(BASE_DIR, "HTML pages")
 
 ACTUAL_DATA_DIR = os.path.join(BASE_DIR, "actual_data")
 RULES_DIR = os.path.join(BASE_DIR, "rules")
