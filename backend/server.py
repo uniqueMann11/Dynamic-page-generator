@@ -281,6 +281,25 @@ def extract_code_components(html_content: str) -> dict:
 # =============================================================================
 
 # -----------------------------------------------------------------------------
+# Endpoint: GET /health & GET /api/health
+# Purpose:  Health check endpoint for Render, Vercel, uptime monitors, and load balancers.
+# -----------------------------------------------------------------------------
+@app.get("/health")
+@app.get("/api/health")
+def health_check():
+    """
+    Step 1: Verify server uptime and deployment runtime environment.
+    Step 2: Return 200 OK JSON payload confirming the service is healthy.
+    """
+    return {
+        "status": "healthy",
+        "service": "location-page-pipeline-studio",
+        "version": "1.0.0",
+        "is_vercel": IS_VERCEL
+    }
+
+
+# -----------------------------------------------------------------------------
 # Endpoint: GET /api/presets
 # Purpose:  Returns list of predefined city configuration presets for the React UI.
 # -----------------------------------------------------------------------------
