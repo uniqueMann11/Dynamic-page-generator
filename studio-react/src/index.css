@@ -385,27 +385,27 @@ button { cursor: pointer; font-family: inherit; }
 .toast.show { transform: translateY(0); opacity: 1; }
 
 /* ============================================================
-   PROGRESS & STEP LOADER PANEL
+   PROGRESS & STEP LOADER PANEL (LIGHT & DARK THEME SAFE)
    ============================================================ */
 .progress-panel {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background: var(--bg-main);
-  padding: 18px 24px;
+  background: var(--bg-base);
+  padding: 20px 24px;
   overflow-y: auto;
   gap: 16px;
 }
 
 .progress-header {
-  background: var(--bg-card);
+  background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 16px 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  gap: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
 .progress-title-row {
@@ -426,58 +426,73 @@ button { cursor: pointer; font-family: inherit; }
 .live-pulse-badge {
   font-size: 0.65rem;
   font-weight: 600;
-  background: rgba(36, 86, 230, 0.15);
-  color: var(--accent-blue);
+  background: var(--primary-tint);
+  color: var(--primary);
   padding: 2px 8px;
   border-radius: 999px;
-  border: 1px solid rgba(36, 86, 230, 0.3);
+  border: 1px solid var(--primary);
   animation: pulse-border 2s infinite ease-in-out;
 }
 
 @keyframes pulse-border {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
+  50% { opacity: 0.5; }
 }
 
 .progress-percent-badge {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--accent-blue);
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--primary);
 }
 
+/* Progress Bar Track */
 .progress-track {
-  height: 8px;
-  background: var(--bg-input);
+  height: 10px;
+  background: #1F2937;
   border-radius: 999px;
   overflow: hidden;
   border: 1px solid var(--border-subtle);
+  position: relative;
 }
 
+[data-theme="light"] .progress-track {
+  background: #E2E8F0;
+  border-color: #CBD5E1;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+/* Progress Fill Bar */
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #2563EB, #38BDF8);
+  background: linear-gradient(90deg, #2563EB 0%, #38BDF8 50%, #22C55E 100%);
   border-radius: 999px;
-  transition: width 0.4s ease;
+  transition: width 0.35s ease;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.4);
+}
+
+[data-theme="light"] .progress-fill {
+  background: linear-gradient(90deg, #0969DA 0%, #1F883D 100%);
+  box-shadow: 0 1px 4px rgba(9, 105, 218, 0.35);
 }
 
 .progress-fill.animated-stripes {
-  background-size: 20px 20px;
+  background-size: 24px 24px;
   background-image: linear-gradient(
     45deg,
-    rgba(255, 255, 255, 0.15) 25%,
+    rgba(255, 255, 255, 0.25) 25%,
     transparent 25%,
     transparent 50%,
-    rgba(255, 255, 255, 0.15) 50%,
-    rgba(255, 255, 255, 0.15) 75%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0.25) 75%,
     transparent 75%,
     transparent
   );
-  animation: progress-stripes 1s linear infinite;
+  animation: progress-stripes 0.8s linear infinite;
 }
 
 @keyframes progress-stripes {
-  from { background-position: 20px 0; }
+  from { background-position: 24px 0; }
   to { background-position: 0 0; }
 }
 
@@ -490,7 +505,7 @@ button { cursor: pointer; font-family: inherit; }
 }
 
 .caption-running {
-  color: var(--accent-blue);
+  color: var(--primary);
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -517,10 +532,10 @@ button { cursor: pointer; font-family: inherit; }
 }
 
 .step-card {
-  background: var(--bg-card);
+  background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
-  padding: 12px 16px;
+  padding: 14px 16px;
   display: flex;
   align-items: flex-start;
   gap: 12px;
@@ -528,41 +543,41 @@ button { cursor: pointer; font-family: inherit; }
 }
 
 .step-card.step-completed {
-  border-color: rgba(34, 197, 94, 0.35);
-  background: rgba(34, 197, 94, 0.03);
+  border-color: var(--accent-green);
+  background: var(--accent-green-tint);
 }
 
 .step-card.step-running {
-  border-color: var(--accent-blue);
-  background: rgba(37, 99, 235, 0.05);
-  box-shadow: 0 0 0 1px var(--accent-blue);
+  border-color: var(--primary);
+  background: var(--primary-tint);
+  box-shadow: 0 0 0 1px var(--primary);
 }
 
 .step-card.step-error {
   border-color: var(--accent-rose);
-  background: rgba(239, 68, 68, 0.05);
+  background: rgba(239, 68, 68, 0.08);
 }
 
 .step-card.step-pending {
-  opacity: 0.7;
+  opacity: 0.75;
 }
 
 .step-icon-col {
-  margin-top: 2px;
+  margin-top: 1px;
   flex-shrink: 0;
 }
 
 .icon-completed { color: var(--accent-green); }
-.icon-running { color: var(--accent-blue); }
+.icon-running { color: var(--primary); }
 .icon-error { color: var(--accent-rose); }
-.icon-pending { color: var(--text-muted); opacity: 0.5; }
+.icon-pending { color: var(--text-dim); }
 
 .step-content {
   flex: 1;
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
 }
 
 .step-header-line {
@@ -573,35 +588,35 @@ button { cursor: pointer; font-family: inherit; }
 }
 
 .step-title {
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 600;
   color: var(--text-main);
 }
 
 .step-desc {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   color: var(--text-muted);
   line-height: 1.4;
 }
 
 .step-status-pill {
-  font-size: 0.62rem;
+  font-size: 0.64rem;
   font-weight: 600;
-  padding: 1px 6px;
+  padding: 2px 7px;
   border-radius: 4px;
 }
 
-.pill-completed { background: rgba(34, 197, 94, 0.15); color: var(--accent-green); }
-.pill-running   { background: rgba(37, 99, 235, 0.15); color: var(--accent-blue); }
-.pill-error     { background: rgba(239, 68, 68, 0.15); color: var(--accent-rose); }
-.pill-pending   { background: var(--bg-input); color: var(--text-muted); }
+.pill-completed { background: var(--accent-green-tint); color: var(--accent-green); border: 1px solid var(--accent-green); }
+.pill-running   { background: var(--primary-tint); color: var(--primary); border: 1px solid var(--primary); }
+.pill-error     { background: rgba(239, 68, 68, 0.15); color: var(--accent-rose); border: 1px solid var(--accent-rose); }
+.pill-pending   { background: var(--bg-card); color: var(--text-muted); border: 1px solid var(--border-subtle); }
 
 /* Collapsible Raw Console */
 .raw-console-toggle {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 8px;
+  padding-top: 10px;
   border-top: 1px solid var(--border-subtle);
 }
 
