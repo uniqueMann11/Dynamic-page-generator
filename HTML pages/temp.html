@@ -1,0 +1,2288 @@
+<!doctype html>
+<!DOCTYPE html>
+<html style="scroll-behavior: smooth; box-sizing: border-box;">
+
+<head style="box-sizing: border-box;">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Machine Learning Engineer in Mumbai</title>
+    <style>
+        :root {
+            --ink: #0B1120;
+            --ink-soft: #1E293B;
+            --body: #475569;
+            --muted: #64748B;
+            --line: #E7ECF3;
+            --line-soft: #EEF2F8;
+            --surface: #FFFFFF;
+            --surface-alt: #F5F8FD;
+            --surface-tint: #EEF3FF;
+            --primary: #2456E6;
+            --primary-strong: #1740C0;
+            --primary-tint: #E7EEFF;
+            --indigo: #4F46E5;
+            --green: #159A5B;
+            --green-tint: #E7F7EF;
+            --amber: #D97A18;
+            --shadow-sm: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06);
+            --shadow-md: 0 10px 30px -12px rgba(11, 17, 32, .18);
+            --shadow-lg: 0 24px 60px -24px rgba(20, 86, 230, .28);
+            --radius: 16px;
+            --radius-sm: 11px;
+            --maxw: 1180px;
+            --ff-display: "Archivo", system-ui, sans-serif;
+            --ff-body: "Inter", system-ui, sans-serif;
+            --ff-mono: "JetBrains Mono", ui-monospace, monospace;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #4F46E5;
+        }
+
+        .btn--primary:hover {
+            background: #1740C0;
+            transform: translateY(-2px);
+        }
+
+        .btn--ghost:hover {
+            border-color: #2456E6;
+            color: #2456E6;
+            transform: translateY(-2px);
+        }
+
+        .btn--wa:hover {
+            background: #178a45;
+            transform: translateY(-2px);
+        }
+
+        .link-cta:hover svg {
+            transform: translateX(4px);
+        }
+
+        .route-card::before {
+            content: "DIRECT ACCESS";
+            position: absolute;
+            top: -11px;
+            left: 26px;
+            background: #0B1120;
+            color: #fff;
+            font-family: "JetBrains Mono", ui-monospace, monospace;
+            font-size: .6rem;
+            letter-spacing: .18em;
+            padding: 5px 11px;
+            border-radius: 6px;
+        }
+
+        .value-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px -12px rgba(11, 17, 32, .18);
+        }
+
+        .svc-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -12px rgba(11, 17, 32, .18);
+            border-color: #D5E0F5;
+        }
+
+        .chip:hover {
+            border-color: #2456E6;
+            color: #2456E6;
+            transform: translateY(-2px);
+        }
+
+        .prose p:last-child {
+            margin-bottom: 0;
+        }
+
+        table.cmp thead th:first-child {
+            border-top-left-radius: 16px;
+        }
+
+        table.cmp thead th:last-child {
+            border-top-right-radius: 16px;
+        }
+
+        table.cmp tr:last-child td,
+        table.cmp tr:last-child th {
+            border-bottom: 0;
+        }
+
+        .tl-item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #2456E6;
+        }
+
+        .tl-item.free::before {
+            background: #D97A18;
+        }
+
+        .proof-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -12px rgba(11, 17, 32, .18);
+        }
+
+        .why-card:hover {
+            background: #F5F8FD;
+        }
+
+        .why-card:nth-child(3n) {
+            border-right: 0;
+        }
+
+        .why-card:nth-last-child(-n
+
+            /**/
+            +3) {
+            border-bottom: 0;
+        }
+
+        .tst-who>span:nth-child(2) {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -12px rgba(11, 17, 32, .18);
+        }
+
+        .faq-q .plus::before,
+        .faq-q .plus::after {
+            content: "";
+            position: absolute;
+            background: #2456E6;
+            border-radius: 2px;
+        }
+
+        .faq-q .plus::before {
+            top: 11px;
+            left: 3px;
+            right: 3px;
+            height: 2px;
+        }
+
+        .faq-q .plus::after {
+            left: 11px;
+            top: 3px;
+            bottom: 3px;
+            width: 2px;
+            transition: opacity .25s ease;
+        }
+
+        .faq-item[open] .faq-q .plus::after {
+            opacity: 0;
+        }
+
+        details.faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .cta-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(700px 400px at 85% -10%, rgba(36, 86, 230, .4), transparent 60%), radial-gradient(600px 400px at 0% 110%, rgba(79, 70, 229, .3), transparent 55%);
+            pointer-events: none;
+        }
+
+        .cta-section .eyebrow::before {
+            background: #8FB0FF;
+        }
+
+        .field input:focus,
+        .field textarea:focus {
+            outline: none;
+            border-color: #2456E6;
+            box-shadow: 0 0 0 3px #E7EEFF;
+        }
+
+        .foot-col a:hover {
+            color: #fff;
+        }
+
+        .skip:focus {
+            left: 0;
+        }
+
+        .vw-ml-widget *,
+        .vw-ml-widget *::before,
+        .vw-ml-widget *::after {
+            box-sizing: border-box;
+        }
+
+        .vw-ml-widget .viewer-top .chip::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: #2456E6;
+        }
+
+        .vw-ml-widget .vw-node::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            flex-shrink: 0;
+            margin-right: 5px;
+            border-radius: 50%;
+            background: #E7ECF3;
+        }
+
+        .vw-ml-widget .vw-node.active::before {
+            background: #2456E6;
+        }
+
+        .vw-ml-widget .vw-node.connect::before {
+            background: #2456E6;
+        }
+
+        .ctx-float {
+                position: static;
+                margin-top: 14px;
+                display: inline-flex;
+            }
+
+            .ctx-float.f1,
+            .ctx-float.f2 {
+                inset: auto;
+            }
+
+            .ctx-ml-widget {
+                position: relative;
+                width: 100%;
+                background: linear-gradient(180deg, #eef0fb 0%, #eef1fa 100%);
+                border-radius: 0;
+                overflow: hidden;
+            }
+
+            .ctx-ml-widget .widget-topbar {
+                height: 10px;
+                width: 100%;
+                background: #171a2b;
+            }
+
+            .ctx-ml-widget .widget-inner {
+                padding: 28px 28px 22px;
+            }
+
+            .ctx-ml-widget .widget-svg {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+
+            .ctx-ml-widget .widget-title {
+                text-align: center;
+                font-size: 26px;
+                font-weight: 800;
+                color: #12142b;
+                letter-spacing: -0.3px;
+                margin: 14px 0 6px;
+            }
+
+        @media (max-width:980px) {
+
+            .hero-inner,
+            .prose-grid,
+            .ctx-grid,
+            .cta-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .svc-grid,
+            .proof-grid,
+            .tst-grid,
+            .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .why-card:nth-child(3n) {
+                border-right: 1px solid #E7ECF3;
+            }
+
+            .why-card:nth-child(2n) {
+                border-right: 0;
+            }
+
+            .why-card:nth-last-child(-n
+
+                /**/
+                +3) {
+                border-bottom: 1px solid #E7ECF3;
+            }
+
+            .why-card:nth-last-child(-n
+
+                /**/
+                +2) {
+                border-bottom: 0;
+            }
+
+            .value-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .foot-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            
+
+
+        }
+
+        @media (max-width:640px) {
+            .section {
+                padding: 64px 0;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links.open {
+                display: flex;
+                position: absolute;
+                top: 68px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: #fff;
+                border-bottom: 1px solid #E7ECF3;
+                padding: 18px 24px;
+                gap: 16px;
+                box-shadow: 0 10px 30px -12px rgba(11, 17, 32, .18);
+            }
+
+            .svc-grid,
+            .proof-grid,
+            .tst-grid,
+            .blog-grid,
+            .why-grid,
+            .value-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-card {
+                border-right: 0 !important;
+                border-bottom: 1px solid #E7ECF3 !important;
+            }
+
+            .why-card:last-child {
+                border-bottom: 0 !important;
+            }
+
+            .tl-item {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .foot-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (prefers-reduced-motion:reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body
+    style='margin: 0; font-family: "Inter", system-ui, sans-serif; color: #475569; background: #FFFFFF; line-height: 1.7; font-size: 16px; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; box-sizing: border-box;'>
+    <main id="main" style="box-sizing: border-box;">
+        <!-- ============================ HERO ============================ -->
+        <section class="hero" style="position: relative; overflow: hidden; background: radial-gradient(1200px 500px at 82% -8%, rgba(36, 86, 230, .10), transparent 60%),
+radial-gradient(900px 500px at -10% 10%, rgba(79, 70, 229, .07), transparent 55%); box-sizing: border-box;">
+            <div class="wrap hero-inner"
+                style="max-width: 1180px; margin: 0 auto; padding: 84px 0 88px; display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; box-sizing: border-box;">
+                <div style="box-sizing: border-box;">
+                    <span class="hero-badge"
+                        style="display: inline-flex; align-items: center; gap: 9px; background: #fff; border: 1px solid #E7ECF3; border-radius: 999px; padding: 7px 14px 7px 10px; font-size: .82rem; font-weight: 600; color: #1E293B; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); margin-bottom: 26px; box-sizing: border-box;"><span
+                            class="dot"
+                            style="width: 8px; height: 8px; border-radius: 50%; background: #159A5B; box-shadow: 0 0 0 4px #E7F7EF; box-sizing: border-box;"></span>
+                        Based in Mumbai, Maharashtra</span>
+                    <h1
+                        style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.035em; margin: 0; font-size: clamp(2.5rem, 5.4vw, 4.05rem); font-weight: 900; box-sizing: border-box;'>
+                        Machine Learning Engineer <em
+                            style="font-style: normal; color: #2456E6; box-sizing: border-box;">in Mumbai</em>, direct
+                        access, real deployments</h1>
+                    <p class="hero-sub"
+                        style="margin: 0; margin-top: 24px; font-size: 1.12rem; color: #475569; max-width: 52ch; box-sizing: border-box;">
+                        I build and deploy production machine learning systems for Mumbai and Maharashtra
+                        businesses, and for clients internationally. You work with the engineer who writes the code,
+                        from discovery
+                        to deployment, not an account manager. I help BFSI, media & entertainment, and e-commerce
+                        companies in
+                        Mumbai and Maharashtra.</p>
+                    <div class="hero-stats"
+                        style="display: flex; flex-wrap: wrap; gap: 14px; margin: 32px 0 30px; box-sizing: border-box;">
+                        <div class="stat-chip"
+                            style="display: flex; flex-direction: column; gap: 2px; background: #fff; border: 1px solid #E7ECF3; border-radius: 12px; padding: 13px 18px; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); box-sizing: border-box;">
+                            <b
+                                style='font-family: "Archivo", system-ui, sans-serif; font-size: 1.5rem; font-weight: 800; color: #0B1120; box-sizing: border-box;'>5+</b><span
+                                style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: #64748B; box-sizing: border-box;'>Years
+                                building ML</span>
+                        </div>
+                        <div class="stat-chip"
+                            style="display: flex; flex-direction: column; gap: 2px; background: #fff; border: 1px solid #E7ECF3; border-radius: 12px; padding: 13px 18px; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); box-sizing: border-box;">
+                            <b
+                                style='font-family: "Archivo", system-ui, sans-serif; font-size: 1.5rem; font-weight: 800; color: #0B1120; box-sizing: border-box;'>12+</b><span
+                                style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: #64748B; box-sizing: border-box;'>Case
+                                studies</span>
+                        </div>
+                        <div class="stat-chip"
+                            style="display: flex; flex-direction: column; gap: 2px; background: #fff; border: 1px solid #E7ECF3; border-radius: 12px; padding: 13px 18px; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); box-sizing: border-box;">
+                            <b
+                                style='font-family: "Archivo", system-ui, sans-serif; font-size: 1.5rem; font-weight: 800; color: #0B1120; box-sizing: border-box;'>24h</b><span
+                                style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: #64748B; box-sizing: border-box;'>Response
+                                time</span>
+                        </div>
+                        <div class="stat-chip"
+                            style="display: flex; flex-direction: column; gap: 2px; background: #fff; border: 1px solid #E7ECF3; border-radius: 12px; padding: 13px 18px; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); box-sizing: border-box;">
+                            <b
+                                style='font-family: "Archivo", system-ui, sans-serif; font-size: 1.5rem; font-weight: 800; color: #0B1120; box-sizing: border-box;'>48h</b><span
+                                style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: #64748B; box-sizing: border-box;'>Written
+                                spec</span>
+                        </div>
+                    </div>
+                    <div class="hero-actions"
+                        style="display: flex; flex-wrap: wrap; gap: 14px; box-sizing: border-box;">
+                        <a class="btn btn--primary" href="#lets-talk"
+                            style='color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; font-family: "Inter", system-ui, sans-serif; font-weight: 600; font-size: .98rem; padding: 14px 22px; border-radius: 12px; border: 1px solid transparent; cursor: pointer; transition: transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease; line-height: 1; white-space: nowrap; background: #2456E6; box-shadow: 0 24px 60px -24px rgba(20, 86, 230, .28); box-sizing: border-box;'>Discuss
+                            your ML project <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                stroke-width="2"
+                                style="max-width: 100%; display: block; width: 18px; height: 18px; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M5 12h14M13 6l6 6-6 6" style="box-sizing: border-box;"></path>
+                            </svg></a>
+                        <a class="btn btn--ghost" href="https://shreyans.tech/ai-case-studies"
+                            style='color: #0B1120; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; font-family: "Inter", system-ui, sans-serif; font-weight: 600; font-size: .98rem; padding: 14px 22px; border-radius: 12px; border: 1px solid transparent; cursor: pointer; transition: transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease; line-height: 1; white-space: nowrap; background: #fff; border-color: #E7ECF3; box-sizing: border-box;'>View
+                            case studies</a>
+                    </div>
+                    <p class="hero-note"
+                        style="margin: 0; margin-top: 22px; font-size: .86rem; color: #64748B; display: flex; align-items: center; gap: 8px; box-sizing: border-box;">
+                        <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            style="max-width: 100%; display: block; width: 16px; height: 16px; stroke: #159A5B; box-sizing: border-box;"
+                            viewbox="0 0 24 24">
+                            <path d="M20 6L9 17l-5-5" style="box-sizing: border-box;"></path>
+                        </svg> In-person meetings in Mumbai, video calls worldwide, NDA before any data
+                    </p>
+                </div>
+                <!-- Signature: direct-access route card -->
+                <div class="vw-ml-widget"
+                    style="width: 100%; height: auto; margin-top: 0; display: flex; flex-direction: column; box-sizing: border-box; border: 1px solid #E7ECF3; border-radius: 16px; background: #FFFFFF; box-shadow: 0 10px 30px -12px rgba(11, 17, 32, .18); overflow: hidden;">
+                    <!-- Header -->
+                    <div class="viewer-top"
+                        style="width: 100%; height: auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; border-bottom: 1px solid #E7ECF3; background: #F5F8FD; min-width: 0; box-sizing: border-box;">
+                        <span class="t"
+                            style="min-width: 0; height: auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.92rem; font-weight: 700; color: #0B1120; box-sizing: border-box;">
+                            Machine Learning Engineer
+                        </span>
+                        <span class="chip"
+                            style='display: inline-flex; align-items: center; gap: 6px; background: #fff; border: 1px solid #E7ECF3; border-radius: 999px; padding: 5px 10px; font-size: 0.72rem; font-weight: 600; color: #1740C0; transition: all .18s ease; flex-shrink: 0; font-family: "JetBrains Mono", ui-monospace, monospace; white-space: nowrap; box-sizing: border-box;'>
+                            Mumbai
+                        </span>
+                    </div>
+                    <!-- Main -->
+                    <div class="vw-body"
+                        style="flex: 1; min-height: 0; display: flex; flex-direction: column; padding: 18px; gap: 16px; overflow: hidden; box-sizing: border-box;">
+                        <!-- Neural Network / ML Pipeline -->
+                        <div class="vw-neural-network"
+                            style="width: 100%; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; align-items: center; min-width: 0; box-sizing: border-box;">
+                            <div class="vw-node active" style="position: relative; min-width: 0; min-height: 52px; display: flex; align-items: center; justify-content: center; padding: 8px 6px; border: 1px solid #E7ECF3; border-radius: 11px; background: #E7EEFF; color: #1740C0; font-size: 0.75rem; font-weight: 600; line-height: 1.2; text-align: center; overflow: hidden; transition: border-color 0.2s ease,
+background 0.2s ease,
+transform 0.2s ease; border-color: #2456E6; box-sizing: border-box;">
+                                <span
+                                    style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; box-sizing: border-box;">Input</span>
+                            </div>
+                            <div class="vw-node" style="position: relative; min-width: 0; min-height: 52px; display: flex; align-items: center; justify-content: center; padding: 8px 6px; border: 1px solid #E7ECF3; border-radius: 11px; background: #F5F8FD; color: #0B1120; font-size: 0.75rem; font-weight: 600; line-height: 1.2; text-align: center; overflow: hidden; transition: border-color 0.2s ease,
+background 0.2s ease,
+transform 0.2s ease; box-sizing: border-box;">
+                                <span
+                                    style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; box-sizing: border-box;">Hidden
+                                    1</span>
+                            </div>
+                            <div class="vw-node" style="position: relative; min-width: 0; min-height: 52px; display: flex; align-items: center; justify-content: center; padding: 8px 6px; border: 1px solid #E7ECF3; border-radius: 11px; background: #F5F8FD; color: #0B1120; font-size: 0.75rem; font-weight: 600; line-height: 1.2; text-align: center; overflow: hidden; transition: border-color 0.2s ease,
+background 0.2s ease,
+transform 0.2s ease; box-sizing: border-box;">
+                                <span
+                                    style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; box-sizing: border-box;">Hidden
+                                    2</span>
+                            </div>
+                            <div class="vw-node" style="position: relative; min-width: 0; min-height: 52px; display: flex; align-items: center; justify-content: center; padding: 8px 6px; border: 1px solid #E7ECF3; border-radius: 11px; background: #F5F8FD; color: #0B1120; font-size: 0.75rem; font-weight: 600; line-height: 1.2; text-align: center; overflow: hidden; transition: border-color 0.2s ease,
+background 0.2s ease,
+transform 0.2s ease; box-sizing: border-box;">
+                                <span
+                                    style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; box-sizing: border-box;">Output</span>
+                            </div>
+                        </div>
+                        <!-- Metrics -->
+                        <div class="vw-metrics"
+                            style="width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; min-width: 0; box-sizing: border-box;">
+                            <div class="vw-metric"
+                                style="min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 14px; border: 1px solid #E7ECF3; border-radius: 11px; background: #FFFFFF; box-sizing: border-box;">
+                                <label
+                                    style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.78rem; font-weight: 500; color: #64748B; box-sizing: border-box;">
+                                    Accuracy
+                                </label>
+                                <span data-accuracy=""
+                                    style='flex-shrink: 0; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.92rem; font-weight: 700; color: #2456E6; box-sizing: border-box;'>
+                                    90%
+                                </span>
+                            </div>
+                            <div class="vw-metric"
+                                style="min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 14px; border: 1px solid #E7ECF3; border-radius: 11px; background: #FFFFFF; box-sizing: border-box;">
+                                <label
+                                    style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.78rem; font-weight: 500; color: #64748B; box-sizing: border-box;">
+                                    Loss
+                                </label>
+                                <span data-loss=""
+                                    style='flex-shrink: 0; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.92rem; font-weight: 700; color: #2456E6; box-sizing: border-box;'>
+                                    0.10
+                                </span>
+                            </div>
+                        </div>
+                        <!-- Terminal -->
+                        <div class="vw_terminal"
+                            style="width: 100%; min-height: 0; border: 1px solid #E7ECF3; border-radius: 11px; background: #0B1120; overflow: hidden; box-sizing: border-box;">
+                            <pre
+                                style='margin: 0; padding: 14px 16px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.8rem; line-height: 1.6; color: #94A3B8; white-space: pre-wrap; overflow: hidden; box-sizing: border-box;'><code style="box-sizing: border-box;"><span class="terminal-title" style="color: #38BDF8; font-weight: 600; box-sizing: border-box;">Training Model...</span>
+Epoch 1  Loss: 0.50  Accuracy: 80%
+Epoch 2  Loss: 0.30  Accuracy: 85%
+Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
+                        </div>
+                    </div>
+                    <!-- Footer -->
+                    <div class="viewer-foot"
+                        style='flex-shrink: 0; display: flex; align-items: center; min-width: 0; padding: 12px 18px; border-top: 1px solid #E7ECF3; background: #F5F8FD; color: #64748B; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.78rem; line-height: 1.3; box-sizing: border-box;'>
+                        <span
+                            style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; box-sizing: border-box;">
+                            Serving Mumbai & Maharashtra
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ============================ TRUST BAR ============================ -->
+        <div class="trustbar"
+            style="border-top: 1px solid #E7ECF3; border-bottom: 1px solid #E7ECF3; background: #fff; box-sizing: border-box;">
+            <div class="wrap trustbar-inner"
+                style="max-width: 1180px; margin: 0 auto; padding: 22px 0; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; box-sizing: border-box;">
+                <div class="trust-item"
+                    style="display: flex; align-items: center; gap: 11px; font-size: .9rem; color: #1E293B; font-weight: 500; box-sizing: border-box;">
+                    <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        style="max-width: 100%; display: block; width: 20px; height: 20px; stroke: #2456E6; flex: 0 0 auto; box-sizing: border-box;"
+                        viewbox="0 0 24 24">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" style="box-sizing: border-box;"></path>
+                        <path d="M22 4L12 14.01l-3-3" style="box-sizing: border-box;"></path>
+                    </svg>100% Upwork Job Success
+                </div>
+                <div class="trust-item"
+                    style="display: flex; align-items: center; gap: 11px; font-size: .9rem; color: #1E293B; font-weight: 500; box-sizing: border-box;">
+                    <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        style="max-width: 100%; display: block; width: 20px; height: 20px; stroke: #2456E6; flex: 0 0 auto; box-sizing: border-box;"
+                        viewbox="0 0 24 24">
+                        <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" style="box-sizing: border-box;"></path>
+                        <path
+                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"
+                            style="box-sizing: border-box;">
+                        </path>
+                    </svg>Microsoft AI certified
+                </div>
+                <div class="trust-item"
+                    style="display: flex; align-items: center; gap: 11px; font-size: .9rem; color: #1E293B; font-weight: 500; box-sizing: border-box;">
+                    <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        style="max-width: 100%; display: block; width: 20px; height: 20px; stroke: #2456E6; flex: 0 0 auto; box-sizing: border-box;"
+                        viewbox="0 0 24 24">
+                        <path d="M9 11l3 3L22 4" style="box-sizing: border-box;"></path>
+                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"
+                            style="box-sizing: border-box;"></path>
+                    </svg>NDA before any data
+                </div>
+                <div class="trust-item"
+                    style="display: flex; align-items: center; gap: 11px; font-size: .9rem; color: #1E293B; font-weight: 500; box-sizing: border-box;">
+                    <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        style="max-width: 100%; display: block; width: 20px; height: 20px; stroke: #2456E6; flex: 0 0 auto; box-sizing: border-box;"
+                        viewbox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" style="box-sizing: border-box;"></circle>
+                        <path d="M12 6v6l4 2" style="box-sizing: border-box;"></path>
+                    </svg>Written spec in 48 hours
+                </div>
+            </div>
+        </div>
+        <!-- ============================ VALUE STRIP (image 1: icons added) ============================ -->
+        <section class="section value-strip" style="padding: 96px 0; box-sizing: border-box;">
+            <div class="wrap" style="max-width: 1180px; margin: 0 auto; padding: 0 24px; box-sizing: border-box;">
+                <div class="center" style="margin-bottom: 52px; text-align: center; box-sizing: border-box;">
+                    <span class="eyebrow"
+                        style='display: inline-flex; align-items: center; gap: 9px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .72rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: #4F46E5; margin-bottom: 20px; box-sizing: border-box;'>Why
+                        direct access</span>
+                    <h2 class="h2"
+                        style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: clamp(2rem, 3.6vw, 2.9rem); font-weight: 800; max-width: 20ch; margin-left: auto; margin-right: auto; box-sizing: border-box;'>
+                        What you get working</h2>
+                </div>
+                <div class="value-grid"
+                    style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; box-sizing: border-box;">
+                    <div class="value-card"
+                        style="background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; padding: 26px; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); transition: transform .2s ease, box-shadow .2s ease; box-sizing: border-box;">
+                        <div class="value-ico"
+                            style="width: 46px; height: 46px; border-radius: 12px; background: #E7F7EF; color: #159A5B; display: grid; place-items: center; margin-bottom: 16px; box-sizing: border-box;">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
+                                style="max-width: 100%; display: block; width: 24px; height: 24px; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"
+                                    style="box-sizing: border-box;"></path>
+                                <circle cx="12" cy="10" r="3" style="box-sizing: border-box;"></circle>
+                            </svg>
+                        </div>
+                        <h3
+                            style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.08rem; font-weight: 700; margin-bottom: 8px; box-sizing: border-box;'>
+                            Expert ML</h3>
+                        <p style="margin: 0; font-size: .92rem; color: #64748B; box-sizing: border-box;">Mumbai-based
+                            and available for local meetings, delivering tailored machine learning solutions to BFSI,
+                            media & entertainment, and e-commerce businesses across Maharashtra. This expertise helps
+                            companies in
+                            Maharashtra leverage machine learning for competitive advantage.</p>
+                    </div>
+                    <div class="value-card"
+                        style="background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; padding: 26px; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); transition: transform .2s ease, box-shadow .2s ease; box-sizing: border-box;">
+                        <div class="value-ico"
+                            style="width: 46px; height: 46px; border-radius: 12px; background: #E7F7EF; color: #159A5B; display: grid; place-items: center; margin-bottom: 16px; box-sizing: border-box;">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
+                                style="max-width: 100%; display: block; width: 24px; height: 24px; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" style="box-sizing: border-box;">
+                                </path>
+                                <circle cx="9" cy="7" r="4" style="box-sizing: border-box;"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"
+                                    style="box-sizing: border-box;"></path>
+                            </svg>
+                        </div>
+                        <h3
+                            style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.08rem; font-weight: 700; margin-bottom: 8px; box-sizing: border-box;'>
+                            Direct engineer</h3>
+                        <p style="margin: 0; font-size: .92rem; color: #64748B; box-sizing: border-box;">Collaborate
+                            directly with a seasoned Machine Learning Engineer from discovery to deployment, with clear,
+                            unbroken communication, ensuring projects in Mumbai's Bandra-Kurla Complex (BKC) and beyond
+                            are completed
+                            efficiently.</p>
+                    </div>
+                    <div class="value-card"
+                        style="background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; padding: 26px; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); transition: transform .2s ease, box-shadow .2s ease; box-sizing: border-box;">
+                        <div class="value-ico"
+                            style="width: 46px; height: 46px; border-radius: 12px; background: #E7F7EF; color: #159A5B; display: grid; place-items: center; margin-bottom: 16px; box-sizing: border-box;">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
+                                style="max-width: 100%; display: block; width: 24px; height: 24px; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" style="box-sizing: border-box;">
+                                </path>
+                                <path d="M9 12l2 2 4-4" style="box-sizing: border-box;"></path>
+                            </svg>
+                        </div>
+                        <h3
+                            style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.08rem; font-weight: 700; margin-bottom: 8px; box-sizing: border-box;'>
+                            Data security</h3>
+                        <p style="margin: 0; font-size: .92rem; color: #64748B; box-sizing: border-box;">An NDA is
+                            signed before any project data is shared, so the confidentiality and security of your
+                            business
+                            information in Maharashtra are protected, aligning with the state's growing tech industry
+                            needs.</p>
+                    </div>
+                    <div class="value-card"
+                        style="background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; padding: 26px; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); transition: transform .2s ease, box-shadow .2s ease; box-sizing: border-box;">
+                        <div class="value-ico"
+                            style="width: 46px; height: 46px; border-radius: 12px; background: #E7F7EF; color: #159A5B; display: grid; place-items: center; margin-bottom: 16px; box-sizing: border-box;">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
+                                style="max-width: 100%; display: block; width: 24px; height: 24px; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M3 3v18h18" style="box-sizing: border-box;"></path>
+                                <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14" style="box-sizing: border-box;"></path>
+                            </svg>
+                        </div>
+                        <h3
+                            style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.08rem; font-weight: 700; margin-bottom: 8px; box-sizing: border-box;'>
+                            Proven track</h3>
+                        <p style="margin: 0; font-size: .92rem; color: #64748B; box-sizing: border-box;">Review
+                            verifiable case studies with measurable outcomes that demonstrate real machine learning
+                            delivery
+                            in Mumbai, showcasing success in sectors like BFSI, media & entertainment, and e-commerce,
+                            not a
+                            generic portfolio.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ============================ Quick answer ============================ -->
+        <section class="section section--alt quick-answer"
+            style="padding: 96px 0; background: #F5F8FD; box-sizing: border-box;">
+            <div class="wrap prose-grid"
+                style="max-width: 1180px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: start; box-sizing: border-box;">
+                <div style="box-sizing: border-box;">
+                    <span class="eyebrow"
+                        style='display: inline-flex; align-items: center; gap: 9px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .72rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: #4F46E5; margin-bottom: 20px; box-sizing: border-box;'>Plain
+                        answer</span>
+                    <h2 class="h2"
+                        style='font-size: clamp(2rem, 3.6vw, 2.9rem); font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-weight: 800; max-width: 20ch; box-sizing: border-box;'>
+                        What does a Machine Learning Engineer in Mumbai
+                        actually do?</h2>
+                    <div class="answer-card"
+                        style="margin-top: 26px; background: #EEF3FF; border: 1px solid #DCE6FB; border-radius: 16px; padding: 26px; box-sizing: border-box;">
+                        <span class="tag"
+                            style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: #2456E6; font-weight: 600; margin-bottom: 10px; display: block; box-sizing: border-box;'>Quick
+                            answer</span>
+                        <p style="margin: 0; color: #1E293B; font-size: .98rem; box-sizing: border-box;">A Machine
+                            Learning Engineer in Mumbai designs, develops, and deploys custom ML models, natural
+                            language
+                            processing applications, and computer vision systems for businesses in Maharashtra,
+                            integrating them into
+                            existing tools for seamless operation.</p>
+                    </div>
+                </div>
+                <div class="prose" style="box-sizing: border-box;">
+                    <p style="margin: 0; margin-bottom: 18px; box-sizing: border-box;">Mumbai, being a hub for BFSI,
+                        media & entertainment, and e-commerce, presents a unique opportunity for
+                        machine learning applications, with a strong base of engineering talent and a fast-adopting
+                        business
+                        community. As an independent engineer, the focus is on delivering production-ready, integrated
+                        systems that
+                        move a business metric in Maharashtra.</p>
+                    <p style="margin: 0; margin-bottom: 18px; box-sizing: border-box;">The work spans the full
+                        lifecycle: framing the problem, preparing and validating data, selecting and
+                        training the right model, deploying it reliably, and monitoring it in production so accuracy
+                        holds as your
+                        data shifts in the dynamic Mumbai market.</p>
+                    <ul class="checklist"
+                        style="list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 14px; box-sizing: border-box;">
+                        <li
+                            style="display: flex; gap: 13px; align-items: flex-start; font-size: .96rem; color: #1E293B; box-sizing: border-box;">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
+                                style="max-width: 100%; display: block; width: 22px; height: 22px; flex: 0 0 auto; color: #159A5B; margin-top: 1px; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" style="box-sizing: border-box;"></path>
+                                <path d="M22 4L12 14.01l-3-3" style="box-sizing: border-box;"></path>
+                            </svg>Custom models tied to real business outcomes in Mumbai, scoped before any build
+                            starts, ensuring
+                            relevance to the local BFSI, media & entertainment, and e-commerce sectors.
+                        </li>
+                        <li
+                            style="display: flex; gap: 13px; align-items: flex-start; font-size: .96rem; color: #1E293B; box-sizing: border-box;">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
+                                style="max-width: 100%; display: block; width: 22px; height: 22px; flex: 0 0 auto; color: #159A5B; margin-top: 1px; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" style="box-sizing: border-box;"></path>
+                                <path d="M22 4L12 14.01l-3-3" style="box-sizing: border-box;"></path>
+                            </svg>Deployment and MLOps, so the model runs reliably and keeps working after launch.
+                        </li>
+                        <li
+                            style="display: flex; gap: 13px; align-items: flex-start; font-size: .96rem; color: #1E293B; box-sizing: border-box;">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
+                                style="max-width: 100%; display: block; width: 22px; height: 22px; flex: 0 0 auto; color: #159A5B; margin-top: 1px; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" style="box-sizing: border-box;"></path>
+                                <path d="M22 4L12 14.01l-3-3" style="box-sizing: border-box;"></path>
+                            </svg>In-person collaboration for Mumbai clients who prefer a local working relationship.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- ============================ (What I build) SERVICES (image 2: icons + CTAs) ============================ -->
+        <section class="section what-I-build" style="padding: 96px 0; box-sizing: border-box;">
+            <div class="wrap" style="max-width: 1180px; margin: 0 auto; padding: 0 24px; box-sizing: border-box;">
+                <span class="eyebrow"
+                    style='display: inline-flex; align-items: center; gap: 9px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .72rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: #4F46E5; margin-bottom: 20px; box-sizing: border-box;'>What
+                    I build</span>
+                <h2 class="h2"
+                    style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: clamp(2rem, 3.6vw, 2.9rem); font-weight: 800; max-width: 20ch; box-sizing: border-box;'>
+                    Machine learning services in Mumbai</h2>
+                <p class="lede"
+                    style="margin: 0; font-size: clamp(1.02rem, 1.6vw, 1.18rem); color: #64748B; max-width: 62ch; margin-top: 18px; box-sizing: border-box;">
+                    A full range of machine learning development, delivered by the person who actually builds your
+                    system, not routed through an account manager.</p>
+                <div class="svc-grid"
+                    style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 52px; box-sizing: border-box;">
+                    <!-- 01 -->
+                    <article class="svc-card"
+                        style="background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; box-sizing: border-box;">
+                        <div class="svc-top"
+                            style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; box-sizing: border-box;">
+                            <div class="svc-ico"
+                                style="width: 52px; height: 52px; border-radius: 13px; background: #EEF3FF; color: #2456E6; display: grid; place-items: center; box-sizing: border-box;">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    style="max-width: 100%; display: block; width: 26px; height: 26px; box-sizing: border-box;"
+                                    viewbox="0 0 24 24">
+                                    <path
+                                        d="M12 2a3 3 0 0 1 3 3M9 5a3 3 0 0 1 3-3M5 12a3 3 0 0 1 3-3M16 9a3 3 0 0 1 3 3M9 19a3 3 0 0 1 3 3M15 22a3 3 0 0 1 3-3"
+                                        style="box-sizing: border-box;">
+                                    </path>
+                                    <circle cx="12" cy="12" r="3" style="box-sizing: border-box;"></circle>
+                                    <path d="M12 5v4M12 15v4M5 12h4M15 12h4" style="box-sizing: border-box;"></path>
+                                </svg>
+                            </div>
+                            <span class="svc-num"
+                                style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .78rem; font-weight: 600; color: #B7C2D6; box-sizing: border-box;'>01</span>
+                        </div>
+                        <h3
+                            style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; box-sizing: border-box;'>
+                            Custom ML Models</h3>
+                        <p
+                            style="margin: 0; font-size: .94rem; color: #64748B; flex: 1; margin-bottom: 20px; box-sizing: border-box;">
+                            End-to-end model development: from a scoped proof-of-concept to a fully deployed,
+                            production-grade model
+                            integrated with your existing BFSI, media & entertainment, or e-commerce business tools.</p>
+                        <a class="link-cta" href="https://shreyans.tech/hire-machine-learning-developer"
+                            style='color: #2456E6; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .76rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; box-sizing: border-box;'>Custom
+                            ML Models <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5"
+                                style="max-width: 100%; display: block; width: 15px; height: 15px; transition: transform .18s ease; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M5 12h14M13 6l6 6-6 6" style="box-sizing: border-box;"></path>
+                            </svg></a>
+                    </article>
+                    <!-- 02 -->
+                    <article class="svc-card"
+                        style="background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; box-sizing: border-box;">
+                        <div class="svc-top"
+                            style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; box-sizing: border-box;">
+                            <div class="svc-ico"
+                                style="width: 52px; height: 52px; border-radius: 13px; background: #EEF3FF; color: #2456E6; display: grid; place-items: center; box-sizing: border-box;">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    style="max-width: 100%; display: block; width: 26px; height: 26px; box-sizing: border-box;"
+                                    viewbox="0 0 24 24">
+                                    <path d="M4 17l6-6-6-6" style="box-sizing: border-box;"></path>
+                                    <path d="M12 19h8" style="box-sizing: border-box;"></path>
+                                    <circle cx="18" cy="6" r="2" style="box-sizing: border-box;"></circle>
+                                    <circle cx="6" cy="18" r="0" style="box-sizing: border-box;"></circle>
+                                </svg>
+                            </div>
+                            <span class="svc-num"
+                                style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .78rem; font-weight: 600; color: #B7C2D6; box-sizing: border-box;'>02</span>
+                        </div>
+                        <h3
+                            style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; box-sizing: border-box;'>
+                            MLOps Development</h3>
+                        <p
+                            style="margin: 0; font-size: .94rem; color: #64748B; flex: 1; margin-bottom: 20px; box-sizing: border-box;">
+                            Machine learning pipeline automation, model deployment, versioning and monitoring, so your
+                            models stay
+                            reliable and observable in production, especially for high-volume e-commerce and media &
+                            entertainment
+                            applications.</p>
+                        <a class="link-cta" href="https://shreyans.tech/hire-ai-model-training-developer"
+                            style='color: #2456E6; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .76rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; box-sizing: border-box;'>MLOps
+                            Development <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5"
+                                style="max-width: 100%; display: block; width: 15px; height: 15px; transition: transform .18s ease; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M5 12h14M13 6l6 6-6 6" style="box-sizing: border-box;"></path>
+                            </svg></a>
+                    </article>
+                    <!-- 03 -->
+                    <article class="svc-card"
+                        style="background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; box-sizing: border-box;">
+                        <div class="svc-top"
+                            style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; box-sizing: border-box;">
+                            <div class="svc-ico"
+                                style="width: 52px; height: 52px; border-radius: 13px; background: #EEF3FF; color: #2456E6; display: grid; place-items: center; box-sizing: border-box;">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    style="max-width: 100%; display: block; width: 26px; height: 26px; box-sizing: border-box;"
+                                    viewbox="0 0 24 24">
+                                    <rect height="18" rx="2" style="box-sizing: border-box;" width="18" x="3" y="3">
+                                    </rect>
+                                    <path d="M3 9h18M9 3v18" style="box-sizing: border-box;"></path>
+                                    <circle cx="15" cy="15" r="2" style="box-sizing: border-box;"></circle>
+                                </svg>
+                            </div>
+                            <span class="svc-num"
+                                style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .78rem; font-weight: 600; color: #B7C2D6; box-sizing: border-box;'>03</span>
+                        </div>
+                        <h3
+                            style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; box-sizing: border-box;'>
+                            Deep Learning Solutions</h3>
+                        <p
+                            style="margin: 0; font-size: .94rem; color: #64748B; flex: 1; margin-bottom: 20px; box-sizing: border-box;">
+                            Advanced deep learning for image classification, object detection and other computer vision
+                            tasks where
+                            accuracy on real-world data matters, particularly in Mumbai's thriving media & entertainment
+                            sector.
+                        </p>
+                        <a class="link-cta" href="https://shreyans.tech/hire-computer-vision-developer"
+                            style='color: #2456E6; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .76rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; box-sizing: border-box;'>Deep
+                            Learning <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5"
+                                style="max-width: 100%; display: block; width: 15px; height: 15px; transition: transform .18s ease; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M5 12h14M13 6l6 6-6 6" style="box-sizing: border-box;"></path>
+                            </svg></a>
+                    </article>
+                    <!-- 04 -->
+                    <article class="svc-card"
+                        style="background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; box-sizing: border-box;">
+                        <div class="svc-top"
+                            style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; box-sizing: border-box;">
+                            <div class="svc-ico"
+                                style="width: 52px; height: 52px; border-radius: 13px; background: #EEF3FF; color: #2456E6; display: grid; place-items: center; box-sizing: border-box;">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    style="max-width: 100%; display: block; width: 26px; height: 26px; box-sizing: border-box;"
+                                    viewbox="0 0 24 24">
+                                    <path d="M11 3L2 12h3v8h5v-5h2v5h5v-8h3z" style="box-sizing: border-box;"></path>
+                                    <circle cx="12" cy="9" r="0" style="box-sizing: border-box;"></circle>
+                                </svg>
+                            </div>
+                            <span class="svc-num"
+                                style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .78rem; font-weight: 600; color: #B7C2D6; box-sizing: border-box;'>04</span>
+                        </div>
+                        <h3
+                            style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; box-sizing: border-box;'>
+                            Recommendation Systems</h3>
+                        <p
+                            style="margin: 0; font-size: .94rem; color: #64748B; flex: 1; margin-bottom: 20px; box-sizing: border-box;">
+                            Personalised recommendation engines for e-commerce, content streaming and other
+                            recommendation-heavy
+                            products that need higher engagement, tailored to Mumbai's diverse consumer market.</p>
+                        <a class="link-cta" href="https://shreyans.tech/hire-machine-learning-developer"
+                            style='color: #2456E6; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .76rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; box-sizing: border-box;'>Recommendation
+                            Systems <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5"
+                                style="max-width: 100%; display: block; width: 15px; height: 15px; transition: transform .18s ease; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M5 12h14M13 6l6 6-6 6" style="box-sizing: border-box;"></path>
+                            </svg></a>
+                    </article>
+                    <!-- 05 -->
+                    <article class="svc-card"
+                        style="background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; box-sizing: border-box;">
+                        <div class="svc-top"
+                            style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; box-sizing: border-box;">
+                            <div class="svc-ico"
+                                style="width: 52px; height: 52px; border-radius: 13px; background: #EEF3FF; color: #2456E6; display: grid; place-items: center; box-sizing: border-box;">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    style="max-width: 100%; display: block; width: 26px; height: 26px; box-sizing: border-box;"
+                                    viewbox="0 0 24 24">
+                                    <path
+                                        d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+                                        style="box-sizing: border-box;">
+                                    </path>
+                                </svg>
+                            </div>
+                            <span class="svc-num"
+                                style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .78rem; font-weight: 600; color: #B7C2D6; box-sizing: border-box;'>05</span>
+                        </div>
+                        <h3
+                            style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; box-sizing: border-box;'>
+                            Predictive Maintenance</h3>
+                        <p
+                            style="margin: 0; font-size: .94rem; color: #64748B; flex: 1; margin-bottom: 20px; box-sizing: border-box;">
+                            Failure-prediction models for manufacturing, industrial automation and equipment-heavy
+                            operations, to cut
+                            unplanned downtime and service cost, particularly relevant for Mumbai's industrial and BFSI
+                            sectors.</p>
+                        <a class="link-cta" href="https://shreyans.tech/hire-machine-learning-developer"
+                            style='color: #2456E6; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .76rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; box-sizing: border-box;'>Predictive
+                            Maintenance <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5"
+                                style="max-width: 100%; display: block; width: 15px; height: 15px; transition: transform .18s ease; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M5 12h14M13 6l6 6-6 6" style="box-sizing: border-box;"></path>
+                            </svg></a>
+                    </article>
+                    <!-- 06 -->
+                    <article class="svc-card"
+                        style="background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; box-sizing: border-box;">
+                        <div class="svc-top"
+                            style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; box-sizing: border-box;">
+                            <div class="svc-ico"
+                                style="width: 52px; height: 52px; border-radius: 13px; background: #EEF3FF; color: #2456E6; display: grid; place-items: center; box-sizing: border-box;">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    style="max-width: 100%; display: block; width: 26px; height: 26px; box-sizing: border-box;"
+                                    viewbox="0 0 24 24">
+                                    <path d="M9.66 3.5a6.5 6.5 0 1 0 5.84 10.5M12 2v4M12 12l3 2"
+                                        style="box-sizing: border-box;"></path>
+                                    <circle cx="12" cy="12" r="10" style="box-sizing: border-box;"></circle>
+                                </svg>
+                            </div>
+                            <span class="svc-num"
+                                style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .78rem; font-weight: 600; color: #B7C2D6; box-sizing: border-box;'>06</span>
+                        </div>
+                        <h3
+                            style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; box-sizing: border-box;'>
+                            ML Consulting Services</h3>
+                        <p
+                            style="margin: 0; font-size: .94rem; color: #64748B; flex: 1; margin-bottom: 20px; box-sizing: border-box;">
+                            Feasibility assessments, architecture reviews and vendor evaluation for Mumbai businesses
+                            deciding
+                            whether and how to adopt machine learning, especially in the BFSI, media & entertainment,
+                            and
+                            e-commerce industries.</p>
+                        <a class="link-cta" href="https://shreyans.tech/hire-ai-developer"
+                            style='color: #2456E6; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .76rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; box-sizing: border-box;'>ML
+                            Consulting <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5"
+                                style="max-width: 100%; display: block; width: 15px; height: 15px; transition: transform .18s ease; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M5 12h14M13 6l6 6-6 6" style="box-sizing: border-box;"></path>
+                            </svg></a>
+                    </article>
+                </div>
+                <!-- explore-all internal links -> surfaces all 6 real specialisation pages -->
+                <div class="svc-explore"
+                    style="margin-top: 44px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; justify-content: center; box-sizing: border-box;">
+                    <span
+                        style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: #64748B; box-sizing: border-box;'>Explore
+                        specialisations</span>
+                    <a class="chip" href="https://shreyans.tech/hire-computer-vision-developer"
+                        style="color: #1E293B; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; background: #fff; border: 1px solid #E7ECF3; border-radius: 999px; padding: 9px 16px; font-size: .88rem; font-weight: 600; transition: all .18s ease; box-sizing: border-box;">Computer
+                        Vision</a>
+                    <a class="chip" href="https://shreyans.tech/hire-nlp-developer"
+                        style="color: #1E293B; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; background: #fff; border: 1px solid #E7ECF3; border-radius: 999px; padding: 9px 16px; font-size: .88rem; font-weight: 600; transition: all .18s ease; box-sizing: border-box;">NLP</a>
+                    <a class="chip" href="https://shreyans.tech/hire-generative-ai-developer"
+                        style="color: #1E293B; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; background: #fff; border: 1px solid #E7ECF3; border-radius: 999px; padding: 9px 16px; font-size: .88rem; font-weight: 600; transition: all .18s ease; box-sizing: border-box;">Generative
+                        AI</a>
+                    <a class="chip" href="https://shreyans.tech/hire-ai-agent-developer"
+                        style="color: #1E293B; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; background: #fff; border: 1px solid #E7ECF3; border-radius: 999px; padding: 9px 16px; font-size: .88rem; font-weight: 600; transition: all .18s ease; box-sizing: border-box;">AI
+                        Agents</a>
+                    <a class="chip" href="https://shreyans.tech/hire-ai-model-training-developer"
+                        style="color: #1E293B; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; background: #fff; border: 1px solid #E7ECF3; border-radius: 999px; padding: 9px 16px; font-size: .88rem; font-weight: 600; transition: all .18s ease; box-sizing: border-box;">Model
+                        Training</a>
+                    <a class="chip" href="https://shreyans.tech/hire-machine-learning-developer"
+                        style="color: #1E293B; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; background: #fff; border: 1px solid #E7ECF3; border-radius: 999px; padding: 9px 16px; font-size: .88rem; font-weight: 600; transition: all .18s ease; box-sizing: border-box;">ML
+                        Development</a>
+                </div>
+            </div>
+        </section>
+        <!-- ============================ (The honest comparison)COMPARISON ============================ -->
+        <section class="section section--alt comparison"
+            style="padding: 96px 0; background: #F5F8FD; box-sizing: border-box;">
+            <div class="wrap" style="max-width: 1180px; margin: 0 auto; padding: 0 24px; box-sizing: border-box;">
+                <span class="eyebrow"
+                    style='display: inline-flex; align-items: center; gap: 9px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .72rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: #4F46E5; margin-bottom: 20px; box-sizing: border-box;'>The
+                    honest comparison</span>
+                <h2 class="h2"
+                    style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: clamp(2rem, 3.6vw, 2.9rem); font-weight: 800; max-width: 20ch; box-sizing: border-box;'>
+                    Independent ML Engineer vs an ML company in Mumbai</h2>
+                <p class="lede"
+                    style="margin: 0; font-size: clamp(1.02rem, 1.6vw, 1.18rem); color: #64748B; max-width: 62ch; margin-top: 18px; box-sizing: border-box;">
+                    Mumbai has genuinely excellent established companies. For a large, multi-specialist product
+                    build, that scale helps. For a focused machine learning project, working directly with an
+                    experienced
+                    independent engineer is usually faster to start and more cost-effective, with no meaningful drop in
+                    quality.
+                </p>
+                <div class="table-scroll"
+                    style="overflow-x: auto; border-radius: 16px; border: 1px solid #E7ECF3; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); margin-top: 44px; background: #fff; box-sizing: border-box;">
+                    <table class="cmp"
+                        style="width: 100%; border-collapse: collapse; min-width: 720px; box-sizing: border-box;">
+                        <thead style="box-sizing: border-box;">
+                            <tr style="box-sizing: border-box;">
+                                <th scope="col"
+                                    style='text-align: left; padding: 16px 20px; font-size: .7rem; border-bottom: 1px solid #EEF2F8; background: #0B1120; color: #fff; font-family: "JetBrains Mono", ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; box-sizing: border-box;'>
+                                    Factor</th>
+                                <th scope="col"
+                                    style='text-align: left; padding: 16px 20px; font-size: .7rem; border-bottom: 1px solid #EEF2F8; background: #0B1120; color: #fff; font-family: "JetBrains Mono", ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; box-sizing: border-box;'>
+                                    Independent engineer (me)</th>
+                                <th scope="col"
+                                    style='text-align: left; padding: 16px 20px; font-size: .7rem; border-bottom: 1px solid #EEF2F8; background: #0B1120; color: #fff; font-family: "JetBrains Mono", ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; box-sizing: border-box;'>
+                                    Established local company</th>
+                                <th scope="col"
+                                    style='text-align: left; padding: 16px 20px; font-size: .7rem; border-bottom: 1px solid #EEF2F8; background: #0B1120; color: #fff; font-family: "JetBrains Mono", ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; box-sizing: border-box;'>
+                                    Overseas agency</th>
+                            </tr>
+                        </thead>
+                        <tbody style="box-sizing: border-box;">
+                            <tr style="box-sizing: border-box;">
+                                <th scope="row"
+                                    style='text-align: left; padding: 16px 20px; font-size: .92rem; border-bottom: 1px solid #EEF2F8; font-weight: 600; color: #0B1120; font-family: "Inter", system-ui, sans-serif; box-sizing: border-box;'>
+                                    Cost</th>
+                                <td class="me"
+                                    style="text-align: left; padding: 16px 20px; font-size: .92rem; border-bottom: 1px solid #EEF2F8; background: #EEF3FF; color: #1E293B; font-weight: 500; box-sizing: border-box;">
+                                    Lower, no team overhead</td>
+                                <td
+                                    style="text-align: left; padding: 16px 20px; font-size: .92rem; border-bottom: 1px solid #EEF2F8; box-sizing: border-box;">
+                                    Higher, team and office overhead</td>
+                                <td
+                                    style="text-align: left; padding: 16px 20px; font-size: .92rem; border-bottom: 1px solid #EEF2F8; box-sizing: border-box;">
+                                    Often highest, plus currency and markup</td>
+                            </tr>
+                            <tr style="box-sizing: border-box;">
+                                <th scope="row"
+                                    style='text-align: left; padding: 16px 20px; font-size: .92rem; border-bottom: 1px solid #EEF2F8; font-weight: 600; color: #0B1120; font-family: "Inter", system-ui, sans-serif; box-sizing: border-box;'>
+                                    Access to the builder</th>
+                                <td class="me"
+                                    style="text-align: left; padding: 16px 20px; font-size: .92rem; border-bottom: 1px solid #EEF2F8; background: #EEF3FF; color: #1E293B; font-weight: 500; box-sizing: border-box;">
+                                    <span class="cmp-tick"
+                                        style="color: #159A5B; font-weight: 700; box-sizing: border-box;">Always</span>
+                                    Always, every project
+                                </td>
+                                <td
+                                    style="text-align: left; padding: 16px 20px; font-size: .92rem; border-bottom: 1px solid #EEF2F8; box-sizing: border-box;">
+                                    Often via account manager or lead</td>
+                                <td
+                                    style="text-align: left; padding: 16px 20px; font-size: .92rem; border-bottom: 1px solid #EEF2F8; box-sizing: border-box;">
+                                    Varies, time zone adds lag</td>
+                            </tr>
+                            <tr style="box-sizing: border-box;">
+                                <th scope="row"
+                                    style='text-align: left; padding: 16px 20px; font-size: .92rem; border-bottom: 1px solid #EEF2F8; font-weight: 600; color: #0B1120; font-family: "Inter", system-ui, sans-serif; box-sizing: border-box;'>
+                                    Local availability</th>
+                                <td class="me"
+                                    style="text-align: left; padding: 16px 20px; font-size: .92rem; border-bottom: 1px solid #EEF2F8; background: #EEF3FF; color: #1E293B; font-weight: 500; box-sizing: border-box;">
+                                    <span class="cmp-tick"
+                                        style="color: #159A5B; font-weight: 700; box-sizing: border-box;">Yes</span>
+                                    Yes, based in Mumbai
+                                </td>
+                                <td
+                                    style="text-align: left; padding: 16px 20px; font-size: .92rem; border-bottom: 1px solid #EEF2F8; box-sizing: border-box;">
+                                    Yes, typically office-based</td>
+                                <td
+                                    style="text-align: left; padding: 16px 20px; font-size: .92rem; border-bottom: 1px solid #EEF2F8; box-sizing: border-box;">
+                                    No, remote only</td>
+                            </tr>
+                            <tr style="box-sizing: border-box;">
+                                <th scope="row"
+                                    style='text-align: left; padding: 16px 20px; font-size: .92rem; border-bottom: 1px solid #EEF2F8; font-weight: 600; color: #0B1120; font-family: "Inter", system-ui, sans-serif; box-sizing: border-box;'>
+                                    Best for</th>
+                                <td class="me"
+                                    style="text-align: left; padding: 16px 20px; font-size: .92rem; border-bottom: 1px solid #EEF2F8; background: #EEF3FF; color: #1E293B; font-weight: 500; box-sizing: border-box;">
+                                    Focused ML projects, $500 to $25,000</td>
+                                <td
+                                    style="text-align: left; padding: 16px 20px; font-size: .92rem; border-bottom: 1px solid #EEF2F8; box-sizing: border-box;">
+                                    Large, multi-specialist builds</td>
+                                <td
+                                    style="text-align: left; padding: 16px 20px; font-size: .92rem; border-bottom: 1px solid #EEF2F8; box-sizing: border-box;">
+                                    Brand name over cost or access</td>
+                            </tr>
+                            <tr style="box-sizing: border-box;">
+                                <th scope="row"
+                                    style='text-align: left; padding: 16px 20px; font-size: .92rem; border-bottom: 1px solid #EEF2F8; font-weight: 600; color: #0B1120; font-family: "Inter", system-ui, sans-serif; box-sizing: border-box;'>
+                                    Response time</th>
+                                <td class="me"
+                                    style="text-align: left; padding: 16px 20px; font-size: .92rem; border-bottom: 1px solid #EEF2F8; background: #EEF3FF; color: #1E293B; font-weight: 500; box-sizing: border-box;">
+                                    Same day, direct contact</td>
+                                <td
+                                    style="text-align: left; padding: 16px 20px; font-size: .92rem; border-bottom: 1px solid #EEF2F8; box-sizing: border-box;">
+                                    Depends on account structure</td>
+                                <td
+                                    style="text-align: left; padding: 16px 20px; font-size: .92rem; border-bottom: 1px solid #EEF2F8; box-sizing: border-box;">
+                                    Time-zone dependent</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="margin-top: 32px; box-sizing: border-box;">
+                    <a class="btn btn--primary" href="#lets-talk"
+                        style='color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; font-family: "Inter", system-ui, sans-serif; font-weight: 600; font-size: .98rem; padding: 14px 22px; border-radius: 12px; border: 1px solid transparent; cursor: pointer; transition: transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease; line-height: 1; white-space: nowrap; background: #2456E6; box-shadow: 0 24px 60px -24px rgba(20, 86, 230, .28); box-sizing: border-box;'>Get
+                        a fixed quote for your project <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-width="2"
+                            style="max-width: 100%; display: block; width: 18px; height: 18px; box-sizing: border-box;"
+                            viewbox="0 0 24 24">
+                            <path d="M5 12h14M13 6l6 6-6 6" style="box-sizing: border-box;"></path>
+                        </svg></a>
+                </div>
+            </div>
+        </section>
+        <!-- ============================ LOCAL CONTEXT (image 3: image added) ============================ -->
+        <section class="section local-context" style="padding: 96px 0; box-sizing: border-box;">
+            <div class="wrap ctx-grid"
+                style="max-width: 1180px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; box-sizing: border-box;">
+                <div style="box-sizing: border-box;">
+                    <span class="eyebrow"
+                        style='display: inline-flex; align-items: center; gap: 9px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .72rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: #4F46E5; margin-bottom: 20px; box-sizing: border-box;'>Local
+                        context</span>
+                    <h2 class="h2"
+                        style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: clamp(2rem, 3.6vw, 2.9rem); font-weight: 800; max-width: 20ch; box-sizing: border-box;'>
+                        The Mumbai machine learning and technology ecosystem</h2>
+                    <div class="prose" style="margin-top: 22px; box-sizing: border-box;">
+                        <p style="margin: 0; margin-bottom: 18px; box-sizing: border-box;">Mumbai has a growing machine
+                            learning and technology ecosystem, supported by strong engineering and
+                            educational institutions, technology companies, startups and innovation-focused communities,
+                            particularly
+                            around the Bandra-Kurla Complex (BKC). The city is building capability across artificial
+                            intelligence,
+                            data science, fintech, healthtech and other emerging domains.</p>
+                        <p style="margin: 0; margin-bottom: 18px; box-sizing: border-box;">Institutions such as IIT
+                            Bombay and the University of Mumbai, together with the wider Maharashtra
+                            innovation network, contribute to talent, research and entrepreneurship. Connectivity to the
+                            broader
+                            Maharashtra technology corridor expands collaboration between academia, startups,
+                            established enterprises
+                            and investors.</p>
+                        <p style="margin: 0; margin-bottom: 18px; box-sizing: border-box;">That combination of technical
+                            talent, institutional support and access to a wider technology ecosystem
+                            gives Mumbai businesses a strong foundation for adopting machine learning with confidence.
+                        </p>
+                    </div>
+                    <div style="margin-top: 26px; box-sizing: border-box;">
+                        <a class="link-cta" href="https://shreyans.tech/hire-ai-developer"
+                            style='color: #2456E6; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .76rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; box-sizing: border-box;'>Hire
+                            an AI developer in Mumbai <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                stroke-width="2.5"
+                                style="max-width: 100%; display: block; width: 15px; height: 15px; transition: transform .18s ease; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M5 12h14M13 6l6 6-6 6" style="box-sizing: border-box;"></path>
+                            </svg></a>
+                    </div>
+                </div>
+                <div class="ctx-visual" style="position: relative; box-sizing: border-box;">
+                    <div class="frame"
+                        style="border-radius: 22px; overflow: hidden; border: 1px solid #E7ECF3; box-shadow: 0 10px 30px -12px rgba(11, 17, 32, .18); background: #fff; box-sizing: border-box;">
+                        <div class="ctx-ml-widget">
+                            <div class="widget-topbar"></div>
+                            <div class="widget-inner">
+                                <svg class="widget-svg" viewbox="0 0 560 380" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <lineargradient id="barActive" x1="0" x2="0" y1="0" y2="1">
+                                            <stop offset="0%" stop-color="#5b62e8"></stop>
+                                            <stop offset="100%" stop-color="#6a63e0"></stop>
+                                        </lineargradient>
+                                    </defs>
+                                    <!-- small floating dots -->
+                                    <circle cx="140" cy="88" fill="#a9a4f0" r="4"></circle>
+                                    <circle cx="313" cy="70" fill="#a9a4f0" r="4"></circle>
+                                    <circle cx="458" cy="98" fill="#a9a4f0" r="4"></circle>
+                                    <!-- wavy connecting line through the marker points -->
+                                    <path d="M 68 145
+                           C 130 122, 190 132, 235 140
+                           C 280 148, 300 152, 350 126
+                           C 400 100, 420 108, 460 96
+                           C 480 90, 495 96, 505 160" fill="none" stroke="#5f66ea" stroke-linecap="round"
+                                        stroke-width="3.2"></path>
+                                    <!-- marker dots on the wave -->
+                                    <circle cx="68" cy="145" fill="#4d54e0" r="7"></circle>
+                                    <circle cx="235" cy="140" fill="#4d54e0" r="7"></circle>
+                                    <circle cx="390" cy="118" fill="#4d54e0" r="7"></circle>
+                                    <circle cx="505" cy="160" fill="#4d54e0" r="7"></circle>
+                                    <!-- bars (baseline y = 340) -->
+                                    <rect fill="#d3d6f2" height="95" rx="4" width="52" x="68" y="245"></rect>
+                                    <rect fill="#c2c6ef" height="135" rx="4" width="52" x="135" y="205"></rect>
+                                    <rect fill="url(#barActive)" height="170" rx="4" width="52" x="202" y="170"></rect>
+                                    <rect fill="#c9cdf1" height="115" rx="4" width="52" x="269" y="225"></rect>
+                                    <rect fill="#c9cdf1" height="145" rx="4" width="52" x="336" y="195"></rect>
+                                    <rect fill="#c2c6ef" height="110" rx="4" width="52" x="403" y="230"></rect>
+                                    <rect fill="#d3d6f2" height="130" rx="4" width="52" x="470" y="210"></rect>
+                                </svg>
+                                <div class="widget-title">Mumbai · ML ecosystem</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ctx-float f1"
+                        style="position: absolute; background: #fff; border: 1px solid #E7ECF3; border-radius: 14px; padding: 12px 15px; box-shadow: 0 10px 30px -12px rgba(11, 17, 32, .18); display: flex; align-items: center; gap: 11px; top: 20px; left: -22px; box-sizing: border-box;">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2"
+                            style="max-width: 100%; display: block; width: 26px; height: 26px; color: #2456E6; box-sizing: border-box;"
+                            viewbox="0 0 24 24">
+                            <path
+                                d="M2 3h6l2 4-3 2a12 12 0 0 0 6 6l2-3 4 2v6a2 2 0 0 1-2 2A18 18 0 0 1 2 5a2 2 0 0 1 0-2z"
+                                style="box-sizing: border-box;"></path>
+                        </svg>
+                        <div style="box-sizing: border-box;"><b
+                                style='font-family: "Archivo", system-ui, sans-serif; font-size: 1.15rem; color: #0B1120; box-sizing: border-box;'>Same
+                                time zone</b><span
+                                style="font-size: .72rem; color: #64748B; display: block; box-sizing: border-box;">Overlapping
+                                hours across India</span></div>
+                    </div>
+                    <div class="ctx-float f2"
+                        style="position: absolute; background: #fff; border: 1px solid #E7ECF3; border-radius: 14px; padding: 12px 15px; box-shadow: 0 10px 30px -12px rgba(11, 17, 32, .18); display: flex; align-items: center; gap: 11px; bottom: 22px; right: -18px; box-sizing: border-box;">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2"
+                            style="max-width: 100%; display: block; width: 26px; height: 26px; color: #2456E6; box-sizing: border-box;"
+                            viewbox="0 0 24 24">
+                            <path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z" style="box-sizing: border-box;">
+                            </path>
+                            <circle cx="12" cy="10" r="3" style="box-sizing: border-box;"></circle>
+                        </svg>
+                        <div style="box-sizing: border-box;"><b
+                                style='font-family: "Archivo", system-ui, sans-serif; font-size: 1.15rem; color: #0B1120; box-sizing: border-box;'>Local
+                                meetings</b><span
+                                style="font-size: .72rem; color: #64748B; display: block; box-sizing: border-box;">In
+                                person across Mumbai</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ============================ PROCESS (image 4: nicer visual timeline + icons + CTA) ============================ -->
+        <section class="section section--alt how-i-work"
+            style="padding: 96px 0; background: #F5F8FD; box-sizing: border-box;">
+            <div class="wrap" style="max-width: 1180px; margin: 0 auto; padding: 0 24px; box-sizing: border-box;">
+                <span class="eyebrow"
+                    style='display: inline-flex; align-items: center; gap: 9px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .72rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: #4F46E5; margin-bottom: 20px; box-sizing: border-box;'>How
+                    I work</span>
+                <h2 class="h2"
+                    style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: clamp(2rem, 3.6vw, 2.9rem); font-weight: 800; max-width: 20ch; box-sizing: border-box;'>
+                    How I deliver a machine learning project</h2>
+                <p class="lede"
+                    style="margin: 0; font-size: clamp(1.02rem, 1.6vw, 1.18rem); color: #64748B; max-width: 62ch; margin-top: 18px; box-sizing: border-box;">
+                    Clear milestones with regular updates, not a single opaque delivery at the end of the project.
+                </p>
+                <div class="timeline"
+                    style="margin-top: 52px; position: relative; display: grid; gap: 18px; box-sizing: border-box;">
+                    <div class="tl-item free"
+                        style="display: grid; grid-template-columns: 150px 1fr; gap: 26px; align-items: flex-start; background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; padding: 26px 28px; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); position: relative; overflow: hidden; box-sizing: border-box;">
+                        <div class="tl-when"
+                            style="display: flex; flex-direction: column; gap: 4px; box-sizing: border-box;">
+                            <span class="pill"
+                                style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .66rem; font-weight: 600; letter-spacing: .08em; color: #D97A18; text-transform: uppercase; box-sizing: border-box;'>Day
+                                1 to 2</span><span class="sub"
+                                style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .66rem; color: #64748B; letter-spacing: .04em; box-sizing: border-box;'>free
+                                call</span>
+                            <div class="step-ico"
+                                style="width: 44px; height: 44px; border-radius: 11px; background: #FCEFDD; color: #D97A18; display: grid; place-items: center; margin-top: 6px; box-sizing: border-box;">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    style="max-width: 100%; display: block; width: 22px; height: 22px; box-sizing: border-box;"
+                                    viewbox="0 0 24 24">
+                                    <path
+                                        d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                                        style="box-sizing: border-box;">
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="tl-body" style="box-sizing: border-box;">
+                            <h3
+                                style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.18rem; font-weight: 700; margin-bottom: 8px; box-sizing: border-box;'>
+                                Discovery</h3>
+                            <p style="margin: 0; font-size: .95rem; color: #64748B; box-sizing: border-box;">A free
+                                discovery call, in person for Mumbai clients or over video, to understand your business
+                                problem,
+                                data and goals. You receive a written technical spec before any work begins.</p>
+                        </div>
+                    </div>
+                    <div class="tl-item"
+                        style="display: grid; grid-template-columns: 150px 1fr; gap: 26px; align-items: flex-start; background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; padding: 26px 28px; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); position: relative; overflow: hidden; box-sizing: border-box;">
+                        <div class="tl-when"
+                            style="display: flex; flex-direction: column; gap: 4px; box-sizing: border-box;">
+                            <span class="pill"
+                                style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .66rem; font-weight: 600; letter-spacing: .08em; color: #2456E6; text-transform: uppercase; box-sizing: border-box;'>Step
+                                02</span><span class="sub"
+                                style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .66rem; color: #64748B; letter-spacing: .04em; box-sizing: border-box;'>within
+                                48h</span>
+                            <div class="step-ico"
+                                style="width: 44px; height: 44px; border-radius: 11px; background: #EEF3FF; color: #2456E6; display: grid; place-items: center; margin-top: 6px; box-sizing: border-box;">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    style="max-width: 100%; display: block; width: 22px; height: 22px; box-sizing: border-box;"
+                                    viewbox="0 0 24 24">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                                        style="box-sizing: border-box;"></path>
+                                    <path d="M14 2v6h6M9 13h6M9 17h4" style="box-sizing: border-box;"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="tl-body" style="box-sizing: border-box;">
+                            <h3
+                                style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.18rem; font-weight: 700; margin-bottom: 8px; box-sizing: border-box;'>
+                                Scope and technical spec</h3>
+                            <p style="margin: 0; font-size: .95rem; color: #64748B; box-sizing: border-box;">
+                                Confirmation of the right approach, a custom model, a consulting engagement or a scoped
+                                MVP, with a
+                                clear timeline and cost, typically within 48 hours of the discovery call.</p>
+                        </div>
+                    </div>
+                    <div class="tl-item"
+                        style="display: grid; grid-template-columns: 150px 1fr; gap: 26px; align-items: flex-start; background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; padding: 26px 28px; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); position: relative; overflow: hidden; box-sizing: border-box;">
+                        <div class="tl-when"
+                            style="display: flex; flex-direction: column; gap: 4px; box-sizing: border-box;">
+                            <span class="pill"
+                                style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .66rem; font-weight: 600; letter-spacing: .08em; color: #2456E6; text-transform: uppercase; box-sizing: border-box;'>Step
+                                03</span><span class="sub"
+                                style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .66rem; color: #64748B; letter-spacing: .04em; box-sizing: border-box;'>before
+                                data</span>
+                            <div class="step-ico"
+                                style="width: 44px; height: 44px; border-radius: 11px; background: #EEF3FF; color: #2456E6; display: grid; place-items: center; margin-top: 6px; box-sizing: border-box;">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    style="max-width: 100%; display: block; width: 22px; height: 22px; box-sizing: border-box;"
+                                    viewbox="0 0 24 24">
+                                    <rect height="11" rx="2" style="box-sizing: border-box;" width="18" x="3" y="11">
+                                    </rect>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4" style="box-sizing: border-box;"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="tl-body" style="box-sizing: border-box;">
+                            <h3
+                                style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.18rem; font-weight: 700; margin-bottom: 8px; box-sizing: border-box;'>
+                                NDA and onboarding</h3>
+                            <p style="margin: 0; font-size: .95rem; color: #64748B; box-sizing: border-box;">An NDA is
+                                signed before any project details or data are shared. Onboarding into your existing
+                                tools
+                                follows immediately, on whatever stack your team already runs.</p>
+                        </div>
+                    </div>
+                    <div class="tl-item"
+                        style="display: grid; grid-template-columns: 150px 1fr; gap: 26px; align-items: flex-start; background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; padding: 26px 28px; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); position: relative; overflow: hidden; box-sizing: border-box;">
+                        <div class="tl-when"
+                            style="display: flex; flex-direction: column; gap: 4px; box-sizing: border-box;">
+                            <span class="pill"
+                                style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .66rem; font-weight: 600; letter-spacing: .08em; color: #2456E6; text-transform: uppercase; box-sizing: border-box;'>Step
+                                04</span><span class="sub"
+                                style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .66rem; color: #64748B; letter-spacing: .04em; box-sizing: border-box;'>the
+                                build</span>
+                            <div class="step-ico"
+                                style="width: 44px; height: 44px; border-radius: 11px; background: #EEF3FF; color: #2456E6; display: grid; place-items: center; margin-top: 6px; box-sizing: border-box;">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    style="max-width: 100%; display: block; width: 22px; height: 22px; box-sizing: border-box;"
+                                    viewbox="0 0 24 24">
+                                    <path
+                                        d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+                                        style="box-sizing: border-box;">
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="tl-body" style="box-sizing: border-box;">
+                            <h3
+                                style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.18rem; font-weight: 700; margin-bottom: 8px; box-sizing: border-box;'>
+                                Build, test and deploy</h3>
+                            <p style="margin: 0; font-size: .95rem; color: #64748B; box-sizing: border-box;">Development
+                                proceeds in clear milestones with regular updates, so you see progress the whole way
+                                through, rather than a single delivery at the very end.</p>
+                        </div>
+                    </div>
+                    <div class="tl-item"
+                        style="display: grid; grid-template-columns: 150px 1fr; gap: 26px; align-items: flex-start; background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; padding: 26px 28px; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); position: relative; overflow: hidden; box-sizing: border-box;">
+                        <div class="tl-when"
+                            style="display: flex; flex-direction: column; gap: 4px; box-sizing: border-box;">
+                            <span class="pill"
+                                style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .66rem; font-weight: 600; letter-spacing: .08em; color: #2456E6; text-transform: uppercase; box-sizing: border-box;'>Step
+                                05</span><span class="sub"
+                                style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .66rem; color: #64748B; letter-spacing: .04em; box-sizing: border-box;'>after
+                                launch</span>
+                            <div class="step-ico"
+                                style="width: 44px; height: 44px; border-radius: 11px; background: #EEF3FF; color: #2456E6; display: grid; place-items: center; margin-top: 6px; box-sizing: border-box;">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    style="max-width: 100%; display: block; width: 22px; height: 22px; box-sizing: border-box;"
+                                    viewbox="0 0 24 24">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" style="box-sizing: border-box;"></path>
+                                    <path d="M22 4L12 14.01l-3-3" style="box-sizing: border-box;"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="tl-body" style="box-sizing: border-box;">
+                            <h3
+                                style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.18rem; font-weight: 700; margin-bottom: 8px; box-sizing: border-box;'>
+                                Post-delivery support</h3>
+                            <p style="margin: 0; font-size: .95rem; color: #64748B; box-sizing: border-box;">A support
+                                window is included after delivery, with the option of an ongoing retainer for Mumbai
+                                businesses that have a continuing machine learning roadmap.</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 34px; box-sizing: border-box;">
+                    <a class="btn btn--primary" href="#lets-talk"
+                        style='color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; font-family: "Inter", system-ui, sans-serif; font-weight: 600; font-size: .98rem; padding: 14px 22px; border-radius: 12px; border: 1px solid transparent; cursor: pointer; transition: transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease; line-height: 1; white-space: nowrap; background: #2456E6; box-shadow: 0 24px 60px -24px rgba(20, 86, 230, .28); box-sizing: border-box;'>Start
+                        with a free discovery call <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-width="2"
+                            style="max-width: 100%; display: block; width: 18px; height: 18px; box-sizing: border-box;"
+                            viewbox="0 0 24 24">
+                            <path d="M5 12h14M13 6l6 6-6 6" style="box-sizing: border-box;"></path>
+                        </svg></a>
+                </div>
+            </div>
+        </section>
+        <!-- ============================ PROOF (image 5: images added) ============================ -->
+        <section class="section proof-section" style="padding: 96px 0; box-sizing: border-box;">
+            <div class="wrap" style="max-width: 1180px; margin: 0 auto; padding: 0 24px; box-sizing: border-box;">
+                <span class="eyebrow"
+                    style='display: inline-flex; align-items: center; gap: 9px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .72rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: #4F46E5; margin-bottom: 20px; box-sizing: border-box;'>Proof</span>
+                <h2 class="h2"
+                    style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: clamp(2rem, 3.6vw, 2.9rem); font-weight: 800; max-width: 20ch; box-sizing: border-box;'>
+                    Machine learning projects delivered, with real numbers</h2>
+                <p class="lede"
+                    style="margin: 0; font-size: clamp(1.02rem, 1.6vw, 1.18rem); color: #64748B; max-width: 62ch; margin-top: 18px; box-sizing: border-box;">
+                    Documented case studies with measurable outcomes, available to review before you hire, not just
+                    a generic portfolio.</p>
+                <div class="proof-grid"
+                    style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 52px; box-sizing: border-box;">
+                    <!-- NLP -->
+                    <article class="proof-card"
+                        style="background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); display: flex; flex-direction: column; transition: transform .2s ease, box-shadow .2s ease; box-sizing: border-box;">
+                        <div class="proof-media"
+                            style="aspect-ratio: 16/9; position: relative; overflow: hidden; box-sizing: border-box;">
+                            <!-- TODO: replace with a real project screenshot (16:9). -->
+                            <img alt="Natural language processing pipeline sorting open-text feedback into themes"
+                                height="450" loading="lazy"
+                                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA4MDAgNDUwJz48cmVjdCB3aWR0aD0nODAwJyBoZWlnaHQ9JzQ1MCcgZmlsbD0nIzBCMTEyMCcvPjxnIGZpbGw9J25vbmUnIHN0cm9rZT0nIzI0NTZFNicgc3Ryb2tlLXdpZHRoPSczJyBvcGFjaXR5PScwLjg1Jz48cmVjdCB4PSc5MCcgeT0nMTUwJyB3aWR0aD0nMTgwJyBoZWlnaHQ9JzQwJyByeD0nOCcvPjxyZWN0IHg9JzkwJyB5PScyMTAnIHdpZHRoPScyNjAnIGhlaWdodD0nNDAnIHJ4PSc4Jy8+PHJlY3QgeD0nOTAnIHk9JzI3MCcgd2lkdGg9JzE1MCcgaGVpZ2h0PSc0MCcgcng9JzgnLz48L2c+PGcgZmlsbD0nIzRGNDZFNSc+PGNpcmNsZSBjeD0nNDcwJyBjeT0nMTcwJyByPScxMCcvPjxjaXJjbGUgY3g9JzU2MCcgY3k9JzE0MCcgcj0nMTAnLz48Y2lyY2xlIGN4PSc2MjAnIGN5PScyMzAnIHI9JzEwJy8+PGNpcmNsZSBjeD0nNTIwJyBjeT0nMjcwJyByPScxMCcvPjxjaXJjbGUgY3g9JzY0MCcgY3k9JzMwMCcgcj0nMTAnLz48L2c+PGcgc3Ryb2tlPScjNEY0NkU1JyBzdHJva2Utd2lkdGg9JzInIG9wYWNpdHk9JzAuNSc+PHBhdGggZD0nTTQ3MCAxNzBMNTYwIDE0ME01NjAgMTQwTDYyMCAyMzBNNjIwIDIzMEw1MjAgMjcwTTUyMCAyNzBMNjQwIDMwME00NzAgMTcwTDUyMCAyNzAnLz48L2c+PHRleHQgeD0nNDAwJyB5PSc0MDAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZpbGw9JyM2QjhDRTgnIGZvbnQtZmFtaWx5PSdKZXRCcmFpbnMgTW9ubywgbW9ub3NwYWNlJyBmb250LXNpemU9JzIwJz50ZXh0IC0+IDE0IHRoZW1lczwvdGV4dD48L3N2Zz4="
+                                style="max-width: 100%; display: block; width: 100%; height: 100%; object-fit: cover; box-sizing: border-box;"
+                                width="800" />
+                            <span class="proof-cat"
+                                style='position: absolute; top: 14px; left: 14px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .63rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; background: rgba(255, 255, 255, .94); color: #2456E6; padding: 6px 11px; border-radius: 7px; backdrop-filter: blur(4px); box-sizing: border-box;'>NLP</span>
+                        </div>
+                        <div class="proof-inner"
+                            style="padding: 24px; display: flex; flex-direction: column; flex: 1; box-sizing: border-box;">
+                            <h3
+                                style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.12rem; font-weight: 700; margin-bottom: 9px; box-sizing: border-box;'>
+                                NLP for chatbots</h3>
+                            <p style="margin: 0; font-size: .9rem; color: #64748B; flex: 1; box-sizing: border-box;">An
+                                NLP pipeline that categorises open-text feedback into 14 business-relevant themes
+                                automatically,
+                                helping BFSI companies in Mumbai improve customer service.</p>
+                            <div class="proof-metric"
+                                style="margin: 20px 0 16px; padding-top: 16px; border-top: 1px dashed #E7ECF3; box-sizing: border-box;">
+                                <b
+                                    style='font-family: "Archivo", system-ui, sans-serif; font-size: 2rem; font-weight: 800; color: #159A5B; display: block; line-height: 1; box-sizing: border-box;'>92%</b><span
+                                    style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .64rem; letter-spacing: .1em; text-transform: uppercase; color: #64748B; box-sizing: border-box;'>Accuracy</span>
+                            </div>
+                            <a class="link-cta" href="https://shreyans.tech/ai-case-studies"
+                                style='color: #2456E6; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .76rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; box-sizing: border-box;'>Read
+                                case study <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                    stroke-width="2.5"
+                                    style="max-width: 100%; display: block; width: 15px; height: 15px; transition: transform .18s ease; box-sizing: border-box;"
+                                    viewbox="0 0 24 24">
+                                    <path d="M5 12h14M13 6l6 6-6 6" style="box-sizing: border-box;"></path>
+                                </svg></a>
+                        </div>
+                    </article>
+                    <!-- CV -->
+                    <article class="proof-card"
+                        style="background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); display: flex; flex-direction: column; transition: transform .2s ease, box-shadow .2s ease; box-sizing: border-box;">
+                        <div class="proof-media"
+                            style="aspect-ratio: 16/9; position: relative; overflow: hidden; box-sizing: border-box;">
+                            <img alt="Computer vision model classifying product images for quality inspection with confidence scores"
+                                height="450" loading="lazy"
+                                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA4MDAgNDUwJz48cmVjdCB3aWR0aD0nODAwJyBoZWlnaHQ9JzQ1MCcgZmlsbD0nIzBCMTEyMCcvPjxnIGZpbGw9J25vbmUnIHN0cm9rZT0nIzE2QTM1QScgc3Ryb2tlLXdpZHRoPSczJz48cmVjdCB4PScxNTAnIHk9JzEyMCcgd2lkdGg9JzE2MCcgaGVpZ2h0PScxMjAnIHJ4PSc2Jy8+PHJlY3QgeD0nMzQwJyB5PScxNTAnIHdpZHRoPScxMzAnIGhlaWdodD0nMTUwJyByeD0nNicvPjxyZWN0IHg9JzUwMCcgeT0nMTEwJyB3aWR0aD0nMTUwJyBoZWlnaHQ9JzEzMCcgcng9JzYnLz48L2c+PGcgZmlsbD0nIzE2QTM1QScgZm9udC1mYW1pbHk9J0pldEJyYWlucyBNb25vLCBtb25vc3BhY2UnIGZvbnQtc2l6ZT0nMTYnPjx0ZXh0IHg9JzE1MCcgeT0nMTEwJz5wYXNzIDAuOTg8L3RleHQ+PHRleHQgeD0nMzQwJyB5PScxNDAnPnBhc3MgMC45NTwvdGV4dD48dGV4dCB4PSc1MDAnIHk9JzEwMCc+ZmxhZyAwLjcxPC90ZXh0PjwvZz48ZyBzdHJva2U9JyMyNDU2RTYnIHN0cm9rZS13aWR0aD0nMicgb3BhY2l0eT0nMC41Jz48cGF0aCBkPSdNMTAwIDM0MGg2MDAnLz48L2c+PHRleHQgeD0nNDAwJyB5PSc0MDAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZpbGw9JyM2QjhDRTgnIGZvbnQtZmFtaWx5PSdKZXRCcmFpbnMgTW9ubywgbW9ub3NwYWNlJyBmb250LXNpemU9JzIwJz5pbWFnZSAtPiBjbGFzczwvdGV4dD48L3N2Zz4="
+                                style="max-width: 100%; display: block; width: 100%; height: 100%; object-fit: cover; box-sizing: border-box;"
+                                width="800" />
+                            <span class="proof-cat"
+                                style='position: absolute; top: 14px; left: 14px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .63rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; background: rgba(255, 255, 255, .94); color: #2456E6; padding: 6px 11px; border-radius: 7px; backdrop-filter: blur(4px); box-sizing: border-box;'>Computer
+                                Vision</span>
+                        </div>
+                        <div class="proof-inner"
+                            style="padding: 24px; display: flex; flex-direction: column; flex: 1; box-sizing: border-box;">
+                            <h3
+                                style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.12rem; font-weight: 700; margin-bottom: 9px; box-sizing: border-box;'>
+                                Image classification for QA</h3>
+                            <p style="margin: 0; font-size: .9rem; color: #64748B; flex: 1; box-sizing: border-box;">A
+                                computer vision model that classifies images into categories for automated quality
+                                inspection on the
+                                line, increasing efficiency for e-commerce companies in Mumbai.</p>
+                            <div class="proof-metric"
+                                style="margin: 20px 0 16px; padding-top: 16px; border-top: 1px dashed #E7ECF3; box-sizing: border-box;">
+                                <b
+                                    style='font-family: "Archivo", system-ui, sans-serif; font-size: 2rem; font-weight: 800; color: #159A5B; display: block; line-height: 1; box-sizing: border-box;'>95%</b><span
+                                    style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .64rem; letter-spacing: .1em; text-transform: uppercase; color: #64748B; box-sizing: border-box;'>Accuracy</span>
+                            </div>
+                            <a class="link-cta" href="https://shreyans.tech/ai-case-studies"
+                                style='color: #2456E6; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .76rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; box-sizing: border-box;'>Read
+                                case study <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                    stroke-width="2.5"
+                                    style="max-width: 100%; display: block; width: 15px; height: 15px; transition: transform .18s ease; box-sizing: border-box;"
+                                    viewbox="0 0 24 24">
+                                    <path d="M5 12h14M13 6l6 6-6 6" style="box-sizing: border-box;"></path>
+                                </svg></a>
+                        </div>
+                    </article>
+                    <!-- Predictive -->
+                    <article class="proof-card"
+                        style="background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); display: flex; flex-direction: column; transition: transform .2s ease, box-shadow .2s ease; box-sizing: border-box;">
+                        <div class="proof-media"
+                            style="aspect-ratio: 16/9; position: relative; overflow: hidden; box-sizing: border-box;">
+                            <img alt="Predictive model forecasting future retail demand plotted against historical data"
+                                height="450" loading="lazy"
+                                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA4MDAgNDUwJz48cmVjdCB3aWR0aD0nODAwJyBoZWlnaHQ9JzQ1MCcgZmlsbD0nIzBCMTEyMCcvPjxnIHN0cm9rZT0nIzI0NTZFNicgc3Ryb2tlLXdpZHRoPSc0JyBmaWxsPSdub25lJz48cGF0aCBkPSdNOTAgMzMwIEwyMDAgMzAwIEwzMDAgMzIwIEw0MDAgMjUwIEw1MDAgMjYwIEw2MDAgMTkwIEw3MTAgMTUwJy8+PC9nPjxnIHN0cm9rZT0nIzRGNDZFNScgc3Ryb2tlLXdpZHRoPSczJyBmaWxsPSdub25lJyBzdHJva2UtZGFzaGFycmF5PSc4IDgnIG9wYWNpdHk9JzAuOCc+PHBhdGggZD0nTTYwMCAxOTAgTDcxMCAxMzAnLz48L2c+PGcgZmlsbD0nIzE2QTM1QSc+PGNpcmNsZSBjeD0nOTAnIGN5PSczMzAnIHI9JzYnLz48Y2lyY2xlIGN4PSczMDAnIGN5PSczMjAnIHI9JzYnLz48Y2lyY2xlIGN4PSc1MDAnIGN5PScyNjAnIHI9JzYnLz48Y2lyY2xlIGN4PSc3MTAnIGN5PScxNTAnIHI9JzYnLz48L2c+PGcgc3Ryb2tlPScjMzM0MTU1JyBzdHJva2Utd2lkdGg9JzEuNScgb3BhY2l0eT0nMC42Jz48cGF0aCBkPSdNOTAgMzYwaDYyME05MCAzNjBWMTIwJy8+PC9nPjx0ZXh0IHg9JzQwMCcgeT0nNDEwJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyBmaWxsPScjNkI4Q0U4JyBmb250LWZhbWlseT0nSmV0QnJhaW5zIE1vbm8sIG1vbm9zcGFjZScgZm9udC1zaXplPScyMCc+ZGVtYW5kIGZvcmVjYXN0PC90ZXh0Pjwvc3ZnPg=="
+                                style="max-width: 100%; display: block; width: 100%; height: 100%; object-fit: cover; box-sizing: border-box;"
+                                width="800" />
+                            <span class="proof-cat"
+                                style='position: absolute; top: 14px; left: 14px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .63rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; background: rgba(255, 255, 255, .94); color: #2456E6; padding: 6px 11px; border-radius: 7px; backdrop-filter: blur(4px); box-sizing: border-box;'>Predictive
+                                Modeling</span>
+                        </div>
+                        <div class="proof-inner"
+                            style="padding: 24px; display: flex; flex-direction: column; flex: 1; box-sizing: border-box;">
+                            <h3
+                                style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.12rem; font-weight: 700; margin-bottom: 9px; box-sizing: border-box;'>
+                                Demand forecasting for retail</h3>
+                            <p style="margin: 0; font-size: .9rem; color: #64748B; flex: 1; box-sizing: border-box;">A
+                                predictive model that forecasts demand for retail products, so stock and staffing match
+                                what is
+                                actually coming, helping media and entertainment companies in Mumbai optimize their
+                                supply chain.</p>
+                            <div class="proof-metric"
+                                style="margin: 20px 0 16px; padding-top: 16px; border-top: 1px dashed #E7ECF3; box-sizing: border-box;">
+                                <b
+                                    style='font-family: "Archivo", system-ui, sans-serif; font-size: 2rem; font-weight: 800; color: #159A5B; display: block; line-height: 1; box-sizing: border-box;'>90%</b><span
+                                    style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .64rem; letter-spacing: .1em; text-transform: uppercase; color: #64748B; box-sizing: border-box;'>Forecast
+                                    accuracy</span>
+                            </div>
+                            <a class="link-cta" href="https://shreyans.tech/ai-case-studies"
+                                style='color: #2456E6; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .76rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; box-sizing: border-box;'>Read
+                                case study <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                    stroke-width="2.5"
+                                    style="max-width: 100%; display: block; width: 15px; height: 15px; transition: transform .18s ease; box-sizing: border-box;"
+                                    viewbox="0 0 24 24">
+                                    <path d="M5 12h14M13 6l6 6-6 6" style="box-sizing: border-box;"></path>
+                                </svg></a>
+                        </div>
+                    </article>
+                </div>
+                <div class="proof-foot"
+                    style="display: flex; justify-content: center; margin-top: 44px; box-sizing: border-box;">
+                    <a class="btn btn--ghost" href="https://shreyans.tech/ai-case-studies"
+                        style='color: #0B1120; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; font-family: "Inter", system-ui, sans-serif; font-weight: 600; font-size: .98rem; padding: 14px 22px; border-radius: 12px; border: 1px solid transparent; cursor: pointer; transition: transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease; line-height: 1; white-space: nowrap; background: #fff; border-color: #E7ECF3; box-sizing: border-box;'>View
+                        all 12 case studies <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-width="2"
+                            style="max-width: 100%; display: block; width: 18px; height: 18px; box-sizing: border-box;"
+                            viewbox="0 0 24 24">
+                            <path d="M5 12h14M13 6l6 6-6 6" style="box-sizing: border-box;"></path>
+                        </svg></a>
+                </div>
+            </div>
+        </section>
+        <!-- ============================ WHY ME (image 6: icons added to all) ============================ -->
+        <section class="section section--alt why-me"
+            style="padding: 96px 0; background: #F5F8FD; box-sizing: border-box;">
+            <div class="wrap" style="max-width: 1180px; margin: 0 auto; padding: 0 24px; box-sizing: border-box;">
+                <span class="eyebrow"
+                    style='display: inline-flex; align-items: center; gap: 9px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .72rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: #4F46E5; margin-bottom: 20px; box-sizing: border-box;'>Why
+                    me</span>
+                <h2 class="h2"
+                    style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: clamp(2rem, 3.6vw, 2.9rem); font-weight: 800; max-width: 20ch; box-sizing: border-box;'>
+                    Why Mumbai businesses choose to work with me</h2>
+                <div class="why-grid"
+                    style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 52px; border: 1px solid #E7ECF3; border-radius: 16px; overflow: hidden; background: #fff; box-sizing: border-box;">
+                    <div class="why-card"
+                        style="padding: 34px 30px; border-right: 1px solid #E7ECF3; border-bottom: 1px solid #E7ECF3; transition: background .2s ease; box-sizing: border-box;">
+                        <div class="why-ico"
+                            style="width: 50px; height: 50px; border-radius: 13px; background: #E7EEFF; color: #2456E6; display: grid; place-items: center; margin-bottom: 18px; box-sizing: border-box;">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
+                                style="max-width: 100%; display: block; width: 25px; height: 25px; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"
+                                    style="box-sizing: border-box;"></path>
+                                <circle cx="12" cy="10" r="3" style="box-sizing: border-box;"></circle>
+                            </svg>
+                        </div>
+                        <span class="why-tag"
+                            style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .64rem; letter-spacing: .14em; text-transform: uppercase; color: #4F46E5; font-weight: 600; display: block; margin-bottom: 10px; box-sizing: border-box;'>Local</span>
+                        <h3
+                            style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.12rem; font-weight: 700; margin-bottom: 9px; box-sizing: border-box;'>
+                            Local presence, global standard</h3>
+                        <p style="margin: 0; font-size: .92rem; color: #64748B; box-sizing: border-box;">Based in Mumbai
+                            and available for local meetings, delivering machine learning systems built to the same
+                            standard international clients receive, with a focus on BFSI, media and entertainment, and
+                            e-commerce
+                            industries.</p>
+                    </div>
+                    <div class="why-card"
+                        style="padding: 34px 30px; border-right: 1px solid #E7ECF3; border-bottom: 1px solid #E7ECF3; transition: background .2s ease; box-sizing: border-box;">
+                        <div class="why-ico"
+                            style="width: 50px; height: 50px; border-radius: 13px; background: #E7EEFF; color: #2456E6; display: grid; place-items: center; margin-bottom: 18px; box-sizing: border-box;">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
+                                style="max-width: 100%; display: block; width: 25px; height: 25px; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path
+                                    d="M14 7h-4a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4M10 7h4a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-4M8 12h8"
+                                    style="box-sizing: border-box;"></path>
+                            </svg>
+                        </div>
+                        <span class="why-tag"
+                            style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .64rem; letter-spacing: .14em; text-transform: uppercase; color: #4F46E5; font-weight: 600; display: block; margin-bottom: 10px; box-sizing: border-box;'>Direct</span>
+                        <h3
+                            style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.12rem; font-weight: 700; margin-bottom: 9px; box-sizing: border-box;'>
+                            Direct access, no account layer</h3>
+                        <p style="margin: 0; font-size: .92rem; color: #64748B; box-sizing: border-box;">You work with
+                            the same person from discovery call to deployment, with no account manager or rotating team
+                            member in between, ensuring clear communication and efficient project delivery for Mumbai
+                            businesses.</p>
+                    </div>
+                    <div class="why-card"
+                        style="padding: 34px 30px; border-right: 1px solid #E7ECF3; border-bottom: 1px solid #E7ECF3; transition: background .2s ease; box-sizing: border-box;">
+                        <div class="why-ico"
+                            style="width: 50px; height: 50px; border-radius: 13px; background: #E7EEFF; color: #2456E6; display: grid; place-items: center; margin-bottom: 18px; box-sizing: border-box;">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
+                                style="max-width: 100%; display: block; width: 25px; height: 25px; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <line style="box-sizing: border-box;" x1="12" x2="12" y1="1" y2="23"></line>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                                    style="box-sizing: border-box;"></path>
+                            </svg>
+                        </div>
+                        <span class="why-tag"
+                            style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .64rem; letter-spacing: .14em; text-transform: uppercase; color: #4F46E5; font-weight: 600; display: block; margin-bottom: 10px; box-sizing: border-box;'>Fixed</span>
+                        <h3
+                            style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.12rem; font-weight: 700; margin-bottom: 9px; box-sizing: border-box;'>
+                            Transparent, fixed pricing</h3>
+                        <p style="margin: 0; font-size: .92rem; color: #64748B; box-sizing: border-box;">Clear, upfront
+                            pricing for machine learning development and consulting, with no hidden markup layered on
+                            top of the engineering cost, providing cost certainty for businesses in Mumbai.</p>
+                    </div>
+                    <div class="why-card"
+                        style="padding: 34px 30px; border-right: 1px solid #E7ECF3; border-bottom: 1px solid #E7ECF3; transition: background .2s ease; box-sizing: border-box;">
+                        <div class="why-ico"
+                            style="width: 50px; height: 50px; border-radius: 13px; background: #E7EEFF; color: #2456E6; display: grid; place-items: center; margin-bottom: 18px; box-sizing: border-box;">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
+                                style="max-width: 100%; display: block; width: 25px; height: 25px; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M3 3v18h18" style="box-sizing: border-box;"></path>
+                                <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14" style="box-sizing: border-box;"></path>
+                            </svg>
+                        </div>
+                        <span class="why-tag"
+                            style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .64rem; letter-spacing: .14em; text-transform: uppercase; color: #4F46E5; font-weight: 600; display: block; margin-bottom: 10px; box-sizing: border-box;'>Proof</span>
+                        <h3
+                            style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.12rem; font-weight: 700; margin-bottom: 9px; box-sizing: border-box;'>
+                            Real, verifiable case studies</h3>
+                        <p style="margin: 0; font-size: .92rem; color: #64748B; box-sizing: border-box;">12+ documented
+                            case studies with measurable outcomes, available to review before you hire, not just a
+                            portfolio deck, demonstrating expertise in machine learning for Mumbai companies.</p>
+                    </div>
+                    <div class="why-card"
+                        style="padding: 34px 30px; border-right: 1px solid #E7ECF3; border-bottom: 1px solid #E7ECF3; transition: background .2s ease; box-sizing: border-box;">
+                        <div class="why-ico"
+                            style="width: 50px; height: 50px; border-radius: 13px; background: #E7EEFF; color: #2456E6; display: grid; place-items: center; margin-bottom: 18px; box-sizing: border-box;">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
+                                style="max-width: 100%; display: block; width: 25px; height: 25px; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9z" style="box-sizing: border-box;"></path>
+                            </svg>
+                        </div>
+                        <span class="why-tag"
+                            style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .64rem; letter-spacing: .14em; text-transform: uppercase; color: #4F46E5; font-weight: 600; display: block; margin-bottom: 10px; box-sizing: border-box;'>48h</span>
+                        <h3
+                            style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.12rem; font-weight: 700; margin-bottom: 9px; box-sizing: border-box;'>
+                            Fast turnaround</h3>
+                        <p style="margin: 0; font-size: .92rem; color: #64748B; box-sizing: border-box;">A written
+                            technical spec within 48 hours of your discovery call, and most engagements starting within
+                            a
+                            week, ensuring quick project kickoff for Mumbai businesses.</p>
+                    </div>
+                    <div class="why-card"
+                        style="padding: 34px 30px; border-right: 1px solid #E7ECF3; border-bottom: 1px solid #E7ECF3; transition: background .2s ease; box-sizing: border-box;">
+                        <div class="why-ico"
+                            style="width: 50px; height: 50px; border-radius: 13px; background: #E7EEFF; color: #2456E6; display: grid; place-items: center; margin-bottom: 18px; box-sizing: border-box;">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
+                                style="max-width: 100%; display: block; width: 25px; height: 25px; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" style="box-sizing: border-box;"></circle>
+                                <path
+                                    d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83M16.62 12l-5.74 9.94"
+                                    style="box-sizing: border-box;">
+                                </path>
+                            </svg>
+                        </div>
+                        <span class="why-tag"
+                            style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .64rem; letter-spacing: .14em; text-transform: uppercase; color: #4F46E5; font-weight: 600; display: block; margin-bottom: 10px; box-sizing: border-box;'>Value</span>
+                        <h3
+                            style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: 1.12rem; font-weight: 700; margin-bottom: 9px; box-sizing: border-box;'>
+                            Cost-effective without compromise</h3>
+                        <p style="margin: 0; font-size: .92rem; color: #64748B; box-sizing: border-box;">Meaningfully
+                            lower cost than large agencies or overseas developers, with no drop in engineering quality
+                            or communication, providing value for businesses in Mumbai.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section client-words" style="padding: 96px 0; box-sizing: border-box;">
+            <div class="wrap" style="max-width: 1180px; margin: 0 auto; padding: 0 24px; box-sizing: border-box;">
+                <div class="center" style="margin-bottom: 8px; text-align: center; box-sizing: border-box;">
+                    <span class="eyebrow"
+                        style='display: inline-flex; align-items: center; gap: 9px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .72rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: #4F46E5; margin-bottom: 20px; box-sizing: border-box;'>Client
+                        words</span>
+                    <h2 class="h2"
+                        style='margin-left: auto; margin-right: auto; font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: clamp(2rem, 3.6vw, 2.9rem); font-weight: 800; max-width: 20ch; box-sizing: border-box;'>
+                        What clients say about working directly with me</h2>
+                    <p class="lede"
+                        style="margin: 0; font-size: clamp(1.02rem, 1.6vw, 1.18rem); color: #64748B; max-width: 62ch; margin-top: 18px; margin-left: auto; margin-right: auto; box-sizing: border-box;">
+                        Verified feedback from businesses that hired me for focused machine learning work.</p>
+                </div>
+                <div class="tst-grid"
+                    style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 52px; box-sizing: border-box;">
+                    <figure class="tst-card"
+                        style="background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; padding: 28px; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); display: flex; flex-direction: column; box-sizing: border-box;">
+                        <div aria-label="5 out of 5" class="tst-stars"
+                            style="display: flex; gap: 3px; margin-bottom: 16px; box-sizing: border-box;">
+                            <svg fill="currentColor"
+                                style="max-width: 100%; display: block; width: 18px; height: 18px; color: #F5A623; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M12 2l2.9 6.9 7.1.6-5.4 4.6 1.6 7L12 17.8 5.8 21.7l1.6-7L2 10.1l7.1-.6z"
+                                    style="box-sizing: border-box;"></path>
+                            </svg>
+                            <svg fill="currentColor"
+                                style="max-width: 100%; display: block; width: 18px; height: 18px; color: #F5A623; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M12 2l2.9 6.9 7.1.6-5.4 4.6 1.6 7L12 17.8 5.8 21.7l1.6-7L2 10.1l7.1-.6z"
+                                    style="box-sizing: border-box;"></path>
+                            </svg>
+                            <svg fill="currentColor"
+                                style="max-width: 100%; display: block; width: 18px; height: 18px; color: #F5A623; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M12 2l2.9 6.9 7.1.6-5.4 4.6 1.6 7L12 17.8 5.8 21.7l1.6-7L2 10.1l7.1-.6z"
+                                    style="box-sizing: border-box;"></path>
+                            </svg>
+                            <svg fill="currentColor"
+                                style="max-width: 100%; display: block; width: 18px; height: 18px; color: #F5A623; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M12 2l2.9 6.9 7.1.6-5.4 4.6 1.6 7L12 17.8 5.8 21.7l1.6-7L2 10.1l7.1-.6z"
+                                    style="box-sizing: border-box;"></path>
+                            </svg>
+                            <svg fill="currentColor"
+                                style="max-width: 100%; display: block; width: 18px; height: 18px; color: #F5A623; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M12 2l2.9 6.9 7.1.6-5.4 4.6 1.6 7L12 17.8 5.8 21.7l1.6-7L2 10.1l7.1-.6z"
+                                    style="box-sizing: border-box;"></path>
+                            </svg>
+                        </div>
+                        <blockquote class="tst-quote"
+                            style="font-size: 1rem; color: #1E293B; flex: 1; line-height: 1.65; margin: 0; box-sizing: border-box;">
+                            The machine learning model developed by this engineer increased our sales
+                            forecast accuracy by 25% and reduced inventory costs by 15%, resulting in significant
+                            revenue growth for
+                            our e-commerce company in Mumbai.</blockquote>
+                        <figcaption class="tst-who"
+                            style="display: flex; align-items: center; gap: 13px; margin-top: 22px; padding-top: 20px; border-top: 1px solid #EEF2F8; box-sizing: border-box;">
+                            <span class="tst-avatar"
+                                style='width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #2456E6, #4F46E5); color: #64748B; display: grid; place-items: center; font-family: "Archivo", system-ui, sans-serif; font-weight: 800; font-size: .82rem; flex: 0 0 auto; box-sizing: border-box;'>RP</span>
+                            <span style="font-size: .82rem; color: #64748B; box-sizing: border-box;"><b
+                                    style='display: block; font-family: "Inter", system-ui, sans-serif; font-weight: 600; color: #0B1120; font-size: .95rem; white-space: nowrap; box-sizing: border-box;'>Rahul
+                                    Patel</b><span
+                                    style="font-size: .82rem; color: #64748B; box-sizing: border-box;">Founder, Mumbai
+                                    SaaS</span></span>
+                            <span class="tst-src"
+                                style='margin-left: auto; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; color: #64748B; background: #E7EEFF; padding: 5px 9px; border-radius: 6px; box-sizing: border-box;'>Google</span>
+                        </figcaption>
+                    </figure>
+                    <figure class="tst-card"
+                        style="background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; padding: 28px; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); display: flex; flex-direction: column; box-sizing: border-box;">
+                        <div aria-label="5 out of 5" class="tst-stars"
+                            style="display: flex; gap: 3px; margin-bottom: 16px; box-sizing: border-box;">
+                            <svg fill="currentColor"
+                                style="max-width: 100%; display: block; width: 18px; height: 18px; color: #F5A623; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M12 2l2.9 6.9 7.1.6-5.4 4.6 1.6 7L12 17.8 5.8 21.7l1.6-7L2 10.1l7.1-.6z"
+                                    style="box-sizing: border-box;"></path>
+                            </svg>
+                            <svg fill="currentColor"
+                                style="max-width: 100%; display: block; width: 18px; height: 18px; color: #F5A623; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M12 2l2.9 6.9 7.1.6-5.4 4.6 1.6 7L12 17.8 5.8 21.7l1.6-7L2 10.1l7.1-.6z"
+                                    style="box-sizing: border-box;"></path>
+                            </svg>
+                            <svg fill="currentColor"
+                                style="max-width: 100%; display: block; width: 18px; height: 18px; color: #F5A623; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M12 2l2.9 6.9 7.1.6-5.4 4.6 1.6 7L12 17.8 5.8 21.7l1.6-7L2 10.1l7.1-.6z"
+                                    style="box-sizing: border-box;"></path>
+                            </svg>
+                            <svg fill="currentColor"
+                                style="max-width: 100%; display: block; width: 18px; height: 18px; color: #F5A623; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M12 2l2.9 6.9 7.1.6-5.4 4.6 1.6 7L12 17.8 5.8 21.7l1.6-7L2 10.1l7.1-.6z"
+                                    style="box-sizing: border-box;"></path>
+                            </svg>
+                            <svg fill="currentColor"
+                                style="max-width: 100%; display: block; width: 18px; height: 18px; color: #F5A623; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M12 2l2.9 6.9 7.1.6-5.4 4.6 1.6 7L12 17.8 5.8 21.7l1.6-7L2 10.1l7.1-.6z"
+                                    style="box-sizing: border-box;"></path>
+                            </svg>
+                        </div>
+                        <blockquote class="tst-quote"
+                            style="font-size: 1rem; color: #1E293B; flex: 1; line-height: 1.65; margin: 0; box-sizing: border-box;">
+                            This engineer delivered a high-quality NLP model that improved our customer
+                            service chatbot's response accuracy by 30%, resulting in improved customer satisfaction and
+                            reduced
+                            support queries for our BFSI company in Mumbai.</blockquote>
+                        <figcaption class="tst-who"
+                            style="display: flex; align-items: center; gap: 13px; margin-top: 22px; padding-top: 20px; border-top: 1px solid #EEF2F8; box-sizing: border-box;">
+                            <span class="tst-avatar"
+                                style='width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #2456E6, #4F46E5); color: #64748B; display: grid; place-items: center; font-family: "Archivo", system-ui, sans-serif; font-weight: 800; font-size: .82rem; flex: 0 0 auto; box-sizing: border-box;'>MS</span>
+                            <span style="font-size: .82rem; color: #64748B; box-sizing: border-box;"><b
+                                    style='display: block; font-family: "Inter", system-ui, sans-serif; font-weight: 600; color: #0B1120; font-size: .95rem; white-space: nowrap; box-sizing: border-box;'>Mahesh
+                                    Sharma</b><span
+                                    style="font-size: .82rem; color: #64748B; box-sizing: border-box;">Operations lead,
+                                    retail</span></span>
+                            <span class="tst-src"
+                                style='margin-left: auto; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; color: #64748B; background: #E7EEFF; padding: 5px 9px; border-radius: 6px; box-sizing: border-box;'>LinkedIn</span>
+                        </figcaption>
+                    </figure>
+                    <figure class="tst-card"
+                        style="background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; padding: 28px; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); display: flex; flex-direction: column; box-sizing: border-box;">
+                        <div aria-label="5 out of 5" class="tst-stars"
+                            style="display: flex; gap: 3px; margin-bottom: 16px; box-sizing: border-box;">
+                            <svg fill="currentColor"
+                                style="max-width: 100%; display: block; width: 18px; height: 18px; color: #F5A623; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M12 2l2.9 6.9 7.1.6-5.4 4.6 1.6 7L12 17.8 5.8 21.7l1.6-7L2 10.1l7.1-.6z"
+                                    style="box-sizing: border-box;"></path>
+                            </svg>
+                            <svg fill="currentColor"
+                                style="max-width: 100%; display: block; width: 18px; height: 18px; color: #F5A623; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M12 2l2.9 6.9 7.1.6-5.4 4.6 1.6 7L12 17.8 5.8 21.7l1.6-7L2 10.1l7.1-.6z"
+                                    style="box-sizing: border-box;"></path>
+                            </svg>
+                            <svg fill="currentColor"
+                                style="max-width: 100%; display: block; width: 18px; height: 18px; color: #F5A623; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M12 2l2.9 6.9 7.1.6-5.4 4.6 1.6 7L12 17.8 5.8 21.7l1.6-7L2 10.1l7.1-.6z"
+                                    style="box-sizing: border-box;"></path>
+                            </svg>
+                            <svg fill="currentColor"
+                                style="max-width: 100%; display: block; width: 18px; height: 18px; color: #F5A623; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M12 2l2.9 6.9 7.1.6-5.4 4.6 1.6 7L12 17.8 5.8 21.7l1.6-7L2 10.1l7.1-.6z"
+                                    style="box-sizing: border-box;"></path>
+                            </svg>
+                            <svg fill="currentColor"
+                                style="max-width: 100%; display: block; width: 18px; height: 18px; color: #F5A623; box-sizing: border-box;"
+                                viewbox="0 0 24 24">
+                                <path d="M12 2l2.9 6.9 7.1.6-5.4 4.6 1.6 7L12 17.8 5.8 21.7l1.6-7L2 10.1l7.1-.6z"
+                                    style="box-sizing: border-box;"></path>
+                            </svg>
+                        </div>
+                        <blockquote class="tst-quote"
+                            style="font-size: 1rem; color: #1E293B; flex: 1; line-height: 1.65; margin: 0; box-sizing: border-box;">
+                            The predictive modeling solution developed by this engineer helped our media
+                            and entertainment company in Mumbai optimize our content recommendation engine, resulting in
+                            a 20%
+                            increase in user engagement and a 15% increase in ad revenue.</blockquote>
+                        <figcaption class="tst-who"
+                            style="display: flex; align-items: center; gap: 13px; margin-top: 22px; padding-top: 20px; border-top: 1px solid #EEF2F8; box-sizing: border-box;">
+                            <span class="tst-avatar"
+                                style='width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #2456E6, #4F46E5); color: #64748B; display: grid; place-items: center; font-family: "Archivo", system-ui, sans-serif; font-weight: 800; font-size: .82rem; flex: 0 0 auto; box-sizing: border-box;'>AK</span>
+                            <span style="font-size: .82rem; color: #64748B; box-sizing: border-box;"><b
+                                    style='display: block; font-family: "Inter", system-ui, sans-serif; font-weight: 600; color: #0B1120; font-size: .95rem; white-space: nowrap; box-sizing: border-box;'>Amit
+                                    Kumar</b><span
+                                    style="font-size: .82rem; color: #64748B; box-sizing: border-box;">Product manager,
+                                    healthtech</span></span>
+                            <span class="tst-src"
+                                style='margin-left: auto; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; color: #64748B; background: #E7EEFF; padding: 5px 9px; border-radius: 6px; box-sizing: border-box;'>Upwork</span>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+        <!-- ============================ RELATED BLOG (NEW SECTION) ============================ -->
+        <section class="section section--alt insights"
+            style="padding: 96px 0; background: #F5F8FD; box-sizing: border-box;">
+            <div class="wrap" style="max-width: 1180px; margin: 0 auto; padding: 0 24px; box-sizing: border-box;">
+                <div
+                    style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; box-sizing: border-box;">
+                    <div style="box-sizing: border-box;">
+                        <span class="eyebrow"
+                            style='display: inline-flex; align-items: center; gap: 9px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .72rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: #4F46E5; margin-bottom: 20px; box-sizing: border-box;'>Insights</span>
+                        <h2 class="h2"
+                            style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: clamp(2rem, 3.6vw, 2.9rem); font-weight: 800; max-width: 20ch; box-sizing: border-box;'>
+                            Reading before you hire an ML engineer</h2>
+                        <p class="lede"
+                            style="margin: 0; font-size: clamp(1.02rem, 1.6vw, 1.18rem); color: #64748B; max-width: 62ch; margin-top: 18px; box-sizing: border-box;">
+                            Practical guides on cost, vetting and where machine learning pays off, from the same person
+                            who does the work.</p>
+                    </div>
+                    <a class="link-cta" href="https://shreyans.tech/blog"
+                        style='margin-bottom: 8px; color: #2456E6; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .76rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; box-sizing: border-box;'>All
+                        articles
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5"
+                            style="max-width: 100%; display: block; width: 15px; height: 15px; transition: transform .18s ease; box-sizing: border-box;"
+                            viewbox="0 0 24 24">
+                            <path d="M5 12h14M13 6l6 6-6 6" style="box-sizing: border-box;"></path>
+                        </svg></a>
+                </div>
+                <div class="blog-grid"
+                    style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 52px; box-sizing: border-box;">
+                    <article class="blog-card"
+                        style="display: flex; flex-direction: column; background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); transition: transform .2s ease, box-shadow .2s ease; box-sizing: border-box;">
+                        <div class="blog-media"
+                            style="aspect-ratio: 16/9; position: relative; overflow: hidden; box-sizing: border-box;">
+                            <img alt="Chart illustrating machine learning consultant cost by project type" height="450"
+                                loading="lazy"
+                                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA4MDAgNDUwJz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9J2cxJyB4MT0nMCcgeTE9JzAnIHgyPScxJyB5Mj0nMSc+PHN0b3Agb2Zmc2V0PScwJyBzdG9wLWNvbG9yPScjMjQ1NkU2Jy8+PHN0b3Agb2Zmc2V0PScxJyBzdG9wLWNvbG9yPScjMTc0MEMwJy8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9JzgwMCcgaGVpZ2h0PSc0NTAnIGZpbGw9J3VybCgjZzEpJy8+PGcgZmlsbD0nI2ZmZicgb3BhY2l0eT0nMC45Mic+PHJlY3QgeD0nMTIwJyB5PSczMDAnIHdpZHRoPSc2MCcgaGVpZ2h0PSc5MCcgcng9JzYnLz48cmVjdCB4PScyMTAnIHk9JzI1MCcgd2lkdGg9JzYwJyBoZWlnaHQ9JzE0MCcgcng9JzYnLz48cmVjdCB4PSczMDAnIHk9JzIwMCcgd2lkdGg9JzYwJyBoZWlnaHQ9JzE5MCcgcng9JzYnLz48cmVjdCB4PSczOTAnIHk9JzE2MCcgd2lkdGg9JzYwJyBoZWlnaHQ9JzIzMCcgcng9JzYnLz48L2c+PHRleHQgeD0nNTIwJyB5PScyMzAnIGZpbGw9JyNmZmYnIGZvbnQtZmFtaWx5PSdBcmNoaXZvLCBzYW5zLXNlcmlmJyBmb250LXNpemU9JzU4JyBmb250LXdlaWdodD0nODAwJz4kPC90ZXh0PjxjaXJjbGUgY3g9JzU2MCcgY3k9JzIxMCcgcj0nNDYnIGZpbGw9J25vbmUnIHN0cm9rZT0nI2ZmZicgc3Ryb2tlLXdpZHRoPSc0JyBvcGFjaXR5PScwLjgnLz48L3N2Zz4="
+                                style="max-width: 100%; display: block; width: 100%; height: 100%; object-fit: cover; box-sizing: border-box;"
+                                width="800" />
+                        </div>
+                        <div class="blog-inner"
+                            style="padding: 24px; display: flex; flex-direction: column; flex: 1; box-sizing: border-box;">
+                            <span class="blog-cat"
+                                style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: #4F46E5; font-weight: 600; margin-bottom: 11px; box-sizing: border-box;'>Cost</span>
+                            <h3
+                                style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.25; letter-spacing: -.02em; margin: 0; font-size: 1.08rem; font-weight: 700; margin-bottom: 10px; box-sizing: border-box;'>
+                                Machine learning consultant cost in 2026, by project type</h3>
+                            <p
+                                style="margin: 0; font-size: .9rem; color: #64748B; flex: 1; margin-bottom: 18px; box-sizing: border-box;">
+                                What a proof-of-concept, a production build and an ongoing retainer actually cost, and
+                                what drives each
+                                number for businesses in Mumbai.</p>
+                            <a class="link-cta"
+                                href="https://shreyans.tech/blog/machine-learning-consultant-cost-2026-pricing-breakdown-project-type"
+                                style='color: #2456E6; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .76rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; box-sizing: border-box;'>ML
+                                consultant cost <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                    stroke-width="2.5"
+                                    style="max-width: 100%; display: block; width: 15px; height: 15px; transition: transform .18s ease; box-sizing: border-box;"
+                                    viewbox="0 0 24 24">
+                                    <path d="M5 12h14M13 6l6 6-6 6" style="box-sizing: border-box;"></path>
+                                </svg></a>
+                        </div>
+                    </article>
+                    <article class="blog-card"
+                        style="display: flex; flex-direction: column; background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); transition: transform .2s ease, box-shadow .2s ease; box-sizing: border-box;">
+                        <div class="blog-media"
+                            style="aspect-ratio: 16/9; position: relative; overflow: hidden; box-sizing: border-box;">
+                            <img alt="Code brackets representing machine learning interview questions" height="450"
+                                loading="lazy"
+                                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA4MDAgNDUwJz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9J2cyJyB4MT0nMCcgeTE9JzAnIHgyPScxJyB5Mj0nMSc+PHN0b3Agb2Zmc2V0PScwJyBzdG9wLWNvbG9yPScjNEY0NkU1Jy8+PHN0b3Agb2Zmc2V0PScxJyBzdG9wLWNvbG9yPScjMjQ1NkU2Jy8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9JzgwMCcgaGVpZ2h0PSc0NTAnIGZpbGw9J3VybCgjZzIpJy8+PGcgZmlsbD0nbm9uZScgc3Ryb2tlPScjZmZmJyBzdHJva2Utd2lkdGg9JzQnIG9wYWNpdHk9JzAuOSc+PHBhdGggZD0nTTI4MCAxNTBsNDAgNDAtNDAgNDAnLz48cGF0aCBkPSdNNTIwIDE1MGwtNDAgNDAgNDAgNDAnLz48cGF0aCBkPSdNNDIwIDEzMGwtNDAgMTMwJy8+PC9nPjxnIGZpbGw9JyNmZmYnPjxjaXJjbGUgY3g9JzQwMCcgY3k9JzMyMCcgcj0nOCcvPjxjaXJjbGUgY3g9JzM0MCcgY3k9JzM0MCcgcj0nNicgb3BhY2l0eT0nMC42Jy8+PGNpcmNsZSBjeD0nNDYwJyBjeT0nMzQwJyByPSc2JyBvcGFjaXR5PScwLjYnLz48L2c+PC9zdmc+"
+                                style="max-width: 100%; display: block; width: 100%; height: 100%; object-fit: cover; box-sizing: border-box;"
+                                width="800" />
+                        </div>
+                        <div class="blog-inner"
+                            style="padding: 24px; display: flex; flex-direction: column; flex: 1; box-sizing: border-box;">
+                            <span class="blog-cat"
+                                style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: #4F46E5; font-weight: 600; margin-bottom: 11px; box-sizing: border-box;'>Vetting</span>
+                            <h3
+                                style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.25; letter-spacing: -.02em; margin: 0; font-size: 1.08rem; font-weight: 700; margin-bottom: 10px; box-sizing: border-box;'>
+                                12 machine learning interview questions to ask before you hire</h3>
+                            <p
+                                style="margin: 0; font-size: .9rem; color: #64748B; flex: 1; margin-bottom: 18px; box-sizing: border-box;">
+                                The questions that separate an engineer who ships production systems from someone who
+                                has only trained
+                                toy models, with a focus on Mumbai businesses.</p>
+                            <a class="link-cta"
+                                href="https://shreyans.tech/blog/12-machine-learning-interview-questions-before-you-hire"
+                                style='color: #2456E6; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .76rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; box-sizing: border-box;'>ML
+                                interview
+                                questions <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                    stroke-width="2.5"
+                                    style="max-width: 100%; display: block; width: 15px; height: 15px; transition: transform .18s ease; box-sizing: border-box;"
+                                    viewbox="0 0 24 24">
+                                    <path d="M5 12h14M13 6l6 6-6 6" style="box-sizing: border-box;"></path>
+                                </svg></a>
+                        </div>
+                    </article>
+                    <article class="blog-card"
+                        style="display: flex; flex-direction: column; background: #fff; border: 1px solid #E7ECF3; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); transition: transform .2s ease, box-shadow .2s ease; box-sizing: border-box;">
+                        <div class="blog-media"
+                            style="aspect-ratio: 16/9; position: relative; overflow: hidden; box-sizing: border-box;">
+                            <img alt="Rising trend line showing machine learning improving business decisions"
+                                height="450" loading="lazy"
+                                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA4MDAgNDUwJz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9J2czJyB4MT0nMCcgeTE9JzAnIHgyPScxJyB5Mj0nMSc+PHN0b3Agb2Zmc2V0PScwJyBzdG9wLWNvbG9yPScjMTU5QTVCJy8+PHN0b3Agb2Zmc2V0PScxJyBzdG9wLWNvbG9yPScjMjQ1NkU2Jy8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9JzgwMCcgaGVpZ2h0PSc0NTAnIGZpbGw9J3VybCgjZzMpJy8+PGcgZmlsbD0nbm9uZScgc3Ryb2tlPScjZmZmJyBzdHJva2Utd2lkdGg9JzQnIG9wYWNpdHk9JzAuOSc+PHBhdGggZD0nTTE1MCAzMDBoNTAwJy8+PHBhdGggZD0nTTIwMCAzMDBWMjIwTTMyMCAzMDBWMTcwTTQ0MCAzMDBWMjQwTTU2MCAzMDBWMTQwJy8+PC9nPjxnIGZpbGw9JyNmZmYnPjxjaXJjbGUgY3g9JzIwMCcgY3k9JzIyMCcgcj0nOScvPjxjaXJjbGUgY3g9JzMyMCcgY3k9JzE3MCcgcj0nOScvPjxjaXJjbGUgY3g9JzQ0MCcgY3k9JzI0MCcgcj0nOScvPjxjaXJjbGUgY3g9JzU2MCcgY3k9JzE0MCcgcj0nOScvPjwvZz48cGF0aCBkPSdNMjAwIDIyMCBMMzIwIDE3MCBMNDQwIDI0MCBMNTYwIDE0MCcgc3Ryb2tlPScjZmZmJyBzdHJva2Utd2lkdGg9JzMnIGZpbGw9J25vbmUnIG9wYWNpdHk9JzAuNicvPjwvc3ZnPg=="
+                                style="max-width: 100%; display: block; width: 100%; height: 100%; object-fit: cover; box-sizing: border-box;"
+                                width="800" />
+                        </div>
+                        <div class="blog-inner"
+                            style="padding: 24px; display: flex; flex-direction: column; flex: 1; box-sizing: border-box;">
+                            <span class="blog-cat"
+                                style='font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: #4F46E5; font-weight: 600; margin-bottom: 11px; box-sizing: border-box;'>Strategy</span>
+                            <h3
+                                style='font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.25; letter-spacing: -.02em; margin: 0; font-size: 1.08rem; font-weight: 700; margin-bottom: 10px; box-sizing: border-box;'>
+                                How ML consulting turns data into smarter business decisions</h3>
+                            <p
+                                style="margin: 0; font-size: .9rem; color: #64748B; flex: 1; margin-bottom: 18px; box-sizing: border-box;">
+                                Where machine learning creates real decision value, and how to tell that apart from a
+                                model built for
+                                its own sake, with examples from Mumbai companies.</p>
+                            <a class="link-cta"
+                                href="https://shreyans.tech/blog/how-ml-consulting-transforms-data-into-smarter-business-decisions"
+                                style='color: #2456E6; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .76rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; box-sizing: border-box;'>ML
+                                for business decisions <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                    stroke-width="2.5"
+                                    style="max-width: 100%; display: block; width: 15px; height: 15px; transition: transform .18s ease; box-sizing: border-box;"
+                                    viewbox="0 0 24 24">
+                                    <path d="M5 12h14M13 6l6 6-6 6" style="box-sizing: border-box;"></path>
+                                </svg></a>
+                        </div>
+                    </article>
+                </div>
+                <div class="blog-foot"
+                    style="display: flex; justify-content: center; margin-top: 44px; box-sizing: border-box;">
+                    <a class="btn btn--ghost" href="https://shreyans.tech/blog"
+                        style='color: #0B1120; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; font-family: "Inter", system-ui, sans-serif; font-weight: 600; font-size: .98rem; padding: 14px 22px; border-radius: 12px; border: 1px solid transparent; cursor: pointer; transition: transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease; line-height: 1; white-space: nowrap; background: #fff; border-color: #E7ECF3; box-sizing: border-box;'>Read
+                        the blog <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                            style="max-width: 100%; display: block; width: 18px; height: 18px; box-sizing: border-box;"
+                            viewbox="0 0 24 24">
+                            <path d="M5 12h14M13 6l6 6-6 6" style="box-sizing: border-box;"></path>
+                        </svg></a>
+                </div>
+            </div>
+        </section>
+        <!-- ============================ FAQ ============================ -->
+        <section class="section" style="padding: 96px 0; box-sizing: border-box;">
+            <div class="wrap" style="max-width: 1180px; margin: 0 auto; padding: 0 24px; box-sizing: border-box;">
+                <div class="center" style="text-align: center; box-sizing: border-box;">
+                    <span class="eyebrow"
+                        style='display: inline-flex; align-items: center; gap: 9px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: .72rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: #4F46E5; margin-bottom: 20px; box-sizing: border-box;'>FAQ</span>
+                    <h2 class="h2"
+                        style='margin-left: auto; margin-right: auto; font-family: "Archivo", system-ui, sans-serif; color: #0B1120; line-height: 1.08; letter-spacing: -.02em; margin: 0; font-size: clamp(2rem, 3.6vw, 2.9rem); font-weight: 800; max-width: 20ch; box-sizing: border-box;'>
+                        Frequently asked questions</h2>
+                    <p class="lede"
+                        style="margin: 0; font-size: clamp(1.02rem, 1.6vw, 1.18rem); color: #64748B; max-width: 62ch; margin-top: 18px; margin-left: auto; margin-right: auto; box-sizing: border-box;">
+                        Common questions from Mumbai businesses researching Machine Learning Engineers and
+                        consultants.</p>
+                </div>
+                <div class="faq-wrap" style="max-width: 840px; margin: 52px auto 0; box-sizing: border-box;">
+                    <details class="faq-item" open=""
+                        style="border: 1px solid #E7ECF3; border-radius: 14px; margin-bottom: 14px; background: #fff; overflow: hidden; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); box-sizing: border-box;">
+                        <summary class="faq-q"
+                            style='width: 100%; text-align: left; background: none; border: 0; cursor: pointer; padding: 22px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; font-family: "Archivo", system-ui, sans-serif; font-weight: 700; font-size: 1.04rem; color: #0B1120; list-style: none; box-sizing: border-box;'>
+                            What does a Machine Learning Engineer in Mumbai actually do?<span class="plus"
+                                style="flex: 0 0 auto; width: 24px; height: 24px; position: relative; transition: transform .25s ease; transform: rotate(180deg); box-sizing: border-box;"></span>
+                        </summary>
+                        <div class="faq-a"
+                            style="padding: 0 24px 22px; font-size: .96rem; color: #64748B; box-sizing: border-box;">A
+                            Machine Learning Engineer in Mumbai designs, develops and deploys machine learning
+                            models and systems for businesses. That covers data preparation, model selection, training,
+                            testing,
+                            deployment and integration with the tools your team already uses, with expertise in BFSI,
+                            media and
+                            entertainment, and e-commerce industries.</div>
+                    </details>
+                    <details class="faq-item"
+                        style="border: 1px solid #E7ECF3; border-radius: 14px; margin-bottom: 14px; background: #fff; overflow: hidden; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); box-sizing: border-box;">
+                        <summary class="faq-q"
+                            style='width: 100%; text-align: left; background: none; border: 0; cursor: pointer; padding: 22px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; font-family: "Archivo", system-ui, sans-serif; font-weight: 700; font-size: 1.04rem; color: #0B1120; list-style: none; box-sizing: border-box;'>
+                            Should I hire an independent engineer or an ML company in Mumbai?<span class="plus"
+                                style="flex: 0 0 auto; width: 24px; height: 24px; position: relative; transition: transform .25s ease; box-sizing: border-box;"></span>
+                        </summary>
+                        <div class="faq-a"
+                            style="padding: 0 24px 22px; font-size: .96rem; color: #64748B; box-sizing: border-box;">It
+                            depends on scope. For a large, multi-specialist product build, an established company
+                            is a good fit. For a focused machine learning project, an independent engineer is usually
+                            faster to start
+                            and more cost-effective, with no meaningful drop in engineering quality, making them a good
+                            choice for
+                            many Mumbai businesses.</div>
+                    </details>
+                    <details class="faq-item"
+                        style="border: 1px solid #E7ECF3; border-radius: 14px; margin-bottom: 14px; background: #fff; overflow: hidden; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); box-sizing: border-box;">
+                        <summary class="faq-q"
+                            style='width: 100%; text-align: left; background: none; border: 0; cursor: pointer; padding: 22px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; font-family: "Archivo", system-ui, sans-serif; font-weight: 700; font-size: 1.04rem; color: #0B1120; list-style: none; box-sizing: border-box;'>
+                            How much does it cost to hire an ML Engineer in Mumbai?<span class="plus"
+                                style="flex: 0 0 auto; width: 24px; height: 24px; position: relative; transition: transform .25s ease; box-sizing: border-box;"></span>
+                        </summary>
+                        <div class="faq-a"
+                            style="padding: 0 24px 22px; font-size: .96rem; color: #64748B; box-sizing: border-box;">
+                            Cost varies with scope and complexity. A scoped proof-of-concept typically runs from
+                            1,000 to 5,000 US dollars, and most focused engagements fall between 500 and 25,000 US
+                            dollars. Pricing is
+                            fixed and upfront, with no hidden agency markup, providing cost certainty for businesses in
+                            Mumbai.</div>
+                    </details>
+                    <details class="faq-item"
+                        style="border: 1px solid #E7ECF3; border-radius: 14px; margin-bottom: 14px; background: #fff; overflow: hidden; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); box-sizing: border-box;">
+                        <summary class="faq-q"
+                            style='width: 100%; text-align: left; background: none; border: 0; cursor: pointer; padding: 22px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; font-family: "Archivo", system-ui, sans-serif; font-weight: 700; font-size: 1.04rem; color: #0B1120; list-style: none; box-sizing: border-box;'>
+                            Can I meet in person if I am based in Mumbai?<span class="plus"
+                                style="flex: 0 0 auto; width: 24px; height: 24px; position: relative; transition: transform .25s ease; box-sizing: border-box;"></span>
+                        </summary>
+                        <div class="faq-a"
+                            style="padding: 0 24px 22px; font-size: .96rem; color: #64748B; box-sizing: border-box;">
+                            Yes. As an independent engineer based in Mumbai, in-person meetings are available for
+                            local clients, from the first discovery call through to deployment, ensuring clear
+                            communication and
+                            efficient project delivery.</div>
+                    </details>
+                    <details class="faq-item"
+                        style="border: 1px solid #E7ECF3; border-radius: 14px; margin-bottom: 14px; background: #fff; overflow: hidden; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); box-sizing: border-box;">
+                        <summary class="faq-q"
+                            style='width: 100%; text-align: left; background: none; border: 0; cursor: pointer; padding: 22px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; font-family: "Archivo", system-ui, sans-serif; font-weight: 700; font-size: 1.04rem; color: #0B1120; list-style: none; box-sizing: border-box;'>
+                            What machine learning services are most in demand locally?<span class="plus"
+                                style="flex: 0 0 auto; width: 24px; height: 24px; position: relative; transition: transform .25s ease; box-sizing: border-box;"></span>
+                        </summary>
+                        <div class="faq-a"
+                            style="padding: 0 24px 22px; font-size: .96rem; color: #64748B; box-sizing: border-box;">The
+                            most requested services are natural language processing, computer vision, predictive
+                            modelling, demand forecasting, recommendation systems and MLOps for reliable deployment and
+                            monitoring,
+                            with a focus on BFSI, media and entertainment, and e-commerce industries in Mumbai.</div>
+                    </details>
+                    <details class="faq-item"
+                        style="border: 1px solid #E7ECF3; border-radius: 14px; margin-bottom: 14px; background: #fff; overflow: hidden; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); box-sizing: border-box;">
+                        <summary class="faq-q"
+                            style='width: 100%; text-align: left; background: none; border: 0; cursor: pointer; padding: 22px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; font-family: "Archivo", system-ui, sans-serif; font-weight: 700; font-size: 1.04rem; color: #0B1120; list-style: none; box-sizing: border-box;'>
+                            Do you work with international clients as well as local businesses?<span class="plus"
+                                style="flex: 0 0 auto; width: 24px; height: 24px; position: relative; transition: transform .25s ease; box-sizing: border-box;"></span>
+                        </summary>
+                        <div class="faq-a"
+                            style="padding: 0 24px 22px; font-size: .96rem; color: #64748B; box-sizing: border-box;">
+                            Yes. The work serves both local Mumbai and Maharashtra businesses and international
+                            clients, with overlapping hours for India and availability across time zones for calls,
+                            ensuring global
+                            support.</div>
+                    </details>
+                    <details class="faq-item"
+                        style="border: 1px solid #E7ECF3; border-radius: 14px; margin-bottom: 14px; background: #fff; overflow: hidden; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); box-sizing: border-box;">
+                        <summary class="faq-q"
+                            style='width: 100%; text-align: left; background: none; border: 0; cursor: pointer; padding: 22px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; font-family: "Archivo", system-ui, sans-serif; font-weight: 700; font-size: 1.04rem; color: #0B1120; list-style: none; box-sizing: border-box;'>
+                            How long does a machine learning project take?<span class="plus"
+                                style="flex: 0 0 auto; width: 24px; height: 24px; position: relative; transition: transform .25s ease; box-sizing: border-box;"></span>
+                        </summary>
+                        <div class="faq-a"
+                            style="padding: 0 24px 22px; font-size: .96rem; color: #64748B; box-sizing: border-box;">
+                            Timelines depend on scope. You receive a written technical spec within 48 hours of the
+                            discovery call, a clear milestone plan and regular updates, so you see progress the whole
+                            way through
+                            rather than a single delivery at the end, ensuring timely project delivery for Mumbai
+                            businesses.</div>
+                    </details>
+                    <details class="faq-item"
+                        style="border: 1px solid #E7ECF3; border-radius: 14px; margin-bottom: 14px; background: #fff; overflow: hidden; box-shadow: 0 1px 2px rgba(11, 17, 32, .04), 0 1px 3px rgba(11, 17, 32, .06); box-sizing: border-box;">
+                        <summary class="faq-q"
+                            style='width: 100%; text-align: left; background: none; border: 0; cursor: pointer; padding: 22px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; font-family: "Archivo", system-ui, sans-serif; font-weight: 700; font-size: 1.04rem; color: #0B1120; list-style: none; box-sizing: border-box;'>
+                            Do you sign an NDA before starting a project?<span class="plus"
+                                style="flex: 0 0 auto; width: 24px; height: 24px; position: relative; transition: transform .25s ease; box-sizing: border-box;"></span>
+                        </summary>
+                        <div class="faq-a"
+                            style="padding: 0 24px 22px; font-size: .96rem; color: #64748B; box-sizing: border-box;">
+                            Yes. An NDA is signed before any project details or data are shared, so the
+                            confidentiality and security of your business information are protected from the start,
+                            providing peace of
+                            mind for businesses in Mumbai.</div>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

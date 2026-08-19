@@ -1,0 +1,6 @@
+.env
+__pycache__
+*.pyc
+studio-react/node_modules
+studio-react/dist
+.DS_Store

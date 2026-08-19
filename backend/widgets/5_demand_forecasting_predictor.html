@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Predicting Next Month from Past Patterns</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0B1120;
+      --ink-soft: #1E293B;
+      --body: #475569;
+      --muted: #64748B;
+      --line: #E7ECF3;
+      --line-soft: #EEF2F8;
+      --surface: #FFFFFF;
+      --surface-alt: #F5F8FD;
+      --surface-tint: #EEF3FF;
+      --primary: #2456E6;
+      --primary-strong: #1740C0;
+      --primary-tint: #E7EEFF;
+      --green: #159A5B;
+      --green-tint: #E7F7EF;
+      --radius: 18px;
+      --radius-sm: 10px;
+      --ff-display: "Archivo", system-ui, sans-serif;
+      --ff-body: "Inter", system-ui, sans-serif;
+      --ff-mono: "JetBrains Mono", ui-monospace, monospace;
+      --shadow-md: 0 10px 30px -12px rgba(11, 17, 32, .18);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--ff-body); background: #F0F4FA; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+
+    .vw-card {
+      width: 100%;
+      max-width: 520px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .vw-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .vw-top .t {
+      font-family: var(--ff-display);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .vw-top .t svg { width: 16px; height: 16px; color: var(--primary); }
+
+    .vw-chip {
+      font-family: var(--ff-mono);
+      font-size: 0.66rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: var(--green-tint);
+      color: var(--green);
+      border: 1px solid rgba(21, 154, 91, 0.25);
+    }
+
+    .vw-body {
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* HORIZON TOGGLES */
+    .vw-horizon-bar {
+      display: flex;
+      gap: 6px;
+    }
+
+    .vw-hz-btn {
+      flex: 1;
+      background: var(--surface-alt);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 6px 10px;
+      font-family: var(--ff-mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s;
+    }
+
+    .vw-hz-btn:hover { border-color: var(--primary); color: var(--ink); }
+    .vw-hz-btn.active { background: var(--primary-tint); border-color: var(--primary); color: var(--primary-strong); }
+
+    /* SIMPLE CHART */
+    .vw-chart-box {
+      background: var(--surface-alt);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      position: relative;
+    }
+
+    .vw-chart-legend {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.64rem;
+      font-family: var(--ff-mono);
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .vw-leg-item { display: flex; align-items: center; gap: 5px; }
+    .vw-dot-gray { width: 7px; height: 7px; border-radius: 50%; background: #94A3B8; }
+    .vw-dot-blue { width: 7px; height: 7px; border-radius: 50%; background: var(--primary); }
+
+    .vw-svg-chart {
+      width: 100%;
+      height: 95px;
+      overflow: visible;
+    }
+
+    /* METRICS ROW */
+    .vw-metrics-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .vw-tile {
+      background: var(--surface-alt);
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-sm);
+      padding: 6px 8px;
+      text-align: center;
+    }
+
+    .vw-tile-val {
+      font-family: var(--ff-display);
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .vw-tile-lbl {
+      font-family: var(--ff-mono);
+      font-size: 0.55rem;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .vw-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 18px;
+      border-top: 1px solid var(--line-soft);
+      background: var(--surface-alt);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 480px) {
+      .vw-metrics-row { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================ WIDGET START ============================ -->
+  <div class="vw-card">
+    <div class="vw-top">
+      <span class="t">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+        Predicting Next Month from Past Trends
+      </span>
+      <span class="vw-chip" id="vwPredBadge">Forecast: +18.4%</span>
+    </div>
+
+    <div class="vw-body">
+      <!-- Time Horizon Buttons -->
+      <div class="vw-horizon-bar">
+        <button class="vw-hz-btn" data-days="7">Next 7 Days</button>
+        <button class="vw-hz-btn active" data-days="30">Next 30 Days</button>
+        <button class="vw-hz-btn" data-days="90">Next Quarter</button>
+      </div>
+
+      <!-- Plain Visual Chart -->
+      <div class="vw-chart-box">
+        <div class="vw-chart-legend">
+          <span class="vw-leg-item"><span class="vw-dot-gray"></span> Past Actual Sales</span>
+          <span class="vw-leg-item"><span class="vw-dot-blue"></span> AI Predicted Trend</span>
+        </div>
+
+        <svg class="vw-svg-chart" viewBox="0 0 400 95">
+          <defs>
+            <linearGradient id="bandGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#2456E6" stop-opacity="0.18" />
+              <stop offset="100%" stop-color="#2456E6" stop-opacity="0.02" />
+            </linearGradient>
+          </defs>
+
+          <!-- Expected Range Band -->
+          <polygon id="expectedBand" points="200,45 250,30 300,20 350,15 390,10 390,65 350,70 300,75 250,80 200,45" fill="url(#bandGrad)" />
+
+          <!-- Past Line -->
+          <polyline points="10,65 50,55 90,60 130,48 170,52 200,45" fill="none" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round" />
+
+          <!-- Future Predicted Line -->
+          <polyline id="predLine" points="200,45 250,38 300,30 350,24 390,18" fill="none" stroke="#2456E6" stroke-width="2.5" stroke-dasharray="5 4" stroke-linecap="round" />
+
+          <!-- Pivot Point -->
+          <circle cx="200" cy="45" r="4.5" fill="#2456E6" stroke="#FFFFFF" stroke-width="2" />
+        </svg>
+      </div>
+
+      <!-- Plain Stats Grid -->
+      <div class="vw-metrics-row">
+        <div class="vw-tile">
+          <div class="vw-tile-val" id="valGrowth" style="color: var(--green);">+18.4%</div>
+          <div class="vw-tile-lbl">Expected Growth</div>
+        </div>
+        <div class="vw-tile">
+          <div class="vw-tile-val" style="color: var(--green);">96.2%</div>
+          <div class="vw-tile-lbl">Accuracy Track</div>
+        </div>
+        <div class="vw-tile">
+          <div class="vw-tile-val">&lt;0.5%</div>
+          <div class="vw-tile-lbl">Stockout Risk</div>
+        </div>
+        <div class="vw-tile">
+          <div class="vw-tile-val">24 Days</div>
+          <div class="vw-tile-lbl">Optimal Supply</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vw-foot">
+      <span>Model: Temporal Fusion Transformer + Prophet</span>
+      <span>Auto-adjusts for seasonal holidays</span>
+    </div>
+  </div>
+  <!-- ============================ WIDGET END ============================ -->
+
+  <script>
+    (function () {
+      const hzBtns = document.querySelectorAll(".vw-hz-btn");
+      const vwPredBadge = document.getElementById("vwPredBadge");
+      const valGrowth = document.getElementById("valGrowth");
+      const predLine = document.getElementById("predLine");
+      const expectedBand = document.getElementById("expectedBand");
+
+      const horizonData = {
+        "7": {
+          badge: "Forecast: +6.2%",
+          growth: "+6.2%",
+          line: "200,45 250,42 300,39 350,37 390,35",
+          band: "200,45 250,38 300,32 350,28 390,25 390,48 350,50 300,52 250,50 200,45"
+        },
+        "30": {
+          badge: "Forecast: +18.4%",
+          growth: "+18.4%",
+          line: "200,45 250,38 300,30 350,24 390,18",
+          band: "200,45 250,30 300,20 350,15 390,10 390,65 350,70 300,75 250,80 200,45"
+        },
+        "90": {
+          badge: "Forecast: +42.8%",
+          growth: "+42.8%",
+          line: "200,45 250,32 300,22 350,16 390,8",
+          band: "200,45 250,22 300,12 350,8 390,2 390,75 350,80 300,85 250,82 200,45"
+        }
+      };
+
+      hzBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          hzBtns.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          const d = horizonData[btn.getAttribute("data-days")];
+          if (d) {
+            vwPredBadge.textContent = d.badge;
+            valGrowth.textContent = d.growth;
+            predLine.setAttribute("points", d.line);
+            expectedBand.setAttribute("points", d.band);
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

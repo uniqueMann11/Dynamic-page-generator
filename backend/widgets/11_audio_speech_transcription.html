@@ -1,0 +1,393 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Turning Live Human Speech into Accurate Text</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0B1120;
+      --ink-soft: #1E293B;
+      --body: #475569;
+      --muted: #64748B;
+      --line: #E7ECF3;
+      --line-soft: #EEF2F8;
+      --surface: #FFFFFF;
+      --surface-alt: #F5F8FD;
+      --surface-tint: #EEF3FF;
+      --primary: #2456E6;
+      --primary-strong: #1740C0;
+      --primary-tint: #E7EEFF;
+      --green: #159A5B;
+      --green-tint: #E7F7EF;
+      --radius: 18px;
+      --radius-sm: 10px;
+      --ff-display: "Archivo", system-ui, sans-serif;
+      --ff-body: "Inter", system-ui, sans-serif;
+      --ff-mono: "JetBrains Mono", ui-monospace, monospace;
+      --shadow-md: 0 10px 30px -12px rgba(11, 17, 32, .18);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--ff-body); background: #F0F4FA; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+
+    .vw-card {
+      width: 100%;
+      max-width: 520px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .vw-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .vw-top .t {
+      font-family: var(--ff-display);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .vw-top .t svg { width: 16px; height: 16px; color: var(--primary); }
+
+    .vw-chip {
+      font-family: var(--ff-mono);
+      font-size: 0.66rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: var(--green-tint);
+      color: var(--green);
+      border: 1px solid rgba(21, 154, 91, 0.25);
+    }
+
+    .vw-body {
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* SOUND WAVE VISUALIZER */
+    .vw-sound-box {
+      background: #090E17;
+      border: 1px solid #1E293B;
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .vw-sound-meta {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--ff-mono);
+      font-size: 0.62rem;
+      color: #94A3B8;
+    }
+
+    .vw-waves-track {
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3px;
+      cursor: pointer;
+    }
+
+    .vw-wave-bar {
+      flex: 1;
+      background: #334155;
+      border-radius: 999px;
+      transition: height 0.15s ease, background 0.2s;
+    }
+
+    .vw-wave-bar.passed { background: var(--primary); }
+    .vw-wave-bar.active { background: #38BDF8; box-shadow: 0 0 8px #38BDF8; }
+
+    /* REAL-TIME TRANSCRIPT BOX */
+    .vw-transcript-box {
+      background: var(--surface-alt);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .vw-speaker-header {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--ff-mono);
+      font-size: 0.62rem;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .vw-text-flow {
+      font-size: 0.84rem;
+      line-height: 1.6;
+      color: var(--body);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .vw-word-token {
+      padding: 1px 4px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .vw-word-token:hover { background: var(--line); }
+
+    .vw-word-token.active {
+      background: var(--primary-tint);
+      color: var(--primary-strong);
+      font-weight: 700;
+      box-shadow: 0 0 0 1px var(--primary);
+    }
+
+    /* ACTION BAR */
+    .vw-action-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-family: var(--ff-mono);
+      font-size: 0.68rem;
+    }
+
+    .vw-btn-play {
+      background: var(--primary);
+      color: #FFFFFF;
+      border: none;
+      font-family: var(--ff-mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+
+    .vw-btn-play:hover { background: var(--primary-strong); }
+
+    /* METRICS ROW */
+    .vw-metrics-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .vw-tile {
+      background: var(--surface-alt);
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-sm);
+      padding: 6px 8px;
+      text-align: center;
+    }
+
+    .vw-tile-val {
+      font-family: var(--ff-display);
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .vw-tile-lbl {
+      font-family: var(--ff-mono);
+      font-size: 0.55rem;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .vw-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 18px;
+      border-top: 1px solid var(--line-soft);
+      background: var(--surface-alt);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 480px) {
+      .vw-metrics-row { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================ WIDGET START ============================ -->
+  <div class="vw-card">
+    <div class="vw-top">
+      <span class="t">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+        Instant Human Voice to Accurate Text
+      </span>
+      <span class="vw-chip">98% Word Accuracy</span>
+    </div>
+
+    <div class="vw-body">
+      <!-- Voice Waveform Player -->
+      <div class="vw-sound-box">
+        <div class="vw-sound-meta">
+          <span>Incoming Voice Stream</span>
+          <span id="txtTimestamp">00:02.4 / 00:06.0</span>
+        </div>
+
+        <div class="vw-waves-track" id="wavesTrack"></div>
+      </div>
+
+      <!-- Live Transcribed Text -->
+      <div class="vw-transcript-box">
+        <div class="vw-speaker-header">
+          <span>Speaker 01 (Verified Voice Profile)</span>
+          <span style="color: var(--green);">Real-time Synced</span>
+        </div>
+
+        <div class="vw-text-flow" id="textFlow">
+          <span class="vw-word-token active">"Our</span>
+          <span class="vw-word-token">custom</span>
+          <span class="vw-word-token">AI</span>
+          <span class="vw-word-token">models</span>
+          <span class="vw-word-token">transcribe</span>
+          <span class="vw-word-token">audio</span>
+          <span class="vw-word-token">with</span>
+          <span class="vw-word-token">flawless</span>
+          <span class="vw-word-token">accuracy</span>
+          <span class="vw-word-token">in</span>
+          <span class="vw-word-token">multiple</span>
+          <span class="vw-word-token">languages."</span>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="vw-action-row">
+        <button class="vw-btn-play" id="btnAudioToggle">
+          <span>Pause Voice</span>
+        </button>
+        <span style="color: var(--muted);">Click any word to jump audio timestamp</span>
+      </div>
+
+      <!-- Plain Stats Grid -->
+      <div class="vw-metrics-row">
+        <div class="vw-tile">
+          <div class="vw-tile-val" style="color: var(--green);">98.0%</div>
+          <div class="vw-tile-lbl">Word Accuracy</div>
+        </div>
+        <div class="vw-tile">
+          <div class="vw-tile-val">&lt; 0.2s</div>
+          <div class="vw-tile-lbl">Lag Behind Voice</div>
+        </div>
+        <div class="vw-tile">
+          <div class="vw-tile-val">50+ Langs</div>
+          <div class="vw-tile-lbl">Multi-Language</div>
+        </div>
+        <div class="vw-tile">
+          <div class="vw-tile-val">Auto-Punctuate</div>
+          <div class="vw-tile-lbl">Formatting</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vw-foot">
+      <span>Powered by: OpenAI Whisper + PyAnnote Speaker Separation</span>
+      <span>Handles background noise and accents automatically</span>
+    </div>
+  </div>
+  <!-- ============================ WIDGET END ============================ -->
+
+  <script>
+    (function () {
+      const wavesTrack = document.getElementById("wavesTrack");
+      const tokens = document.querySelectorAll(".vw-word-token");
+      const btnAudioToggle = document.getElementById("btnAudioToggle");
+      const txtTimestamp = document.getElementById("txtTimestamp");
+
+      const numBars = 36;
+      const bars = [];
+      let activeIndex = 0;
+      let isPlaying = true;
+
+      const baseHeights = [20, 35, 55, 75, 45, 30, 60, 90, 85, 40, 25, 50, 70, 95, 65, 35, 20, 45, 80, 85, 60, 30, 45, 70, 90, 65, 40, 25, 55, 75, 50, 30, 45, 60, 35, 20];
+
+      for (let i = 0; i < numBars; i++) {
+        const bar = document.createElement("div");
+        bar.className = "vw-wave-bar";
+        bar.style.height = baseHeights[i] + "%";
+        bar.addEventListener("click", () => {
+          seekTo(Math.floor((i / numBars) * tokens.length));
+        });
+        wavesTrack.appendChild(bar);
+        bars.push(bar);
+      }
+
+      tokens.forEach((tok, idx) => {
+        tok.addEventListener("click", () => {
+          seekTo(idx);
+        });
+      });
+
+      function seekTo(tokenIdx) {
+        activeIndex = tokenIdx;
+        update();
+      }
+
+      function update() {
+        tokens.forEach((t, i) => t.classList.toggle("active", i === activeIndex));
+        
+        const barIdx = Math.floor((activeIndex / tokens.length) * numBars);
+        bars.forEach((b, i) => {
+          b.className = "vw-wave-bar" + (i < barIdx ? " passed" : i === barIdx ? " active" : "");
+          if (isPlaying) {
+            const h = baseHeights[i] + (Math.random() * 20 - 10);
+            b.style.height = Math.max(15, Math.min(100, h)) + "%";
+          }
+        });
+
+        const curSec = (activeIndex * 0.5).toFixed(1);
+        txtTimestamp.textContent = `00:0${curSec} / 00:06.0`;
+      }
+
+      setInterval(() => {
+        if (isPlaying) {
+          activeIndex = (activeIndex + 1) % tokens.length;
+          update();
+        }
+      }, 550);
+
+      btnAudioToggle.addEventListener("click", () => {
+        isPlaying = !isPlaying;
+        btnAudioToggle.querySelector("span").textContent = isPlaying ? "Pause Voice" : "Resume Voice";
+      });
+
+      update();
+    })();
+  </script>
+</body>
+</html>

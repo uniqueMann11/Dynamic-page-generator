@@ -1,0 +1,372 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shrinking the AI to Fit Smaller Devices</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0B1120;
+      --ink-soft: #1E293B;
+      --body: #475569;
+      --muted: #64748B;
+      --line: #E7ECF3;
+      --line-soft: #EEF2F8;
+      --surface: #FFFFFF;
+      --surface-alt: #F5F8FD;
+      --surface-tint: #EEF3FF;
+      --primary: #2456E6;
+      --primary-strong: #1740C0;
+      --primary-tint: #E7EEFF;
+      --green: #159A5B;
+      --green-tint: #E7F7EF;
+      --amber: #D97A18;
+      --radius: 18px;
+      --radius-sm: 10px;
+      --ff-display: "Archivo", system-ui, sans-serif;
+      --ff-body: "Inter", system-ui, sans-serif;
+      --ff-mono: "JetBrains Mono", ui-monospace, monospace;
+      --shadow-md: 0 10px 30px -12px rgba(11, 17, 32, .18);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--ff-body); background: #F0F4FA; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+
+    .vw-card {
+      width: 100%;
+      max-width: 520px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .vw-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .vw-top .t {
+      font-family: var(--ff-display);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .vw-top .t svg { width: 16px; height: 16px; color: var(--primary); }
+
+    .vw-chip {
+      font-family: var(--ff-mono);
+      font-size: 0.66rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: var(--green-tint);
+      color: var(--green);
+      border: 1px solid rgba(21, 154, 91, 0.25);
+    }
+
+    .vw-body {
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* SLIDER SECTION */
+    .vw-slider-card {
+      background: var(--surface-alt);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .vw-slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .vw-sh-lbl { font-size: 0.7rem; font-weight: 600; color: var(--muted); text-transform: uppercase; font-family: var(--ff-mono); }
+    .vw-sh-val { font-family: var(--ff-display); font-size: 0.75rem; font-weight: 700; color: var(--primary); }
+
+    .vw-slider {
+      width: 100%;
+      accent-color: var(--primary);
+      cursor: pointer;
+      height: 6px;
+    }
+
+    .vw-ticks {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--ff-mono);
+      font-size: 0.64rem;
+      color: var(--muted);
+      margin-top: -2px;
+    }
+
+    .vw-ticks span.active { color: var(--primary); font-weight: 700; }
+
+    /* DUAL GAUGES */
+    .vw-gauges-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .vw-gauge-box {
+      background: var(--surface-alt);
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .vw-gauge-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .vw-gauge-lbl { font-size: 0.68rem; font-weight: 600; color: var(--muted); }
+    .vw-gauge-val { font-family: var(--ff-display); font-size: .95rem; font-weight: 800; color: var(--ink); }
+
+    .vw-bar-track {
+      height: 8px;
+      background: var(--line);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .vw-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.3s ease, background 0.3s ease;
+    }
+
+    /* METRICS ROW */
+    .vw-metrics-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .vw-tile {
+      background: var(--surface-alt);
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-sm);
+      padding: 6px 8px;
+      text-align: center;
+    }
+
+    .vw-tile-val {
+      font-family: var(--ff-display);
+      font-size: .85rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .vw-tile-lbl {
+      font-family: var(--ff-mono);
+      font-size: 0.55rem;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .vw-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 18px;
+      border-top: 1px solid var(--line-soft);
+      background: var(--surface-alt);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 480px) {
+      .vw-gauges-grid { grid-template-columns: 1fr; }
+      .vw-metrics-row { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================ WIDGET START ============================ -->
+  <div class="vw-card">
+    <div class="vw-top">
+      <span class="t">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line></svg>
+        Shrinking the AI to Run on Mobile & Edge
+      </span>
+      <span class="vw-chip" id="chipSpeed">4.8x Faster</span>
+    </div>
+
+    <div class="vw-body">
+      <!-- Plain Drag Slider -->
+      <div class="vw-slider-card">
+        <div class="vw-slider-header">
+          <span class="vw-sh-lbl">Drag to Choose Compression Level</span>
+          <span class="vw-sh-val" id="levelName">Maximum Compression (INT4)</span>
+        </div>
+        <input type="range" class="vw-slider" id="compSlider" min="0" max="3" value="3" step="1" />
+        <div class="vw-ticks">
+          <span id="t0">Uncompressed</span>
+          <span id="t1">Standard</span>
+          <span id="t2">High</span>
+          <span id="t3" class="active">Ultra (Edge AI)</span>
+        </div>
+      </div>
+
+      <!-- Dual Gauges: Size vs Accuracy -->
+      <div class="vw-gauges-grid">
+        <div class="vw-gauge-box">
+          <div class="vw-gauge-meta">
+            <span class="vw-gauge-lbl">Required Memory</span>
+            <span class="vw-gauge-val" id="valMemory">2.2 GB</span>
+          </div>
+          <div class="vw-bar-track">
+            <div class="vw-bar-fill" id="fillMemory" style="width: 16%; background: var(--green);"></div>
+          </div>
+        </div>
+
+        <div class="vw-gauge-box">
+          <div class="vw-gauge-meta">
+            <span class="vw-gauge-lbl">Accuracy Retained</span>
+            <span class="vw-gauge-val" id="valAccuracy">97.8%</span>
+          </div>
+          <div class="vw-bar-track">
+            <div class="vw-bar-fill" id="fillAccuracy" style="width: 97.8%; background: var(--green);"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Plain Stats Grid -->
+      <div class="vw-metrics-row">
+        <div class="vw-tile">
+          <div class="vw-tile-val" id="valSaved" style="color: var(--green);">84% Less</div>
+          <div class="vw-tile-lbl">Hardware Size</div>
+        </div>
+        <div class="vw-tile">
+          <div class="vw-tile-val" id="valSpeedup" style="color: var(--green);">345 tok/s</div>
+          <div class="vw-tile-lbl">Answer Speed</div>
+        </div>
+        <div class="vw-tile">
+          <div class="vw-tile-val">Phones & Pi</div>
+          <div class="vw-tile-lbl">Runs On</div>
+        </div>
+        <div class="vw-tile">
+          <div class="vw-tile-val">Zero Cloud</div>
+          <div class="vw-tile-lbl">Offline Privacy</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vw-foot">
+      <span>Technical layer: Post-Training Quantization (AWQ / GPTQ)</span>
+      <span>Cuts cloud server hosting bills by up to 75%</span>
+    </div>
+  </div>
+  <!-- ============================ WIDGET END ============================ -->
+
+  <script>
+    (function () {
+      const slider = document.getElementById("compSlider");
+      const levelName = document.getElementById("levelName");
+      const chipSpeed = document.getElementById("chipSpeed");
+      const valMemory = document.getElementById("valMemory");
+      const fillMemory = document.getElementById("fillMemory");
+      const valAccuracy = document.getElementById("valAccuracy");
+      const fillAccuracy = document.getElementById("fillAccuracy");
+      const valSaved = document.getElementById("valSaved");
+      const valSpeedup = document.getElementById("valSpeedup");
+
+      const ticks = [
+        document.getElementById("t0"),
+        document.getElementById("t1"),
+        document.getElementById("t2"),
+        document.getElementById("t3")
+      ];
+
+      const levels = [
+        {
+          name: "Uncompressed (Original Model - FP32)",
+          speed: "1.0x (Baseline)",
+          mem: "14.0 GB",
+          memPct: "100%",
+          acc: "100.0%",
+          accPct: "100%",
+          saved: "0% Less",
+          toks: "68 tok/s"
+        },
+        {
+          name: "Standard Compression (FP16)",
+          speed: "2.1x Faster",
+          mem: "7.0 GB",
+          memPct: "50%",
+          acc: "99.9%",
+          accPct: "99.9%",
+          saved: "50% Less",
+          toks: "142 tok/s"
+        },
+        {
+          name: "High Compression (INT8)",
+          speed: "3.4x Faster",
+          mem: "3.8 GB",
+          memPct: "27%",
+          acc: "99.2%",
+          accPct: "99.2%",
+          saved: "73% Less",
+          toks: "238 tok/s"
+        },
+        {
+          name: "Ultra Compression (INT4 Edge AI)",
+          speed: "4.8x Faster",
+          mem: "2.2 GB",
+          memPct: "16%",
+          acc: "97.8%",
+          accPct: "97.8%",
+          saved: "84% Less",
+          toks: "345 tok/s"
+        }
+      ];
+
+      slider.addEventListener("input", () => {
+        const idx = parseInt(slider.value, 10);
+        const d = levels[idx];
+
+        ticks.forEach((t, i) => t.classList.toggle("active", i === idx));
+        levelName.textContent = d.name;
+        chipSpeed.textContent = d.speed;
+
+        valMemory.textContent = d.mem;
+        fillMemory.style.width = d.memPct;
+
+        valAccuracy.textContent = d.acc;
+        fillAccuracy.style.width = d.accPct;
+
+        valSaved.textContent = d.saved;
+        valSpeedup.textContent = d.toks;
+      });
+    })();
+  </script>
+</body>
+</html>

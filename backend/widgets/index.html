@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Machine Learning Hero Widgets Library (Plain-English & Client-Friendly)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0B1120;
+      --ink-soft: #1E293B;
+      --body: #475569;
+      --muted: #64748B;
+      --line: #E2E8F0;
+      --surface: #FFFFFF;
+      --primary: #2563EB;
+      --primary-strong: #1D4ED8;
+      --green: #10B981;
+      --radius: 16px;
+      --ff-display: "Archivo", system-ui, sans-serif;
+      --ff-body: "Inter", system-ui, sans-serif;
+      --ff-mono: "JetBrains Mono", monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--ff-body); background: #0B0F19; color: #F1F5F9; min-height: 100vh; padding: 32px 20px; }
+
+    .gallery-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery-header {
+      margin-bottom: 28px;
+      border-bottom: 1px solid #1E293B;
+      padding-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .gallery-title h1 {
+      font-family: var(--ff-display);
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .gallery-title p {
+      color: #94A3B8;
+      font-size: 0.88rem;
+      margin-top: 4px;
+    }
+
+    .badge-count {
+      background: #1E293B;
+      border: 1px solid #334155;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-family: var(--ff-mono);
+      font-size: 0.78rem;
+      color: #38BDF8;
+    }
+
+    .widgets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+      gap: 28px;
+    }
+
+    .widget-preview-card {
+      background: #111827;
+      border: 1px solid #1F2937;
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wpc-header {
+      padding: 12px 18px;
+      background: #162032;
+      border-bottom: 1px solid #1F2937;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .wpc-title {
+      font-family: var(--ff-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #38BDF8;
+    }
+
+    .wpc-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .wpc-btn {
+      background: #1E293B;
+      border: 1px solid #334155;
+      color: #F1F5F9;
+      font-family: var(--ff-mono);
+      font-size: 0.7rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .wpc-btn:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .wpc-frame-wrap {
+      padding: 16px;
+      background: #080D1A;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .wpc-iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+      border-radius: 12px;
+      background: transparent;
+    }
+
+    @media (max-width: 600px) {
+      .widgets-grid { grid-template-columns: 1fr; }
+      .wpc-iframe { height: 440px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="gallery-container">
+    <header class="gallery-header">
+      <div class="gallery-title">
+        <h1>Machine Learning Hero Widgets Library</h1>
+        <p>Framed in plain English so any non-technical prospective client immediately understands the business value.</p>
+      </div>
+      <span class="badge-count">12 Plain-English Widgets Ready</span>
+    </header>
+
+    <div class="widgets-grid">
+      <!-- Widget 1 -->
+      <div class="widget-preview-card">
+        <div class="wpc-header">
+          <span class="wpc-title">1. Watching the AI Get Better with Practice</span>
+          <div class="wpc-actions">
+            <a href="1_neural_network_training.html" target="_blank" class="wpc-btn">Open Solo</a>
+          </div>
+        </div>
+        <div class="wpc-frame-wrap">
+          <iframe class="wpc-iframe" src="1_neural_network_training.html" title="Widget 1"></iframe>
+        </div>
+      </div>
+
+      <!-- Widget 2 -->
+      <div class="widget-preview-card">
+        <div class="wpc-header">
+          <span class="wpc-title">2. Keeping the AI Running Smoothly, 24/7</span>
+          <div class="wpc-actions">
+            <a href="2_mlops_pipeline_monitor.html" target="_blank" class="wpc-btn">Open Solo</a>
+          </div>
+        </div>
+        <div class="wpc-frame-wrap">
+          <iframe class="wpc-iframe" src="2_mlops_pipeline_monitor.html" title="Widget 2"></iframe>
+        </div>
+      </div>
+
+      <!-- Widget 3 -->
+      <div class="widget-preview-card">
+        <div class="wpc-header">
+          <span class="wpc-title">3. AI That Looks Things Up Before Answering</span>
+          <div class="wpc-actions">
+            <a href="3_rag_agent_orchestrator.html" target="_blank" class="wpc-btn">Open Solo</a>
+          </div>
+        </div>
+        <div class="wpc-frame-wrap">
+          <iframe class="wpc-iframe" src="3_rag_agent_orchestrator.html" title="Widget 3"></iframe>
+        </div>
+      </div>
+
+      <!-- Widget 4 -->
+      <div class="widget-preview-card">
+        <div class="wpc-header">
+          <span class="wpc-title">4. A Camera That Catches Defects Automatically</span>
+          <div class="wpc-actions">
+            <a href="4_computer_vision_inference.html" target="_blank" class="wpc-btn">Open Solo</a>
+          </div>
+        </div>
+        <div class="wpc-frame-wrap">
+          <iframe class="wpc-iframe" src="4_computer_vision_inference.html" title="Widget 4"></iframe>
+        </div>
+      </div>
+
+      <!-- Widget 5 -->
+      <div class="widget-preview-card">
+        <div class="wpc-header">
+          <span class="wpc-title">5. Predicting Next Month from Past Trends</span>
+          <div class="wpc-actions">
+            <a href="5_demand_forecasting_predictor.html" target="_blank" class="wpc-btn">Open Solo</a>
+          </div>
+        </div>
+        <div class="wpc-frame-wrap">
+          <iframe class="wpc-iframe" src="5_demand_forecasting_predictor.html" title="Widget 5"></iframe>
+        </div>
+      </div>
+
+      <!-- Widget 6 -->
+      <div class="widget-preview-card">
+        <div class="wpc-header">
+          <span class="wpc-title">6. AI Reliability on Real Business Data</span>
+          <div class="wpc-actions">
+            <a href="6_model_evaluation_matrix.html" target="_blank" class="wpc-btn">Open Solo</a>
+          </div>
+        </div>
+        <div class="wpc-frame-wrap">
+          <iframe class="wpc-iframe" src="6_model_evaluation_matrix.html" title="Widget 6"></iframe>
+        </div>
+      </div>
+
+      <!-- Widget 7 -->
+      <div class="widget-preview-card">
+        <div class="wpc-header">
+          <span class="wpc-title">7. Finding the Best AI Settings Automatically</span>
+          <div class="wpc-actions">
+            <a href="7_hyperparameter_optimization.html" target="_blank" class="wpc-btn">Open Solo</a>
+          </div>
+        </div>
+        <div class="wpc-frame-wrap">
+          <iframe class="wpc-iframe" src="7_hyperparameter_optimization.html" title="Widget 7"></iframe>
+        </div>
+      </div>
+
+      <!-- Widget 8 -->
+      <div class="widget-preview-card">
+        <div class="wpc-header">
+          <span class="wpc-title">8. Explains Why the AI Decided This</span>
+          <div class="wpc-actions">
+            <a href="8_feature_importance_shap.html" target="_blank" class="wpc-btn">Open Solo</a>
+          </div>
+        </div>
+        <div class="wpc-frame-wrap">
+          <iframe class="wpc-iframe" src="8_feature_importance_shap.html" title="Widget 8"></iframe>
+        </div>
+      </div>
+
+      <!-- Widget 9 -->
+      <div class="widget-preview-card">
+        <div class="wpc-header">
+          <span class="wpc-title">9. Automatic Alerts When Real-World Data Changes</span>
+          <div class="wpc-actions">
+            <a href="9_data_drift_monitor.html" target="_blank" class="wpc-btn">Open Solo</a>
+          </div>
+        </div>
+        <div class="wpc-frame-wrap">
+          <iframe class="wpc-iframe" src="9_data_drift_monitor.html" title="Widget 9"></iframe>
+        </div>
+      </div>
+
+      <!-- Widget 10 -->
+      <div class="widget-preview-card">
+        <div class="wpc-header">
+          <span class="wpc-title">10. Shrinking the AI to Run on Mobile & Edge</span>
+          <div class="wpc-actions">
+            <a href="10_model_quantization_tradeoff.html" target="_blank" class="wpc-btn">Open Solo</a>
+          </div>
+        </div>
+        <div class="wpc-frame-wrap">
+          <iframe class="wpc-iframe" src="10_model_quantization_tradeoff.html" title="Widget 10"></iframe>
+        </div>
+      </div>
+
+      <!-- Widget 11 -->
+      <div class="widget-preview-card">
+        <div class="wpc-header">
+          <span class="wpc-title">11. Instant Human Voice to Accurate Text</span>
+          <div class="wpc-actions">
+            <a href="11_audio_speech_transcription.html" target="_blank" class="wpc-btn">Open Solo</a>
+          </div>
+        </div>
+        <div class="wpc-frame-wrap">
+          <iframe class="wpc-iframe" src="11_audio_speech_transcription.html" title="Widget 11"></iframe>
+        </div>
+      </div>
+
+      <!-- Widget 12 -->
+      <div class="widget-preview-card">
+        <div class="wpc-header">
+          <span class="wpc-title">12. AI That Plans, Searches, and Takes Action</span>
+          <div class="wpc-actions">
+            <a href="12_agentic_workflow_orchestrator.html" target="_blank" class="wpc-btn">Open Solo</a>
+          </div>
+        </div>
+        <div class="wpc-frame-wrap">
+          <iframe class="wpc-iframe" src="12_agentic_workflow_orchestrator.html" title="Widget 12"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

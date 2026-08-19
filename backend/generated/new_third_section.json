@@ -1,0 +1,191 @@
+{
+  "what-I-build": {
+    "eyebrow": "What I build",
+    "h2": "Machine learning services in Jaipur",
+    "lede": "A full range of machine learning development, delivered by the person who actually builds your system, not routed through an account manager.",
+    "svc-grid": [
+      {
+        "svc-card": {
+          "svc-num": "01",
+          "h3": "Custom ML Models",
+          "p": "End-to-end model development: from a scoped proof-of-concept to a fully deployed, production-grade model integrated with your existing business tools.",
+          "link-cta": {
+            "text": "Custom ML Models",
+            "url": "https://shreyans.tech/hire-machine-learning-developer"
+          }
+        }
+      },
+      {
+        "svc-card": {
+          "svc-num": "02",
+          "h3": "MLOps Development",
+          "p": "Machine learning pipeline automation, model deployment, versioning and monitoring, so your models stay reliable and observable in production.",
+          "link-cta": {
+            "text": "MLOps Development",
+            "url": "https://shreyans.tech/hire-ai-model-training-developer"
+          }
+        }
+      },
+      {
+        "svc-card": {
+          "svc-num": "03",
+          "h3": "Deep Learning Solutions",
+          "p": "Advanced deep learning for image classification, object detection and other computer vision tasks where accuracy on real-world data matters.",
+          "link-cta": {
+            "text": "Deep Learning",
+            "url": "https://shreyans.tech/hire-computer-vision-developer"
+          }
+        }
+      },
+      {
+        "svc-card": {
+          "svc-num": "04",
+          "h3": "Recommendation Systems",
+          "p": "Personalised recommendation engines for e-commerce, content streaming and other recommendation-heavy products that need higher engagement.",
+          "link-cta": {
+            "text": "Recommendation Systems",
+            "url": "https://shreyans.tech/hire-machine-learning-developer"
+          }
+        }
+      },
+      {
+        "svc-card": {
+          "svc-num": "05",
+          "h3": "Predictive Maintenance",
+          "p": "Failure-prediction models for manufacturing, industrial automation and equipment-heavy operations, to cut unplanned downtime and service cost.",
+          "link-cta": {
+            "text": "Predictive Maintenance",
+            "url": "https://shreyans.tech/hire-machine-learning-developer"
+          }
+        }
+      },
+      {
+        "svc-card": {
+          "svc-num": "06",
+          "h3": "ML Consulting Services",
+          "p": "Feasibility assessments, architecture reviews and vendor evaluation for Jaipur businesses deciding whether and how to adopt machine learning.",
+          "link-cta": {
+            "text": "ML Consulting",
+            "url": "https://shreyans.tech/hire-ai-developer"
+          }
+        }
+      }
+    ],
+    "svc-explore": {
+      "span": "Explore specialisations",
+      "chip": [
+        {
+          "text": "Computer Vision",
+          "url": "https://shreyans.tech/hire-computer-vision-developer"
+        },
+        {
+          "text": "NLP",
+          "url": "https://shreyans.tech/hire-nlp-developer"
+        },
+        {
+          "text": "Generative AI",
+          "url": "https://shreyans.tech/hire-generative-ai-developer"
+        },
+        {
+          "text": "AI Agents",
+          "url": "https://shreyans.tech/hire-ai-agent-developer"
+        },
+        {
+          "text": "Model Training",
+          "url": "https://shreyans.tech/hire-ai-model-training-developer"
+        },
+        {
+          "text": "ML Development",
+          "url": "https://shreyans.tech/hire-machine-learning-developer"
+        }
+      ]
+    }
+  },
+  "comparison": {
+    "eyebrow": "The honest comparison",
+    "h2": "Independent ML Engineer vs an ML company in Jaipur",
+    "lede": "Jaipur has genuinely excellent established companies. For a large, multi-specialist product build, that scale helps. For a focused machine learning project, working directly with an experienced independent engineer is usually faster to start and more cost-effective, with no meaningful drop in quality.",
+    "cmp": {
+      "thead": [
+        "Factor",
+        "Independent engineer (me)",
+        "Established local company",
+        "Overseas agency"
+      ],
+      "tbody": [
+        {
+          "th": "Cost",
+          "td": [
+            "Lower, no team overhead",
+            "Higher, team and office overhead",
+            "Often highest, plus currency and markup"
+          ]
+        },
+        {
+          "th": "Access to the builder",
+          "td": [
+            "Always, every project",
+            "Often via account manager or lead",
+            "Varies, time zone adds lag"
+          ]
+        },
+        {
+          "th": "Local availability",
+          "td": [
+            "Yes, based in Jaipur",
+            "Yes, typically office-based",
+            "No, remote only"
+          ]
+        },
+        {
+          "th": "Best for",
+          "td": [
+            "Focused ML projects, $500 to $25,000",
+            "Large, multi-specialist builds",
+            "Brand name over cost or access"
+          ]
+        },
+        {
+          "th": "Response time",
+          "td": [
+            "Same day, direct contact",
+            "Depends on account structure",
+            "Time-zone dependent"
+          ]
+        }
+      ]
+    },
+    "btn--primary": {
+      "text": "Get a fixed quote for your project",
+      "url": "#lets-talk"
+    }
+  },
+  "local-context": {
+    "ctx-grid": {
+      "eyebrow": "Local context",
+      "h2": "The Jaipur machine learning and technology ecosystem",
+      "prose": {
+        "p": [
+          "Jaipur has a growing machine learning and technology ecosystem, supported by strong engineering and educational institutions, technology companies, startups and innovation-focused communities. The city is building capability across artificial intelligence, data science, IT/ITES, tourism and handicrafts, and gems and jewellery.",
+          "Institutions such as MNIT Jaipur and the Rajasthan Technical University, together with the wider Rajasthan innovation network, contribute to talent, research and entrepreneurship. Connectivity to the broader technology corridor, including Mahindra World City and Sitapura, expands collaboration between academia, startups, established enterprises and investors.",
+          "That combination of technical talent, institutional support and access to a wider technology ecosystem gives Jaipur businesses a strong foundation for adopting machine learning with confidence."
+        ]
+      },
+      "link-cta": {
+        "text": "Hire an AI developer in Jaipur",
+        "url": "https://shreyans.tech/hire-ai-developer"
+      },
+      "ctx-float": [
+        {
+          "b": "Same time zone",
+          "span": "Overlapping hours across India"
+        },
+        {
+          "b": "Local meetings",
+          "span": "In person across Jaipur"
+        }
+      ],
+      "widget-title": "Jaipur \u00b7 ML ecosystem"
+    }
+  }
+}

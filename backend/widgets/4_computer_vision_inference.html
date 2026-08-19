@@ -1,0 +1,339 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Camera That Automatically Catches Defects</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0B1120;
+      --ink-soft: #1E293B;
+      --body: #475569;
+      --muted: #64748B;
+      --line: #E7ECF3;
+      --line-soft: #EEF2F8;
+      --surface: #FFFFFF;
+      --surface-alt: #F5F8FD;
+      --surface-tint: #EEF3FF;
+      --primary: #2456E6;
+      --primary-strong: #1740C0;
+      --primary-tint: #E7EEFF;
+      --green: #159A5B;
+      --green-tint: #E7F7EF;
+      --rose: #E11D48;
+      --rose-tint: #FFE4E6;
+      --radius: 18px;
+      --radius-sm: 10px;
+      --ff-display: "Archivo", system-ui, sans-serif;
+      --ff-body: "Inter", system-ui, sans-serif;
+      --ff-mono: "JetBrains Mono", ui-monospace, monospace;
+      --shadow-md: 0 10px 30px -12px rgba(11, 17, 32, .18);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--ff-body); background: #F0F4FA; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+
+    .vw-card {
+      width: 100%;
+      max-width: 520px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .vw-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .vw-top .t {
+      font-family: var(--ff-display);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .vw-top .t svg { width: 16px; height: 16px; color: var(--primary); }
+
+    .vw-chip {
+      font-family: var(--ff-mono);
+      font-size: 0.66rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: var(--green-tint);
+      color: var(--green);
+      border: 1px solid rgba(21, 154, 91, 0.25);
+    }
+
+    .vw-body {
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* CAMERA VIEWPORT */
+    .vw-camera-canvas {
+      height: 130px;
+      background: #090E17;
+      border-radius: var(--radius-sm);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #1E293B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vw-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .vw-laser-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--green), transparent);
+      box-shadow: 0 0 10px var(--green);
+      animation: vw-scan 2.6s infinite linear;
+    }
+
+    @keyframes vw-scan {
+      0% { top: 0%; opacity: 0; }
+      15% { opacity: 1; }
+      85% { opacity: 1; }
+      100% { top: 100%; opacity: 0; }
+    }
+
+    /* DETECTION BOXES */
+    .vw-box {
+      position: absolute;
+      border: 2px solid;
+      border-radius: 4px;
+      transition: all 0.25s;
+    }
+
+    .vw-box.pass {
+      border-color: var(--green);
+      background: rgba(21, 154, 91, 0.12);
+    }
+
+    .vw-box.flaw {
+      border-color: var(--rose);
+      background: rgba(225, 29, 72, 0.18);
+      animation: vw-blink 1.4s infinite alternate;
+    }
+
+    @keyframes vw-blink { from { opacity: 0.75; } to { opacity: 1; } }
+
+    .vw-box-badge {
+      font-family: var(--ff-mono);
+      font-size: 0.58rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      color: #FFFFFF;
+      width: max-content;
+      margin-top: -14px;
+      margin-left: -2px;
+      border-radius: 3px;
+    }
+
+    .vw-box.pass .vw-box-badge { background: var(--green); }
+    .vw-box.flaw .vw-box-badge { background: var(--rose); }
+
+    /* SENSITIVITY SLIDER */
+    .vw-slider-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--surface-alt);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      font-family: var(--ff-mono);
+      font-size: 0.68rem;
+    }
+
+    .vw-slider-row label {
+      color: var(--muted);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .vw-slider {
+      flex: 1;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .vw-slider-val {
+      font-weight: 700;
+      color: var(--ink);
+      min-width: 32px;
+      text-align: right;
+    }
+
+    /* METRICS ROW */
+    .vw-metrics-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .vw-tile {
+      background: var(--surface-alt);
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-sm);
+      padding: 6px 8px;
+      text-align: center;
+    }
+
+    .vw-tile-val {
+      font-family: var(--ff-display);
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .vw-tile-lbl {
+      font-family: var(--ff-mono);
+      font-size: 0.55rem;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .vw-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 18px;
+      border-top: 1px solid var(--line-soft);
+      background: var(--surface-alt);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 480px) {
+      .vw-metrics-row { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================ WIDGET START ============================ -->
+  <div class="vw-card">
+    <div class="vw-top">
+      <span class="t">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+        A Camera That Catches Defects Automatically
+      </span>
+      <span class="vw-chip">62 Scans / Sec</span>
+    </div>
+
+    <div class="vw-body">
+      <!-- Live Video Feed Simulation -->
+      <div class="vw-camera-canvas">
+        <div class="vw-grid-bg"></div>
+        <div class="vw-laser-line"></div>
+
+        <!-- Box 1: Passed -->
+        <div class="vw-box pass" style="top: 25px; left: 24px; width: 115px; height: 80px;">
+          <span class="vw-box-badge">&#10003; Component OK</span>
+        </div>
+
+        <!-- Box 2: Defect -->
+        <div class="vw-box flaw" id="flawBox" style="top: 38px; left: 165px; width: 90px; height: 55px;">
+          <span class="vw-box-badge">&#10005; Micro-Crack Flaw</span>
+        </div>
+
+        <!-- Box 3: Passed -->
+        <div class="vw-box pass" id="optBox" style="top: 20px; left: 280px; width: 100px; height: 90px;">
+          <span class="vw-box-badge">&#10003; Alignment OK</span>
+        </div>
+      </div>
+
+      <!-- Strictness Slider -->
+      <div class="vw-slider-row">
+        <label for="sliderStrict">Quality Filter Strictness</label>
+        <input type="range" class="vw-slider" id="sliderStrict" min="50" max="99" value="85" />
+        <span class="vw-slider-val" id="valStrict">85%</span>
+      </div>
+
+      <!-- Plain Stats Grid -->
+      <div class="vw-metrics-row">
+        <div class="vw-tile">
+          <div class="vw-tile-val" id="valDefectFound" style="color: var(--rose);">1 Defect</div>
+          <div class="vw-tile-lbl">Caught in Batch</div>
+        </div>
+        <div class="vw-tile">
+          <div class="vw-tile-val" style="color: var(--green);">99.4%</div>
+          <div class="vw-tile-lbl">Accuracy Rate</div>
+        </div>
+        <div class="vw-tile">
+          <div class="vw-tile-val">8.2 ms</div>
+          <div class="vw-tile-lbl">Check Speed</div>
+        </div>
+        <div class="vw-tile">
+          <div class="vw-tile-val">0 Missed</div>
+          <div class="vw-tile-lbl">Escaped Flaws</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vw-foot">
+      <span>Runs on: Edge AI Camera (NVIDIA Jetson)</span>
+      <span>No human inspector required</span>
+    </div>
+  </div>
+  <!-- ============================ WIDGET END ============================ -->
+
+  <script>
+    (function () {
+      const slider = document.getElementById("sliderStrict");
+      const valStrict = document.getElementById("valStrict");
+      const flawBox = document.getElementById("flawBox");
+      const optBox = document.getElementById("optBox");
+      const valDefectFound = document.getElementById("valDefectFound");
+
+      slider.addEventListener("input", () => {
+        const v = parseInt(slider.value, 10);
+        valStrict.textContent = v + "%";
+
+        if (v > 94) {
+          flawBox.style.display = "none";
+          valDefectFound.textContent = "0 Defects";
+          valDefectFound.style.color = "var(--green)";
+        } else {
+          flawBox.style.display = "block";
+          valDefectFound.textContent = "1 Defect";
+          valDefectFound.style.color = "var(--rose)";
+        }
+
+        if (v > 97) optBox.style.display = "none";
+        else optBox.style.display = "block";
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{
+  "value-strip": {
+    "center": {
+      "eyebrow": "Micro-label above section title categorizing why direct access wins (e.g., 'Why direct access wins'). Max 4 words.",
+      "h2": "Section title introducing value pillars of hiring the specialist (e.g., 'What you get working with me'). Max 6 words."
+    },
+    "value-grid": [
+      {
+        "value-card": {
+          "h3": "Title of the value proposition card tailored to the profession (e.g., 'Expert ML solutions', 'Direct engineer access'). Max 3-4 words.",
+          "p": "Description explaining the specific benefit to businesses in {{STATE}}. Exactly 1-2 sentences."
+        }
+      }
+    ]
+  },
+  "quick-answer": {
+    "prose-grid": {
+      "eyebrow": "Micro-label categorizing the section (e.g., 'Plain answer'). Max 2 words.",
+      "h2": "Heading asking what the specialist actually does in the target city (e.g., 'What does a Machine Learning Engineer in {{CITY}} actually do?'). Must include {{CITY}}.",
+      "answer-card": {
+        "tag": "Tag label for quick summary (e.g., 'Quick answer'). Max 2 words.",
+        "p": "Concise TL;DR summary defining the core services delivered by the specialist in {{CITY}}. Exactly 1-2 sentences."
+      },
+      "prose": {
+        "p": [
+          "Paragraph detailing the local tech context in {{CITY}} and {{STATE}}, full project lifecycle, and business outcome focus. Exactly 2-3 sentences."
+        ],
+        "checklist": [
+          "Key takeaway item highlighting custom builds, MLOps/deployment reliability, or in-person collaboration in {{CITY}}. Max 1 sentence."
+        ]
+      }
+    }
+  }
+}

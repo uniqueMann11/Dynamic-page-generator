@@ -1,0 +1,73 @@
+{
+  "what-I-build": {
+    "eyebrow": "Micro-label above services heading (e.g., 'What I build'). Max 3 words.",
+    "h2": "Section title introducing services in {{CITY}} (e.g., 'Machine learning services in {{CITY}}'). Must include {{CITY}}.",
+    "lede": "Introductory lede paragraph explaining direct delivery without account managers. Exactly 1-2 sentences.",
+    "svc-grid": [
+      {
+        "svc-card": {
+          "svc-num": "Two-digit item index starting from '01' to '06'.",
+          "h3": "Specific service title tailored to the target role (e.g., 'Custom ML Models', 'MLOps Development'). Max 3-4 words.",
+          "p": "Description of service scope, deliverables, and business value. Exactly 1-2 sentences.",
+          "link-cta": {
+            "text": "Link text with right arrow suffix (e.g., 'Custom ML Models').",
+            "url": "Target URL or empty string."
+          }
+        }
+      }
+    ],
+    "svc-explore": {
+      "span": "Header label for specialisation chips (e.g., 'Explore specialisations'). Max 3 words.",
+      "chip": [
+        {
+          "text": "Specialisation keyword (e.g., 'Computer Vision', 'NLP'). Max 2 words.",
+          "url": "Target URL."
+        }
+      ]
+    }
+  },
+  "comparison": {
+    "eyebrow": "Micro-label for comparison section (e.g., 'The honest comparison'). Max 3 words.",
+    "h2": "Heading comparing independent specialist vs agency in {{CITY}} (e.g., 'Independent ML Engineer vs an ML company in {{CITY}}'). Must include {{CITY}}.",
+    "lede": "Summary paragraph framing when an independent specialist is better vs a large agency. Exactly 2-3 sentences.",
+    "cmp": {
+      "thead": [
+        "Column header names (e.g., 'Factor', 'Independent engineer (me)', 'Established local company', 'Overseas agency')."
+      ],
+      "tbody": [
+        {
+          "th": "Comparison criteria factor (e.g., 'Cost', 'Access to the builder', 'Local availability').",
+          "td": [
+            "Evaluation string for each option under this factor."
+          ]
+        }
+      ]
+    },
+    "btn--primary": {
+      "text": "CTA button text for quote request (e.g., 'Get a fixed quote for your project'). Max 6 words.",
+      "url": "Anchor link (e.g., '#lets-talk')."
+    }
+  },
+  "local-context": {
+    "ctx-grid": {
+      "eyebrow": "Micro-label for ecosystem section (e.g., 'Local context'). Max 2 words.",
+      "h2": "Heading describing local technology ecosystem (e.g., 'The {{CITY}} machine learning and technology ecosystem'). Must include {{CITY}}.",
+      "prose": {
+        "p": [
+          "Paragraph detailing institutions, tech corridors, and business adoption in {{CITY}} and {{STATE}}. Exactly 2-3 sentences."
+        ]
+      },
+      "link-cta": {
+        "text": "CTA link text for local hiring (e.g., 'Hire an AI developer in {{CITY}}').",
+        "url": "Target URL."
+      },
+      "ctx-float": [
+        {
+          "b": "Badge title (e.g., 'Same time zone', 'Local meetings').",
+          "span": "Badge subtitle (e.g., 'Overlapping hours across India', 'In person across {{CITY}}')."
+        }
+      ],
+      "widget-title": "Caption for the local ecosystem widget/chart (e.g., {{CITY}} · ML ecosystem). Must include {{CITY}}."
+    }
+  }
+}

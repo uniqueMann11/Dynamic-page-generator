@@ -1,0 +1,505 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Watching the AI Get Better With Practice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0B1120;
+      --ink-soft: #1E293B;
+      --body: #475569;
+      --muted: #64748B;
+      --line: #E7ECF3;
+      --line-soft: #EEF2F8;
+      --surface: #FFFFFF;
+      --surface-alt: #F5F8FD;
+      --surface-tint: #EEF3FF;
+      --primary: #2456E6;
+      --primary-strong: #1740C0;
+      --primary-tint: #E7EEFF;
+      --green: #159A5B;
+      --green-tint: #E7F7EF;
+      --radius: 18px;
+      --radius-sm: 10px;
+      --ff-display: "Archivo", system-ui, sans-serif;
+      --ff-body: "Inter", system-ui, sans-serif;
+      --ff-mono: "JetBrains Mono", ui-monospace, monospace;
+      --shadow-md: 0 10px 30px -12px rgba(11, 17, 32, .18);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--ff-body); background: #F0F4FA; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+
+    .vw-card {
+      width: 100%;
+      max-width: 520px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      animation: vw-cardIn .55s ease both;
+    }
+
+    @keyframes vw-cardIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    .vw-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .vw-top .t {
+      font-family: var(--ff-display);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .vw-top .t svg { width: 16px; height: 16px; color: var(--primary); flex: none; }
+
+    .vw-live {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--ff-mono);
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: var(--muted);
+      flex: none;
+    }
+
+    .vw-live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); position: relative; }
+    .vw-live-dot::after {
+      content: ""; position: absolute; inset: -4px; border-radius: 50%;
+      background: var(--green); opacity: .35; animation: vw-pulse 1.7s ease-out infinite;
+    }
+    @keyframes vw-pulse { 0% { transform: scale(.6); opacity: .5; } 100% { transform: scale(2.4); opacity: 0; } }
+
+    .vw-chip {
+      font-family: var(--ff-mono);
+      font-size: 0.66rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: var(--primary-tint);
+      color: var(--primary-strong);
+      border: 1px solid rgba(36, 86, 230, 0.25);
+      flex: none;
+      white-space: nowrap;
+    }
+
+    .vw-body {
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .vw-scorecard {
+      background: var(--surface-alt);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .vw-sc-left { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .vw-sc-label { font-size: 0.72rem; font-weight: 600; color: var(--muted); text-transform: uppercase; font-family: var(--ff-mono); letter-spacing: .02em; }
+    .vw-sc-val { font-family: var(--ff-display); font-size: 1.3rem; font-weight: 800; color: var(--ink); }
+    .vw-sc-sub { font-size: 0.68rem; color: var(--green); font-weight: 600; }
+
+    .vw-sc-badge {
+      background: var(--green-tint);
+      color: var(--green);
+      border: 1px solid rgba(21, 154, 91, 0.25);
+      padding: 6px 12px;
+      border-radius: 8px;
+      text-align: right;
+      flex: none;
+    }
+    .vw-sc-badge b { display: block; font-size: 1.1rem; font-family: var(--ff-display); }
+    .vw-sc-badge span { font-size: 0.62rem; font-family: var(--ff-mono); }
+
+    #txtAccuracyVal{
+      font-size: 1rem;
+    }
+
+    .vw-chart-wrap {
+      background: var(--surface-alt);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px 8px;
+    }
+
+    .vw-chart-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+    .vw-chart-label { font-family: var(--ff-mono); font-size: 0.66rem; color: var(--muted); text-transform: uppercase; letter-spacing: .03em; }
+    .vw-chart-now { font-family: var(--ff-mono); font-size: 0.68rem; color: var(--primary-strong); font-weight: 700; }
+
+    .vw-chart { width: 100%; height: auto; display: block; }
+    .vw-chart-area { fill: url(#vwGrad); }
+    .vw-chart-line { fill: none; stroke: var(--primary); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .vw-chart-dot { fill: var(--primary); filter: drop-shadow(0 0 4px rgba(36, 86, 230, .45)); transition: cx .5s ease, cy .5s ease; }
+    .vw-goal-line { stroke: #C7D2E3; stroke-width: 1; stroke-dasharray: 4 4; }
+    .vw-goal-text { fill: var(--muted); font-family: var(--ff-mono); font-size: 8px; }
+
+    .vw-chart-foot { display: flex; justify-content: space-between; font-size: 0.62rem; font-family: var(--ff-mono); color: var(--muted); margin-top: 2px; }
+
+    .vw-steps-label {
+      font-family: var(--ff-mono);
+      font-size: 0.64rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .02em;
+    }
+    .vw-steps-hint { font-weight: 400; text-transform: none; color: var(--muted); font-size: 0.62rem; margin-left: 4px; }
+
+    .vw-layers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 6px; }
+
+    .vw-layer-card {
+      background: var(--surface-alt);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 8px 6px;
+      cursor: pointer;
+      text-align: center;
+      transition: border-color .2s, background .2s, box-shadow .2s;
+    }
+    .vw-layer-card:hover { border-color: var(--primary); background: var(--surface-tint); }
+    .vw-layer-card.active { background: var(--primary-tint); border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary); }
+
+    .vw-layer-title { font-family: var(--ff-display); font-size: 0.72rem; font-weight: 700; color: var(--ink); }
+    .vw-layer-sub { font-size: 0.58rem; color: var(--muted); font-family: var(--ff-mono); margin-top: 2px; }
+
+    .vw-step-detail {
+      font-size: 0.74rem;
+      line-height: 1.4;
+      color: var(--body);
+      background: var(--surface-alt);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      margin-top: 6px;
+      padding: 0 10px;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height .25s ease, opacity .25s ease, padding .25s ease;
+    }
+    .vw-step-detail.show { max-height: 60px; opacity: 1; padding: 8px 10px; }
+
+    .vw-log-box {
+      background: #090E17;
+      border: 1px solid #1E293B;
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-family: var(--ff-mono);
+      font-size: 0.68rem;
+      color: #93C5FD;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-height: 64px;
+    }
+    .vw-log-line { display: flex; align-items: flex-start; gap: 6px; animation: vw-logIn .3s ease forwards; }
+    .vw-log-line.green { color: #34D399; }
+    .vw-log-line.dim { color: #64748B; font-style: italic; }
+    @keyframes vw-logIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+    .vw-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 18px;
+      border-top: 1px solid var(--line-soft);
+      background: var(--surface-alt);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .vw-tip {
+      position: relative;
+      cursor: help;
+      border-bottom: 1px dotted var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .vw-tip::after {
+      content: attr(data-tip);
+      position: absolute; bottom: 135%; left: 0;
+      width: 210px; white-space: normal;
+      background: var(--ink); color: #fff;
+      padding: 7px 10px; border-radius: 8px;
+      font-size: 0.65rem; line-height: 1.35; font-family: var(--ff-body);
+      box-shadow: var(--shadow-md);
+      opacity: 0; pointer-events: none;
+      transition: opacity .15s ease;
+      z-index: 5;
+    }
+    .vw-tip:hover::after { opacity: 1; }
+
+    .vw-btn-mini {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-family: var(--ff-mono);
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s;
+      flex: none;
+    }
+    .vw-btn-mini:hover { background: var(--primary-tint); border-color: var(--primary); color: var(--primary); }
+
+    @media (max-width: 480px) {
+      .vw-layers-grid { grid-template-columns: repeat(2, 1fr); }
+      .vw-live span.vw-live-label { display: none; }
+      .vw-tip { max-width: 150px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .vw-card, .vw-log-line, .vw-live-dot::after, .vw-chart-dot { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================ WIDGET START ============================ -->
+  <div class="vw-card">
+    <div class="vw-top">
+      <span class="t">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        Watching the AI Get Better with Practice
+      </span>
+      <span class="vw-live" title="Updating in real time"><span class="vw-live-dot"></span><span class="vw-live-label">Live</span></span>
+      <span class="vw-chip" id="chipRounds">Practice Round 1 of 50</span>
+    </div>
+
+    <div class="vw-body">
+      <!-- Plain English Scorecard -->
+      <div class="vw-scorecard">
+        <div class="vw-sc-left">
+          <span class="vw-sc-label">Mistake Rate</span>
+          <div class="vw-sc-val">32% &rarr; <span id="txtMistakesVal">32.0</span>%</div>
+          <span class="vw-sc-sub">&darr; <span id="txtReduction">0</span>% Fewer Mistakes than Day 1</span>
+        </div>
+        <div class="vw-sc-badge">
+          <b><span id="txtAccuracyVal">68.0</span>%</b>
+          <span>Overall Accuracy</span>
+        </div>
+      </div>
+
+      <!-- Convergence Chart -->
+      <div class="vw-chart-wrap">
+        <div class="vw-chart-head">
+          <span class="vw-chart-label">Accuracy Over Time</span>
+          <span class="vw-chart-now" id="chartNowLabel">68.0% now</span>
+        </div>
+        <svg class="vw-chart" viewBox="0 0 480 110" preserveAspectRatio="none" id="chartSvg">
+          <defs>
+            <linearGradient id="vwGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(36,86,230,0.24)" />
+              <stop offset="100%" stop-color="rgba(36,86,230,0)" />
+            </linearGradient>
+          </defs>
+          <line class="vw-goal-line" id="goalLine" x1="0" x2="470" y1="20" y2="20" />
+          <text class="vw-goal-text" x="478" y="17" text-anchor="end">Goal</text>
+          <path class="vw-chart-area" id="chartArea" d="" />
+          <path class="vw-chart-line" id="chartLine" d="" />
+          <circle class="vw-chart-dot" id="chartDot" r="4" cx="0" cy="0" />
+        </svg>
+        <div class="vw-chart-foot"><span>Day 1</span><span>Now</span></div>
+      </div>
+
+      <!-- How It Learns -->
+      <div>
+        <span class="vw-steps-label">Internal AI Steps<span class="vw-steps-hint">(tap a step to see what it does)</span></span>
+        <div class="vw-layers-grid" id="layersGrid">
+          <div class="vw-layer-card active" data-idx="0">
+            <div class="vw-layer-title">1. Read Data</div>
+            <div class="vw-layer-sub">Clean Features</div>
+          </div>
+          <div class="vw-layer-card" data-idx="1">
+            <div class="vw-layer-title">2. Find Patterns</div>
+            <div class="vw-layer-sub">Deep Analysis</div>
+          </div>
+          <div class="vw-layer-card" data-idx="2">
+            <div class="vw-layer-title">3. Focus Details</div>
+            <div class="vw-layer-sub">Attention Mask</div>
+          </div>
+          <div class="vw-layer-card" data-idx="3">
+            <div class="vw-layer-title">4. Make Decision</div>
+            <div class="vw-layer-sub">Final Output</div>
+          </div>
+        </div>
+        <div class="vw-step-detail" id="stepDetail"></div>
+      </div>
+
+      <!-- Live Log Stream -->
+      <div class="vw-log-box" id="logBox">
+        <div class="vw-log-line dim">Waiting for the next practice round…</div>
+      </div>
+    </div>
+
+    <div class="vw-foot">
+      <span class="vw-tip" data-tip="The exact AI framework (PyTorch) and training method (AdamW) used under the hood — like the engine, for people who want to know.">Behind the scenes: PyTorch Transformer · AdamW Optimizer</span>
+      <button class="vw-btn-mini" id="btnToggleTrain">Pause Training</button>
+    </div>
+  </div>
+  <!-- ============================ WIDGET END ============================ -->
+
+  <script>
+    (function () {
+      const baseline = 32.0;
+      let round = 1;
+      let mistakes = baseline;
+      let accHistory = [+(100 - baseline).toFixed(1), +(100 - baseline).toFixed(1)];
+      let isPlaying = true;
+
+      const chipRounds = document.getElementById("chipRounds");
+      const txtMistakesVal = document.getElementById("txtMistakesVal");
+      const txtAccuracyVal = document.getElementById("txtAccuracyVal");
+      const txtReduction = document.getElementById("txtReduction");
+      const chartNowLabel = document.getElementById("chartNowLabel");
+      const chartLine = document.getElementById("chartLine");
+      const chartArea = document.getElementById("chartArea");
+      const chartDot = document.getElementById("chartDot");
+      const goalLine = document.getElementById("goalLine");
+      const logBox = document.getElementById("logBox");
+      const btnToggleTrain = document.getElementById("btnToggleTrain");
+      const layerCards = document.querySelectorAll(".vw-layer-card");
+      const stepDetail = document.getElementById("stepDetail");
+
+      const stepInfo = [
+        "Looks through the practice examples and cleans up anything messy or missing before learning from it.",
+        "Searches across the cleaned data for patterns that tend to predict the right answer.",
+        "Pays extra attention to the specific clues that matter most for this particular case.",
+        "Combines everything it has learned so far into one final answer."
+      ];
+
+      function showStep(idx) {
+        stepDetail.textContent = stepInfo[idx];
+        stepDetail.classList.add("show");
+      }
+
+      layerCards.forEach((c) => {
+        c.addEventListener("click", () => {
+          layerCards.forEach((l) => l.classList.remove("active"));
+          c.classList.add("active");
+          showStep(+c.dataset.idx);
+        });
+      });
+
+      function animateNumber(el, to, decimals) {
+        const from = parseFloat(el.textContent) || 0;
+        const start = performance.now();
+        const duration = 500;
+        function tick(now) {
+          const p = Math.min(1, (now - start) / duration);
+          const val = from + (to - from) * p;
+          el.textContent = val.toFixed(decimals);
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+
+      function renderChart() {
+        const w = 480, h = 110, padTop = 14, padBottom = 18;
+        const minY = 60, maxY = 100;
+        const pts = accHistory.slice(-20);
+        const n = pts.length;
+        const stepX = n > 1 ? w / (n - 1) : w;
+        const coords = pts.map((v, i) => {
+          const x = i * stepX;
+          const yNorm = (v - minY) / (maxY - minY);
+          const y = padTop + (1 - Math.max(0, Math.min(1, yNorm))) * (h - padTop - padBottom);
+          return [x, y];
+        });
+        const linePath = coords.map((c, i) => (i === 0 ? "M" : "L") + c[0].toFixed(1) + "," + c[1].toFixed(1)).join(" ");
+        const areaPath = linePath + ` L${w},${h - padBottom} L0,${h - padBottom} Z`;
+        chartLine.setAttribute("d", linePath);
+        chartArea.setAttribute("d", areaPath);
+        const last = coords[coords.length - 1];
+        chartDot.setAttribute("cx", last[0]);
+        chartDot.setAttribute("cy", last[1]);
+        const goalNorm = (95 - minY) / (maxY - minY);
+        const goalY = padTop + (1 - goalNorm) * (h - padTop - padBottom);
+        goalLine.setAttribute("y1", goalY);
+        goalLine.setAttribute("y2", goalY);
+      }
+
+      function pushLog(cls, text) {
+        const div = document.createElement("div");
+        div.className = "vw-log-line " + cls;
+        div.textContent = text;
+        logBox.appendChild(div);
+        if (logBox.children.length > 3) logBox.removeChild(logBox.children[0]);
+      }
+
+      function updateUI() {
+        const accuracy = +(100 - mistakes).toFixed(1);
+        const reduction = Math.max(0, Math.round(((baseline - mistakes) / baseline) * 100));
+        chipRounds.textContent = `Practice Round ${round} of 50`;
+        animateNumber(txtMistakesVal, mistakes, 1);
+        animateNumber(txtAccuracyVal, accuracy, 1);
+        animateNumber(txtReduction, reduction, 0);
+        chartNowLabel.textContent = `${accuracy.toFixed(1)}% now`;
+        renderChart();
+      }
+
+      function step() {
+        round++;
+        if (round > 50) {
+          round = 1;
+          mistakes = baseline;
+          accHistory = [+(100 - baseline).toFixed(1), +(100 - baseline).toFixed(1)];
+          pushLog("dim", "New training run started — resetting to compare fresh results");
+          updateUI();
+          return;
+        }
+        mistakes = Math.max(1.2, mistakes - (mistakes * 0.07 + Math.random() * 0.25));
+        mistakes = +mistakes.toFixed(2);
+        const accuracy = +(100 - mistakes).toFixed(1);
+        accHistory.push(accuracy);
+        if (accHistory.length > 20) accHistory.shift();
+        pushLog("green", `[Round ${round}] Mistakes down to ${mistakes.toFixed(1)}% · Accuracy reached ${accuracy.toFixed(1)}%`);
+        updateUI();
+      }
+
+      renderChart();
+      showStep(0);
+
+      const timer = setInterval(() => {
+        if (isPlaying) step();
+      }, 3000);
+
+      btnToggleTrain.addEventListener("click", () => {
+        isPlaying = !isPlaying;
+        btnToggleTrain.textContent = isPlaying ? "Pause Training" : "Resume Training";
+      });
+    })();
+  </script>
+</body>
+</html>
