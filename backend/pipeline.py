@@ -65,10 +65,10 @@ if not os.path.exists(TEMPLATE_PATH):
 # The four sections in order — each entry maps:
 #   data file name  ->  rules file name  ->  generated output name
 SECTIONS = [
-    {"data": "hero.json",           "rules": "hero_rules.json",           "output": "new_hero.json"},
-    {"data": "second_hero.json",    "rules": "second_hero_rules.json",    "output": "new_second_hero.json"},
-    {"data": "third_section.json",  "rules": "third_section_rules.json",  "output": "new_third_section.json"},
-    {"data": "final_section.json",  "rules": "final_section_rules.json",  "output": "new_final_section.json"},
+    {"name": "Hero Section", "data": "hero.json", "rules": "hero_rules.json", "output": "new_hero.json"},
+    {"name": "Value & Quick Answer", "data": "second_hero.json", "rules": "second_hero_rules.json", "output": "new_second_hero.json"},
+    {"name": "Services & Local Context", "data": "third_section.json", "rules": "third_section_rules.json", "output": "new_third_section.json"},
+    {"name": "Process, Case Studies & FAQ", "data": "final_section.json", "rules": "final_section_rules.json", "output": "new_final_section.json"},
 ]
 
 # ── .env loader ───────────────────────────────────────────────────────────────
@@ -144,12 +144,10 @@ No extra text.
 """
 
 
-def generate_section(role, city, state, geo_code, landmarks, dominentIindustries, model, data_path, rules_path, output_path):
+def generate_section(role, city, state, geo_code, landmarks, dominentIindustries, model, data_path, rules_path, output_path, step_num=1, total_steps=4, section_title="Section"):
     """Send one section through the LLM and save the result."""
     section_name = os.path.basename(data_path)
-    print(f"\n{'='*60}")
-    print(f"  Generating: {section_name}  ->  {os.path.basename(output_path)}")
-    print(f"{'='*60}")
+    print(f"[STEP {step_num}/{total_steps}] Generating {section_title} for {city}...")
 
     with open(data_path, "r", encoding="utf-8") as f:
         original_content = json.load(f)
@@ -224,7 +222,7 @@ Return ONLY valid JSON.
         with open(output_path, "w", encoding="utf-8") as f:
             json.dump(new_data, f, indent=2)
 
-        print(f"  [OK] Saved to {output_path}")
+        print(f"[OK] Step {step_num}/{total_steps} complete: {section_title}")
         return new_data
 
     except Exception as e:
@@ -1088,7 +1086,7 @@ def main():
 
         os.makedirs(GENERATED_DIR, exist_ok=True)
 
-        for section in SECTIONS:
+        for i, section in enumerate(SECTIONS, 1):
             data_path = os.path.join(ACTUAL_DATA_DIR, section["data"])
             rules_path = os.path.join(RULES_DIR, section["rules"])
             output_path_json = os.path.join(GENERATED_DIR, section["output"])
@@ -1100,7 +1098,12 @@ def main():
                 print(f"  ⚠ Skipping {section['data']} — rules file not found in rules/")
                 continue
 
-            generate_section(args.role, args.city, args.state, args.geo_code, args.landmarks, args.dominentIindustries, args.model, data_path, rules_path, output_path_json)
+            sec_title = section.get("name", f"Section {i}")
+            generate_section(
+                args.role, args.city, args.state, args.geo_code, args.landmarks, args.dominentIindustries, args.model,
+                data_path, rules_path, output_path_json,
+                step_num=i, total_steps=len(SECTIONS), section_title=sec_title
+            )
     else:
         print("\n  Skipping LLM generation (--skip-generate). Using existing generated/ files.")
 

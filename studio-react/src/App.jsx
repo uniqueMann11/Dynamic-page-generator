@@ -7,10 +7,12 @@ import TerminalLogs from "./components/TerminalLogs.jsx";
 import { previewUrl, openPipelineStream } from "./api.js";
 import { FileText, Code, ScrollText, Eye } from "lucide-react";
 
+import { Activity } from "lucide-react";
+
 const TABS = [
   { id: "preview", label: "Preview", Icon: Eye },
   { id: "code",    label: "Code Inspector", Icon: Code },
-  { id: "logs",    label: "Logs", Icon: ScrollText },
+  { id: "logs",    label: "Generation Progress", Icon: Activity },
 ];
 
 function Toast({ message }) {
