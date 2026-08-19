@@ -21,12 +21,7 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
 # ── dependency bootstrap ──────────────────────────────────────────────────────
-try:
-    from litellm import completion
-except ImportError:
-    print("litellm not found. Installing...")
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "litellm"])
-    from litellm import completion
+from litellm import completion
 
 try:
     from bs4 import BeautifulSoup
