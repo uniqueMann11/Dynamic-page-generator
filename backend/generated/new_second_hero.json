@@ -41,7 +41,7 @@
       },
       "prose": {
         "p": [
-          "Jaipur is a growing technology hub in Rajasthan, with a strong base of engineering talent and a fast-adopting business community, especially in IT/ITES, tourism & handicrafts, and gems & jewellery. As an independent engineer, the focus is on delivering production-ready, integrated systems that move a business metric, not prototypes that stall after a demo.",
+          "Jaipur is a growing technology hub in Rajasthan, with a strong base of engineering talent and a fast-adopting business community. As an independent engineer, the focus is on delivering production-ready, integrated systems that move a business metric, not prototypes that stall after a demo.",
           "The work spans the full lifecycle: framing the problem, preparing and validating data, selecting and training the right model, deploying it reliably, and monitoring it in production so accuracy holds as your data shifts. If you are still deciding whether machine learning fits at all, that assessment is part of the machine learning development services too."
         ],
         "checklist": [

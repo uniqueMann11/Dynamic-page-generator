@@ -79,8 +79,8 @@
         "proof-card": {
           "proof-cat": "NLP",
           "proof-inner": {
-            "h3": "NLP for chatbots",
-            "p": "An NLP pipeline that categorises open-text feedback into 14 business-relevant themes automatically.",
+            "h3": "NLP for tourism chatbots",
+            "p": "An NLP pipeline that categorises open-text feedback into 14 business-relevant themes automatically, tailored for tourism and hospitality queries.",
             "proof-metric": {
               "b": "92%",
               "span": "Accuracy"
@@ -96,8 +96,8 @@
         "proof-card": {
           "proof-cat": "Computer Vision",
           "proof-inner": {
-            "h3": "Image classification for QA",
-            "p": "A computer vision model that classifies images into categories for automated quality inspection on the line.",
+            "h3": "Gemstone classification for QA",
+            "p": "A computer vision model that classifies gemstone images into categories for automated quality inspection in jewellery manufacturing.",
             "proof-metric": {
               "b": "95%",
               "span": "Accuracy"
@@ -113,8 +113,8 @@
         "proof-card": {
           "proof-cat": "Predictive Modeling",
           "proof-inner": {
-            "h3": "Demand forecasting for retail",
-            "p": "A predictive model that forecasts demand for retail products, so stock and staffing match what is actually coming.",
+            "h3": "Demand forecasting for handicrafts",
+            "p": "A predictive model that forecasts demand for handicraft products, so stock and staffing match what is actually coming for local artisans and retailers.",
             "proof-metric": {
               "b": "90%",
               "span": "Forecast accuracy"
@@ -193,9 +193,9 @@
         "tst-card": {
           "tst-quote": "Shreyans scoped the problem before writing a line of code and delivered a working model on the timeline he committed to. Talking to the engineer directly, with no account manager, saved us weeks.",
           "tst-who": {
-            "tst-avatar": "RP",
-            "b": "Ravi Prabhakar",
-            "span": "Founder, Jaipur SaaS",
+            "tst-avatar": "RS",
+            "b": "Ravi Sharma",
+            "span": "Founder, Jaipur IT startup",
             "tst-src": "Upwork"
           }
         }
@@ -204,9 +204,9 @@
         "tst-card": {
           "tst-quote": "The forecasting model went straight into production and held its accuracy on live data. Clear milestones and honest trade-offs throughout, exactly what we hoped for from an independent engineer.",
           "tst-who": {
-            "tst-avatar": "MS",
-            "b": "Mitesh Shah",
-            "span": "Operations lead, retail",
+            "tst-avatar": "MM",
+            "b": "Mitesh Mehta",
+            "span": "Operations lead, jewellery manufacturing",
             "tst-src": "LinkedIn"
           }
         }
@@ -215,9 +215,9 @@
         "tst-card": {
           "tst-quote": "We started with a consulting audit rather than a build, which was the right call. He told us where machine learning would and would not help, then delivered only what actually moved the number.",
           "tst-who": {
-            "tst-avatar": "AK",
-            "b": "Aarav Khosla",
-            "span": "Product manager, healthtech",
+            "tst-avatar": "AS",
+            "b": "Aarav Singh",
+            "span": "Product manager, tourism tech",
             "tst-src": "Google"
           }
         }
@@ -286,7 +286,7 @@
       {
         "faq-item": {
           "faq-q": "What does a Machine Learning Engineer in Jaipur actually do?",
-          "faq-a": "A Machine Learning Engineer in Jaipur designs, develops and deploys machine learning models and systems for businesses. That covers data preparation, model selection, training, testing, deployment and integration with the tools your team already uses."
+          "faq-a": "A Machine Learning Engineer in Jaipur designs, develops and deploys machine learning models and systems for businesses in IT/ITES, tourism & handicrafts, and gems & jewellery sectors. That covers data preparation, model selection, training, testing, deployment and integration with the tools your team already uses."
         }
       },
       {
@@ -310,7 +310,7 @@
       {
         "faq-item": {
           "faq-q": "What machine learning services are most in demand locally?",
-          "faq-a": "The most requested services are natural language processing, computer vision, predictive modelling, demand forecasting, recommendation systems and MLOps for reliable deployment and monitoring."
+          "faq-a": "The most requested services are natural language processing for tourism chatbots, computer vision for gemstone quality inspection, predictive modelling for handicraft demand forecasting, and MLOps for reliable deployment and monitoring."
         }
       },
       {

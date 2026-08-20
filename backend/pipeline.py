@@ -669,15 +669,15 @@ def compile_html(role, city, state, geo_code, landmarks, dominent_industries, ou
                     _set_text(cards[i].find(class_="svc-num"), c_info.get("svc-num"))
                     _set_text(cards[i].find("h3"), c_info.get("h3"))
                     _set_text(cards[i].find("p"), c_info.get("p"))
-                    cta = cards[i].find(class_="link-cta")
-                    if cta and "link-cta" in c_info:
-                        svg = cta.find("svg")
-                        cta.clear()
-                        cta.append(str(c_info["link-cta"].get("text", "")))
-                        if svg:
-                            cta.append(" ")
-                            cta.append(svg)
-                        _set_href(cta, c_info["link-cta"].get("url"))
+                    # cta = cards[i].find(class_="link-cta")
+                    # if cta and "link-cta" in c_info:
+                    #     svg = cta.find("svg")
+                    #     cta.clear()
+                    #     cta.append(str(c_info["link-cta"].get("text", "")))
+                    #     if svg:
+                    #         cta.append(" ")
+                    #         cta.append(svg)
+                    #     _set_href(cta, c_info["link-cta"].get("url"))
 
             explore_el = wb_sec.find(class_="svc-explore")
             if explore_el and "svc-explore" in wb_data:

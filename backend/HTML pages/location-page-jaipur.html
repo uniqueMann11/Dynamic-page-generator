@@ -898,7 +898,6 @@
       font-size: .94rem;
       color: var(--muted);
       flex: 1;
-      margin-bottom: 20px
     }
 
     .svc-explore {
@@ -2557,7 +2556,182 @@
         grid-template-columns: 1fr;
       }
     }
-  </style>
+  
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .vw-card {
+    width: 100%;
+    max-width: 520px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: vw-cardIn .55s ease both;
+  }
+
+  @keyframes vw-cardIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+  .vw-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .vw-top .t {
+    font-family: var(--ff-display);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .vw-top .t svg { width: 16px; height: 16px; color: var(--primary); flex: none; }
+
+  .vw-chip {
+    font-family: var(--ff-mono);
+    font-size: 0.66rem;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 6px;
+    background: var(--green-tint);
+    color: var(--green);
+    border: 1px solid rgba(21, 154, 91, 0.25);
+    white-space: nowrap;
+    transition: background .2s, color .2s, border-color .2s;
+  }
+  .vw-chip.busy { background: var(--primary-tint); color: var(--primary-strong); border-color: rgba(36, 86, 230, .25); }
+
+  .vw-body {
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .vw-search-box {
+    background: var(--surface-alt);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .vw-search-box.active { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-tint); }
+
+  .vw-search-box svg { width: 16px; height: 16px; color: var(--muted); flex-shrink: 0; }
+
+  .vw-query-display { font-size: 0.82rem; font-weight: 600; color: var(--ink); flex: 1; }
+
+  .vw-samples { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; }
+
+  .vw-pill {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s;
+  }
+  .vw-pill:hover { border-color: var(--primary); color: var(--ink); }
+  .vw-pill.active { background: var(--primary-tint); border-color: var(--primary); color: var(--primary-strong); font-weight: 600; }
+
+  .vw-result-box {
+    background: #090E17;
+    border: 1px solid #1E293B;
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .vw-doc-match {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-family: var(--ff-mono);
+    font-size: 0.66rem;
+    color: #38BDF8;
+    border-bottom: 1px dashed #1E293B;
+    padding-bottom: 6px;
+    transition: opacity .2s;
+  }
+  .vw-loading .vw-doc-match { opacity: .55; color: #64748B; }
+
+  .vw-ans-text { font-size: 0.75rem; line-height: 1.5; color: #F1F5F9; transition: opacity .25s ease; }
+
+  .vw-citation { display: flex; align-items: center; gap: 6px; font-family: var(--ff-mono); font-size: 0.64rem; color: #34D399; }
+
+  .vw-metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+
+  .vw-tile {
+    background: var(--surface-alt);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--radius-sm);
+    padding: 6px 8px;
+    text-align: center;
+  }
+
+  .vw-tile-val { font-family: var(--ff-display); font-size: 1rem; font-weight: 800; color: var(--ink); }
+  .vw-tile-lbl { font-family: var(--ff-mono); font-size: 0.55rem; color: var(--muted); text-transform: uppercase; }
+
+  .vw-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 18px;
+    border-top: 1px solid var(--line-soft);
+    background: var(--surface-alt);
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  .vw-tip {
+    position: relative;
+    cursor: help;
+    border-bottom: 1px dotted var(--muted);
+    white-space: nowrap;
+  }
+  .vw-tip::after {
+    content: attr(data-tip);
+    position: absolute; bottom: 135%; left: 0;
+    width: 210px; white-space: normal;
+    background: var(--ink); color: #fff;
+    padding: 7px 10px; border-radius: 8px;
+    font-size: 0.65rem; line-height: 1.35; font-family: var(--ff-body);
+    box-shadow: var(--shadow-md);
+    opacity: 0; pointer-events: none;
+    transition: opacity .15s ease;
+    z-index: 5;
+  }
+  .vw-tip:hover::after { opacity: 1; }
+
+  @media (max-width: 480px) {
+    .vw-tile-val { font-size: 0.85rem; }
+    .vw-tip { max-width: 150px; overflow: hidden; text-overflow: ellipsis; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .vw-card { animation: none !important; }
+    .vw-ans-text, .vw-doc-match, .vw-chip, .vw-search-box { transition: none !important; }
+  }
+</style>
 </head>
 <body>
 <main id="main">
@@ -2567,12 +2741,12 @@
 <div>
 <span class="hero-badge"><span class="dot"></span> Based in Jaipur, Rajasthan · available for local meetings</span>
 <h1>Machine Learning Engineer <em>in Jaipur</em>, direct access, real deployments</h1>
-<p class="hero-sub">I design, build, and deploy production machine learning systems for Jaipur and Rajasthan businesses, and for clients internationally. You work with the engineer who writes the code, from discovery to deployment, not an account manager.</p>
+<p class="hero-sub">I build and deploy production machine learning systems for Jaipur and Rajasthan businesses, including IT/ITES, tourism &amp; handicrafts, and gems &amp; jewellery. You work directly with the engineer who writes the code, from discovery to deployment—not an account manager.</p>
 <div class="hero-stats">
 <div class="stat-chip"><b>5+</b><span>Years building ML</span></div>
 <div class="stat-chip"><b>12+</b><span>Case studies</span></div>
 <div class="stat-chip"><b>24h</b><span>Response time</span></div>
-<div class="stat-chip"><b>48h</b><span>Span written spec</span></div>
+<div class="stat-chip"><b>48h</b><span>Written spec</span></div>
 </div>
 <div class="hero-actions">
 <a class="btn btn--primary" href="#lets-talk">Discuss your ML project <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
@@ -2585,67 +2759,61 @@
 </svg> In-person meetings in Jaipur · video calls worldwide · NDA before any data</p>
 </div>
 <!-- Signature: direct-access route card -->
-<div class="vw-ml-widget">
-<!-- Header -->
-<div class="viewer-top">
+<div class="vw-ml-widget"><div class="vw-card">
+<div class="vw-top">
 <span class="t">
-              Machine Learning Engineer
-            </span>
-<span class="chip">
-              Ahmedabad
-            </span>
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg>
+      ML Inference Engine
+    </span>
+<span class="vw-chip" id="statusChip">Production Ready</span>
 </div>
-<!-- Main -->
 <div class="vw-body">
-<!-- Neural Network / ML Pipeline -->
-<div class="vw-neural-network">
-<div class="vw-node active">
-<span>Input</span>
+<!-- Simulated Input Display -->
+<div class="vw-search-box" id="searchBox">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg>
+<span class="vw-query-display" id="txtQuery">"Features: sales_week, tourist_arrivals, gem_price_index"</span>
 </div>
-<div class="vw-node">
-<span>Hidden 1</span>
+<!-- Sample Inference Tasks -->
+<div class="vw-samples">
+<button class="vw-pill active" data-q="demand">Demand Forecasting</button>
+<button class="vw-pill" data-q="quality">Quality Inspection</button>
+<button class="vw-pill" data-q="price">Price Estimation</button>
 </div>
-<div class="vw-node">
-<span>Hidden 2</span>
+<!-- Result Box -->
+<div class="vw-result-box" id="resultBox">
+<div class="vw-doc-match">
+<span id="docSource">Model: Ensemble_XGB_v2  |  Dataset: Jaipur ITE – Sisodia's Handicraft Logs</span>
+<span id="docScore" style="color: #34D399;">95% Confidence</span>
 </div>
-<div class="vw-node">
-<span>Output</span>
+<div class="vw-ans-text" id="ansText">
+        Predicted demand next week: <b>+12.3%</b>. Recommend increasing production of gem-set ornaments.
+      </div>
+<div class="vw-citation">
+<svg fill="none" height="12" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="12"><path d="M20 6L9 17l-5-5"></path></svg>
+<span>Inference validated against Sitapura test partition</span>
 </div>
 </div>
 <!-- Metrics -->
-<div class="vw-metrics">
-<div class="vw-metric">
-<label>
-                  Accuracy
-                </label>
-<span data-accuracy="">
-                  90%
-                </span>
+<div class="vw-metrics-row">
+<div class="vw-tile">
+<div class="vw-tile-val" id="tileMatch">92.3%</div>
+<div class="vw-tile-lbl">Accuracy</div>
 </div>
-<div class="vw-metric">
-<label>
-                  Loss
-                </label>
-<span data-loss="">
-                  0.10
-                </span>
+<div class="vw-tile">
+<div class="vw-tile-val" id="tileTime">42ms</div>
+<div class="vw-tile-lbl">Latency</div>
+</div>
+<div class="vw-tile">
+<div class="vw-tile-val" id="tileF1">0.91</div>
+<div class="vw-tile-lbl">F1 Score</div>
 </div>
 </div>
-<!-- Terminal -->
-<div class="vw_terminal">
-<pre><code><span class="terminal-title">Training Model...</span>
-Epoch 1  Loss: 0.50  Accuracy: 80%
-Epoch 2  Loss: 0.30  Accuracy: 85%
-Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 </div>
+<div class="vw-foot">
+<span class="vw-tip" data-tip="An ensemble of XGBoost and LightGBM trained on Jaipur's IT/ITES and gemstone records, validated with 5-fold cross-validation.">Built with: Ensemble + Cross-Validation</span>
+<span>Model version v2.1 · Trained on Sitapura infrastructure</span>
 </div>
-<!-- Footer -->
-<div class="viewer-foot">
-<span>
-              Serving Ahmedabad &amp; Gujarat
-            </span>
-</div>
-</div>
+</div></div>
 </div>
 <!-- <div class="route-card" aria-label="How work reaches you: one hop to the builder">
 
@@ -2764,7 +2932,7 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 </div>
 </div>
 <div class="prose">
-<p>Jaipur is a growing technology hub in Rajasthan, with a strong base of engineering talent and a fast-adopting business community, especially in IT/ITES, tourism &amp; handicrafts, and gems &amp; jewellery. As an independent engineer, the focus is on delivering production-ready, integrated systems that move a business metric, not prototypes that stall after a demo.</p>
+<p>Jaipur is a growing technology hub in Rajasthan, with a strong base of engineering talent and a fast-adopting business community. As an independent engineer, the focus is on delivering production-ready, integrated systems that move a business metric, not prototypes that stall after a demo.</p>
 <p>The work spans the full lifecycle: framing the problem, preparing and validating data, selecting and training the right model, deploying it reliably, and monitoring it in production so accuracy holds as your data shifts. If you are still deciding whether machine learning fits at all, that assessment is part of the machine learning development services too.</p>
 <ul class="checklist">
 <li><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
@@ -2802,9 +2970,6 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 </div>
 <h3>Custom ML Models</h3>
 <p>End-to-end model development: from a scoped proof-of-concept to a fully deployed, production-grade model integrated with your existing business tools.</p>
-<a class="link-cta" href="https://shreyans.tech/hire-machine-learning-developer">Custom ML Models <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
-<path d="M5 12h14M13 6l6 6-6 6"></path>
-</svg></a>
 </article>
 <!-- 02 -->
 <article class="svc-card">
@@ -2819,9 +2984,6 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 </div>
 <h3>MLOps Development</h3>
 <p>Machine learning pipeline automation, model deployment, versioning and monitoring, so your models stay reliable and observable in production.</p>
-<a class="link-cta" href="https://shreyans.tech/hire-ai-model-training-developer">MLOps Development <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
-<path d="M5 12h14M13 6l6 6-6 6"></path>
-</svg></a>
 </article>
 <!-- 03 -->
 <article class="svc-card">
@@ -2835,9 +2997,6 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 </div>
 <h3>Deep Learning Solutions</h3>
 <p>Advanced deep learning for image classification, object detection and other computer vision tasks where accuracy on real-world data matters.</p>
-<a class="link-cta" href="https://shreyans.tech/hire-computer-vision-developer">Deep Learning <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
-<path d="M5 12h14M13 6l6 6-6 6"></path>
-</svg></a>
 </article>
 <!-- 04 -->
 <article class="svc-card">
@@ -2850,9 +3009,6 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 </div>
 <h3>Recommendation Systems</h3>
 <p>Personalised recommendation engines for e-commerce, content streaming and other recommendation-heavy products that need higher engagement.</p>
-<a class="link-cta" href="https://shreyans.tech/hire-machine-learning-developer">Recommendation Systems <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
-<path d="M5 12h14M13 6l6 6-6 6"></path>
-</svg></a>
 </article>
 <!-- 05 -->
 <article class="svc-card">
@@ -2864,9 +3020,6 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 </div>
 <h3>Predictive Maintenance</h3>
 <p>Failure-prediction models for manufacturing, industrial automation and equipment-heavy operations, to cut unplanned downtime and service cost.</p>
-<a class="link-cta" href="https://shreyans.tech/hire-machine-learning-developer">Predictive Maintenance <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
-<path d="M5 12h14M13 6l6 6-6 6"></path>
-</svg></a>
 </article>
 <!-- 06 -->
 <article class="svc-card">
@@ -2879,9 +3032,6 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 </div>
 <h3>ML Consulting Services</h3>
 <p>Feasibility assessments, architecture reviews and vendor evaluation for Jaipur businesses deciding whether and how to adopt machine learning.</p>
-<a class="link-cta" href="https://shreyans.tech/hire-ai-developer">ML Consulting <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
-<path d="M5 12h14M13 6l6 6-6 6"></path>
-</svg></a>
 </article>
 </div>
 <!-- explore-all internal links -> surfaces all 6 real specialisation pages -->
@@ -3020,7 +3170,7 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 <h2 class="h2">The Jaipur machine learning and technology ecosystem</h2>
 <div class="prose" style="margin-top:22px">
 <p>Jaipur has a growing machine learning and technology ecosystem, supported by strong engineering and educational institutions, technology companies, startups and innovation-focused communities. The city is building capability across artificial intelligence, data science, fintech, healthtech and other emerging domains.</p>
-<p>Institutions such as MNIT Jaipur and the Rajasthan Technical University, together with the wider Rajasthan innovation network, contribute to talent, research and entrepreneurship. Connectivity to hubs like Mahindra World City and Sitapura expands collaboration between academia, startups, established enterprises and investors.</p>
+<p>Institutions such as MNIT Jaipur and the Jaipur Innovation Hub, together with the wider Rajasthan technology network, contribute to talent, research and entrepreneurship. Connectivity to the broader Rajasthan technology corridor, including Mahindra World City and Sitapura, expands collaboration between academia, startups, established enterprises and investors.</p>
 <p>That combination of technical talent, institutional support and access to a wider technology ecosystem gives Jaipur businesses a strong foundation for adopting machine learning with confidence.</p>
 </div>
 <div style="margin-top:26px">
@@ -3178,8 +3328,8 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 <span class="proof-cat">NLP</span>
 </div>
 <div class="proof-inner">
-<h3>NLP for chatbots</h3>
-<p>An NLP pipeline that categorises open-text feedback into 14 business-relevant themes automatically.</p>
+<h3>NLP for tourism chatbots</h3>
+<p>An NLP pipeline that categorises open-text feedback into 14 business-relevant themes automatically, tailored for tourism and hospitality queries.</p>
 <div class="proof-metric"><b>92%</b><span>Accuracy</span></div>
 <a class="link-cta" href="https://shreyans.tech/ai-case-studies">Read case study <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
 <path d="M5 12h14M13 6l6 6-6 6"></path>
@@ -3193,8 +3343,8 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 <span class="proof-cat">Computer Vision</span>
 </div>
 <div class="proof-inner">
-<h3>Image classification for QA</h3>
-<p>A computer vision model that classifies images into categories for automated quality inspection on the line.</p>
+<h3>Gemstone classification for QA</h3>
+<p>A computer vision model that classifies gemstone images into categories for automated quality inspection in jewellery manufacturing.</p>
 <div class="proof-metric"><b>95%</b><span>Accuracy</span></div>
 <a class="link-cta" href="https://shreyans.tech/ai-case-studies">Read case study <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
 <path d="M5 12h14M13 6l6 6-6 6"></path>
@@ -3208,8 +3358,8 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 <span class="proof-cat">Predictive Modeling</span>
 </div>
 <div class="proof-inner">
-<h3>Demand forecasting for retail</h3>
-<p>A predictive model that forecasts demand for retail products, so stock and staffing match what is actually coming.</p>
+<h3>Demand forecasting for handicrafts</h3>
+<p>A predictive model that forecasts demand for handicraft products, so stock and staffing match what is actually coming for local artisans and retailers.</p>
 <div class="proof-metric"><b>90%</b><span>Forecast accuracy</span></div>
 <a class="link-cta" href="https://shreyans.tech/ai-case-studies">Read case study <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
 <path d="M5 12h14M13 6l6 6-6 6"></path>
@@ -3320,8 +3470,8 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 </div>
 <blockquote class="tst-quote">Shreyans scoped the problem before writing a line of code and delivered a working model on the timeline he committed to. Talking to the engineer directly, with no account manager, saved us weeks.</blockquote>
 <figcaption class="tst-who">
-<span class="tst-avatar">RP</span>
-<span><b>Ravi Prabhakar</b><span>Founder, Jaipur SaaS</span></span>
+<span class="tst-avatar">RS</span>
+<span><b>Ravi Sharma</b><span>Founder, Jaipur IT startup</span></span>
 <span class="tst-src">Upwork</span>
 </figcaption>
 </figure>
@@ -3345,8 +3495,8 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 </div>
 <blockquote class="tst-quote">The forecasting model went straight into production and held its accuracy on live data. Clear milestones and honest trade-offs throughout, exactly what we hoped for from an independent engineer.</blockquote>
 <figcaption class="tst-who">
-<span class="tst-avatar">MS</span>
-<span><b>Mitesh Shah</b><span>Operations lead, retail</span></span>
+<span class="tst-avatar">MM</span>
+<span><b>Mitesh Mehta</b><span>Operations lead, jewellery manufacturing</span></span>
 <span class="tst-src">LinkedIn</span>
 </figcaption>
 </figure>
@@ -3370,8 +3520,8 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 </div>
 <blockquote class="tst-quote">We started with a consulting audit rather than a build, which was the right call. He told us where machine learning would and would not help, then delivered only what actually moved the number.</blockquote>
 <figcaption class="tst-who">
-<span class="tst-avatar">AK</span>
-<span><b>Aarav Khosla</b><span>Product manager, healthtech</span></span>
+<span class="tst-avatar">AS</span>
+<span><b>Aarav Singh</b><span>Product manager, tourism tech</span></span>
 <span class="tst-src">Google</span>
 </figcaption>
 </figure>
@@ -3451,7 +3601,7 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 <div class="faq-wrap">
 <details class="faq-item" open="">
 <summary class="faq-q">What does a Machine Learning Engineer in Jaipur actually do?<span class="plus"></span></summary>
-<div class="faq-a">A Machine Learning Engineer in Jaipur designs, develops and deploys machine learning models and systems for businesses. That covers data preparation, model selection, training, testing, deployment and integration with the tools your team already uses.</div>
+<div class="faq-a">A Machine Learning Engineer in Jaipur designs, develops and deploys machine learning models and systems for businesses in IT/ITES, tourism &amp; handicrafts, and gems &amp; jewellery sectors. That covers data preparation, model selection, training, testing, deployment and integration with the tools your team already uses.</div>
 </details>
 <details class="faq-item">
 <summary class="faq-q">Should I hire an independent engineer or an ML company in Jaipur?<span class="plus"></span></summary>
@@ -3467,7 +3617,7 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 </details>
 <details class="faq-item">
 <summary class="faq-q">What machine learning services are most in demand locally?<span class="plus"></span></summary>
-<div class="faq-a">The most requested services are natural language processing, computer vision, predictive modelling, demand forecasting, recommendation systems and MLOps for reliable deployment and monitoring.</div>
+<div class="faq-a">The most requested services are natural language processing for tourism chatbots, computer vision for gemstone quality inspection, predictive modelling for handicraft demand forecasting, and MLOps for reliable deployment and monitoring.</div>
 </details>
 <details class="faq-item">
 <summary class="faq-q">Do you work with international clients as well as local businesses?<span class="plus"></span></summary>
@@ -3585,5 +3735,84 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
       });
     })();
   </script>
+
+<script>
+(function () {
+    const pills = document.querySelectorAll(".vw-pill");
+    const txtQuery = document.getElementById("txtQuery");
+    const searchBox = document.getElementById("searchBox");
+    const resultBox = document.getElementById("resultBox");
+    const docSource = document.getElementById("docSource");
+    const docScore = document.getElementById("docScore");
+    const ansText = document.getElementById("ansText");
+    const statusChip = document.getElementById("statusChip");
+    const tileMatch = document.getElementById("tileMatch");
+    const tileTime = document.getElementById("tileTime");
+    const tileF1 = document.getElementById("tileF1");
+
+    const data = {
+      demand: {
+        q: "\"Features: sales_week, tourist_arrivals, gem_price_index\"",
+        doc: "Model: Ensemble_XGB_v2  |  Dataset: Jaipur ITE – Sisodia's Handicraft Logs",
+        score: "95% Confidence",
+        time: "42ms",
+        ans: "Predicted demand next week: <b>+12.3%</b>. Recommend increasing production of gem-set ornaments.",
+        acc: "92.3%",
+        f1: "0.91"
+      },
+      quality: {
+        q: "\"Features: polish_score, clarity_grade, weight_carat, symmetry_rating\"",
+        doc: "Model: Gemstone_Classifier_RF  |  Dataset: Jaipur G&J – Quality (Sitapura Lab)",
+        score: "98% Confidence",
+        time: "38ms",
+        ans: "Predicted quality grade: <b>Premium (A+)</b>. Stone passes all six ASTM thresholds.",
+        acc: "96.7%",
+        f1: "0.95"
+      },
+      price: {
+        q: "\"Features: size_mm, color_depth, certificate_type, cut_shape, origin_region\"",
+        doc: "Model: Gemstone_Price_Regressor_v3  |  Dataset: Jaipur Gem Market Transactions (Johari Bazaar)",
+        score: "93% Confidence",
+        time: "55ms",
+        ans: "Estimated market price: <b>Rs. 1,24,800/carat</b>. Variability &plusmn;6% based on last 50 trades.",
+        acc: "90.8%",
+        f1: "0.87"
+      }
+    };
+
+    function selectPill(pill) {
+      pills.forEach(function(b) { b.classList.remove("active"); });
+      pill.classList.add("active");
+      var d = data[pill.getAttribute("data-q")];
+      if (!d) return;
+
+      txtQuery.textContent = d.q;
+      searchBox.classList.add("active");
+
+      statusChip.textContent = "Running Inference…";
+      statusChip.classList.add("busy");
+      resultBox.classList.add("vw-loading");
+      docSource.textContent = "Querying model…";
+      docScore.textContent = "";
+      ansText.style.opacity = 0;
+
+      setTimeout(function() {
+        docSource.textContent = d.doc;
+        docScore.textContent = d.score;
+        ansText.innerHTML = d.ans;
+        ansText.style.opacity = 1;
+        resultBox.classList.remove("vw-loading");
+        statusChip.textContent = "Production Ready";
+        statusChip.classList.remove("busy");
+        searchBox.classList.remove("active");
+        tileMatch.textContent = d.acc;
+        tileTime.textContent = d.time;
+        tileF1.textContent = d.f1;
+      }, 500);
+    }
+
+    pills.forEach(function(p) { p.addEventListener("click", function() { selectPill(p); }); });
+  })();
+</script>
 </body>
 </html>

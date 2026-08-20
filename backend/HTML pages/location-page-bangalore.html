@@ -907,7 +907,6 @@
       font-size: .94rem;
       color: var(--muted);
       flex: 1;
-      margin-bottom: 20px
     }
 
     .svc-explore {
@@ -3185,39 +3184,39 @@
     .vw-ml-pipeline {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 6px;
+      justify-content: space-between;
+      gap: 4px;
       margin-bottom: 28px;
-      flex-wrap: wrap;
     }
 
     .vw-ml-node {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 6px;
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: var(--radius-sm);
-      padding: 12px 18px;
+      padding: 10px 8px;
       box-shadow: var(--shadow-sm);
       position: relative;
-      min-width: 90px;
+      flex: 1;
+      min-width: 0;
       transition: border-color 0.3s, box-shadow 0.3s;
     }
 
     .vw-ml-node svg {
-      width: 22px;
-      height: 22px;
+      width: 18px;
+      height: 18px;
       flex-shrink: 0;
     }
 
     .vw-ml-node span {
       font-family: var(--ff-mono);
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 600;
       color: var(--ink-soft);
-      letter-spacing: 0.04em;
+      letter-spacing: 0.02em;
       white-space: nowrap;
     }
 
@@ -3229,11 +3228,14 @@
     .vw-ml-arrow {
       color: var(--muted);
       flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .vw-ml-arrow svg {
-      width: 18px;
-      height: 18px;
+      width: 14px;
+      height: 14px;
     }
 
     .vw-ml-metrics {
@@ -3391,26 +3393,27 @@
       }
 
       .vw-ml-pipeline {
-        gap: 4px;
+        gap: 3px;
       }
 
       .vw-ml-node {
-        padding: 8px 12px;
-        min-width: auto;
+        padding: 8px 4px;
+        gap: 4px;
+        min-width: 0;
       }
 
       .vw-ml-node span {
-        font-size: 0.6rem;
+        font-size: 0.62rem;
       }
 
       .vw-ml-node svg {
-        width: 18px;
-        height: 18px;
+        width: 15px;
+        height: 15px;
       }
 
       .vw-ml-arrow svg {
-        width: 14px;
-        height: 14px;
+        width: 12px;
+        height: 12px;
       }
 
       .vw-ml-metric-card .vw-ml-value {
@@ -3767,10 +3770,6 @@
             <p>End-to-end model development: from a scoped proof-of-concept to a fully deployed, production-grade model
               integrated with your existing business tools, tailored to the IT services, SaaS, startups, and deep tech
               industries in Bangalore.</p>
-            <a class="link-cta" href="https://shreyans.tech/hire-machine-learning-developer">Custom ML Models <svg
-                fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
-                <path d="M5 12h14M13 6l6 6-6 6"></path>
-              </svg></a>
           </article>
           <!-- 02 -->
           <article class="svc-card">
@@ -3788,10 +3787,6 @@
             <p>Machine learning pipeline automation, model deployment, versioning and monitoring, so your models stay
               reliable and observable in production, which is crucial for businesses in the IT services and SaaS sectors
               in Bangalore.</p>
-            <a class="link-cta" href="https://shreyans.tech/hire-ai-model-training-developer">MLOps Development <svg
-                fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
-                <path d="M5 12h14M13 6l6 6-6 6"></path>
-              </svg></a>
           </article>
           <!-- 03 -->
           <article class="svc-card">
@@ -3808,10 +3803,6 @@
             <p>Advanced deep learning for image classification, object detection and other computer vision tasks where
               accuracy on real-world data matters, particularly in the deep tech and startup industries in Bangalore.
             </p>
-            <a class="link-cta" href="https://shreyans.tech/hire-computer-vision-developer">Deep Learning <svg
-                fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
-                <path d="M5 12h14M13 6l6 6-6 6"></path>
-              </svg></a>
           </article>
           <!-- 04 -->
           <article class="svc-card">
@@ -3827,10 +3818,6 @@
             <p>Personalised recommendation engines for e-commerce, content streaming and other recommendation-heavy
               products that need higher engagement, which is essential for businesses in the IT services and SaaS
               sectors in Bangalore.</p>
-            <a class="link-cta" href="https://shreyans.tech/hire-machine-learning-developer">Recommendation Systems <svg
-                fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
-                <path d="M5 12h14M13 6l6 6-6 6"></path>
-              </svg></a>
           </article>
           <!-- 05 -->
           <article class="svc-card">
@@ -3847,10 +3834,6 @@
             <p>Failure-prediction models for manufacturing, industrial automation and equipment-heavy operations, to cut
               unplanned downtime and service cost, which is vital for businesses in the deep tech and startup industries
               in Bangalore.</p>
-            <a class="link-cta" href="https://shreyans.tech/hire-machine-learning-developer">Predictive Maintenance <svg
-                fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
-                <path d="M5 12h14M13 6l6 6-6 6"></path>
-              </svg></a>
           </article>
           <!-- 06 -->
           <article class="svc-card">
@@ -3866,10 +3849,6 @@
             <p>Feasibility assessments, architecture reviews and vendor evaluation for Bangalore businesses deciding
               whether and how to adopt machine learning, particularly in the IT services, SaaS, startups, and deep tech
               industries.</p>
-            <a class="link-cta" href="https://shreyans.tech/hire-ai-developer">ML Consulting <svg fill="none"
-                stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
-                <path d="M5 12h14M13 6l6 6-6 6"></path>
-              </svg></a>
           </article>
         </div>
         <!-- explore-all internal links -> surfaces all 6 real specialisation pages -->
@@ -4645,7 +4624,6 @@
     })();
 
 
-    // Mobile nav toggle
     (function () {
       var t = document.getElementById('navToggle');
       var l = document.getElementById('navLinks');
@@ -4659,7 +4637,6 @@
 
 
 
-    // FAQ: keep it an accordion (one open at a time), respectful of native <details>
     (function () {
       var items = document.querySelectorAll('.faq-item');
       items.forEach(function (d) {
@@ -4671,7 +4648,6 @@
       });
     })();
 
-    // Tech Stack / Tooling tab switcher
     (function () {
       const root = document.getElementById('stack');
       if (!root) return;
@@ -4689,7 +4665,6 @@
       tabs.forEach((tab, i) => {
         tab.addEventListener('click', () => activate(tab));
 
-        // optional keyboard nav (arrow keys) for accessibility
         tab.addEventListener('keydown', (e) => {
           let next = null;
           if (e.key === 'ArrowDown' || e.key === 'ArrowRight') next = tabs[i + 1] || tabs[0];
@@ -4702,18 +4677,8 @@
         });
       });
     })();
-  </script>
 
-
-
-
-
-
-
-  <!-- [VIEWER-WIDGET-JS:START] -->
-  <script>
     (function () {
-      // Animate metric values and log lines
       const accEl = document.getElementById('vw-ml-acc');
       const lossEl = document.getElementById('vw-ml-loss');
       const epochEl = document.getElementById('vw-ml-epoch');
@@ -4723,12 +4688,10 @@
       let acc = 94.2;
       let loss = 0.0431;
 
-      // Simulate training steps
       function step() {
         epoch += 1;
         if (epoch > 120) return;
 
-        // Slight random walk for metrics
         acc = Math.min(98.5, acc + (Math.random() - 0.1) * 0.6);
         loss = Math.max(0.01, loss + (Math.random() - 0.25) * 0.008);
 
@@ -4736,7 +4699,6 @@
         lossEl.textContent = loss.toFixed(3);
         epochEl.textContent = epoch;
 
-        // Add log line
         const line = document.createElement('div');
         line.className = 'vw-ml-log-line';
         const ts = new Date().toTimeString().slice(0, 8);
@@ -4751,10 +4713,8 @@
         line2.innerHTML = `<span class="hl-muted">[${ts}]</span> <span class="hl-green">VAL</span>      Epoch ${epoch}/120 — loss: <span class="hl-amber">${valLoss}</span>  acc: <span class="hl-amber">${valAcc}%</span>`;
         term.appendChild(line2);
 
-        // Keep terminal scrolled to bottom
         term.scrollTop = term.scrollHeight;
 
-        // Remove cursor from previous last line and add to new last line
         const cursors = term.querySelectorAll('.vw-ml-cursor');
         cursors.forEach(c => c.remove());
         const lastLine = term.querySelector('.vw-ml-log-line:last-child');
@@ -4764,7 +4724,6 @@
           lastLine.appendChild(cursor);
         }
 
-        // Limit log lines to keep terminal tidy
         const lines = term.querySelectorAll('.vw-ml-log-line');
         if (lines.length > 24) {
           for (let i = 0; i < 4; i++) {
@@ -4773,16 +4732,13 @@
         }
       }
 
-      // Run step every 2.5s
       const interval = setInterval(step, 2500);
 
-      // Clean up interval on page unload (optional, but good practice)
       window.addEventListener('beforeunload', function () {
         clearInterval(interval);
       });
     })();
   </script>
-  <!-- [VIEWER-WIDGET-JS:END] -->
 </body>
 
 </html>

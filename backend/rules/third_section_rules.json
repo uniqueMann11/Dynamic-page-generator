@@ -8,11 +8,7 @@
         "svc-card": {
           "svc-num": "Two-digit item index starting from '01' to '06'.",
           "h3": "Specific service title tailored to the target role (e.g., 'Custom ML Models', 'MLOps Development'). Max 3-4 words.",
-          "p": "Description of service scope, deliverables, and business value. Exactly 1-2 sentences.",
-          "link-cta": {
-            "text": "Link text with right arrow suffix (e.g., 'Custom ML Models').",
-            "url": "Target URL or empty string."
-          }
+          "p": "Description of service scope, deliverables, and business value. Exactly 1-2 sentences."
         }
       }
     ],

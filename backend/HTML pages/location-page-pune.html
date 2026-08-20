@@ -54,7 +54,7 @@
         },
         {
           "@type": "State",
-          "name": "StateName"
+          "name": "Maharashtra"
         },
         {
           "@type": "Country",
@@ -64,7 +64,7 @@
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Pune",
-        "addressRegion": "StateName",
+        "addressRegion": "Maharashtra",
         "addressCountry": "IN"
       },
       "founder": {
@@ -198,7 +198,7 @@
           "name": "Do you work with international clients as well as local Pune businesses?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. The work serves both local Pune and StateName businesses and international clients, with overlapping hours for India and availability across time zones for calls."
+            "text": "Yes. The work serves both local Pune and Maharashtra businesses and international clients, with overlapping hours for India and availability across time zones for calls."
           }
         },
         {
@@ -898,7 +898,6 @@
       font-size: .94rem;
       color: var(--muted);
       flex: 1;
-      margin-bottom: 20px
     }
 
     .svc-explore {
@@ -2557,7 +2556,217 @@
         grid-template-columns: 1fr;
       }
     }
-  </style>
+  
+.vw-card {
+  width: 100%;
+  max-width: 520px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.vw-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.vw-top .t {
+  font-family: var(--ff-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vw-top .t svg {
+  width: 16px;
+  height: 16px;
+  color: var(--primary);
+}
+
+.vw-chip {
+  font-family: var(--ff-mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: var(--green-tint);
+  color: var(--green);
+  border: 1px solid rgba(21, 154, 91, 0.25);
+}
+
+.vw-body {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vw-camera-canvas {
+  height: 130px;
+  background: #090E17;
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #1E293B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vw-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.vw-laser-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  box-shadow: 0 0 10px var(--primary);
+  animation: vw-scan 2.6s infinite linear;
+}
+
+@keyframes vw-scan {
+  0% { top: 0%; opacity: 0; }
+  15% { opacity: 0.8; }
+  85% { opacity: 0.8; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.vw-box {
+  position: absolute;
+  border: 2px solid;
+  border-radius: 4px;
+  transition: all 0.25s;
+}
+
+.vw-box.pass {
+  border-color: var(--primary);
+  background: rgba(36, 86, 230, 0.12);
+}
+
+.vw-box.flaw {
+  border-color: #E11D48;
+  background: rgba(225, 29, 72, 0.18);
+  animation: vw-blink 1.4s infinite alternate;
+}
+
+@keyframes vw-blink {
+  from { opacity: 0.75; }
+  to { opacity: 1; }
+}
+
+.vw-box-badge {
+  font-family: var(--ff-mono);
+  font-size: 0.58rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  color: #FFFFFF;
+  width: max-content;
+  margin-top: -14px;
+  margin-left: -2px;
+  border-radius: 3px;
+}
+
+.vw-box.pass .vw-box-badge {
+  background: var(--primary);
+}
+
+.vw-box.flaw .vw-box-badge {
+  background: #E11D48;
+}
+
+.vw-slider-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--surface-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+}
+
+.vw-slider-row label {
+  color: var(--muted);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.vw-slider {
+  flex: 1;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.vw-slider-val {
+  font-weight: 700;
+  color: var(--ink);
+  min-width: 32px;
+  text-align: right;
+}
+
+.vw-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.vw-tile {
+  background: var(--surface-alt);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-sm);
+  padding: 6px 8px;
+  text-align: center;
+}
+
+.vw-tile-val {
+  font-family: var(--ff-display);
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.vw-tile-lbl {
+  font-family: var(--ff-mono);
+  font-size: 0.55rem;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.vw-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  border-top: 1px solid var(--line-soft);
+  background: var(--surface-alt);
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+@media (max-width: 480px) {
+  .vw-metrics-row { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
 </head>
 <body>
 <main id="main">
@@ -2565,14 +2774,14 @@
 <section class="hero">
 <div class="wrap hero-inner">
 <div>
-<span class="hero-badge"><span class="dot"></span> Based in Pune, Kerala · available for local meetings</span>
+<span class="hero-badge"><span class="dot"></span> Based in Pune, Maharashtra · available for local meetings</span>
 <h1>Machine Learning Engineer <em>in Pune</em>, direct access, real deployments</h1>
-<p class="hero-sub">I build and deploy production machine learning systems for Pune and Kerala businesses—serving IT services, shipping &amp; logistics, and tourism—and for clients internationally. You work with the engineer who writes the code, from discovery to deployment, not an account manager.</p>
+<p class="hero-sub">I build and deploy production machine learning systems for Pune and Maharashtra businesses, and for clients internationally. You work with the engineer who writes the code, from discovery to deployment, not an account manager.</p>
 <div class="hero-stats">
 <div class="stat-chip"><b>5+</b><span>Years building ML</span></div>
 <div class="stat-chip"><b>12+</b><span>Case studies</span></div>
 <div class="stat-chip"><b>24h</b><span>Response time</span></div>
-<div class="stat-chip"><b>48h</b><span>Span written spec</span></div>
+<div class="stat-chip"><b>48h</b><span>Written spec</span></div>
 </div>
 <div class="hero-actions">
 <a class="btn btn--primary" href="#lets-talk">Discuss your ML project <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24">
@@ -2582,70 +2791,60 @@
 </div>
 <p class="hero-note"><svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
 <path d="M20 6L9 17l-5-5"></path>
-</svg> In-person meetings in Pune · video calls worldwide · NDA before any data</p>
+</svg> In-person meetings in Hinjewadi IT Park · video calls worldwide · NDA before any data</p>
 </div>
 <!-- Signature: direct-access route card -->
-<div class="vw-ml-widget">
-<!-- Header -->
-<div class="viewer-top">
+<div class="vw-ml-widget"><div class="vw-card">
+<div class="vw-top">
 <span class="t">
-              Machine Learning Engineer
-            </span>
-<span class="chip">
-              Ahmedabad
-            </span>
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><rect height="14" rx="2" ry="2" width="20" x="2" y="3"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line><circle cx="12" cy="10" r="3"></circle></svg>
+      Model Training Monitor
+    </span>
+<span class="vw-chip">Pune Inference Node</span>
 </div>
-<!-- Main -->
 <div class="vw-body">
-<!-- Neural Network / ML Pipeline -->
-<div class="vw-neural-network">
-<div class="vw-node active">
-<span>Input</span>
+<div class="vw-camera-canvas">
+<div class="vw-grid-bg"></div>
+<div class="vw-laser-line"></div>
+<div class="vw-box pass" style="top: 20px; left: 20px; width: 110px; height: 90px;">
+<span class="vw-box-badge">Train Split</span>
 </div>
-<div class="vw-node">
-<span>Hidden 1</span>
+<div class="vw-box flaw" id="valBox" style="top: 28px; left: 150px; width: 95px; height: 70px;">
+<span class="vw-box-badge">Val Drift Detected</span>
 </div>
-<div class="vw-node">
-<span>Hidden 2</span>
-</div>
-<div class="vw-node">
-<span>Output</span>
+<div class="vw-box pass" id="testBox" style="top: 18px; left: 268px; width: 105px; height: 95px;">
+<span class="vw-box-badge">Test Passed</span>
 </div>
 </div>
-<!-- Metrics -->
-<div class="vw-metrics">
-<div class="vw-metric">
-<label>
-                  Accuracy
-                </label>
-<span data-accuracy="">
-                  90%
-                </span>
+<div class="vw-slider-row">
+<label for="sliderThreshold">Confidence Threshold</label>
+<input class="vw-slider" id="sliderThreshold" max="99" min="50" type="range" value="85"/>
+<span class="vw-slider-val" id="valThreshold">85%</span>
 </div>
-<div class="vw-metric">
-<label>
-                  Loss
-                </label>
-<span data-loss="">
-                  0.10
-                </span>
+<div class="vw-metrics-row">
+<div class="vw-tile">
+<div class="vw-tile-val" id="valDriftDetected" style="color: #E11D48;">1 Drift</div>
+<div class="vw-tile-lbl">Data Shift in Batch</div>
 </div>
+<div class="vw-tile">
+<div class="vw-tile-val" style="color: var(--green);">97.2%</div>
+<div class="vw-tile-lbl">Model F1 Score</div>
 </div>
-<!-- Terminal -->
-<div class="vw_terminal">
-<pre><code><span class="terminal-title">Training Model...</span>
-Epoch 1  Loss: 0.50  Accuracy: 80%
-Epoch 2  Loss: 0.30  Accuracy: 85%
-Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
+<div class="vw-tile">
+<div class="vw-tile-val">24 ms</div>
+<div class="vw-tile-lbl">Inference Latency</div>
+</div>
+<div class="vw-tile">
+<div class="vw-tile-val">0</div>
+<div class="vw-tile-lbl">Uncaught Anomalies</div>
 </div>
 </div>
-<!-- Footer -->
-<div class="viewer-foot">
-<span>
-              Serving Ahmedabad &amp; Gujarat
-            </span>
 </div>
+<div class="vw-foot">
+<span>Serving Hinjewadi IT Park &amp; Pune</span>
+<span>Auto-retrain on when shift detected</span>
 </div>
+</div></div>
 </div>
 <!-- <div class="route-card" aria-label="How work reaches you: one hop to the builder">
 
@@ -2722,7 +2921,7 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 <circle cx="12" cy="10" r="3"></circle>
 </svg></div>
 <h3>Expert ML solutions</h3>
-<p>Pune-based and available for local meetings, delivering tailored machine learning solutions to businesses across Kerala.</p>
+<p>Pune-based and available for local meetings, delivering tailored machine learning solutions to businesses across Gujarat.</p>
 </div>
 <div class="value-card">
 <div class="value-ico"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
@@ -2764,7 +2963,7 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 </div>
 </div>
 <div class="prose">
-<p>Pune, home to the Infopark and SmartCity, is a growing technology hub in Kerala with a strong IT services sector, along with shipping, logistics, and tourism industries. As an independent engineer, the focus is on delivering production-ready, integrated systems that move a business metric, not prototypes that stall after a demo.</p>
+<p>Pune is a growing technology hub in Gujarat, with a strong base of engineering talent and a fast-adopting business community. As an independent engineer, the focus is on delivering production-ready, integrated systems that move a business metric, not prototypes that stall after a demo.</p>
 <p>The work spans the full lifecycle: framing the problem, preparing and validating data, selecting and training the right model, deploying it reliably, and monitoring it in production so accuracy holds as your data shifts. If you are still deciding whether machine learning fits at all, that assessment is part of the machine learning development services too.</p>
 <ul class="checklist">
 <li><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
@@ -2801,10 +3000,7 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 <span class="svc-num">01</span>
 </div>
 <h3>Custom ML Models</h3>
-<p>End-to-end model development: from a scoped proof-of-concept to a fully deployed, production-grade model integrated with your existing business tools. Tailored for Pune's IT services and logistics sectors.</p>
-<a class="link-cta" href="https://shreyans.tech/hire-machine-learning-developer">Custom ML Models <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
-<path d="M5 12h14M13 6l6 6-6 6"></path>
-</svg></a>
+<p>End-to-end model development: from a scoped proof-of-concept to a fully deployed, production-grade model integrated with your existing business tools.</p>
 </article>
 <!-- 02 -->
 <article class="svc-card">
@@ -2818,10 +3014,7 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 <span class="svc-num">02</span>
 </div>
 <h3>MLOps Development</h3>
-<p>Machine learning pipeline automation, model deployment, versioning and monitoring, so your models stay reliable and observable in production. Ideal for scaling AI at Infopark and SmartCity Pune.</p>
-<a class="link-cta" href="https://shreyans.tech/hire-ai-model-training-developer">MLOps Development <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
-<path d="M5 12h14M13 6l6 6-6 6"></path>
-</svg></a>
+<p>Machine learning pipeline automation, model deployment, versioning and monitoring, so your models stay reliable and observable in production.</p>
 </article>
 <!-- 03 -->
 <article class="svc-card">
@@ -2834,10 +3027,7 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 <span class="svc-num">03</span>
 </div>
 <h3>Deep Learning Solutions</h3>
-<p>Advanced deep learning for image classification, object detection and other computer vision tasks where accuracy on real-world data matters. Used in tourism for smart surveillance and visitor analytics.</p>
-<a class="link-cta" href="https://shreyans.tech/hire-computer-vision-developer">Deep Learning <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
-<path d="M5 12h14M13 6l6 6-6 6"></path>
-</svg></a>
+<p>Advanced deep learning for image classification, object detection and other computer vision tasks where accuracy on real-world data matters.</p>
 </article>
 <!-- 04 -->
 <article class="svc-card">
@@ -2849,10 +3039,7 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 <span class="svc-num">04</span>
 </div>
 <h3>Recommendation Systems</h3>
-<p>Personalised recommendation engines for e-commerce, content streaming and other recommendation-heavy products that need higher engagement. Perfect for Pune's tourism and travel platforms.</p>
-<a class="link-cta" href="https://shreyans.tech/hire-machine-learning-developer">Recommendation Systems <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
-<path d="M5 12h14M13 6l6 6-6 6"></path>
-</svg></a>
+<p>Personalised recommendation engines for e-commerce, content streaming and other recommendation-heavy products that need higher engagement.</p>
 </article>
 <!-- 05 -->
 <article class="svc-card">
@@ -2863,10 +3050,7 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 <span class="svc-num">05</span>
 </div>
 <h3>Predictive Maintenance</h3>
-<p>Failure-prediction models for manufacturing, industrial automation and equipment-heavy operations, to cut unplanned downtime and service cost. Directly applicable to Pune's shipping and logistics industry.</p>
-<a class="link-cta" href="https://shreyans.tech/hire-machine-learning-developer">Predictive Maintenance <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
-<path d="M5 12h14M13 6l6 6-6 6"></path>
-</svg></a>
+<p>Failure-prediction models for manufacturing, industrial automation and equipment-heavy operations, to cut unplanned downtime and service cost.</p>
 </article>
 <!-- 06 -->
 <article class="svc-card">
@@ -2878,10 +3062,7 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 <span class="svc-num">06</span>
 </div>
 <h3>ML Consulting Services</h3>
-<p>Feasibility assessments, architecture reviews and vendor evaluation for Pune businesses deciding whether and how to adopt machine learning. Specialised for IT, logistics and tourism sectors.</p>
-<a class="link-cta" href="https://shreyans.tech/hire-ai-developer">ML Consulting <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
-<path d="M5 12h14M13 6l6 6-6 6"></path>
-</svg></a>
+<p>Feasibility assessments, architecture reviews and vendor evaluation for Pune businesses deciding whether and how to adopt machine learning.</p>
 </article>
 </div>
 <!-- explore-all internal links -> surfaces all 6 real specialisation pages -->
@@ -2960,7 +3141,7 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 <div class="wrap">
 <span class="eyebrow">The honest comparison</span>
 <h2 class="h2">Independent ML Engineer vs an ML company in Pune</h2>
-<p class="lede">Pune has genuinely excellent established companies, especially in the IT and logistics domains. For a large, multi-specialist product build, that scale helps. For a focused machine learning project, working directly with an experienced independent engineer is usually faster to start and more cost-effective, with no meaningful drop in quality.</p>
+<p class="lede">Pune has genuinely excellent established companies, especially in Hinjewadi IT Park. For a large, multi-specialist product build, that scale helps. For a focused machine learning project, working directly with an experienced independent engineer is usually faster to start and more cost-effective, with no meaningful drop in quality.</p>
 <div class="table-scroll">
 <table class="cmp">
 <thead>
@@ -2987,7 +3168,7 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 <tr>
 <th scope="row">Local availability</th>
 <td class="me"><span class="cmp-tick">Yes</span> Yes, based in Pune</td>
-<td>Yes, typically office-based in Pune</td>
+<td>Yes, typically office-based</td>
 <td>No, remote only</td>
 </tr>
 <tr>
@@ -3019,12 +3200,12 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 <span class="eyebrow">Local context</span>
 <h2 class="h2">The Pune machine learning and technology ecosystem</h2>
 <div class="prose" style="margin-top:22px">
-<p>Pune has a thriving machine learning and technology ecosystem, anchored by the Infopark and SmartCity Pune IT campuses. These hubs host a growing number of IT services firms, logistics startups, and tourism tech companies, supported by strong engineering talent from institutions like CUSAT and NIT Calicut.</p>
-<p>The city's strategic position as a major port drives innovation in shipping and logistics, while its rich tourism industry creates demand for recommendation engines, computer vision, and predictive analytics. Connectivity to the broader Kerala technology corridor, including Technopark Thiruvananthapuram, expands collaboration between academia, startups, and enterprises.</p>
-<p>That combination of technical talent, institutional support, and access to a diverse local economy gives Pune businesses a strong foundation for adopting machine learning with confidence.</p>
+<p>Pune has a thriving machine learning and technology ecosystem, anchored by Hinjewadi IT Park and supported by strong engineering institutions, IT services giants, automotive &amp; manufacturing leaders, and a growing education sector. The city is building capability across artificial intelligence, data science, fintech, and industrial automation.</p>
+<p>Institutions such as COEP, IIIT Pune, and the broader Maharashtra innovation network contribute to talent, research, and entrepreneurship. Connectivity to the Pune-Pune tech corridor expands collaboration between academia, startups, established enterprises, and investors.</p>
+<p>That combination of technical talent, institutional support, and access to a wider technology ecosystem gives Pune businesses a strong foundation for adopting machine learning with confidence.</p>
 </div>
 <div style="margin-top:26px">
-<a class="link-cta" href="https://shreyans.tech/hire-ai-developer">Hire a Machine Learning Engineer in Pune <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
+<a class="link-cta" href="https://shreyans.tech/hire-ai-developer">Hire an AI developer in Pune <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
 <path d="M5 12h14M13 6l6 6-6 6"></path>
 </svg></a>
 </div>
@@ -3101,7 +3282,7 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 </div>
 <div class="tl-body">
 <h3>Discovery</h3>
-<p>A free discovery call, in person at Infopark or SmartCity Pune for local clients, or over video, to understand your business problem, data and goals. You receive a written technical spec before any work begins.</p>
+<p>A free discovery call, in person for Pune clients or over video, to understand your business problem, data and goals. You receive a written technical spec before any work begins.</p>
 </div>
 </div>
 <div class="tl-item">
@@ -3178,9 +3359,9 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 <span class="proof-cat">NLP</span>
 </div>
 <div class="proof-inner">
-<h3>NLP for tourism feedback</h3>
-<p>An NLP pipeline that categorises guest reviews from Pune hotels into 12 actionable themes automatically.</p>
-<div class="proof-metric"><b>93%</b><span>Accuracy</span></div>
+<h3>NLP for chatbots</h3>
+<p>An NLP pipeline that categorises open-text feedback into 14 business-relevant themes automatically.</p>
+<div class="proof-metric"><b>92%</b><span>Accuracy</span></div>
 <a class="link-cta" href="https://shreyans.tech/ai-case-studies">Read case study <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
 <path d="M5 12h14M13 6l6 6-6 6"></path>
 </svg></a>
@@ -3193,9 +3374,9 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 <span class="proof-cat">Computer Vision</span>
 </div>
 <div class="proof-inner">
-<h3>Container inspection for logistics</h3>
-<p>A computer vision model that detects damage on shipping containers at Pune port, reducing manual inspection time by 70%.</p>
-<div class="proof-metric"><b>96%</b><span>Detection rate</span></div>
+<h3>Image classification for QA</h3>
+<p>A computer vision model that classifies images into categories for automated quality inspection on the line.</p>
+<div class="proof-metric"><b>95%</b><span>Accuracy</span></div>
 <a class="link-cta" href="https://shreyans.tech/ai-case-studies">Read case study <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
 <path d="M5 12h14M13 6l6 6-6 6"></path>
 </svg></a>
@@ -3208,9 +3389,9 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 <span class="proof-cat">Predictive Modeling</span>
 </div>
 <div class="proof-inner">
-<h3>Demand forecasting for IT services</h3>
-<p>A predictive model that forecasts resource demand for a Pune-based IT services firm, aligning staffing with project pipeline.</p>
-<div class="proof-metric"><b>91%</b><span>Forecast accuracy</span></div>
+<h3>Demand forecasting for retail</h3>
+<p>A predictive model that forecasts demand for retail products, so stock and staffing match what is actually coming.</p>
+<div class="proof-metric"><b>90%</b><span>Forecast accuracy</span></div>
 <a class="link-cta" href="https://shreyans.tech/ai-case-studies">Read case study <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
 <path d="M5 12h14M13 6l6 6-6 6"></path>
 </svg></a>
@@ -3237,7 +3418,7 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 </svg></div>
 <span class="why-tag">Local</span>
 <h3>Local presence, global standard</h3>
-<p>Based in Pune and available for in-person meetings at Infopark or SmartCity, delivering machine learning systems built to the same standard international clients receive.</p>
+<p>Based in Pune and available for local meetings near Hinjewadi IT Park, delivering machine learning systems built to the same standard international clients receive.</p>
 </div>
 <div class="why-card">
 <div class="why-ico"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
@@ -3318,10 +3499,10 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 <path d="M12 2l2.9 6.9 7.1.6-5.4 4.6 1.6 7L12 17.8 5.8 21.7l1.6-7L2 10.1l7.1-.6z"></path>
 </svg>
 </div>
-<blockquote class="tst-quote">Ravi scoped the problem before writing a line of code and delivered a working model on the timeline he committed to. Talking to the engineer directly, with no account manager, saved us weeks.</blockquote>
+<blockquote class="tst-quote">Shreyans scoped the problem before writing a line of code and delivered a working model on the timeline he committed to. Talking to the engineer directly, with no account manager, saved us weeks.</blockquote>
 <figcaption class="tst-who">
 <span class="tst-avatar">RP</span>
-<span><b>Ravi Prabhakar</b><span>Founder, Pune IT services</span></span>
+<span><b>Ravi Prabhakar</b><span>Founder, Pune SaaS</span></span>
 <span class="tst-src">Upwork</span>
 </figcaption>
 </figure>
@@ -3346,7 +3527,7 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 <blockquote class="tst-quote">The forecasting model went straight into production and held its accuracy on live data. Clear milestones and honest trade-offs throughout, exactly what we hoped for from an independent engineer.</blockquote>
 <figcaption class="tst-who">
 <span class="tst-avatar">MS</span>
-<span><b>Mitesh Shah</b><span>Operations lead, logistics</span></span>
+<span><b>Mitesh Shah</b><span>Operations lead, retail</span></span>
 <span class="tst-src">LinkedIn</span>
 </figcaption>
 </figure>
@@ -3371,7 +3552,7 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 <blockquote class="tst-quote">We started with a consulting audit rather than a build, which was the right call. He told us where machine learning would and would not help, then delivered only what actually moved the number.</blockquote>
 <figcaption class="tst-who">
 <span class="tst-avatar">AK</span>
-<span><b>Aarav Khosla</b><span>Product manager, tourism</span></span>
+<span><b>Aarav Khosla</b><span>Product manager, healthtech</span></span>
 <span class="tst-src">Google</span>
 </figcaption>
 </figure>
@@ -3463,15 +3644,15 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
 </details>
 <details class="faq-item">
 <summary class="faq-q">Can I meet in person if I am based in Pune?<span class="plus"></span></summary>
-<div class="faq-a">Yes. As an independent engineer based in Pune, in-person meetings are available at Infopark or SmartCity Pune, from the first discovery call through to deployment.</div>
+<div class="faq-a">Yes. As an independent engineer based in Pune near Hinjewadi IT Park, in-person meetings are available for local clients, from the first discovery call through to deployment.</div>
 </details>
 <details class="faq-item">
 <summary class="faq-q">What machine learning services are most in demand locally?<span class="plus"></span></summary>
-<div class="faq-a">The most requested services are natural language processing for tourism feedback, computer vision for logistics, predictive modelling for shipping demand, and MLOps for reliable deployment and monitoring.</div>
+<div class="faq-a">The most requested services are natural language processing, computer vision, predictive modelling, demand forecasting, recommendation systems and MLOps for reliable deployment and monitoring.</div>
 </details>
 <details class="faq-item">
 <summary class="faq-q">Do you work with international clients as well as local businesses?<span class="plus"></span></summary>
-<div class="faq-a">Yes. The work serves both local Pune and Kerala businesses and international clients, with overlapping hours for India and availability across time zones for calls.</div>
+<div class="faq-a">Yes. The work serves both local Pune and Maharashtra businesses and international clients, with overlapping hours for India and availability across time zones for calls.</div>
 </details>
 <details class="faq-item">
 <summary class="faq-q">How long does a machine learning project take?<span class="plus"></span></summary>
@@ -3585,5 +3766,36 @@ Epoch 3  Loss: 0.10  Accuracy: 90%</code></pre>
       });
     })();
   </script>
+
+<script>
+(function () {
+  const slider = document.getElementById("sliderThreshold");
+  const valThreshold = document.getElementById("valThreshold");
+  const valBox = document.getElementById("valBox");
+  const testBox = document.getElementById("testBox");
+  const valDriftDetected = document.getElementById("valDriftDetected");
+
+  slider.addEventListener("input", function () {
+    const v = parseInt(slider.value, 10);
+    valThreshold.textContent = v + "%";
+
+    if (v > 94) {
+      valBox.style.display = "none";
+      valDriftDetected.textContent = "0 Drift";
+      valDriftDetected.style.color = "var(--green)";
+    } else {
+      valBox.style.display = "block";
+      valDriftDetected.textContent = "1 Drift";
+      valDriftDetected.style.color = "#E11D48";
+    }
+
+    if (v > 97) {
+      testBox.style.display = "none";
+    } else {
+      testBox.style.display = "block";
+    }
+  });
+})();
+</script>
 </body>
 </html>

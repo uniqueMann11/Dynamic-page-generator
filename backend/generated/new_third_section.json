@@ -8,66 +8,42 @@
         "svc-card": {
           "svc-num": "01",
           "h3": "Custom ML Models",
-          "p": "End-to-end model development: from a scoped proof-of-concept to a fully deployed, production-grade model integrated with your existing business tools.",
-          "link-cta": {
-            "text": "Custom ML Models",
-            "url": "https://shreyans.tech/hire-machine-learning-developer"
-          }
+          "p": "End-to-end model development: from a scoped proof-of-concept to a fully deployed, production-grade model integrated with your existing business tools."
         }
       },
       {
         "svc-card": {
           "svc-num": "02",
           "h3": "MLOps Development",
-          "p": "Machine learning pipeline automation, model deployment, versioning and monitoring, so your models stay reliable and observable in production.",
-          "link-cta": {
-            "text": "MLOps Development",
-            "url": "https://shreyans.tech/hire-ai-model-training-developer"
-          }
+          "p": "Machine learning pipeline automation, model deployment, versioning and monitoring, so your models stay reliable and observable in production."
         }
       },
       {
         "svc-card": {
           "svc-num": "03",
           "h3": "Deep Learning Solutions",
-          "p": "Advanced deep learning for image classification, object detection and other computer vision tasks where accuracy on real-world data matters.",
-          "link-cta": {
-            "text": "Deep Learning",
-            "url": "https://shreyans.tech/hire-computer-vision-developer"
-          }
+          "p": "Advanced deep learning for image classification, object detection and other computer vision tasks where accuracy on real-world data matters."
         }
       },
       {
         "svc-card": {
           "svc-num": "04",
           "h3": "Recommendation Systems",
-          "p": "Personalised recommendation engines for e-commerce, content streaming and other recommendation-heavy products that need higher engagement.",
-          "link-cta": {
-            "text": "Recommendation Systems",
-            "url": "https://shreyans.tech/hire-machine-learning-developer"
-          }
+          "p": "Personalised recommendation engines for e-commerce, content streaming and other recommendation-heavy products that need higher engagement."
         }
       },
       {
         "svc-card": {
           "svc-num": "05",
           "h3": "Predictive Maintenance",
-          "p": "Failure-prediction models for manufacturing, industrial automation and equipment-heavy operations, to cut unplanned downtime and service cost.",
-          "link-cta": {
-            "text": "Predictive Maintenance",
-            "url": "https://shreyans.tech/hire-machine-learning-developer"
-          }
+          "p": "Failure-prediction models for manufacturing, industrial automation and equipment-heavy operations, to cut unplanned downtime and service cost."
         }
       },
       {
         "svc-card": {
           "svc-num": "06",
           "h3": "ML Consulting Services",
-          "p": "Feasibility assessments, architecture reviews and vendor evaluation for Jaipur businesses deciding whether and how to adopt machine learning.",
-          "link-cta": {
-            "text": "ML Consulting",
-            "url": "https://shreyans.tech/hire-ai-developer"
-          }
+          "p": "Feasibility assessments, architecture reviews and vendor evaluation for Jaipur businesses deciding whether and how to adopt machine learning."
         }
       }
     ],
@@ -167,7 +143,7 @@
       "prose": {
         "p": [
           "Jaipur has a growing machine learning and technology ecosystem, supported by strong engineering and educational institutions, technology companies, startups and innovation-focused communities. The city is building capability across artificial intelligence, data science, fintech, healthtech and other emerging domains.",
-          "Institutions such as MNIT Jaipur and the Rajasthan Technical University, together with the wider Rajasthan innovation network, contribute to talent, research and entrepreneurship. Connectivity to hubs like Mahindra World City and Sitapura expands collaboration between academia, startups, established enterprises and investors.",
+          "Institutions such as MNIT Jaipur and the Jaipur Innovation Hub, together with the wider Rajasthan technology network, contribute to talent, research and entrepreneurship. Connectivity to the broader Rajasthan technology corridor, including Mahindra World City and Sitapura, expands collaboration between academia, startups, established enterprises and investors.",
           "That combination of technical talent, institutional support and access to a wider technology ecosystem gives Jaipur businesses a strong foundation for adopting machine learning with confidence."
         ]
       },

@@ -11,12 +11,16 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    animation: vw-cardIn .55s ease both;
   }
+
+  @keyframes vw-cardIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
   .vw-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 10px;
     padding: 14px 18px;
     border-bottom: 1px solid var(--line-soft);
   }
@@ -31,7 +35,7 @@
     gap: 8px;
   }
 
-  .vw-top .t svg { width: 16px; height: 16px; color: var(--primary); }
+  .vw-top .t svg { width: 16px; height: 16px; color: var(--primary); flex: none; }
 
   .vw-chip {
     font-family: var(--ff-mono);
@@ -39,10 +43,13 @@
     font-weight: 600;
     padding: 3px 9px;
     border-radius: 6px;
-    background: var(--primary-tint);
-    color: var(--primary-strong);
-    border: 1px solid rgba(36, 86, 230, 0.2);
+    background: var(--green-tint);
+    color: var(--green);
+    border: 1px solid rgba(21, 154, 91, 0.25);
+    white-space: nowrap;
+    transition: background .2s, color .2s, border-color .2s;
   }
+  .vw-chip.busy { background: var(--primary-tint); color: var(--primary-strong); border-color: rgba(36, 86, 230, .25); }
 
   .vw-body {
     padding: 16px 18px;
@@ -51,8 +58,40 @@
     gap: 12px;
   }
 
-  /* LOSS LANDSCAPE CHART */
-  .vw-sound-box {
+  .vw-search-box {
+    background: var(--surface-alt);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .vw-search-box.active { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-tint); }
+
+  .vw-search-box svg { width: 16px; height: 16px; color: var(--muted); flex-shrink: 0; }
+
+  .vw-query-display { font-size: 0.82rem; font-weight: 600; color: var(--ink); flex: 1; }
+
+  .vw-samples { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; }
+
+  .vw-pill {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s;
+  }
+  .vw-pill:hover { border-color: var(--primary); color: var(--ink); }
+  .vw-pill.active { background: var(--primary-tint); border-color: var(--primary); color: var(--primary-strong); font-weight: 600; }
+
+  .vw-result-box {
     background: #090E17;
     border: 1px solid #1E293B;
     border-radius: var(--radius-sm);
@@ -62,126 +101,25 @@
     gap: 8px;
   }
 
-  .vw-sound-meta {
-    display: flex;
-    justify-content: space-between;
-    font-family: var(--ff-mono);
-    font-size: 0.62rem;
-    color: #94A3B8;
-  }
-
-  .vw-waves-track {
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 3px;
-    cursor: pointer;
-  }
-
-  .vw-wave-bar {
-    flex: 1;
-    background: #334155;
-    border-radius: 999px;
-    transition: height 0.15s ease, background 0.2s;
-  }
-
-  .vw-wave-bar.passed { background: var(--primary); }
-  .vw-wave-bar.active { background: #38BDF8; box-shadow: 0 0 8px #38BDF8; }
-  .vw-wave-bar.passed.converged { background: var(--green); }
-
-  /* TRAINING LOG */
-  .vw-transcript-box {
-    background: var(--surface-alt);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
-    padding: 10px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .vw-speaker-header {
-    display: flex;
-    justify-content: space-between;
-    font-family: var(--ff-mono);
-    font-size: 0.62rem;
-    color: var(--muted);
-    text-transform: uppercase;
-  }
-
-  .vw-text-flow {
-    font-size: 0.84rem;
-    line-height: 1.6;
-    color: var(--body);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-  }
-
-  .vw-word-token {
-    padding: 1px 4px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.15s;
-    font-family: var(--ff-mono);
-    font-size: 0.72rem;
-    background: var(--surface);
-    border: 1px solid var(--line-soft);
-  }
-
-  .vw-word-token:hover { background: var(--line); }
-
-  .vw-word-token.active {
-    background: var(--primary-tint);
-    color: var(--primary-strong);
-    font-weight: 700;
-    box-shadow: 0 0 0 1px var(--primary);
-    border-color: var(--primary);
-  }
-
-  .vw-word-token.epoch-label {
-    color: var(--primary);
-    font-weight: 600;
-    border-color: transparent;
-    background: transparent;
-    cursor: default;
-  }
-
-  /* ACTION BAR */
-  .vw-action-row {
+  .vw-doc-match {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 8px;
     font-family: var(--ff-mono);
-    font-size: 0.68rem;
+    font-size: 0.66rem;
+    color: #38BDF8;
+    border-bottom: 1px dashed #1E293B;
+    padding-bottom: 6px;
+    transition: opacity .2s;
   }
+  .vw-loading .vw-doc-match { opacity: .55; color: #64748B; }
 
-  .vw-btn-play {
-    background: var(--primary);
-    color: #FFFFFF;
-    border: none;
-    font-family: var(--ff-mono);
-    font-size: 0.68rem;
-    font-weight: 600;
-    padding: 6px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: all 0.15s;
-  }
+  .vw-ans-text { font-size: 0.75rem; line-height: 1.5; color: #F1F5F9; transition: opacity .25s ease; }
 
-  .vw-btn-play:hover { background: var(--primary-strong); }
+  .vw-citation { display: flex; align-items: center; gap: 6px; font-family: var(--ff-mono); font-size: 0.64rem; color: #34D399; }
 
-  /* METRICS ROW */
-  .vw-metrics-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 6px;
-  }
+  .vw-metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
 
   .vw-tile {
     background: var(--surface-alt);
@@ -191,297 +129,188 @@
     text-align: center;
   }
 
-  .vw-tile-val {
-    font-family: var(--ff-display);
-    font-size: 1rem;
-    font-weight: 800;
-    color: var(--ink);
-  }
-
-  .vw-tile-lbl {
-    font-family: var(--ff-mono);
-    font-size: 0.55rem;
-    color: var(--muted);
-    text-transform: uppercase;
-  }
+  .vw-tile-val { font-family: var(--ff-display); font-size: 1rem; font-weight: 800; color: var(--ink); }
+  .vw-tile-lbl { font-family: var(--ff-mono); font-size: 0.55rem; color: var(--muted); text-transform: uppercase; }
 
   .vw-foot {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 10px;
     padding: 10px 18px;
     border-top: 1px solid var(--line-soft);
     background: var(--surface-alt);
     font-size: 0.72rem;
     color: var(--muted);
-    flex-wrap: wrap;
-    gap: 4px 8px;
   }
 
+  .vw-tip {
+    position: relative;
+    cursor: help;
+    border-bottom: 1px dotted var(--muted);
+    white-space: nowrap;
+  }
+  .vw-tip::after {
+    content: attr(data-tip);
+    position: absolute; bottom: 135%; left: 0;
+    width: 210px; white-space: normal;
+    background: var(--ink); color: #fff;
+    padding: 7px 10px; border-radius: 8px;
+    font-size: 0.65rem; line-height: 1.35; font-family: var(--ff-body);
+    box-shadow: var(--shadow-md);
+    opacity: 0; pointer-events: none;
+    transition: opacity .15s ease;
+    z-index: 5;
+  }
+  .vw-tip:hover::after { opacity: 1; }
+
   @media (max-width: 480px) {
-    .vw-metrics-row { grid-template-columns: repeat(2, 1fr); }
-    .vw-foot { flex-direction: column; align-items: flex-start; }
+    .vw-tile-val { font-size: 0.85rem; }
+    .vw-tip { max-width: 150px; overflow: hidden; text-overflow: ellipsis; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .vw-card { animation: none !important; }
+    .vw-ans-text, .vw-doc-match, .vw-chip, .vw-search-box { transition: none !important; }
   }
 </style>
 
 <div class="vw-card">
   <div class="vw-top">
     <span class="t">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
-      </svg>
-      ML Model Training Pipeline
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      ML Inference Engine
     </span>
-    <span class="vw-chip" id="epochChip">Epoch 00/50</span>
+    <span class="vw-chip" id="statusChip">Production Ready</span>
   </div>
 
   <div class="vw-body">
-    <!-- Loss Landscape Visualizer -->
-    <div class="vw-sound-box">
-      <div class="vw-sound-meta">
-        <span>Batch Loss Progression</span>
-        <span id="batchTimestamp">Step 000 / 180</span>
-      </div>
-      <div class="vw-waves-track" id="lossTrack"></div>
+    <!-- Simulated Input Display -->
+    <div class="vw-search-box" id="searchBox">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <span class="vw-query-display" id="txtQuery">"Features: sales_week, tourist_arrivals, gem_price_index"</span>
     </div>
 
-    <!-- Training Log -->
-    <div class="vw-transcript-box">
-      <div class="vw-speaker-header">
-        <span>Training Log</span>
-        <span style="color: var(--green);" id="logStatus">Running</span>
+    <!-- Sample Inference Tasks -->
+    <div class="vw-samples">
+      <button class="vw-pill active" data-q="demand">Demand Forecasting</button>
+      <button class="vw-pill" data-q="quality">Quality Inspection</button>
+      <button class="vw-pill" data-q="price">Price Estimation</button>
+    </div>
+
+    <!-- Result Box -->
+    <div class="vw-result-box" id="resultBox">
+      <div class="vw-doc-match">
+        <span id="docSource">Model: Ensemble_XGB_v2  |  Dataset: Jaipur ITE – Sisodia's Handicraft Logs</span>
+        <span style="color: #34D399;" id="docScore">95% Confidence</span>
       </div>
-      <div class="vw-text-flow" id="logFlow">
-        <span class="vw-word-token epoch-label">Epoch 00</span>
-        <span class="vw-word-token active">loss: 0.000</span>
-        <span class="vw-word-token">acc: 0.000</span>
-        <span class="vw-word-token">lr: 1e-3</span>
+      <div class="vw-ans-text" id="ansText">
+        Predicted demand next week: <b>+12.3%</b>. Recommend increasing production of gem-set ornaments.
+      </div>
+      <div class="vw-citation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg>
+        <span>Inference validated against Sitapura test partition</span>
       </div>
     </div>
 
-    <!-- Controls -->
-    <div class="vw-action-row">
-      <button class="vw-btn-play" id="btnTrainToggle">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-        <span>Pause Training</span>
-      </button>
-      <span style="color: var(--muted);">Click a log entry to jump to that epoch</span>
-    </div>
-
-    <!-- Metrics Grid -->
+    <!-- Metrics -->
     <div class="vw-metrics-row">
       <div class="vw-tile">
-        <div class="vw-tile-val" id="valAcc" style="color: var(--green);">0.000</div>
-        <div class="vw-tile-lbl">Val Accuracy</div>
+        <div class="vw-tile-val" id="tileMatch">92.3%</div>
+        <div class="vw-tile-lbl">Accuracy</div>
       </div>
       <div class="vw-tile">
-        <div class="vw-tile-val" id="valLoss">0.000</div>
-        <div class="vw-tile-lbl">Training Loss</div>
+        <div class="vw-tile-val" id="tileTime">42ms</div>
+        <div class="vw-tile-lbl">Latency</div>
       </div>
       <div class="vw-tile">
-        <div class="vw-tile-val" id="valEpoch">0</div>
-        <div class="vw-tile-lbl">Epochs Done</div>
-      </div>
-      <div class="vw-tile">
-        <div class="vw-tile-val" id="valLR">1e-3</div>
-        <div class="vw-tile-lbl">Learning Rate</div>
+        <div class="vw-tile-val" id="tileF1">0.91</div>
+        <div class="vw-tile-lbl">F1 Score</div>
       </div>
     </div>
   </div>
 
   <div class="vw-foot">
-    <span>Serving teams in Jaipur · IT/ITES &amp; Tourism</span>
-    <span>PyTorch · CUDA · Distributed Training</span>
+    <span class="vw-tip" data-tip="An ensemble of XGBoost and LightGBM trained on Jaipur's IT/ITES and gemstone records, validated with 5-fold cross-validation.">Built with: Ensemble + Cross-Validation</span>
+    <span>Model version v2.1 &#183; Trained on Sitapura infrastructure</span>
   </div>
 </div>
 
 <script>
   (function () {
-    const lossTrack = document.getElementById("lossTrack");
-    const tokens = document.querySelectorAll(".vw-word-token:not(.epoch-label)");
-    const btnTrain = document.getElementById("btnTrainToggle");
-    const batchTime = document.getElementById("batchTimestamp");
-    const epochChip = document.getElementById("epochChip");
-    const logFlow = document.getElementById("logFlow");
-    const logStatus = document.getElementById("logStatus");
-    const valAcc = document.getElementById("valAcc");
-    const valLoss = document.getElementById("valLoss");
-    const valEpoch = document.getElementById("valEpoch");
-    const valLR = document.getElementById("valLR");
+    const pills = document.querySelectorAll(".vw-pill");
+    const txtQuery = document.getElementById("txtQuery");
+    const searchBox = document.getElementById("searchBox");
+    const resultBox = document.getElementById("resultBox");
+    const docSource = document.getElementById("docSource");
+    const docScore = document.getElementById("docScore");
+    const ansText = document.getElementById("ansText");
+    const statusChip = document.getElementById("statusChip");
+    const tileMatch = document.getElementById("tileMatch");
+    const tileTime = document.getElementById("tileTime");
+    const tileF1 = document.getElementById("tileF1");
 
-    const numBars = 36;
-    const bars = [];
-    let activeIdx = 0;
-    let globalStep = 0;
-    const totalSteps = 180;
-    let isTraining = true;
-
-    // Simulated loss trajectory (starts high, converges with noise)
-    function lossForStep(step) {
-      const progress = Math.min(step / totalSteps, 1);
-      const base = 0.98 * Math.exp(-5.5 * progress) + 0.02;
-      const noise = 0.04 * Math.sin(step * 1.1) + 0.02 * Math.sin(step * 3.7);
-      return Math.max(0.005, Math.min(1.0, base + noise * (1 - progress * 0.6)));
-    }
-
-    function accuracyForStep(step) {
-      const progress = Math.min(step / totalSteps, 1);
-      const base = 0.92 * (1 - Math.exp(-4.8 * progress)) + 0.05;
-      const noise = 0.015 * Math.sin(step * 0.9);
-      return Math.min(0.995, Math.max(0.1, base + noise));
-    }
-
-    // Build bars
-    const baseHeights = [];
-    for (let i = 0; i < numBars; i++) {
-      const raw = 20 + 70 * (1 - i / numBars) + 15 * Math.sin(i * 1.8);
-      baseHeights.push(Math.max(15, Math.min(100, raw)));
-    }
-
-    for (let i = 0; i < numBars; i++) {
-      const bar = document.createElement("div");
-      bar.className = "vw-wave-bar";
-      bar.style.height = baseHeights[i] + "%";
-      bar.addEventListener("click", () => {
-        const targetStep = Math.floor((i / numBars) * totalSteps);
-        seekTo(targetStep);
-      });
-      lossTrack.appendChild(bar);
-      bars.push(bar);
-    }
-
-    // Tokens are the non-epoch-label tokens
-    const clickableTokens = [];
-    tokens.forEach((tok) => {
-      clickableTokens.push(tok);
-      tok.addEventListener("click", () => {
-        const idx = Array.from(clickableTokens).indexOf(tok);
-        if (idx >= 0) {
-          const epochStep = Math.floor((idx / clickableTokens.length) * totalSteps);
-          seekTo(epochStep);
-        }
-      });
-    });
-
-    // Also allow clicking on epoch labels to jump
-    const epochLabels = document.querySelectorAll(".vw-word-token.epoch-label");
-    epochLabels.forEach((el, ei) => {
-      el.addEventListener("click", () => {
-        const epochStep = Math.floor((ei / Math.max(epochLabels.length, 1)) * totalSteps);
-        seekTo(epochStep);
-      });
-    });
-
-    function seekTo(step) {
-      globalStep = Math.max(0, Math.min(totalSteps - 1, step));
-      activeIdx = step;
-      updateDisplay();
-    }
-
-    function updateDisplay() {
-      const step = globalStep;
-      const progress = Math.min(step / totalSteps, 1);
-      const epochNum = Math.floor(progress * 50);
-      const epochStr = String(epochNum).padStart(2, "0");
-      epochChip.textContent = "Epoch " + epochStr + "/50";
-
-      const curLoss = lossForStep(step);
-      const curAcc = accuracyForStep(step);
-
-      // Update metrics
-      valAcc.textContent = curAcc.toFixed(3);
-      valLoss.textContent = curLoss.toFixed(3);
-      valEpoch.textContent = epochNum;
-      valLR.textContent = epochNum < 30 ? "1e-3" : "5e-4";
-
-      // Update bars
-      const barIdx = Math.floor((step / totalSteps) * numBars);
-      const converged = curLoss < 0.08;
-
-      bars.forEach((b, i) => {
-        let cls = "vw-wave-bar";
-        if (i < barIdx) {
-          cls += " passed";
-          if (converged && i > barIdx - 8) cls += " converged";
-        } else if (i === barIdx) {
-          cls += " active";
-        }
-        b.className = cls;
-
-        // Dynamic height: lower loss = lower bars
-        const lossVal = lossForStep(Math.floor((i / numBars) * totalSteps));
-        const h = 18 + 72 * (1 - lossVal * 0.9) + 8 * Math.sin(i * 0.7 + step * 0.2);
-        b.style.height = Math.max(12, Math.min(100, h)) + "%";
-      });
-
-      // Update batch timestamp
-      const batchNum = String(step).padStart(3, "0");
-      batchTime.textContent = "Step " + batchNum + " / " + String(totalSteps).padStart(3, "0");
-
-      // Update log tokens
-      const logEntries = [
-        { label: "Epoch " + epochStr, type: "epoch-label" },
-        { label: "loss: " + curLoss.toFixed(3), val: curLoss },
-        { label: "acc: " + curAcc.toFixed(3), val: curAcc },
-        { label: "lr: " + valLR.textContent, val: null }
-      ];
-
-      // Rebuild log flow
-      logFlow.innerHTML = "";
-      logEntries.forEach((entry, idx) => {
-        const span = document.createElement("span");
-        span.className = "vw-word-token";
-        if (entry.type === "epoch-label") {
-          span.classList.add("epoch-label");
-          span.style.cursor = "pointer";
-        }
-        span.textContent = entry.label;
-        if (idx === 0) {
-          span.classList.add("active");
-        }
-        if (entry.type !== "epoch-label") {
-          span.addEventListener("click", () => {
-            const clickIdx = Array.from(logFlow.children).indexOf(span);
-            const epochStep = Math.floor((clickIdx / logEntries.length) * totalSteps);
-            seekTo(epochStep);
-          });
-        } else {
-          span.addEventListener("click", () => {
-            const epochStep = Math.floor((idx / logEntries.length) * totalSteps);
-            seekTo(epochStep);
-          });
-        }
-        logFlow.appendChild(span);
-      });
-
-      // Log status
-      logStatus.textContent = isTraining ? "Running" : "Paused";
-      logStatus.style.color = isTraining ? "var(--green)" : "var(--amber)";
-    }
-
-    // Training loop
-    let intervalId = setInterval(() => {
-      if (isTraining) {
-        globalStep = (globalStep + 1) % totalSteps;
-        activeIdx = globalStep;
-        updateDisplay();
+    const data = {
+      demand: {
+        q: "\"Features: sales_week, tourist_arrivals, gem_price_index\"",
+        doc: "Model: Ensemble_XGB_v2  |  Dataset: Jaipur ITE – Sisodia's Handicraft Logs",
+        score: "95% Confidence",
+        time: "42ms",
+        ans: "Predicted demand next week: <b>+12.3%</b>. Recommend increasing production of gem-set ornaments.",
+        acc: "92.3%",
+        f1: "0.91"
+      },
+      quality: {
+        q: "\"Features: polish_score, clarity_grade, weight_carat, symmetry_rating\"",
+        doc: "Model: Gemstone_Classifier_RF  |  Dataset: Jaipur G&J – Quality (Sitapura Lab)",
+        score: "98% Confidence",
+        time: "38ms",
+        ans: "Predicted quality grade: <b>Premium (A+)</b>. Stone passes all six ASTM thresholds.",
+        acc: "96.7%",
+        f1: "0.95"
+      },
+      price: {
+        q: "\"Features: size_mm, color_depth, certificate_type, cut_shape, origin_region\"",
+        doc: "Model: Gemstone_Price_Regressor_v3  |  Dataset: Jaipur Gem Market Transactions (Johari Bazaar)",
+        score: "93% Confidence",
+        time: "55ms",
+        ans: "Estimated market price: <b>Rs. 1,24,800/carat</b>. Variability &plusmn;6% based on last 50 trades.",
+        acc: "90.8%",
+        f1: "0.87"
       }
-    }, 320);
+    };
 
-    btnTrain.addEventListener("click", () => {
-      isTraining = !isTraining;
-      const span = btnTrain.querySelector("span");
-      if (isTraining) {
-        span.textContent = "Pause Training";
-        btnTrain.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> <span>Pause Training</span>';
-      } else {
-        span.textContent = "Resume Training";
-        btnTrain.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><polygon points="5,3 19,12 5,21"/></svg> <span>Resume Training</span>';
-      }
-      logStatus.textContent = isTraining ? "Running" : "Paused";
-      logStatus.style.color = isTraining ? "var(--green)" : "var(--amber)";
-    });
+    function selectPill(pill) {
+      pills.forEach(function(b) { b.classList.remove("active"); });
+      pill.classList.add("active");
+      var d = data[pill.getAttribute("data-q")];
+      if (!d) return;
 
-    updateDisplay();
+      txtQuery.textContent = d.q;
+      searchBox.classList.add("active");
+
+      statusChip.textContent = "Running Inference…";
+      statusChip.classList.add("busy");
+      resultBox.classList.add("vw-loading");
+      docSource.textContent = "Querying model…";
+      docScore.textContent = "";
+      ansText.style.opacity = 0;
+
+      setTimeout(function() {
+        docSource.textContent = d.doc;
+        docScore.textContent = d.score;
+        ansText.innerHTML = d.ans;
+        ansText.style.opacity = 1;
+        resultBox.classList.remove("vw-loading");
+        statusChip.textContent = "Production Ready";
+        statusChip.classList.remove("busy");
+        searchBox.classList.remove("active");
+        tileMatch.textContent = d.acc;
+        tileTime.textContent = d.time;
+        tileF1.textContent = d.f1;
+      }, 500);
+    }
+
+    pills.forEach(function(p) { p.addEventListener("click", function() { selectPill(p); }); });
   })();
 </script>
