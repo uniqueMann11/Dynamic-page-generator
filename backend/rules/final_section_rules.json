@@ -1,37 +1,33 @@
 {
-  "how-i-work": {
-    "eyebrow": "Micro-label for process section (e.g., 'How I work'). Max 3 words.",
-    "h2": "Heading describing delivery workflow (e.g., 'How I deliver a machine learning project'). Max 8 words.",
-    "lede": "Lede paragraph describing milestone-based delivery and regular updates. Exactly 1 sentence.",
-    "timeline": [
+  "process": {
+    "sec-head": {
+      "eyebrow": "Micro-label for process section (e.g., 'How it gets built'). Max 3 words.",
+      "h2": "Heading describing delivery workflow (e.g., 'How I deliver a machine learning project'). Max 8 words.",
+      "lede": "Lede paragraph describing milestone-based delivery and regular updates. Exactly 1 sentence."
+    },
+    "steps": [
       {
-        "tl-item": {
-          "tl-when": {
-            "pill": "Step stage or day range (e.g., 'Day 1 to 2', 'Step 02').",
-            "sub": "Stage subtitle / timing tag (e.g., 'free call', 'within 48h', 'the build')."
-          },
-          "tl-body": {
-            "h3": "Milestone step title (e.g., 'Discovery', 'Scope and technical spec'). Max 4 words.",
-            "p": "Description of actions, deliverables, and communication during this step. Must reference {{CITY}} in discovery call step. Exactly 1-2 sentences."
-          }
+        "step": {
+          "num": "Phase index (e.g., 'PHASE 01', 'PHASE 02').",
+          "days": "Stage timing subtitle (e.g., 'days 1 to 2 \u00b7 free call', 'within 48h', 'day 3', 'milestones', 'post-launch').",
+          "h3": "Milestone step title (e.g., 'Discovery', 'Scope and technical spec'). Max 4 words.",
+          "body": "Description of actions, deliverables, and communication during this step. Must reference {{CITY}} in discovery call step. Exactly 1-2 sentences."
         }
       }
-    ],
-    "btn--primary": {
-      "text": "CTA button text (e.g., 'Start with a free discovery call').",
-      "url": "Anchor link (e.g., '#lets-talk')."
-    }
+    ]
   },
-  "proof-section": {
-    "eyebrow": "Micro-label for case studies (e.g., 'Proof'). Max 2 words.",
-    "h2": "Heading introducing delivered projects with numbers (e.g., 'Machine learning projects delivered, with real numbers'). Max 8 words.",
-    "lede": "Lede paragraph explaining verifiable case studies with measurable outcomes. Exactly 1-2 sentences.",
-    "proof-grid": [
+  "proof": {
+    "sec-head": {
+      "eyebrow": "Micro-label for case studies (e.g., 'Proof'). Max 2 words.",
+      "h2": "Heading introducing delivered projects with numbers (e.g., 'Machine learning projects delivered, with real numbers'). Max 8 words.",
+      "lede": "Lede paragraph explaining verifiable case studies with measurable outcomes. Exactly 1-2 sentences."
+    },
+    "grid g3": [
       {
         "proof-card": {
           "proof-cat": "Domain category tag (e.g., 'NLP', 'Computer Vision', 'Predictive Modeling'). Max 2 words.",
           "proof-inner": {
-            "h3": "Case study title describing technical solution (e.g., 'NLP for chatbots'). Max 5 words.",
+            "h3": "Case study title describing technical solution (e.g., 'NLP for customer feedback'). Max 5 words.",
             "p": "Description of problem solved and business impact. Exactly 1-2 sentences.",
             "proof-metric": {
               "b": "Key metric percentage or speedup number (e.g., '92%', '95%', '<60s').",
@@ -46,16 +42,18 @@
       }
     ],
     "proof-foot": {
-      "btn--ghost": {
+      "btn-ghost": {
         "text": "Button text to view all case studies (e.g., 'View all 12 case studies').",
         "url": "Target URL."
       }
     }
   },
   "why-me": {
-    "eyebrow": "Micro-label for differentiators (e.g., 'Why me'). Max 2 words.",
-    "h2": "Heading asking why local businesses choose the specialist (e.g., 'Why {{CITY}} businesses choose to work with me'). Must include {{CITY}}.",
-    "why-grid": [
+    "sec-head": {
+      "eyebrow": "Micro-label for differentiators (e.g., 'Why me'). Max 2 words.",
+      "h2": "Heading asking why local businesses choose the specialist (e.g., 'Why {{CITY}} businesses choose to work with me'). Must include {{CITY}}."
+    },
+    "grid g3": [
       {
         "why-card": {
           "why-tag": "Tag label badge (e.g., 'Local', 'Direct', 'Fixed', 'Proof', '48h', 'Value'). Max 1-2 words.",
@@ -65,20 +63,20 @@
       }
     ]
   },
-  "client-words": {
-    "center": {
+  "testimonials": {
+    "sec-head": {
       "eyebrow": "Micro-label for testimonials (e.g., 'Client words'). Max 2 words.",
       "h2": "Heading introducing verified client feedback (e.g., 'What clients say about working directly with me'). Max 8 words.",
       "lede": "Lede paragraph explaining client reviews. Exactly 1-2 sentences."
     },
-    "tst-grid": [
+    "grid g3": [
       {
         "tst-card": {
           "tst-quote": "Direct quote from a client praising direct access, technical execution, and reliability. Exactly 2-3 sentences.",
           "tst-who": {
-            "tst-avatar": "Client initials (e.g., 'RP', 'MS', 'AK'). ONLY TWO latters",
-            "b": "Client placeholder name (e.g., 'Client name').",
-            "span": "Client title and location (e.g., 'Founder, {{CITY}} SaaS').",
+            "tst-avatar": "Client initials (e.g., 'RP', 'MS', 'AK'). ONLY TWO letters.",
+            "b": "Client placeholder name (e.g., 'Rahul Patel').",
+            "tst-role": "Client title and location (e.g., 'Founder, {{CITY}} SaaS').",
             "tst-src": "Platform source tag (e.g., 'Upwork', 'LinkedIn', 'Google')."
           }
         }
@@ -86,14 +84,16 @@
     ]
   },
   "insights": {
-    "eyebrow": "Micro-label for blog/guides section (e.g., 'Insights'). Max 2 words.",
-    "h2": "Heading introducing guides before hiring (e.g., 'Reading before you hire an ML engineer'). Max 7 words.",
-    "lede": "Lede paragraph describing technical articles on cost and strategy. Exactly 1-2 sentences.",
-    "blog-grid": [
+    "sec-head": {
+      "eyebrow": "Micro-label for blog/guides section (e.g., 'Insights'). Max 2 words.",
+      "h2": "Heading introducing guides before hiring (e.g., 'Reading before you hire an ML engineer'). Max 7 words.",
+      "lede": "Lede paragraph describing technical articles on cost and strategy. Exactly 1-2 sentences."
+    },
+    "grid g3": [
       {
         "blog-card": {
+          "proof-cat": "Article category (e.g., 'Cost', 'Vetting', 'Strategy'). Max 1-2 words.",
           "blog-inner": {
-            "blog-cat": "Article category (e.g., 'Cost', 'Vetting', 'Strategy'). Max 1-2 words.",
             "h3": "Article title covering hiring advice or pricing breakdown (e.g., 'Machine learning consultant cost in 2026, by project type'). Max 8 words.",
             "p": "Article summary. Exactly 1 sentence.",
             "link-cta": {
@@ -105,19 +105,19 @@
       }
     ],
     "blog-foot": {
-      "btn--ghost": {
-        "text": "Link button to full blog (e.g., 'Read the blog').",
+      "btn-ghost": {
+        "text": "Link button to full blog (e.g., 'Read all articles').",
         "url": "Blog index URL."
       }
     }
   },
-  "faq-section": {
-    "center": {
+  "faq": {
+    "sec-head": {
       "eyebrow": "Micro-label for FAQ section (e.g., 'FAQ'). Max 1 word.",
       "h2": "Heading for FAQ (e.g., 'Frequently asked questions'). Max 3 words.",
       "lede": "Lede paragraph for FAQ section. Must include {{CITY}}. Exactly 1 sentence."
     },
-    "faq-wrap": [
+    "faq": [
       {
         "faq-item": {
           "faq-q": "Question addressing client objection, pricing, process, or local availability in {{CITY}}. Must include {{CITY}} where relevant.",
@@ -125,30 +125,5 @@
         }
       }
     ]
-  },
-  "call-me-now": {
-    "eyebrow": "Micro-label above primary contact CTA (e.g., 'Call me now'). Max 3 words.",
-    "h2": "Heading inviting project discussion (e.g., 'Talk to a machine learning engineer in {{CITY}}'). Must include {{CITY}}.",
-    "lede": "Lede paragraph explaining response time (24h) and spec delivery (48h). Exactly 2 sentences.",
-    "cta-contact": [
-      {
-        "btn--wa": {
-          "text": "WhatsApp contact button text with phone number (e.g., 'WhatsApp +91 95372 90206').",
-          "url": "WhatsApp API link."
-        }
-      },
-      {
-        "btn--ghost": {
-          "text": "Call button text (e.g., 'Call now').",
-          "url": "Tel link."
-        }
-      }
-    ],
-    "cta-meta": "Metadata string detailing response time, spec timeframe, and NDA policy. Max 10 words.",
-    "author-row": {
-      "img": "Profile photo URL.",
-      "b": "Specialist name (e.g., 'Shreyans Padmani').",
-      "span": "Specialist title and location (e.g., 'Machine Learning Engineer · {{CITY}}, {{STATE}}')."
-    }
   }
 }

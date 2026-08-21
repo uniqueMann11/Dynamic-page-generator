@@ -56,9 +56,14 @@ RULES_DIR = os.path.join(BASE_DIR, "rules")
 os.makedirs(HTML_PAGES_DIR, exist_ok=True)
 os.makedirs(GENERATED_DIR, exist_ok=True)
 
-TEMPLATE_PATH = os.path.join(ROOT_DIR, "hire-machine-learning-engineer-ahmedabad.html")
+# Prefer new template: hire-machine-learning-engineer-ahmedabad copy.html
+TEMPLATE_PATH = os.path.join(BASE_DIR, "hire-machine-learning-engineer-ahmedabad copy.html")
+if not os.path.exists(TEMPLATE_PATH):
+    TEMPLATE_PATH = os.path.join(ROOT_DIR, "hire-machine-learning-engineer-ahmedabad copy.html")
 if not os.path.exists(TEMPLATE_PATH):
     TEMPLATE_PATH = os.path.join(BASE_DIR, "hire-machine-learning-engineer-ahmedabad.html")
+if not os.path.exists(TEMPLATE_PATH):
+    TEMPLATE_PATH = os.path.join(ROOT_DIR, "hire-machine-learning-engineer-ahmedabad.html")
 if not os.path.exists(TEMPLATE_PATH):
     TEMPLATE_PATH = os.path.join(HTML_PAGES_DIR, "location-page-template.html")
 
@@ -204,8 +209,6 @@ Return ONLY valid JSON.
         new_data = json.loads(content)
 
         # --- Fix double-encoded JSON responses from LLM ---
-        # Some models wrap the entire response as a string inside a single-key object
-        # e.g. {"": "{"value-strip": ...}"} or {"response": "{...}"}
         if isinstance(new_data, dict) and len(new_data) == 1:
             only_key = list(new_data.keys())[0]
             only_val = new_data[only_key]
@@ -216,7 +219,7 @@ Return ONLY valid JSON.
                         print(f"  [FIX] Unwrapped double-encoded JSON (key was: {repr(only_key)})")
                         new_data = unwrapped
                 except (json.JSONDecodeError, ValueError):
-                    pass  # Not double-encoded, leave as-is
+                    pass
 
         os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
         with open(output_path, "w", encoding="utf-8") as f:
@@ -258,7 +261,7 @@ def _set_href(el, url):
 
 def _update_prose_paragraphs(prose_el, p_data, soup):
     """
-    Updates the <p> elements within a .prose container.
+    Updates the <p> elements within a container (.prose, .tldr, etc.).
     Handles matching count, adding new <p> tags if data has more items,
     and deleting/decomposing any excess <p> tags if data has fewer items.
     """
@@ -279,7 +282,6 @@ def _update_prose_paragraphs(prose_el, p_data, soup):
     if not p_els:
         p_els = prose_el.find_all("p")
 
-    # Update existing or create new
     for i, p_text in enumerate(p_list):
         if i < len(p_els):
             p_els[i].string = str(p_text)
@@ -292,7 +294,6 @@ def _update_prose_paragraphs(prose_el, p_data, soup):
             else:
                 prose_el.append(new_p)
 
-    # Remove any extra <p> elements that existed in template but not in new data!
     for i in range(len(p_list), len(p_els)):
         p_els[i].decompose()
 
@@ -309,10 +310,6 @@ def _update_meta_and_jsonld(soup, role, city, state):
     Update all <meta> tags (SEO, OG, Twitter), <title>, <link rel=canonical>,
     and <script type=application/ld+json> structured data to reflect the
     new role, city and state.
-
-    Uses targeted string replacement within each attribute value so that
-    only the template city/state/role tokens are swapped — no blind global
-    replace that could damage class names or CSS.
     """
     old_city  = TEMPLATE_CITY
     old_state = TEMPLATE_STATE
@@ -324,14 +321,12 @@ def _update_meta_and_jsonld(soup, role, city, state):
     old_role_slug = old_role.lower().replace(" ", "-")
     new_role_slug = role.lower().replace(" ", "-")
 
-    # Helper: swap template tokens inside a string
     def _swap(text):
         if not text:
             return text
         text = text.replace(old_city, city)
         text = text.replace(old_state, state)
         text = text.replace(old_role, role)
-        # Slug-based replacements (URLs)
         text = text.replace(old_slug, new_slug)
         text = text.replace(old_role_slug, new_role_slug)
         return text
@@ -341,24 +336,24 @@ def _update_meta_and_jsonld(soup, role, city, state):
         print("  ⚠ No <head> found — skipping meta/JSON-LD update.")
         return
 
-    # ── 1. <title> ────────────────────────────────────────────────────────
+    # 1. <title>
     title_el = head.find("title")
     if title_el and title_el.string:
         title_el.string = _swap(title_el.string)
 
-    # ── 2. <meta> tags ────────────────────────────────────────────────────
+    # 2. <meta> tags
     for meta in head.find_all("meta"):
         for attr in ("content",):
             val = meta.get(attr)
             if val:
                 meta[attr] = _swap(val)
 
-    # ── 3. <link rel="canonical"> ─────────────────────────────────────────
+    # 3. <link rel="canonical">
     canon = head.find("link", rel="canonical")
     if canon and canon.get("href"):
         canon["href"] = _swap(canon["href"])
 
-    # ── 4. <script type="application/ld+json"> ───────────────────────────
+    # 4. <script type="application/ld+json">
     for script in head.find_all("script", type="application/ld+json"):
         if not script.string:
             continue
@@ -368,7 +363,6 @@ def _update_meta_and_jsonld(soup, role, city, state):
             print("  ⚠ Could not parse JSON-LD — skipping.")
             continue
 
-        # Recursively walk the JSON and swap string values
         def _walk(obj):
             if isinstance(obj, dict):
                 return {k: _walk(v) for k, v in obj.items()}
@@ -380,24 +374,19 @@ def _update_meta_and_jsonld(soup, role, city, state):
 
         ld = _walk(ld)
 
-        # Also update specific structured fields for safety:
         graph = ld.get("@graph", [])
         for node in graph:
             ntype = node.get("@type", "")
-
             if ntype == "ProfessionalService":
-                # Update areaServed city/state names
                 for area in node.get("areaServed", []):
                     if area.get("@type") == "City":
                         area["name"] = city
                     elif area.get("@type") == "State":
                         area["name"] = state
-                # Update address
                 addr = node.get("address", {})
                 if addr:
                     addr["addressLocality"] = city
                     addr["addressRegion"] = state
-                # Update founder jobTitle
                 founder = node.get("founder", {})
                 if founder:
                     founder["jobTitle"] = role
@@ -465,46 +454,54 @@ def compile_html(role, city, state, geo_code, landmarks, dominent_industries, ou
     soup = BeautifulSoup(html_content, "html.parser")
 
     # ─────────────────────────────────────────────────────────────
-    # 1. HERO & TRUSTBAR (from new_hero.json)
+    # 1. HERO SECTION (from new_hero.json)
     # ─────────────────────────────────────────────────────────────
-    hero_sec = soup.find("section", class_="hero")
+    hero_sec = soup.find("section", id="demo") or soup.find("section", class_="hero")
     if hero_sec and "hero" in hero_data:
         hd = hero_data["hero"]
 
-        # hero-badge
-        badge_el = hero_sec.find(class_="hero-badge")
-        if badge_el and "hero-badge" in hd:
-            dot_span = badge_el.find(class_="dot")
-            badge_el.clear()
-            if dot_span:
-                badge_el.append(dot_span)
-            else:
-                badge_el.append(soup.new_tag("span", attrs={"class": "dot"}))
-            badge_el.append(" " + str(hd["hero-badge"]))
+        # eyebrow
+        _set_text(hero_sec.find("p", class_="eyebrow"), hd.get("eyebrow"))
 
-        # h1
+        # h1 (supports h1-text + span/em)
         h1_el = hero_sec.find("h1")
         if h1_el and "h1" in hd:
             h1_data = hd["h1"]
-            h1_el.clear()
             if isinstance(h1_data, dict):
+                h1_el.clear()
                 if "h1-text" in h1_data:
                     h1_el.append(str(h1_data["h1-text"]) + " ")
-                if "em" in h1_data:
-                    em_tag = soup.new_tag("em")
-                    em_tag.string = str(h1_data["em"])
-                    h1_el.append(em_tag)
+                if "span" in h1_data:
+                    span_tag = soup.new_tag("span")
+                    span_tag.string = str(h1_data["span"])
+                    h1_el.append(span_tag)
+                elif "em" in h1_data:
+                    span_tag = soup.new_tag("span")
+                    span_tag.string = str(h1_data["em"])
+                    h1_el.append(span_tag)
                 if "h1-suffix" in h1_data:
                     h1_el.append(str(h1_data["h1-suffix"]))
             else:
                 h1_el.string = str(h1_data)
 
         # hero-sub
-        sub_el = hero_sec.find(class_="hero-sub")
-        if sub_el and "hero-sub" in hd:
-            sub_el.string = str(hd["hero-sub"])
+        _set_text(hero_sec.find(class_="hero-sub"), hd.get("hero-sub"))
 
-        # hero-stats
+        # creds (new template)
+        creds_container = hero_sec.find(class_="creds")
+        if creds_container and "creds" in hd:
+            cred_els = creds_container.find_all(class_="cred")
+            for i, cred_entry in enumerate(hd["creds"]):
+                if i < len(cred_els):
+                    c_info = cred_entry.get("cred", cred_entry)
+                    t_box = cred_els[i].find(class_="t")
+                    if t_box:
+                        if "i" in c_info:
+                            _set_text(t_box.find("i"), c_info["i"])
+                        if "b" in c_info:
+                            _set_text(t_box.find("b"), c_info["b"])
+
+        # hero-stats (legacy fallback)
         stats_container = hero_sec.find(class_="hero-stats")
         if stats_container and "hero-stats" in hd:
             chips = stats_container.find_all(class_="stat-chip")
@@ -518,14 +515,15 @@ def compile_html(role, city, state, geo_code, landmarks, dominent_industries, ou
                     if span_el and "span" in c_dict:
                         span_el.string = str(c_dict["span"])
 
-        # hero-actions
-        actions_container = hero_sec.find(class_="hero-actions")
-        if actions_container and "hero-actions" in hd:
-            btns = actions_container.find_all("a", class_="btn")
-            for i, btn_entry in enumerate(hd["hero-actions"]):
+        # hero-cta / hero-actions
+        cta_container = hero_sec.find(class_="hero-cta") or hero_sec.find(class_="hero-actions")
+        hero_acts = hd.get("hero-cta") or hd.get("hero-actions") or []
+        if cta_container and hero_acts:
+            btns = cta_container.find_all("a", class_="btn")
+            for i, btn_entry in enumerate(hero_acts):
                 if i < len(btns):
                     btn_el = btns[i]
-                    b_info = btn_entry.get("btn--primary") or btn_entry.get("btn--ghost") or btn_entry
+                    b_info = btn_entry.get("btn-primary") or btn_entry.get("btn--primary") or btn_entry.get("btn-ghost") or btn_entry.get("btn--ghost") or btn_entry
                     if isinstance(b_info, dict):
                         svg = btn_el.find("svg")
                         btn_el.clear()
@@ -536,61 +534,16 @@ def compile_html(role, city, state, geo_code, landmarks, dominent_industries, ou
                         if "url" in b_info:
                             btn_el["href"] = str(b_info["url"])
 
-        # hero-note
-        note_el = hero_sec.find(class_="hero-note")
-        if note_el and "hero-note" in hd:
-            svg = note_el.find("svg")
-            note_el.clear()
-            if svg:
-                note_el.append(svg)
-                note_el.append(" ")
-            note_el.append(str(hd["hero-note"]))
-
-        # route-card
-        rc_el = hero_sec.find(class_="route-card")
-        if rc_el and "route-card" in hd:
-            rc_data = hd["route-card"]
-            if "route-title" in rc_data:
-                _set_text(rc_el.find(class_="route-title"), rc_data["route-title"])
-
-            nodes = rc_el.find_all(class_="route-node")
-            if "route-nodes" in rc_data:
-                for i, node_entry in enumerate(rc_data["route-nodes"]):
-                    if i < len(nodes):
-                        n_info = list(node_entry.values())[0] if isinstance(node_entry, dict) and not "b" in node_entry else node_entry
-                        if isinstance(n_info, dict):
-                            txt_box = nodes[i].find(class_="txt")
-                            if txt_box:
-                                _set_text(txt_box.find("b"), n_info.get("b"))
-                                _set_text(txt_box.find("span"), n_info.get("span"))
-                            if "tag" in n_info and nodes[i].find(class_="tag"):
-                                _set_text(nodes[i].find(class_="tag"), n_info["tag"])
-
-            foot = rc_el.find(class_="route-foot")
-            if foot and "route-foot" in rc_data:
-                spans = foot.find_all("span")
-                for i, f_item in enumerate(rc_data["route-foot"]):
-                    if i < len(spans):
-                        spans[i].clear()
-                        if "text" in f_item:
-                            spans[i].append(str(f_item["text"]) + " ")
-                        if "b" in f_item:
-                            b_tag = soup.new_tag("b")
-                            b_tag.string = str(f_item["b"])
-                            spans[i].append(b_tag)
-
-    # Trustbar
-    trustbar_el = soup.find(class_="trustbar")
-    if trustbar_el and "trustbar" in hero_data:
-        tb_items = trustbar_el.find_all(class_="trust-item")
-        t_data = hero_data["trustbar"].get("trust-item", [])
-        for i, item_text in enumerate(t_data):
-            if i < len(tb_items):
-                svg = tb_items[i].find("svg")
-                tb_items[i].clear()
-                if svg:
-                    tb_items[i].append(svg)
-                tb_items[i].append(str(item_text))
+        # live / hero-note
+        live_el = hero_sec.find(class_="live") or hero_sec.find(class_="hero-note")
+        live_text = hd.get("live") or hd.get("hero-note")
+        if live_el and live_text:
+            pulse = live_el.find(class_="pulse") or live_el.find("svg")
+            live_el.clear()
+            if pulse:
+                live_el.append(pulse)
+                live_el.append(" ")
+            live_el.append(str(live_text))
 
     print("  ✓ Hero section applied.")
 
@@ -598,54 +551,47 @@ def compile_html(role, city, state, geo_code, landmarks, dominent_industries, ou
     # 2. SECOND HERO (from new_second_hero.json)
     # ─────────────────────────────────────────────────────────────
     if second_data:
-        # value-strip
-        val_sec = soup.find("section", class_=lambda c: c and "value-strip" in c) or (soup.find(class_="value-grid").find_parent("section") if soup.find(class_="value-grid") else None)
-        v_data = second_data.get("value-strip") or second_data.get("value_strip_section")
-        if val_sec and v_data:
-            center_el = val_sec.find(class_="center")
-            if center_el and "center" in v_data:
-                _set_text(center_el.find(class_="eyebrow"), v_data["center"].get("eyebrow"))
-                _set_text(center_el.find("h2"), v_data["center"].get("h2"))
+        # why-direct (value-strip)
+        why_sec = soup.find("section", id="why-direct") or soup.find("section", class_=lambda c: c and "value-strip" in c) or (soup.find(class_="value-grid").find_parent("section") if soup.find(class_="value-grid") else None)
+        v_data = second_data.get("why-direct") or second_data.get("value-strip") or second_data.get("value_strip_section")
+        if why_sec and v_data:
+            sec_head = why_sec.find(class_="sec-head") or why_sec.find(class_="center")
+            sh_data = v_data.get("sec-head") or v_data.get("center") or v_data
+            if sec_head:
+                _set_text(sec_head.find(class_="eyebrow"), sh_data.get("eyebrow"))
+                _set_text(sec_head.find("h2"), sh_data.get("h2"))
 
-            cards = val_sec.find_all(class_="value-card")
-            v_grid = v_data.get("value-grid", [])
+            cards = why_sec.find_all(class_="value-card")
+            v_grid = v_data.get("grid g4") or v_data.get("value-grid") or []
             for i, card_entry in enumerate(v_grid):
                 if i < len(cards):
                     c_info = card_entry.get("value-card", card_entry)
                     _set_text(cards[i].find("h3"), c_info.get("h3"))
                     _set_text(cards[i].find("p"), c_info.get("p"))
 
-        # quick-answer
-        qa_sec = soup.find("section", class_=lambda c: c and "quick-answer" in c) or (soup.find(class_="answer-card").find_parent("section") if soup.find(class_="answer-card") else None)
-        q_data = second_data.get("quick-answer") or second_data.get("plain_answer_section")
-        if qa_sec and q_data:
-            pg = q_data.get("prose-grid", q_data)
-            _set_text(qa_sec.find(class_="eyebrow"), pg.get("eyebrow"))
-            _set_text(qa_sec.find("h2"), pg.get("h2"))
+        # what-is (quick-answer)
+        what_sec = soup.find("section", id="what-is") or soup.find("section", class_=lambda c: c and "quick-answer" in c) or (soup.find(class_="tldr").find_parent("section") if soup.find(class_="tldr") else None)
+        q_data = second_data.get("what-is") or second_data.get("quick-answer") or second_data.get("plain_answer_section")
+        if what_sec and q_data:
+            sec_head = what_sec.find(class_="sec-head")
+            sh_data = q_data.get("sec-head") or q_data.get("prose-grid") or q_data
+            if sec_head:
+                _set_text(sec_head.find(class_="eyebrow"), sh_data.get("eyebrow"))
+                _set_text(sec_head.find("h2"), sh_data.get("h2"))
 
-            ans_card = qa_sec.find(class_="answer-card")
-            if ans_card and "answer-card" in pg:
-                _set_text(ans_card.find(class_="tag"), pg["answer-card"].get("tag"))
-                _set_text(ans_card.find("p"), pg["answer-card"].get("p"))
+            tldr_el = what_sec.find(class_="tldr") or what_sec.find(class_="answer-card")
+            if tldr_el:
+                t_data = q_data.get("tldr") or q_data.get("answer-card") or {}
+                if "b" in t_data:
+                    _set_text(tldr_el.find("b"), t_data["b"])
+                if "tag" in t_data:
+                    _set_text(tldr_el.find(class_="tag"), t_data["tag"])
 
-            prose_el = qa_sec.find(class_="prose")
-            if prose_el and "prose" in pg:
-                _update_prose_paragraphs(prose_el, pg["prose"].get("p", []), soup)
-
-                chk_list = pg["prose"].get("checklist", [])
-                if isinstance(chk_list, str):
-                    chk_list = [chk_list]
-                li_els = prose_el.select(".checklist li")
-                for i, li_text in enumerate(chk_list):
-                    if i < len(li_els):
-                        svg = li_els[i].find("svg")
-                        li_els[i].clear()
-                        if svg:
-                            li_els[i].append(svg)
-                            li_els[i].append(" ")
-                        li_els[i].append(str(li_text))
-                for i in range(len(chk_list), len(li_els)):
-                    li_els[i].decompose()
+                p_list = t_data.get("p", []) if isinstance(t_data, dict) else []
+                if not p_list and "prose" in q_data:
+                    p_list = q_data["prose"].get("p", [])
+                if p_list:
+                    _update_prose_paragraphs(tldr_el, p_list, soup)
 
         print("  ✓ Second hero section applied.")
 
@@ -653,59 +599,70 @@ def compile_html(role, city, state, geo_code, landmarks, dominent_industries, ou
     # 3. THIRD SECTION (from new_third_section.json)
     # ─────────────────────────────────────────────────────────────
     if third_data:
-        # what-I-build
-        wb_sec = soup.find("section", class_=lambda c: c and ("what-I-build" in c or "what_i_build" in c)) or (soup.find(class_="svc-grid").find_parent("section") if soup.find(class_="svc-grid") else None)
-        wb_data = third_data.get("what-I-build") or third_data.get("what_i_build_section")
-        if wb_sec and wb_data:
-            _set_text(wb_sec.find(class_="eyebrow"), wb_data.get("eyebrow"))
-            _set_text(wb_sec.find("h2"), wb_data.get("h2"))
-            _set_text(wb_sec.find(class_="lede"), wb_data.get("lede"))
+        # services (what-I-build)
+        svc_sec = soup.find("section", id="services") or soup.find("section", class_=lambda c: c and ("what-I-build" in c or "what_i_build" in c)) or (soup.find(class_="svc-grid").find_parent("section") if soup.find(class_="svc-grid") else None)
+        svc_data = third_data.get("services") or third_data.get("what-I-build") or third_data.get("what_i_build_section")
+        if svc_sec and svc_data:
+            sec_head = svc_sec.find(class_="sec-head") or svc_sec
+            sh_data = svc_data.get("sec-head") or svc_data
+            _set_text(sec_head.find(class_="eyebrow"), sh_data.get("eyebrow"))
+            _set_text(sec_head.find("h2"), sh_data.get("h2"))
+            _set_text(sec_head.find(class_="lede"), sh_data.get("lede"))
 
-            cards = wb_sec.find_all(class_="svc-card")
-            svc_grid = wb_data.get("svc-grid", [])
-            for i, card_entry in enumerate(svc_grid):
+            cards = svc_sec.find_all(class_="svc-card")
+            s_grid = svc_data.get("svc-grid", [])
+            for i, card_entry in enumerate(s_grid):
                 if i < len(cards):
                     c_info = card_entry.get("svc-card", card_entry)
                     _set_text(cards[i].find(class_="svc-num"), c_info.get("svc-num"))
                     _set_text(cards[i].find("h3"), c_info.get("h3"))
                     _set_text(cards[i].find("p"), c_info.get("p"))
-                    # cta = cards[i].find(class_="link-cta")
-                    # if cta and "link-cta" in c_info:
-                    #     svg = cta.find("svg")
-                    #     cta.clear()
-                    #     cta.append(str(c_info["link-cta"].get("text", "")))
-                    #     if svg:
-                    #         cta.append(" ")
-                    #         cta.append(svg)
-                    #     _set_href(cta, c_info["link-cta"].get("url"))
 
-            explore_el = wb_sec.find(class_="svc-explore")
-            if explore_el and "svc-explore" in wb_data:
-                _set_text(explore_el.find("span"), wb_data["svc-explore"].get("span"))
+            explore_el = svc_sec.find(class_="svc-explore")
+            if explore_el and "svc-explore" in svc_data:
+                _set_text(explore_el.find("span"), svc_data["svc-explore"].get("span"))
                 chips = explore_el.find_all(class_="chip")
-                for i, chip_data in enumerate(wb_data["svc-explore"].get("chip", [])):
+                for i, chip_data in enumerate(svc_data["svc-explore"].get("chip", [])):
                     if i < len(chips):
-                        _set_text(chips[i], chip_data.get("text"))
+                        svg = chips[i].find("svg")
+                        chips[i].clear()
+                        chips[i].append(str(chip_data.get("text", "")))
+                        if svg:
+                            chips[i].append(" ")
+                            chips[i].append(svg)
                         _set_href(chips[i], chip_data.get("url"))
 
+        # stack (Tooling)
+        stack_sec = soup.find("section", id="stack")
+        stack_data = third_data.get("stack")
+        if stack_sec and stack_data:
+            sec_head = stack_sec.find(class_="sec-head") or stack_sec
+            sh_data = stack_data.get("sec-head") or stack_data
+            _set_text(sec_head.find(class_="eyebrow"), sh_data.get("eyebrow"))
+            _set_text(sec_head.find("h2"), sh_data.get("h2"))
+            _set_text(sec_head.find(class_="lede"), sh_data.get("lede"))
+
         # comparison
-        cmp_sec = soup.find("section", class_=lambda c: c and "comparison" in c) or (soup.find(class_="cmp").find_parent("section") if soup.find(class_="cmp") else None)
+        cmp_sec = soup.find("section", id="comparison") or soup.find("section", class_=lambda c: c and "comparison" in c) or (soup.find(class_="cmp").find_parent("section") if soup.find(class_="cmp") else None)
         cmp_data = third_data.get("comparison") or third_data.get("honest_comparison_section")
         if cmp_sec and cmp_data:
-            _set_text(cmp_sec.find(class_="eyebrow"), cmp_data.get("eyebrow"))
-            _set_text(cmp_sec.find("h2"), cmp_data.get("h2"))
-            _set_text(cmp_sec.find(class_="lede"), cmp_data.get("lede"))
+            sec_head = cmp_sec.find(class_="sec-head") or cmp_sec
+            sh_data = cmp_data.get("sec-head") or cmp_data
+            _set_text(sec_head.find(class_="eyebrow"), sh_data.get("eyebrow"))
+            _set_text(sec_head.find("h2"), sh_data.get("h2"))
+            _set_text(sec_head.find(class_="lede"), sh_data.get("lede"))
 
-            tbl = cmp_sec.find("table", class_="cmp")
-            if tbl and "cmp" in cmp_data:
-                th_list = cmp_data["cmp"].get("thead", [])
+            tbl = cmp_sec.find("table")
+            c_table_data = cmp_data.get("cmp", {})
+            if tbl and c_table_data:
+                th_list = c_table_data.get("thead", [])
                 th_els = tbl.select("thead th")
                 for i, text in enumerate(th_list):
                     if i < len(th_els):
                         th_els[i].string = str(text)
 
                 tr_els = tbl.select("tbody tr")
-                for i, row in enumerate(cmp_data["cmp"].get("tbody", [])):
+                for i, row in enumerate(c_table_data.get("tbody", [])):
                     if i < len(tr_els):
                         th = tr_els[i].find("th")
                         if th and "th" in row:
@@ -720,49 +677,60 @@ def compile_html(role, city, state, geo_code, landmarks, dominent_industries, ou
                                     tds[j].append(" ")
                                 tds[j].append(str(val))
 
-            btn_p = cmp_sec.find(class_="btn--primary")
-            if btn_p and "btn--primary" in cmp_data:
+            btn_p = cmp_sec.find("a", class_="btn-primary") or cmp_sec.find(class_="btn--primary")
+            btn_data = cmp_data.get("btn-primary") or cmp_data.get("btn--primary")
+            if btn_p and btn_data:
                 svg = btn_p.find("svg")
                 btn_p.clear()
-                btn_p.append(str(cmp_data["btn--primary"].get("text", "")))
+                btn_p.append(str(btn_data.get("text", "")))
                 if svg:
                     btn_p.append(" ")
                     btn_p.append(svg)
-                _set_href(btn_p, cmp_data["btn--primary"].get("url"))
+                _set_href(btn_p, btn_data.get("url"))
 
         # local-context
-        lc_sec = soup.find("section", class_=lambda c: c and ("local-context" in c or "local_context" in c)) or (soup.find(class_="ctx-grid").find_parent("section") if soup.find(class_="ctx-grid") else None)
+        lc_sec = soup.find("section", id="local-context") or soup.find("section", class_=lambda c: c and ("local-context" in c or "local_context" in c)) or (soup.find(class_="ctx-grid").find_parent("section") if soup.find(class_="ctx-grid") else None)
         lc_data = third_data.get("local-context") or third_data.get("local_context_section")
         if lc_sec and lc_data:
             cgrid = lc_data.get("ctx-grid", lc_data)
-            _set_text(lc_sec.find(class_="eyebrow"), cgrid.get("eyebrow"))
-            _set_text(lc_sec.find("h2"), cgrid.get("h2"))
+            sec_head = lc_sec.find(class_="sec-head") or lc_sec
+            sh_data = cgrid.get("sec-head") or cgrid
+            _set_text(sec_head.find(class_="eyebrow"), sh_data.get("eyebrow"))
+            _set_text(sec_head.find("h2"), sh_data.get("h2"))
 
             prose_el = lc_sec.find(class_="prose")
             if prose_el and "prose" in cgrid:
                 _update_prose_paragraphs(prose_el, cgrid["prose"].get("p", []), soup)
 
-            cta = lc_sec.find(class_="link-cta")
-            if cta and "link-cta" in cgrid:
+            cta = lc_sec.find("a", class_="link-cta") or lc_sec.find(class_="link-cta")
+            cta_data = cgrid.get("link-cta")
+            if cta and cta_data:
                 svg = cta.find("svg")
                 cta.clear()
-                cta.append(str(cgrid["link-cta"].get("text", "")))
+                cta.append(str(cta_data.get("text", "")))
                 if svg:
                     cta.append(" ")
                     cta.append(svg)
-                _set_href(cta, cgrid["link-cta"].get("url"))
+                _set_href(cta, cta_data.get("url"))
 
-            wt = lc_sec.find(class_="widget-title")
-            if wt:
-                wt_text = str(cgrid.get("widget-title", f"{city} · ML ecosystem"))
-                wt_text = wt_text.replace("Ahmedabad", city).replace("Delhi", city).replace("{{CITY}}", city)
-                _set_text(wt, wt_text)
-
-            floats = lc_sec.find_all(class_="ctx-float")
-            for i, f_data in enumerate(cgrid.get("ctx-float", [])):
-                if i < len(floats):
-                    _set_text(floats[i].find("b"), f_data.get("b"))
-                    _set_text(floats[i].find("span"), f_data.get("span"))
+            card_el = lc_sec.find("div", class_="card")
+            card_data = cgrid.get("card")
+            if card_el and card_data:
+                _set_text(card_el.find(class_="why-tag"), card_data.get("why-tag"))
+                _set_text(card_el.find("h3"), card_data.get("h3"))
+                _set_text(card_el.find("p"), card_data.get("p"))
+                chk_items = card_data.get("checklist", [])
+                li_els = card_el.select("ul.checklist li")
+                for i, li_text in enumerate(chk_items):
+                    if i < len(li_els):
+                        svg = li_els[i].find("svg")
+                        li_els[i].clear()
+                        if svg:
+                            li_els[i].append(svg)
+                            li_els[i].append(" ")
+                        li_els[i].append(str(li_text))
+                for i in range(len(chk_items), len(li_els)):
+                    li_els[i].decompose()
 
         print("  ✓ Third section applied.")
 
@@ -770,49 +738,59 @@ def compile_html(role, city, state, geo_code, landmarks, dominent_industries, ou
     # 4. FINAL SECTION (from new_final_section.json)
     # ─────────────────────────────────────────────────────────────
     if final_data:
-        # how-i-work
-        hiw_sec = soup.find("section", class_=lambda c: c and ("how-i-work" in c or "how_i_work" in c)) or (soup.find(class_="timeline").find_parent("section") if soup.find(class_="timeline") else None)
-        hiw_data = final_data.get("how-i-work") or final_data.get("how_i_work_section")
-        if hiw_sec and hiw_data:
-            _set_text(hiw_sec.find(class_="eyebrow"), hiw_data.get("eyebrow"))
-            _set_text(hiw_sec.find("h2"), hiw_data.get("h2"))
-            _set_text(hiw_sec.find(class_="lede"), hiw_data.get("lede"))
+        # process (how-i-work)
+        proc_sec = soup.find("section", id="process") or soup.find("section", class_=lambda c: c and ("how-i-work" in c or "how_i_work" in c or "process" in c)) or (soup.find(class_="steps").find_parent("section") if soup.find(class_="steps") else None)
+        proc_data = final_data.get("process") or final_data.get("how-i-work") or final_data.get("how_i_work_section")
+        if proc_sec and proc_data:
+            sec_head = proc_sec.find(class_="sec-head") or proc_sec
+            sh_data = proc_data.get("sec-head") or proc_data
+            _set_text(sec_head.find(class_="eyebrow"), sh_data.get("eyebrow"))
+            _set_text(sec_head.find("h2"), sh_data.get("h2"))
+            _set_text(sec_head.find(class_="lede"), sh_data.get("lede"))
 
-            tl_items = hiw_sec.find_all(class_="tl-item")
-            for i, step_entry in enumerate(hiw_data.get("timeline", [])):
-                if i < len(tl_items):
-                    s_info = step_entry.get("tl-item", step_entry)
+            steps_els = proc_sec.find_all(class_="step") or proc_sec.find_all(class_="tl-item")
+            s_list = proc_data.get("steps") or proc_data.get("timeline") or []
+            for i, step_entry in enumerate(s_list):
+                if i < len(steps_els):
+                    s_info = step_entry.get("step") or step_entry.get("tl-item") or step_entry
                     when = s_info.get("tl-when", {})
                     body = s_info.get("tl-body", {})
-                    _set_text(tl_items[i].find(class_="pill"), when.get("pill"))
-                    _set_text(tl_items[i].find(class_="sub"), when.get("sub"))
-                    _set_text(tl_items[i].find("h3"), body.get("h3"))
-                    _set_text(tl_items[i].find("p"), body.get("p"))
+                    num_val = s_info.get("num") or when.get("pill")
+                    days_val = s_info.get("days") or when.get("sub")
+                    h3_val = s_info.get("h3") or body.get("h3")
+                    body_val = s_info.get("body") or body.get("p")
 
-            btn = hiw_sec.find(class_="btn--primary")
-            if btn and "btn--primary" in hiw_data:
-                svg = btn.find("svg")
-                btn.clear()
-                btn.append(str(hiw_data["btn--primary"].get("text", "")))
-                if svg:
-                    btn.append(" ")
-                    btn.append(svg)
-                _set_href(btn, hiw_data["btn--primary"].get("url"))
+                    num_el = steps_els[i].find(class_="num")
+                    if num_el:
+                        days_el = num_el.find(class_="days")
+                        if days_el and days_val:
+                            days_el.string = str(days_val)
+                        if num_val:
+                            num_el.clear()
+                            num_el.append(str(num_val))
+                            if days_el:
+                                num_el.append(days_el)
 
-        # proof-section
-        proof_sec = soup.find("section", class_=lambda c: c and ("proof-section" in c or "proof" in c)) or (soup.find(class_="proof-grid").find_parent("section") if soup.find(class_="proof-grid") else None)
-        p_data = final_data.get("proof-section") or final_data.get("proof_section")
+                    _set_text(steps_els[i].find("h3"), h3_val)
+                    _set_text(steps_els[i].find(class_="body"), body_val)
+
+        # proof
+        proof_sec = soup.find("section", id="proof") or soup.find("section", class_=lambda c: c and ("proof-section" in c or "proof" in c)) or (soup.find(class_="proof-grid").find_parent("section") if soup.find(class_="proof-grid") else None)
+        p_data = final_data.get("proof") or final_data.get("proof-section") or final_data.get("proof_section")
         if proof_sec and p_data:
-            _set_text(proof_sec.find(class_="eyebrow"), p_data.get("eyebrow"))
-            _set_text(proof_sec.find("h2"), p_data.get("h2"))
-            _set_text(proof_sec.find(class_="lede"), p_data.get("lede"))
+            sec_head = proof_sec.find(class_="sec-head") or proof_sec
+            sh_data = p_data.get("sec-head") or p_data
+            _set_text(sec_head.find(class_="eyebrow"), sh_data.get("eyebrow"))
+            _set_text(sec_head.find("h2"), sh_data.get("h2"))
+            _set_text(sec_head.find(class_="lede"), sh_data.get("lede"))
 
-            cards = proof_sec.find_all(class_="proof-card")
-            for i, card_entry in enumerate(p_data.get("proof-grid", [])):
+            cards = proof_sec.find_all("article", class_="proof-card") or proof_sec.find_all(class_="proof-card")
+            p_grid = p_data.get("grid g3") or p_data.get("proof-grid") or []
+            for i, card_entry in enumerate(p_grid):
                 if i < len(cards):
                     c_info = card_entry.get("proof-card", card_entry)
                     _set_text(cards[i].find(class_="proof-cat"), c_info.get("proof-cat"))
-                    inner = c_info.get("proof-inner", {})
+                    inner = c_info.get("proof-inner", c_info)
                     _set_text(cards[i].find("h3"), inner.get("h3"))
                     _set_text(cards[i].find("p"), inner.get("p"))
 
@@ -821,7 +799,7 @@ def compile_html(role, city, state, geo_code, landmarks, dominent_industries, ou
                         _set_text(pm.find("b"), inner["proof-metric"].get("b"))
                         _set_text(pm.find("span"), inner["proof-metric"].get("span"))
 
-                    cta = cards[i].find(class_="link-cta")
+                    cta = cards[i].find("a", class_="link-cta") or cards[i].find(class_="link-cta")
                     if cta and "link-cta" in inner:
                         svg = cta.find("svg")
                         cta.clear()
@@ -831,9 +809,10 @@ def compile_html(role, city, state, geo_code, landmarks, dominent_industries, ou
                             cta.append(svg)
                         _set_href(cta, inner["link-cta"].get("url"))
 
-            btn_g = proof_sec.find(class_="btn--ghost")
-            if btn_g and "proof-foot" in p_data:
-                bg_info = p_data["proof-foot"].get("btn--ghost", {})
+            btn_g = (proof_sec.find(class_="proof-foot").find("a") if proof_sec.find(class_="proof-foot") else None) or proof_sec.find(class_="btn-ghost") or proof_sec.find(class_="btn--ghost")
+            pf_data = p_data.get("proof-foot", {})
+            bg_info = pf_data.get("btn-ghost") or pf_data.get("btn--ghost") or {}
+            if btn_g and bg_info:
                 svg = btn_g.find("svg")
                 btn_g.clear()
                 btn_g.append(str(bg_info.get("text", "")))
@@ -843,62 +822,67 @@ def compile_html(role, city, state, geo_code, landmarks, dominent_industries, ou
                 _set_href(btn_g, bg_info.get("url"))
 
         # why-me
-        why_sec = soup.find("section", class_=lambda c: c and ("why-me" in c or "why_me" in c)) or (soup.find(class_="why-grid").find_parent("section") if soup.find(class_="why-grid") else None)
+        why_sec = soup.find("section", id="why-me") or soup.find("section", class_=lambda c: c and ("why-me" in c or "why_me" in c)) or (soup.find(class_="why-grid").find_parent("section") if soup.find(class_="why-grid") else None)
         wm_data = final_data.get("why-me") or final_data.get("why_me_section")
         if why_sec and wm_data:
-            _set_text(why_sec.find(class_="eyebrow"), wm_data.get("eyebrow"))
-            _set_text(why_sec.find("h2"), wm_data.get("h2"))
+            sec_head = why_sec.find(class_="sec-head") or why_sec
+            sh_data = wm_data.get("sec-head") or wm_data
+            _set_text(sec_head.find(class_="eyebrow"), sh_data.get("eyebrow"))
+            _set_text(sec_head.find("h2"), sh_data.get("h2"))
 
             cards = why_sec.find_all(class_="why-card")
-            for i, card_entry in enumerate(wm_data.get("why-grid", [])):
+            w_grid = wm_data.get("grid g3") or wm_data.get("why-grid") or []
+            for i, card_entry in enumerate(w_grid):
                 if i < len(cards):
                     c_info = card_entry.get("why-card", card_entry)
                     _set_text(cards[i].find(class_="why-tag"), c_info.get("why-tag"))
                     _set_text(cards[i].find("h3"), c_info.get("h3"))
                     _set_text(cards[i].find("p"), c_info.get("p"))
 
-        # client-words
-        cw_sec = soup.find("section", class_=lambda c: c and ("client-words" in c or "client_words" in c)) or (soup.find(class_="tst-grid").find_parent("section") if soup.find(class_="tst-grid") else None)
-        cw_data = final_data.get("client-words") or final_data.get("client_words_section") or final_data.get("testimonials_section")
-        if cw_sec and cw_data:
-            center_el = cw_sec.find(class_="center")
-            if center_el and "center" in cw_data:
-                _set_text(center_el.find(class_="eyebrow"), cw_data["center"].get("eyebrow"))
-                _set_text(center_el.find("h2"), cw_data["center"].get("h2"))
-                _set_text(center_el.find(class_="lede"), cw_data["center"].get("lede"))
+        # testimonials (client-words)
+        tst_sec = soup.find("section", id="testimonials") or soup.find("section", class_=lambda c: c and ("client-words" in c or "client_words" in c or "testimonials" in c)) or (soup.find(class_="tst-grid").find_parent("section") if soup.find(class_="tst-grid") else None)
+        tst_data = final_data.get("testimonials") or final_data.get("client-words") or final_data.get("client_words_section")
+        if tst_sec and tst_data:
+            sec_head = tst_sec.find(class_="sec-head") or tst_sec.find(class_="center") or tst_sec
+            sh_data = tst_data.get("sec-head") or tst_data.get("center") or tst_data
+            _set_text(sec_head.find(class_="eyebrow"), sh_data.get("eyebrow"))
+            _set_text(sec_head.find("h2"), sh_data.get("h2"))
+            _set_text(sec_head.find(class_="lede"), sh_data.get("lede"))
 
-            cards = cw_sec.find_all(class_="tst-card")
-            for i, card_entry in enumerate(cw_data.get("tst-grid", [])):
+            cards = tst_sec.find_all("figure", class_="tst-card") or tst_sec.find_all(class_="tst-card")
+            t_grid = tst_data.get("grid g3") or tst_data.get("tst-grid") or []
+            for i, card_entry in enumerate(t_grid):
                 if i < len(cards):
                     c_info = card_entry.get("tst-card", card_entry)
                     _set_text(cards[i].find(class_="tst-quote"), c_info.get("tst-quote"))
                     who = c_info.get("tst-who", {})
                     who_el = cards[i].find(class_="tst-who")
-                    if who_el:
+                    if who_el and who:
                         _set_text(who_el.find(class_="tst-avatar"), who.get("tst-avatar"))
                         _set_text(who_el.find("b"), who.get("b"))
-                        b_el = who_el.find("b")
-                        role_span = b_el.find_next_sibling("span") if b_el else who_el.select_one("span > span")
-                        _set_text(role_span, who.get("span"))
+                        _set_text(who_el.find(class_="tst-role"), who.get("tst-role") or who.get("span"))
                         _set_text(who_el.find(class_="tst-src"), who.get("tst-src"))
 
         # insights
-        ins_sec = soup.find("section", class_=lambda c: c and "insights" in c) or (soup.find(class_="blog-grid").find_parent("section") if soup.find(class_="blog-grid") else None)
+        ins_sec = soup.find("section", id="insights") or soup.find("section", class_=lambda c: c and "insights" in c) or (soup.find(class_="blog-grid").find_parent("section") if soup.find(class_="blog-grid") else None)
         ins_data = final_data.get("insights") or final_data.get("insights_section") or final_data.get("blog_section")
         if ins_sec and ins_data:
-            _set_text(ins_sec.find(class_="eyebrow"), ins_data.get("eyebrow"))
-            _set_text(ins_sec.find("h2"), ins_data.get("h2"))
-            _set_text(ins_sec.find(class_="lede"), ins_data.get("lede"))
+            sec_head = ins_sec.find(class_="sec-head") or ins_sec
+            sh_data = ins_data.get("sec-head") or ins_data
+            _set_text(sec_head.find(class_="eyebrow"), sh_data.get("eyebrow"))
+            _set_text(sec_head.find("h2"), sh_data.get("h2"))
+            _set_text(sec_head.find(class_="lede"), sh_data.get("lede"))
 
-            cards = ins_sec.find_all(class_="blog-card")
-            for i, card_entry in enumerate(ins_data.get("blog-grid", [])):
+            cards = ins_sec.find_all("article", class_="blog-card") or ins_sec.find_all(class_="blog-card")
+            b_grid = ins_data.get("grid g3") or ins_data.get("blog-grid") or []
+            for i, card_entry in enumerate(b_grid):
                 if i < len(cards):
                     c_info = card_entry.get("blog-card", card_entry)
-                    b_inner = c_info.get("blog-inner", {})
-                    _set_text(cards[i].find(class_="blog-cat"), b_inner.get("blog-cat"))
+                    _set_text(cards[i].find(class_="proof-cat"), c_info.get("proof-cat") or c_info.get("blog-cat"))
+                    b_inner = c_info.get("blog-inner", c_info)
                     _set_text(cards[i].find("h3"), b_inner.get("h3"))
                     _set_text(cards[i].find("p"), b_inner.get("p"))
-                    cta = cards[i].find(class_="link-cta")
+                    cta = cards[i].find("a", class_="link-cta") or cards[i].find(class_="link-cta")
                     if cta and "link-cta" in b_inner:
                         svg = cta.find("svg")
                         cta.clear()
@@ -908,9 +892,10 @@ def compile_html(role, city, state, geo_code, landmarks, dominent_industries, ou
                             cta.append(svg)
                         _set_href(cta, b_inner["link-cta"].get("url"))
 
-            btn_g = ins_sec.find(class_="btn--ghost")
-            if btn_g and "blog-foot" in ins_data:
-                bg_info = ins_data["blog-foot"].get("btn--ghost", {})
+            btn_g = (ins_sec.find(class_="blog-foot").find("a") if ins_sec.find(class_="blog-foot") else None) or ins_sec.find(class_="btn-ghost") or ins_sec.find(class_="btn--ghost")
+            bf_data = ins_data.get("blog-foot", {})
+            bg_info = bf_data.get("btn-ghost") or bf_data.get("btn--ghost") or {}
+            if btn_g and bg_info:
                 svg = btn_g.find("svg")
                 btn_g.clear()
                 btn_g.append(str(bg_info.get("text", "")))
@@ -919,18 +904,19 @@ def compile_html(role, city, state, geo_code, landmarks, dominent_industries, ou
                     btn_g.append(svg)
                 _set_href(btn_g, bg_info.get("url"))
 
-        # faq-section
-        faq_sec = soup.find("section", class_=lambda c: c and ("faq-section" in c or "faq" in c)) or (soup.find(class_="faq-wrap").find_parent("section") if soup.find(class_="faq-wrap") else None)
-        faq_data = final_data.get("faq-section") or final_data.get("faq_section")
+        # faq
+        faq_sec = soup.find("section", id="faq") or soup.find("section", class_=lambda c: c and ("faq-section" in c or "faq" in c)) or (soup.find(class_="faq-wrap").find_parent("section") if soup.find(class_="faq-wrap") else None)
+        faq_data = final_data.get("faq") or final_data.get("faq-section") or final_data.get("faq_section")
         if faq_sec and faq_data:
-            center_el = faq_sec.find(class_="center")
-            if center_el and "center" in faq_data:
-                _set_text(center_el.find(class_="eyebrow"), faq_data["center"].get("eyebrow"))
-                _set_text(center_el.find("h2"), faq_data["center"].get("h2"))
-                _set_text(center_el.find(class_="lede"), faq_data["center"].get("lede"))
+            sec_head = faq_sec.find(class_="sec-head") or faq_sec.find(class_="center") or faq_sec
+            sh_data = faq_data.get("sec-head") or faq_data.get("center") or faq_data
+            _set_text(sec_head.find(class_="eyebrow"), sh_data.get("eyebrow"))
+            _set_text(sec_head.find("h2"), sh_data.get("h2"))
+            _set_text(sec_head.find(class_="lede"), sh_data.get("lede"))
 
             items = faq_sec.find_all("details") or faq_sec.find_all(class_="faq-item")
-            for i, f_entry in enumerate(faq_data.get("faq-wrap", [])):
+            f_wrap = faq_data.get("faq") or faq_data.get("faq-wrap") or []
+            for i, f_entry in enumerate(f_wrap):
                 if i < len(items):
                     f_info = f_entry.get("faq-item", f_entry)
                     q_el = items[i].find("summary") or items[i].find(class_="faq-q")
@@ -941,44 +927,46 @@ def compile_html(role, city, state, geo_code, landmarks, dominent_industries, ou
                         if plus:
                             q_el.append(plus)
 
-                    a_el = items[i].find(class_="faq-a")
+                    a_el = items[i].find(class_="a") or items[i].find(class_="faq-a")
                     if a_el and "faq-a" in f_info:
                         a_el.string = str(f_info["faq-a"])
 
-        # call-me-now
-        cmn_sec = soup.find("section", class_=lambda c: c and ("call-me-now" in c or "call_me_now" in c)) or soup.find("section", id="lets-talk")
+        # call-me-now / lets-talk (if present in template)
+        cmn_sec = soup.find("section", id="lets-talk") or soup.find("section", class_=lambda c: c and ("call-me-now" in c or "call_me_now" in c or "final" in c))
         cmn_data = final_data.get("call-me-now") or final_data.get("call_me_now_section") or final_data.get("cta_section")
         if cmn_sec and cmn_data:
-            cta_grid_div = cmn_sec.select_one(".cta-grid > div") or cmn_sec
-            _set_text(cta_grid_div.find(class_="eyebrow"), cmn_data.get("eyebrow"))
-            _set_text(cta_grid_div.find("h2"), cmn_data.get("h2"))
-            _set_text(cta_grid_div.find(class_="lede"), cmn_data.get("lede"))
+            cta_box = cmn_sec.select_one(".final-grid") or cmn_sec.select_one(".cta-grid > div") or cmn_sec
+            _set_text(cta_box.find(class_="eyebrow"), cmn_data.get("eyebrow"))
+            _set_text(cta_box.find("h2"), cmn_data.get("h2"))
+            _set_text(cta_box.find(class_="lede"), cmn_data.get("lede"))
 
-            contact_box = cta_grid_div.find(class_="cta-contact")
+            contact_box = cta_box.find(class_="fcontact") or cta_box.find(class_="cta-contact")
             if contact_box and "cta-contact" in cmn_data:
                 for c_btn_data in cmn_data["cta-contact"]:
-                    if "btn--wa" in c_btn_data:
-                        wa_btn = contact_box.find(class_="btn--wa")
-                        if wa_btn:
+                    if "btn--wa" in c_btn_data or "btn-primary" in c_btn_data:
+                        wa_btn = contact_box.find(class_="btn--wa") or contact_box.find(class_="btn-primary")
+                        b_val = c_btn_data.get("btn--wa") or c_btn_data.get("btn-primary")
+                        if wa_btn and b_val:
                             svg = wa_btn.find("svg")
                             wa_btn.clear()
                             if svg:
                                 wa_btn.append(svg)
                                 wa_btn.append(" ")
-                            wa_btn.append(str(c_btn_data["btn--wa"].get("text", "")))
-                            _set_href(wa_btn, c_btn_data["btn--wa"].get("url"))
-                    elif "btn--ghost" in c_btn_data:
-                        ghost_btn = contact_box.find(class_="btn--ghost")
-                        if ghost_btn:
+                            wa_btn.append(str(b_val.get("text", "")))
+                            _set_href(wa_btn, b_val.get("url"))
+                    elif "btn--ghost" in c_btn_data or "btn-ghost" in c_btn_data:
+                        ghost_btn = contact_box.find(class_="btn--ghost") or contact_box.find(class_="btn-ghost")
+                        b_val = c_btn_data.get("btn--ghost") or c_btn_data.get("btn-ghost")
+                        if ghost_btn and b_val:
                             svg = ghost_btn.find("svg")
                             ghost_btn.clear()
                             if svg:
                                 ghost_btn.append(svg)
                                 ghost_btn.append(" ")
-                            ghost_btn.append(str(c_btn_data["btn--ghost"].get("text", "")))
-                            _set_href(ghost_btn, c_btn_data["btn--ghost"].get("url"))
+                            ghost_btn.append(str(b_val.get("text", "")))
+                            _set_href(ghost_btn, b_val.get("url"))
 
-            meta_el = cta_grid_div.find(class_="cta-meta")
+            meta_el = cta_box.find(class_="fmeta") or cta_box.find(class_="cta-meta")
             if meta_el and "cta-meta" in cmn_data:
                 svg = meta_el.find("svg")
                 meta_el.clear()
@@ -987,7 +975,7 @@ def compile_html(role, city, state, geo_code, landmarks, dominent_industries, ou
                     meta_el.append(" ")
                 meta_el.append(str(cmn_data["cta-meta"]))
 
-            author_box = cta_grid_div.find(class_="author-row")
+            author_box = cta_box.find(class_="author-row")
             if author_box and "author-row" in cmn_data:
                 ar = cmn_data["author-row"]
                 img_el = author_box.find("img")
@@ -1014,11 +1002,15 @@ def compile_html(role, city, state, geo_code, landmarks, dominent_industries, ou
     html_out = html_out.replace("{{STATE}}", state)
     html_out = html_out.replace("{{GEO_CODE}}", geo_code)
     html_out = html_out.replace("{{LANDMARKS}}", landmarks)
+    html_out = html_out.replace("{{DOMINENT_INDUSTRIES}}", dominent_industries)
+
     # Clean CSS comments (/* ... */) inside <style> blocks
     def _clean_css_comments(match):
         css = match.group(1)
         cleaned_css = re.sub(r"/\*.*?\*/", "", css, flags=re.DOTALL)
         return f"<style>{cleaned_css}</style>"
+
+    html_out = re.sub(r"<style[^>]*>(.*?)</style>", _clean_css_comments, html_out, flags=re.DOTALL)
 
     # Strip viewer widget sentinel comments if present
     sentinels = [
@@ -1133,7 +1125,7 @@ def main():
                 landmarks           = args.landmarks,
                 dominent_industries = args.dominentIindustries,
                 sample_widget_path  = args.sample_widget,
-                model               = "openrouter/deepseek/deepseek-v4-flash",
+                model               = args.model or "openrouter/deepseek/deepseek-v4-flash",
                 output_path         = tmp_widget_path,
             )
         else:

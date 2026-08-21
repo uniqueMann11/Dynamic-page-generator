@@ -1,32 +1,26 @@
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
   .vw-card {
     width: 100%;
     max-width: 520px;
     background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-md);
+    border-radius: var(--r);
+    box-shadow: var(--sh-md);
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    animation: vw-cardIn .55s ease both;
   }
-
-  @keyframes vw-cardIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
   .vw-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
     padding: 14px 18px;
     border-bottom: 1px solid var(--line-soft);
   }
 
   .vw-top .t {
-    font-family: var(--ff-display);
+    font-family: var(--disp);
     font-size: 0.88rem;
     font-weight: 700;
     color: var(--ink);
@@ -35,21 +29,18 @@
     gap: 8px;
   }
 
-  .vw-top .t svg { width: 16px; height: 16px; color: var(--primary); flex: none; }
+  .vw-top .t svg { width: 16px; height: 16px; color: var(--blue); }
 
   .vw-chip {
-    font-family: var(--ff-mono);
+    font-family: var(--mono);
     font-size: 0.66rem;
     font-weight: 600;
     padding: 3px 9px;
     border-radius: 6px;
-    background: var(--green-tint);
-    color: var(--green);
+    background: var(--mint-tint);
+    color: var(--mint);
     border: 1px solid rgba(21, 154, 91, 0.25);
-    white-space: nowrap;
-    transition: background .2s, color .2s, border-color .2s;
   }
-  .vw-chip.busy { background: var(--primary-tint); color: var(--primary-strong); border-color: rgba(36, 86, 230, .25); }
 
   .vw-body {
     padding: 16px 18px;
@@ -58,259 +49,236 @@
     gap: 12px;
   }
 
-  .vw-search-box {
-    background: var(--surface-alt);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
-    padding: 10px 14px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: border-color .2s, box-shadow .2s;
-  }
-  .vw-search-box.active { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-tint); }
-
-  .vw-search-box svg { width: 16px; height: 16px; color: var(--muted); flex-shrink: 0; }
-
-  .vw-query-display { font-size: 0.82rem; font-weight: 600; color: var(--ink); flex: 1; }
-
-  .vw-samples { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; }
-
-  .vw-pill {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 4px 10px;
-    font-size: 0.68rem;
-    font-weight: 500;
-    color: var(--muted);
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.15s;
-  }
-  .vw-pill:hover { border-color: var(--primary); color: var(--ink); }
-  .vw-pill.active { background: var(--primary-tint); border-color: var(--primary); color: var(--primary-strong); font-weight: 600; }
-
-  .vw-result-box {
+  .vw-scatter-box {
     background: #090E17;
     border: 1px solid #1E293B;
-    border-radius: var(--radius-sm);
+    border-radius: var(--r-sm);
     padding: 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    position: relative;
   }
 
-  .vw-doc-match {
+  .vw-scatter-header {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: #94A3B8;
+    margin-bottom: 6px;
+  }
+
+  .vw-scatter-svg {
+    width: 100%;
+    height: 120px;
+    cursor: crosshair;
+  }
+
+  .vw-grid-line { stroke: #1E293B; stroke-width: 1; stroke-dasharray: 2 3; }
+  .vw-pt { cursor: pointer; transition: transform 0.2s; }
+  .vw-pt:hover { transform: scale(1.4); }
+  .vw-pt.best { fill: var(--mint); stroke: #FFFFFF; stroke-width: 1.5; filter: drop-shadow(0 0 6px rgba(21, 154, 91, 0.8)); }
+  .vw-pt.reg { fill: #38BDF8; opacity: 0.75; }
+
+  .vw-insp-bar {
+    background: var(--soft);
+    border: 1px solid var(--line);
+    border-radius: var(--r-sm);
+    padding: 8px 12px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
-    font-family: var(--ff-mono);
-    font-size: 0.66rem;
-    color: #38BDF8;
-    border-bottom: 1px dashed #1E293B;
-    padding-bottom: 6px;
-    transition: opacity .2s;
+    font-family: var(--mono);
+    font-size: 0.68rem;
   }
-  .vw-loading .vw-doc-match { opacity: .55; color: #64748B; }
 
-  .vw-ans-text { font-size: 0.75rem; line-height: 1.5; color: #F1F5F9; transition: opacity .25s ease; }
+  .vw-btn-action {
+    background: var(--blue);
+    color: #FFFFFF;
+    border: none;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
 
-  .vw-citation { display: flex; align-items: center; gap: 6px; font-family: var(--ff-mono); font-size: 0.64rem; color: #34D399; }
+  .vw-btn-action:hover { background: var(--blue-strong); }
 
-  .vw-metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .vw-metrics-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
 
   .vw-tile {
-    background: var(--surface-alt);
+    background: var(--soft);
     border: 1px solid var(--line-soft);
-    border-radius: var(--radius-sm);
+    border-radius: var(--r-sm);
     padding: 6px 8px;
     text-align: center;
   }
 
-  .vw-tile-val { font-family: var(--ff-display); font-size: 1rem; font-weight: 800; color: var(--ink); }
-  .vw-tile-lbl { font-family: var(--ff-mono); font-size: 0.55rem; color: var(--muted); text-transform: uppercase; }
+  .vw-tile-val {
+    font-family: var(--disp);
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--ink);
+  }
+
+  .vw-tile-lbl {
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
 
   .vw-foot {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
     padding: 10px 18px;
     border-top: 1px solid var(--line-soft);
-    background: var(--surface-alt);
+    background: var(--soft);
     font-size: 0.72rem;
     color: var(--muted);
   }
 
-  .vw-tip {
-    position: relative;
-    cursor: help;
-    border-bottom: 1px dotted var(--muted);
-    white-space: nowrap;
-  }
-  .vw-tip::after {
-    content: attr(data-tip);
-    position: absolute; bottom: 135%; left: 0;
-    width: 210px; white-space: normal;
-    background: var(--ink); color: #fff;
-    padding: 7px 10px; border-radius: 8px;
-    font-size: 0.65rem; line-height: 1.35; font-family: var(--ff-body);
-    box-shadow: var(--shadow-md);
-    opacity: 0; pointer-events: none;
-    transition: opacity .15s ease;
-    z-index: 5;
-  }
-  .vw-tip:hover::after { opacity: 1; }
-
   @media (max-width: 480px) {
-    .vw-tile-val { font-size: 0.85rem; }
-    .vw-tip { max-width: 150px; overflow: hidden; text-overflow: ellipsis; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .vw-card { animation: none !important; }
-    .vw-ans-text, .vw-doc-match, .vw-chip, .vw-search-box { transition: none !important; }
+    .vw-metrics-row { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
 
 <div class="vw-card">
   <div class="vw-top">
     <span class="t">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-      ML Inference Engine
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+      </svg>
+      Adaptive Model Tuning Pipeline
     </span>
-    <span class="vw-chip" id="statusChip">Production Ready</span>
+    <span class="vw-chip" id="vwTrialChip">Best Config: 96.2% F1 Score</span>
   </div>
 
   <div class="vw-body">
-    <!-- Simulated Input Display -->
-    <div class="vw-search-box" id="searchBox">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-      <span class="vw-query-display" id="txtQuery">"Features: sales_week, tourist_arrivals, gem_price_index"</span>
+    <!-- Search Map -->
+    <div class="vw-scatter-box">
+      <div class="vw-scatter-header">
+        <span>Hyperparameter Search: Learning Rate vs Model Depth</span>
+        <span>Click any dot to inspect</span>
+      </div>
+
+      <svg class="vw-scatter-svg" viewBox="0 0 400 120">
+        <line x1="0" y1="30" x2="400" y2="30" class="vw-grid-line" />
+        <line x1="0" y1="60" x2="400" y2="60" class="vw-grid-line" />
+        <line x1="0" y1="90" x2="400" y2="90" class="vw-grid-line" />
+        <line x1="100" y1="0" x2="100" y2="120" class="vw-grid-line" />
+        <line x1="200" y1="0" x2="200" y2="120" class="vw-grid-line" />
+        <line x1="300" y1="0" x2="300" y2="120" class="vw-grid-line" />
+
+        <g id="scatterDots"></g>
+      </svg>
     </div>
 
-    <!-- Sample Inference Tasks -->
-    <div class="vw-samples">
-      <button class="vw-pill active" data-q="demand">Demand Forecasting</button>
-      <button class="vw-pill" data-q="quality">Quality Inspection</button>
-      <button class="vw-pill" data-q="price">Price Estimation</button>
+    <!-- Action Card -->
+    <div class="vw-insp-bar">
+      <div>
+        <div style="font-weight: 700; color: var(--ink);" id="inspLabel">Tested 24 configurations</div>
+        <div style="color: var(--muted); font-size: 0.62rem;" id="inspSub">Optimal hyperparameters: F1 96.2% on validation</div>
+      </div>
+      <button class="vw-btn-action" id="btnTestConfig">Explore Next Config</button>
     </div>
 
-    <!-- Result Box -->
-    <div class="vw-result-box" id="resultBox">
-      <div class="vw-doc-match">
-        <span id="docSource">Model: Ensemble_XGB_v2  |  Dataset: Jaipur ITE – Sisodia's Handicraft Logs</span>
-        <span style="color: #34D399;" id="docScore">95% Confidence</span>
-      </div>
-      <div class="vw-ans-text" id="ansText">
-        Predicted demand next week: <b>+12.3%</b>. Recommend increasing production of gem-set ornaments.
-      </div>
-      <div class="vw-citation">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg>
-        <span>Inference validated against Sitapura test partition</span>
-      </div>
-    </div>
-
-    <!-- Metrics -->
+    <!-- Metrics Grid -->
     <div class="vw-metrics-row">
       <div class="vw-tile">
-        <div class="vw-tile-val" id="tileMatch">92.3%</div>
-        <div class="vw-tile-lbl">Accuracy</div>
+        <div class="vw-tile-val" id="valBestAcc" style="color: var(--mint);">96.2%</div>
+        <div class="vw-tile-lbl">Best F1 Score</div>
       </div>
       <div class="vw-tile">
-        <div class="vw-tile-val" id="tileTime">42ms</div>
-        <div class="vw-tile-lbl">Latency</div>
+        <div class="vw-tile-val" id="valTested">24</div>
+        <div class="vw-tile-lbl">Configs Tried</div>
       </div>
       <div class="vw-tile">
-        <div class="vw-tile-val" id="tileF1">0.91</div>
-        <div class="vw-tile-lbl">F1 Score</div>
+        <div class="vw-tile-val" style="color: var(--mint);">0 Hours</div>
+        <div class="vw-tile-lbl">Manual Tuning</div>
+      </div>
+      <div class="vw-tile">
+        <div class="vw-tile-val">Optuna</div>
+        <div class="vw-tile-lbl">Sampler Engine</div>
       </div>
     </div>
   </div>
 
   <div class="vw-foot">
-    <span class="vw-tip" data-tip="An ensemble of XGBoost and LightGBM trained on Jaipur's IT/ITES and gemstone records, validated with 5-fold cross-validation.">Built with: Ensemble + Cross-Validation</span>
-    <span>Model version v2.1 &#183; Trained on Sitapura infrastructure</span>
+    <span>Method: Bayesian Optimization + early stopping</span>
+    <span>Serving Vadodara • adapted for petrochem sensor data</span>
   </div>
 </div>
 
 <script>
   (function () {
-    const pills = document.querySelectorAll(".vw-pill");
-    const txtQuery = document.getElementById("txtQuery");
-    const searchBox = document.getElementById("searchBox");
-    const resultBox = document.getElementById("resultBox");
-    const docSource = document.getElementById("docSource");
-    const docScore = document.getElementById("docScore");
-    const ansText = document.getElementById("ansText");
-    const statusChip = document.getElementById("statusChip");
-    const tileMatch = document.getElementById("tileMatch");
-    const tileTime = document.getElementById("tileTime");
-    const tileF1 = document.getElementById("tileF1");
+    const scatterDots = document.getElementById("scatterDots");
+    const btnTestConfig = document.getElementById("btnTestConfig");
+    const inspLabel = document.getElementById("inspLabel");
+    const inspSub = document.getElementById("inspSub");
+    const valTested = document.getElementById("valTested");
+    const valBestAcc = document.getElementById("valBestAcc");
+    const vwTrialChip = document.getElementById("vwTrialChip");
 
-    const data = {
-      demand: {
-        q: "\"Features: sales_week, tourist_arrivals, gem_price_index\"",
-        doc: "Model: Ensemble_XGB_v2  |  Dataset: Jaipur ITE – Sisodia's Handicraft Logs",
-        score: "95% Confidence",
-        time: "42ms",
-        ans: "Predicted demand next week: <b>+12.3%</b>. Recommend increasing production of gem-set ornaments.",
-        acc: "92.3%",
-        f1: "0.91"
-      },
-      quality: {
-        q: "\"Features: polish_score, clarity_grade, weight_carat, symmetry_rating\"",
-        doc: "Model: Gemstone_Classifier_RF  |  Dataset: Jaipur G&J – Quality (Sitapura Lab)",
-        score: "98% Confidence",
-        time: "38ms",
-        ans: "Predicted quality grade: <b>Premium (A+)</b>. Stone passes all six ASTM thresholds.",
-        acc: "96.7%",
-        f1: "0.95"
-      },
-      price: {
-        q: "\"Features: size_mm, color_depth, certificate_type, cut_shape, origin_region\"",
-        doc: "Model: Gemstone_Price_Regressor_v3  |  Dataset: Jaipur Gem Market Transactions (Johari Bazaar)",
-        score: "93% Confidence",
-        time: "55ms",
-        ans: "Estimated market price: <b>Rs. 1,24,800/carat</b>. Variability &plusmn;6% based on last 50 trades.",
-        acc: "90.8%",
-        f1: "0.87"
-      }
-    };
+    let count = 24;
+    let topF1 = 96.2;
 
-    function selectPill(pill) {
-      pills.forEach(function(b) { b.classList.remove("active"); });
-      pill.classList.add("active");
-      var d = data[pill.getAttribute("data-q")];
-      if (!d) return;
+    const dots = [
+      { x: 50, y: 85, f1: 91.2 },
+      { x: 120, y: 65, f1: 94.5 },
+      { x: 190, y: 40, f1: 96.2, best: true },
+      { x: 230, y: 25, f1: 95.8 },
+      { x: 310, y: 75, f1: 93.1 },
+      { x: 360, y: 50, f1: 95.0 }
+    ];
 
-      txtQuery.textContent = d.q;
-      searchBox.classList.add("active");
+    function render() {
+      scatterDots.innerHTML = "";
+      dots.forEach((d, idx) => {
+        const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        c.setAttribute("cx", d.x);
+        c.setAttribute("cy", d.y);
+        c.setAttribute("r", d.best ? "5.5" : "4");
+        c.setAttribute("class", "vw-pt " + (d.best ? "best" : "reg"));
 
-      statusChip.textContent = "Running Inference…";
-      statusChip.classList.add("busy");
-      resultBox.classList.add("vw-loading");
-      docSource.textContent = "Querying model…";
-      docScore.textContent = "";
-      ansText.style.opacity = 0;
+        c.addEventListener("click", () => {
+          inspLabel.textContent = `Config #${idx + 1} ${d.best ? "(Best Found)" : ""}`;
+          inspSub.textContent = `Validation F1: ${d.f1.toFixed(1)}% on holdout set`;
+        });
 
-      setTimeout(function() {
-        docSource.textContent = d.doc;
-        docScore.textContent = d.score;
-        ansText.innerHTML = d.ans;
-        ansText.style.opacity = 1;
-        resultBox.classList.remove("vw-loading");
-        statusChip.textContent = "Production Ready";
-        statusChip.classList.remove("busy");
-        searchBox.classList.remove("active");
-        tileMatch.textContent = d.acc;
-        tileTime.textContent = d.time;
-        tileF1.textContent = d.f1;
-      }, 500);
+        scatterDots.appendChild(c);
+      });
     }
 
-    pills.forEach(function(p) { p.addEventListener("click", function() { selectPill(p); }); });
+    btnTestConfig.addEventListener("click", () => {
+      count++;
+      const newX = Math.floor(70 + Math.random() * 260);
+      const newY = Math.floor(20 + Math.random() * 80);
+      const f1 = parseFloat((91.0 + Math.random() * 6.5).toFixed(1));
+      const isBest = f1 > topF1;
+
+      if (isBest) {
+        topF1 = f1;
+        dots.forEach(d => d.best = false);
+      }
+
+      dots.push({ x: newX, y: newY, f1: f1, best: isBest });
+      render();
+
+      valTested.textContent = count;
+      valBestAcc.textContent = `${topF1.toFixed(1)}%`;
+      vwTrialChip.textContent = `Best Config: ${topF1.toFixed(1)}% F1 Score`;
+      inspLabel.textContent = `Config #${count} ${isBest ? "(New Best!)" : ""}`;
+      inspSub.textContent = `Validation F1: ${f1.toFixed(1)}% on holdout set`;
+    });
+
+    render();
   })();
 </script>

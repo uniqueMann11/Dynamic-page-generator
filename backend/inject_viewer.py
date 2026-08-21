@@ -93,20 +93,38 @@ def _extract_blocks(html: str):
     """
     Split generated snippet into (style_text, script_text, body_html).
     Strips all CSS comments (/* ... */) from the extracted style text.
+    Handles <style>, ```css fences, or raw leading CSS blocks gracefully.
     """
     style_blocks  = re.findall(r"<style[^>]*>(.*?)</style>",  html, re.DOTALL | re.IGNORECASE)
     script_blocks = re.findall(r"<script[^>]*>(.*?)</script>", html, re.DOTALL | re.IGNORECASE)
 
     body = re.sub(r"<style[^>]*>.*?</style>",   "", html, flags=re.DOTALL | re.IGNORECASE)
     body = re.sub(r"<script[^>]*>.*?</script>",  "", body, flags=re.DOTALL | re.IGNORECASE)
-    body = body.strip()
 
+    # Fallback: if no <style> tag was found, check if there are ```css ``` markdown blocks
+    if not style_blocks:
+        css_fences = re.findall(r"```(?:css)?\s*([^{`]*\{.*?\})\s*```", html, re.DOTALL | re.IGNORECASE)
+        if css_fences:
+            style_blocks.extend(css_fences)
+            body = re.sub(r"```(?:css)?\s*[^{`]*\{.*?\bottom:\s*```", "", body, flags=re.DOTALL | re.IGNORECASE)
+
+    # Fallback: if body starts with raw CSS rules before the first opening HTML tag
+    if not style_blocks:
+        first_tag_match = re.search(r"<\w+", body)
+        if first_tag_match and first_tag_match.start() > 0:
+            potential_css = body[:first_tag_match.start()].strip()
+            if "{" in potential_css and "}" in potential_css:
+                style_blocks.append(potential_css)
+                body = body[first_tag_match.start():]
+
+    body = body.strip()
     css_text = "\n".join(style_blocks).strip()
     css_text = re.sub(r"/\*.*?\*/", "", css_text, flags=re.DOTALL).strip()
+    js_text = "\n".join(script_blocks).strip()
 
     return (
         css_text,
-        "\n".join(script_blocks).strip(),
+        js_text,
         body,
     )
 
@@ -123,7 +141,7 @@ def _inject_css_into_head(page_html: str, css_text: str) -> str:
     # Remove any previous sentinel blocks from earlier runs
     page_html = _remove_sentinel_block(page_html, CSS_START, CSS_END)
 
-    block = f"\n{css_text}\n"
+    block = f"\n{CSS_START}\n{css_text}\n{CSS_END}\n"
 
     # Insert before the last </style> inside <head>
     head_end = page_html.lower().find("</head>")
@@ -146,7 +164,7 @@ def _inject_js_before_body_end(page_html: str, js_text: str) -> str:
     # Remove any previous sentinel blocks from earlier runs
     page_html = _remove_sentinel_block(page_html, JS_START, JS_END)
 
-    block = f"\n<script>\n{js_text}\n</script>\n"
+    block = f"\n{JS_START}\n<script>\n{js_text}\n</script>\n{JS_END}\n"
 
     body_end = page_html.rfind("</body>")
     if body_end != -1:
@@ -159,17 +177,17 @@ def _inject_js_before_body_end(page_html: str, js_text: str) -> str:
 
 def _replace_widget_div(page_html: str, new_outer_html: str) -> str:
     """
-    Find <div class="vw-ml-widget">...</div> using depth-tracking and replace
+    Find <div class="viewer">...</div> or <div class="vw-ml-widget">...</div> using depth-tracking and replace
     the entire element with new_outer_html.
     """
     open_pattern = re.compile(
-        r'<div\s[^>]*class="[^"]*\bvw-ml-widget\b[^"]*"[^>]*>',
+        r'<div\s[^>]*class="[^"]*\b(viewer|vw-ml-widget)\b[^"]*"[^>]*>',
         re.IGNORECASE
     )
     m = open_pattern.search(page_html)
     if not m:
         raise ValueError(
-            'Could not locate <div class="vw-ml-widget"> in the HTML for replacement.'
+            'Could not locate <div class="viewer"> or <div class="vw-ml-widget"> in the HTML for replacement.'
         )
 
     start = m.start()
@@ -184,7 +202,7 @@ def _replace_widget_div(page_html: str, new_outer_html: str) -> str:
         next_close = div_close.search(page_html, pos)
 
         if next_close is None:
-            raise ValueError("Unbalanced <div> tags while scanning vw-ml-widget block.")
+            raise ValueError("Unbalanced <div> tags while scanning viewer/vw-ml-widget block.")
 
         if next_open and next_open.start() < next_close.start():
             depth += 1
@@ -201,16 +219,16 @@ def inject_widget_into_html(page_html: str, widget_html: str) -> str:
     """
     Main injection function.
     1. Extract <style>/<script> from widget and inject into page head/body.
-    2. Replace <div class="vw-ml-widget"> inner content with the widget body markup.
+    2. Replace <div class="viewer"> or <div class="vw-ml-widget"> inner content with the widget body markup.
     Returns the updated HTML string.
     """
     widget_html = _strip_fence(widget_html)
     style_text, script_text, body_html = _extract_blocks(widget_html)
 
-    # Guard: if the LLM wrapped its output in a vw-ml-widget div, unwrap it to
+    # Guard: if the LLM wrapped its output in a viewer / vw-ml-widget div, unwrap it to
     # prevent double-nesting when we wrap it again below.
     _inner_check = BeautifulSoup(body_html, HTML_PARSER)
-    _top = _inner_check.find("div", class_="vw-ml-widget")
+    _top = _inner_check.find("div", class_=lambda c: c and ("vw-ml-widget" in c or "viewer" in c))
     if _top is not None:
         body_html = _top.decode_contents()
 
@@ -219,16 +237,18 @@ def inject_widget_into_html(page_html: str, widget_html: str) -> str:
     _inner_check2 = BeautifulSoup(body_html, HTML_PARSER)
     _top_card = _inner_check2.find("div", class_="vw-card")
     if _top_card and _top_card.parent and _top_card.parent.name == "[document]":
-        # body_html is already clean \u2014 a bare vw-card is the root, nothing to strip
         pass
 
     # Step 1 & 2: inject CSS and JS via raw string manipulation
     page_html = _inject_css_into_head(page_html, style_text)
     page_html = _inject_js_before_body_end(page_html, script_text)
 
+    # Detect container class from target page
+    target_class = "viewer" if re.search(r'<div\s[^>]*class="[^"]*\bviewer\b[^"]*"', page_html, re.IGNORECASE) else "vw-ml-widget"
+
     # Step 3: use BeautifulSoup to build the new widget div HTML, then raw-replace
-    soup = BeautifulSoup(f'<div class="vw-ml-widget">{body_html}</div>', HTML_PARSER)
-    widget_div = soup.find("div", class_="vw-ml-widget")
+    soup = BeautifulSoup(f'<div class="{target_class}">{body_html}</div>', HTML_PARSER)
+    widget_div = soup.find("div", class_=target_class)
     if widget_div is None:
         raise ValueError("Failed to parse the widget body HTML.")
 

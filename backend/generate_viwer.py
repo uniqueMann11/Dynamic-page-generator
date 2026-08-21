@@ -54,76 +54,125 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # ─── Design tokens (mirrors global_design_rules.json) ───────────────────────
 DESIGN_TOKENS = """
-:root {
-  /* Typography */
-  --ff-display: "Archivo", system-ui, sans-serif;
-  --ff-body: "Inter", system-ui, sans-serif;
-  --ff-mono: "JetBrains Mono", ui-monospace, monospace;
+.svcp {
+  /* Core colors */
 
-  /* Core text */
-  --ink: #0B1120;
-  --ink-soft: #1E293B;
-  --body: #475569;
-  --muted: #64748B;
+  --ink: #0A1222;
+  --ink-soft: #1B2740;
+  --body: #48566E;
+  --muted: #6B7A93;
 
-  /* Surfaces */
+  --line: #E6ECF4;
+  --line-soft: #EFF3F9;
+
   --surface: #FFFFFF;
-  --surface-alt: #F5F8FD;
-  --surface-tint: #EEF3FF;
 
-  /* Borders */
-  --line: #E7ECF3;
-  --line-soft: #EEF2F8;
+  /* :root --surface-alt → .svcp --soft */
+  --soft: #F4F8FD;
 
-  /* Brand / accent */
-  --primary: #2456E6;
-  --primary-strong: #1740C0;
-  --primary-tint: #E7EEFF;
+  /* :root --surface-tint → .svcp --tint */
+  --tint: #EAF0FF;
+
+
+  /* Primary blue */
+
+  /* :root --primary → .svcp --blue */
+  --blue: #2456E6;
+
+  /* :root --primary-strong → .svcp --blue-strong */
+  --blue-strong: #1740C0;
+
+  /* :root --primary-tint → .svcp --blue-tint */
+  --blue-tint: #E6EEFF;
+
+
+  /* Secondary colors */
+
+  --violet: #6D5EF6;
+  --violet-tint: #EDEAFE;
+
+  /* :root --green → .svcp --mint */
+  --mint: #0FA968;
+
+  /* :root --green-tint → .svcp --mint-tint */
+  --mint-tint: #E4F7EE;
+
+  --mint-deep: #0B7D4E;
+
+  --amber: #D97A18;
+  --amber-tint: #FCEFDD;
+
+  --rose: #E11D48;
+
+
+  /* :root --indigo has no direct .svcp equivalent */
   --indigo: #4F46E5;
 
-  /* Semantic accents */
-  --green: #159A5B;
-  --green-tint: #E7F7EF;
-  --amber: #D97A18;
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(11,17,32,.04),
-               0 1px 3px rgba(11,17,32,.06);
 
-  --shadow-md: 0 10px 30px -12px rgba(11,17,32,.18);
+  /* :root --shadow-sm → .svcp --sh-sm */
+  --sh-sm:
+    0 1px 2px rgba(10, 18, 34, .04),
+    0 2px 6px rgba(10, 18, 34, .05);
 
-  --shadow-lg: 0 24px 60px -24px rgba(20,86,230,.28);
+  /* :root --shadow-md → .svcp --sh-md */
+  --sh-md:
+    0 14px 34px -16px rgba(10, 18, 34, .22);
 
-  /* Shape */
-  --radius: 16px;
-  --radius-sm: 11px;
+  /* :root --shadow-lg → .svcp --sh-lg */
+  --sh-lg:
+    0 30px 70px -28px rgba(36, 86, 230, .32);
+
+
+  /* Radius */
+
+  /* :root --radius → .svcp --r */
+  --r: 18px;
+
+  /* :root --radius-sm → .svcp --r-sm */
+  --r-sm: 12px;
+
 
   /* Layout */
-  --maxw: 1180px;
+
+  --maxw: 1200px;
+
+
+  /* Fonts */
+
+  /* :root --ff-display → .svcp --disp */
+  --disp: "Plus Jakarta Sans", system-ui, sans-serif;
+
+  /* :root --ff-body → .svcp --bodyf */
+  --bodyf: "Inter", system-ui, sans-serif;
+
+  /* :root --ff-mono → .svcp --mono */
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
 }
 """
 
 # ─── Existing .viewer CSS from the template (so LLM can see container shape) ─
 VIEWER_CSS_CONTEXT = """
 /* === Existing .viewer container styles (DO NOT redefine these) === */
-.route-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:var(--shadow-md);position:relative}
-.route-card::before{content:"DIRECT ACCESS";position:absolute;top:-11px;left:26px;background:var(--ink);color:#fff;font-family:var(--ff-mono);font-size:.6rem;letter-spacing:.18em;padding:5px 11px;border-radius:6px}
-.route-title{font-family:var(--ff-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+.route-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:var(--sh-md);position:relative}
+.route-card::before{content:"DIRECT ACCESS";position:absolute;top:-11px;left:26px;background:var(--ink);color:#fff;font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;padding:5px 11px;border-radius:6px}
+.route-title{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
 .route{display:flex;flex-direction:column;gap:0}
 .route-node{display:flex;align-items:center;gap:14px;padding:12px 0;position:relative}
 .route-node .ico{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;flex:0 0 auto}
 .route-node .ico svg{width:21px;height:21px}
-.route-node.me .ico{background:var(--primary);color:#fff}
+.route-node.me .ico{background:var(--blue);color:#fff}
 .route-node.you .ico{background:var(--ink);color:#fff}
-.route-node.other .ico{background:#F1F5FB;color:var(--muted)}
-.route-node .txt b{display:block;font-family:var(--ff-display);font-size:1rem;color:var(--ink);font-weight:700}
+.route-node.other .ico{background:var(--soft);color:var(--muted)}
+.route-node .txt b{display:block;font-family:var(--disp);font-size:1rem;color:var(--ink);font-weight:700}
 .route-node .txt span{font-size:.82rem;color:var(--muted)}
-.route-node .tag{margin-left:auto;font-family:var(--ff-mono);font-size:.64rem;letter-spacing:.08em;padding:5px 9px;border-radius:6px}
-.route-node.me .tag{background:var(--primary-tint);color:var(--primary-strong)}
-.route-node.other .tag{background:#F1F5FB;color:var(--muted)}
-.route-connector{width:2px;height:16px;background:linear-gradient(var(--primary),rgba(36,86,230,.15));margin-left:20px}
+.route-node .tag{margin-left:auto;font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;padding:5px 9px;border-radius:6px}
+.route-node.me .tag{background:var(--blue-tint);color:var(--blue-strong)}
+.route-node.other .tag{background:var(--soft);color:var(--muted)}
+.route-connector{width:2px;height:16px;background:linear-gradient(var(--blue),rgba(36,86,230,.15));margin-left:20px}
 .route-foot{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;font-size:.8rem}
-.route-foot b{color:var(--ink);font-family:var(--ff-display)}
+.route-foot b{color:var(--ink);font-family:var(--disp)}
 /* ================================================================= */
 """
 
@@ -137,18 +186,28 @@ Your job is to generate a NEW widget that:
   3. Keeps all interactive mechanics (sliders, tabs, clickable steps, live metrics, log outputs, etc.) from the example widget, but rewrites all labels, values, descriptions, simulations, and logic to match the target role.
 
 DIMENSION RULES — CRITICAL:
-- The generated widget MUST match the example widget's `.vw-card` max-width (520px), card border-radius, padding, and internal component heights exactly.
+- The generated widget MUST match the example widget's `.vw-card` max-width (520px), card border-radius (var(--r) or var(--r-sm)), padding, and internal component heights exactly.
 - Do NOT add new wrapper containers or alter the top-level card structure.
 - Do NOT change the overall widget height or introduce scroll overflow.
 - Preserve every @media breakpoint from the example exactly (e.g. @media (max-width: 480px)).
 
 STYLE RULES:
-- Use ONLY the CSS custom properties from the DESIGN TOKENS (--ink, --primary, --green, --surface-alt, --ff-display, --ff-mono, --shadow-md, etc.).
-- Fonts available on the parent page: "Archivo" (display), "Inter" (body), "JetBrains Mono" (mono).
+- Use ONLY the CSS custom properties from the DESIGN TOKENS:
+    Core colors: var(--ink), var(--ink-soft), var(--body), var(--muted)
+    Borders/Lines: var(--line), var(--line-soft)
+    Surfaces: var(--surface), var(--soft), var(--tint)
+    Primary blue: var(--blue), var(--blue-strong), var(--blue-tint)
+    Accents: var(--mint), var(--mint-tint), var(--mint-deep), var(--amber), var(--amber-tint), var(--violet), var(--violet-tint), var(--rose), var(--indigo)
+    Shadows: var(--sh-sm), var(--sh-md), var(--sh-lg)
+    Radius: var(--r) [18px], var(--r-sm) [12px]
+    Fonts: var(--disp) ["Plus Jakarta Sans"], var(--bodyf) ["Inter"], var(--mono) ["IBM Plex Mono"]
+- Fonts available on the parent page: "Plus Jakarta Sans" (display: var(--disp)), "Inter" (body: var(--bodyf)), "IBM Plex Mono" (mono: var(--mono)).
+- Do NOT use old tokens like --primary, --green, --ff-display, --ff-body, --ff-mono, --radius, --shadow-md.
 - Do NOT define or import any font that is not already listed.
-- Do NOT redefine :root custom properties — they are inherited from the parent page.
+- Do NOT redefine :root or .svcp custom properties — they are inherited from the parent page.
 - Your CSS class names MUST start with `.vw-` to avoid collisions with the parent page.
 - Do NOT write any CSS comments (/* ... */) or HTML comments in your output. Write clean code only.
+- don't generate any of style for the body or any other parent class.
 
 STRUCTURE RULES:
 - The output must be a self-contained snippet starting directly with `<style>` and ending after the closing script or markup.

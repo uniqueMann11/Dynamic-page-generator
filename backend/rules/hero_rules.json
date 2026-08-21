@@ -1,70 +1,33 @@
 {
   "hero": {
-    "hero-badge": "Micro-badge text indicating location availability and meeting preference. Must include {{CITY}} and {{STATE}}. Max 8-10 words.",
+    "eyebrow": "Micro-label above main heading (e.g., 'Direct access, no account layer'). Max 6 words.",
     "h1": {
-      "h1-text": "Primary role title/profession (e.g., 'Machine Learning Engineer', 'Data Engineer'). Max 3-5 words.",
-      "em": "Location highlight (e.g., 'in {{CITY}}'). Must include {{CITY}}.",
-      "h1-suffix": "Core value prop suffix highlighting direct access or deployments (e.g., ', direct access, real deployments'). Max 4-6 words."
+      "h1-text": "Primary role and location heading prefix (e.g., 'Hire a Machine Learning Engineer in {{CITY}}:'). Must include {{CITY}}.",
+      "span": "Specialisation or core value proposition suffix (e.g., 'custom ML models & production MLOps'). Max 5-8 words."
     },
     "hero-sub": "Introductory paragraph explaining what the specialist builds and deploys for businesses in {{CITY}} and {{STATE}}. Exactly 2-3 sentences.",
-    "hero-stats": [
+    "creds": [
       {
-        "stat-chip": {
-          "b": "Stat metric number or duration (e.g., '5+', '12+', '24h', '48h'). Max 1 word.",
-          "span": "Stat metric label (e.g., 'Years building ML', 'Case studies'). Max 2-3 words."
+        "cred": {
+          "i": "Metric category label (e.g., 'Experience', 'Delivered', 'Turnaround'). Max 1-2 words.",
+          "b": "Metric highlight text (e.g., '5+ years building ML', '12+ case studies', '48h written spec'). Max 4 words."
         }
       }
     ],
-    "hero-actions": [
+    "hero-cta": [
       {
-        "btn--primary": {
+        "btn-primary": {
           "text": "Action-oriented primary CTA button text (e.g., 'Discuss your ML project'). Max 4 words.",
           "url": "Anchor link (e.g., '#lets-talk')."
         }
       },
       {
-        "btn--ghost": {
-          "text": "Secondary ghost CTA button text (e.g., 'View case studies'). Max 3 words.",
+        "btn-ghost": {
+          "text": "Secondary ghost CTA button text (e.g., 'View 12 case studies'). Max 4 words.",
           "url": "URL or anchor link."
         }
       }
     ],
-    "hero-note": "Trust note on meeting logistics, response time, and NDA protection. Must include {{CITY}}. Max 1 sentence.",
-    "route-card": {
-      "route-title": "Title of the direct-access comparison card (e.g., 'Who sits between you and the build'). Max 7 words.",
-      "route-nodes": [
-        {
-          "route-node-you": {
-            "b": "Title of the client node (e.g., 'Your business').",
-            "span": "Client needs description (e.g., 'The problem, data and goals')."
-          }
-        },
-        {
-          "route-node-me": {
-            "b": "Title of the independent specialist node (e.g., 'Me, directly').",
-            "span": "Direct workflow description (e.g., 'Discovery to deployment').",
-            "tag": "Hop count tag (e.g., '1 HOP')."
-          }
-        },
-        {
-          "route-node-other": {
-            "b": "Title of agency comparison node (e.g., 'Agency route').",
-            "span": "Multi-layer agency description (e.g., 'Account manager, then a lead, then a builder').",
-            "tag": "Hop count tag (e.g., '3+ HOPS')."
-          }
-        }
-      ],
-      "route-foot": [
-        {
-          "text": "Metric prefix label (e.g., 'Proof-of-concept from', 'Start in').",
-          "b": "Metric value (e.g., '$1,000', '48 to 72h')."
-        }
-      ]
-    }
-  },
-  "trustbar": {
-    "trust-item": [
-      "Short trust signal or certification badge (e.g., '100% Upwork Job Success', 'NDA before any data'). Max 4-5 words."
-    ]
+    "live": "Trust note on meeting logistics, response time, and NDA protection in {{CITY}}. Max 1 sentence."
   }
 }

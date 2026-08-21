@@ -1,8 +1,10 @@
 {
-  "what-I-build": {
-    "eyebrow": "What I build",
-    "h2": "Machine learning services in Ahmedabad",
-    "lede": "A full range of machine learning development, delivered by the person who actually builds your system, not routed through an account manager.",
+  "services": {
+    "sec-head": {
+      "eyebrow": "What I offer",
+      "h2": "Machine learning services in Ahmedabad",
+      "lede": "A full range of machine learning development, delivered by the person who actually builds your system, not routed through an account manager."
+    },
     "svc-grid": [
       {
         "svc-card": {
@@ -48,102 +50,55 @@
       }
     ],
     "svc-explore": {
-      "span": "Explore specialisations",
+      "span": "Also explore related specialisations:",
       "chip": [
         {
-          "text": "Computer Vision",
+          "text": "Computer Vision Developer",
           "url": "https://shreyans.tech/hire-computer-vision-developer"
         },
         {
-          "text": "NLP",
+          "text": "NLP Developer",
           "url": "https://shreyans.tech/hire-nlp-developer"
         },
         {
-          "text": "Generative AI",
-          "url": "https://shreyans.tech/hire-generative-ai-developer"
-        },
-        {
-          "text": "AI Agents",
-          "url": "https://shreyans.tech/hire-ai-agent-developer"
-        },
-        {
-          "text": "Model Training",
+          "text": "AI Model Training",
           "url": "https://shreyans.tech/hire-ai-model-training-developer"
-        },
-        {
-          "text": "ML Development",
-          "url": "https://shreyans.tech/hire-machine-learning-developer"
         }
       ]
     }
   },
+  "stack": {
+    "sec-head": {
+      "eyebrow": "Tooling",
+      "h2": "Technologies used in machine learning development",
+      "lede": "Advanced ML frameworks, MLOps tools, and cloud platforms, selected per project to build high-performance models that deliver accurate predictions and real business value."
+    }
+  },
   "comparison": {
-    "eyebrow": "The honest comparison",
-    "h2": "Independent ML Engineer vs an ML company in Ahmedabad",
-    "lede": "Ahmedabad has genuinely excellent established companies. For a large, multi-specialist product build, that scale helps. For a focused machine learning project, working directly with an experienced independent engineer is usually faster to start and more cost-effective, with no meaningful drop in quality.",
-    "cmp": {
-      "thead": [
-        "Factor",
-        "Independent engineer (me)",
-        "Established local company",
-        "Overseas agency"
-      ],
-      "tbody": [
-        {
-          "th": "Cost",
-          "td": [
-            "Lower, no team overhead",
-            "Higher, team and office overhead",
-            "Often highest, plus currency and markup"
-          ]
-        },
-        {
-          "th": "Access to the builder",
-          "td": [
-            "Always, every project",
-            "Often via account manager or lead",
-            "Varies, time zone adds lag"
-          ]
-        },
-        {
-          "th": "Local availability",
-          "td": [
-            "Yes, based in Ahmedabad",
-            "Yes, typically office-based",
-            "No, remote only"
-          ]
-        },
-        {
-          "th": "Best for",
-          "td": [
-            "Focused ML projects, $500 to $25,000",
-            "Large, multi-specialist builds",
-            "Brand name over cost or access"
-          ]
-        },
-        {
-          "th": "Response time",
-          "td": [
-            "Same day, direct contact",
-            "Depends on account structure",
-            "Time-zone dependent"
-          ]
-        }
-      ]
+    "sec-head": {
+      "eyebrow": "The honest comparison",
+      "h2": "Independent ML Engineer vs an ML company in Ahmedabad",
+      "lede": "Ahmedabad has genuinely excellent established companies. For a large, multi-specialist product build, that scale helps. For a focused machine learning project, working directly with an experienced independent engineer is usually faster to start and more cost-effective, with no meaningful drop in quality."
     },
-    "btn--primary": {
+    "cmp": {
+      "thead": [],
+      "tbody": []
+    },
+    "btn-primary": {
       "text": "Get a fixed quote for your project",
       "url": "#lets-talk"
     }
   },
   "local-context": {
     "ctx-grid": {
-      "eyebrow": "Local context",
-      "h2": "The Ahmedabad machine learning and technology ecosystem",
+      "sec-head": {
+        "eyebrow": "Local context",
+        "h2": "The Ahmedabad machine learning and technology ecosystem"
+      },
       "prose": {
         "p": [
           "Ahmedabad has a growing machine learning and technology ecosystem, supported by strong engineering and educational institutions, technology companies, startups and innovation-focused communities. The city is building capability across artificial intelligence, data science, fintech, healthtech and other emerging domains.",
-          "Institutions such as IIT Gandhinagar and Gujarat University, together with the wider Gujarat innovation network, contribute to talent, research and entrepreneurship. Connectivity to the broader Gujarat technology corridor, including Gandhinagar and GIFT City, expands collaboration between academia, startups, established enterprises and investors.",
+          "Institutions such as IIT Gandhinagar, IIM Ahmedabad, DA-IICT and Gujarat University, together with the wider Gujarat innovation network, contribute to talent, research and entrepreneurship. Connectivity to the broader Gujarat technology corridor, including GIFT City and regional industrial hubs, expands collaboration between academia, startups, established enterprises and investors.",
           "That combination of technical talent, institutional support and access to a wider technology ecosystem gives Ahmedabad businesses a strong foundation for adopting machine learning with confidence."
         ]
       },
@@ -151,17 +106,16 @@
         "text": "Hire an AI developer in Ahmedabad",
         "url": "https://shreyans.tech/hire-ai-developer"
       },
-      "ctx-float": [
-        {
-          "b": "Same time zone",
-          "span": "Overlapping hours across India"
-        },
-        {
-          "b": "Local meetings",
-          "span": "In person across Ahmedabad"
-        }
-      ],
-      "widget-title": "Ahmedabad · ML ecosystem"
+      "card": {
+        "why-tag": "Gujarat Innovation Network",
+        "h3": "Local Collaboration & Hubs",
+        "p": "Regular participation in Gujarat AI meetups, startup incubation sessions, and engineering roundtables across Ahmedabad and Gandhinagar.",
+        "checklist": [
+          "IIT Gandhinagar & DA-IICT ecosystem ties",
+          "In-person meetings in Prahlad Nagar & SG Highway",
+          "Serving GIFT City fintech & enterprise teams"
+        ]
+      }
     }
   }
 }

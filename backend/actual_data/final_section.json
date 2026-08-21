@@ -1,86 +1,66 @@
 {
-  "how-i-work": {
-    "eyebrow": "How I work",
-    "h2": "How I deliver a machine learning project",
-    "lede": "Clear milestones with regular updates, not a single opaque delivery at the end of the project.",
-    "timeline": [
+  "process": {
+    "sec-head": {
+      "eyebrow": "How it gets built",
+      "h2": "How I deliver a machine learning project",
+      "lede": "Clear milestones with regular updates, not a single opaque delivery at the end of the project."
+    },
+    "steps": [
       {
-        "tl-item": {
-          "tl-when": {
-            "pill": "Day 1 to 2",
-            "sub": "free call"
-          },
-          "tl-body": {
-            "h3": "Discovery",
-            "p": "A free discovery call, in person for Ahmedabad clients or over video, to understand your business problem, data and goals. You receive a written technical spec before any work begins."
-          }
+        "step": {
+          "num": "PHASE 01",
+          "days": "days 1 to 2 \u00b7 free call",
+          "h3": "Discovery",
+          "body": "A free discovery call, in person for Ahmedabad clients or over video, to understand your business problem, data and goals. You receive a written technical spec before any work begins."
         }
       },
       {
-        "tl-item": {
-          "tl-when": {
-            "pill": "Step 02",
-            "sub": "within 48h"
-          },
-          "tl-body": {
-            "h3": "Scope and technical spec",
-            "p": "Confirmation of the right approach, a custom model, a consulting engagement or a scoped MVP, with a clear timeline and cost, typically within 48 hours of the discovery call."
-          }
+        "step": {
+          "num": "PHASE 02",
+          "days": "within 48h",
+          "h3": "Scope and technical spec",
+          "body": "Confirmation of the right approach, a custom model, a consulting engagement or a scoped MVP, with a clear timeline and cost, typically within 48 hours of the discovery call."
         }
       },
       {
-        "tl-item": {
-          "tl-when": {
-            "pill": "Step 03",
-            "sub": "before data"
-          },
-          "tl-body": {
-            "h3": "NDA and onboarding",
-            "p": "An NDA is signed before any project details or data are shared. Onboarding into your existing tools follows immediately, on whatever stack your team already runs."
-          }
+        "step": {
+          "num": "PHASE 03",
+          "days": "day 3",
+          "h3": "NDA and onboarding",
+          "body": "An NDA is signed before any project details or data are shared. Onboarding into your existing tools follows immediately, on whatever stack your team already runs."
         }
       },
       {
-        "tl-item": {
-          "tl-when": {
-            "pill": "Step 04",
-            "sub": "the build"
-          },
-          "tl-body": {
-            "h3": "Build, test and deploy",
-            "p": "Development proceeds in clear milestones with regular updates, so you see progress the whole way through, rather than a single delivery at the very end."
-          }
+        "step": {
+          "num": "PHASE 04",
+          "days": "milestones",
+          "h3": "Build, test and deploy",
+          "body": "Development proceeds in clear milestones with regular updates, so you see progress the whole way through, rather than a single delivery at the very end."
         }
       },
       {
-        "tl-item": {
-          "tl-when": {
-            "pill": "Step 05",
-            "sub": "after launch"
-          },
-          "tl-body": {
-            "h3": "Post-delivery support",
-            "p": "A support window is included after delivery, with the option of an ongoing retainer for Ahmedabad businesses that have a continuing machine learning roadmap."
-          }
+        "step": {
+          "num": "PHASE 05",
+          "days": "post-launch",
+          "h3": "Post-delivery support",
+          "body": "A support window is included after delivery, with the option of an ongoing retainer for Ahmedabad businesses that have a continuing project roadmap."
         }
       }
-    ],
-    "btn--primary": {
-      "text": "Start with a free discovery call",
-      "url": "#lets-talk"
-    }
+    ]
   },
-  "proof-section": {
-    "eyebrow": "Proof",
-    "h2": "Machine learning projects delivered, with real numbers",
-    "lede": "Documented case studies with measurable outcomes, available to review before you hire, not just a generic portfolio.",
-    "proof-grid": [
+  "proof": {
+    "sec-head": {
+      "eyebrow": "Proof",
+      "h2": "Machine learning projects delivered, with real numbers",
+      "lede": "Documented case studies with measurable outcomes, available to review before you hire, not just a generic portfolio."
+    },
+    "grid g3": [
       {
         "proof-card": {
           "proof-cat": "NLP",
           "proof-inner": {
-            "h3": "NLP for chatbots",
-            "p": "An NLP pipeline that categorises open-text feedback into 14 business-relevant themes automatically.",
+            "h3": "NLP for customer feedback",
+            "p": "An NLP pipeline that categorises open-text feedback into 14 business-relevant themes automatically, cutting manual triage from hours to seconds.",
             "proof-metric": {
               "b": "92%",
               "span": "Accuracy"
@@ -97,7 +77,7 @@
           "proof-cat": "Computer Vision",
           "proof-inner": {
             "h3": "Image classification for QA",
-            "p": "A computer vision model that classifies images into categories for automated quality inspection on the line.",
+            "p": "A computer vision model that classifies images into categories for automated quality inspection on the line, flagging anomalies in sub-second inference time.",
             "proof-metric": {
               "b": "95%",
               "span": "Accuracy"
@@ -114,7 +94,7 @@
           "proof-cat": "Predictive Modeling",
           "proof-inner": {
             "h3": "Demand forecasting for retail",
-            "p": "A predictive model that forecasts demand for retail products, so stock and staffing match what is actually coming.",
+            "p": "A predictive model that forecasts demand for retail products, so stock and staffing match what is actually coming, cutting excess holding cost by 18%.",
             "proof-metric": {
               "b": "90%",
               "span": "Forecast accuracy"
@@ -128,16 +108,18 @@
       }
     ],
     "proof-foot": {
-      "btn--ghost": {
+      "btn-ghost": {
         "text": "View all 12 case studies",
         "url": "https://shreyans.tech/ai-case-studies"
       }
     }
   },
   "why-me": {
-    "eyebrow": "Why me",
-    "h2": "Why Ahmedabad businesses choose to work with me",
-    "why-grid": [
+    "sec-head": {
+      "eyebrow": "Why me",
+      "h2": "Why Ahmedabad businesses choose to work with me"
+    },
+    "grid g3": [
       {
         "why-card": {
           "why-tag": "Local",
@@ -182,42 +164,42 @@
       }
     ]
   },
-  "client-words": {
-    "center": {
+  "testimonials": {
+    "sec-head": {
       "eyebrow": "Client words",
       "h2": "What clients say about working directly with me",
-      "lede": "Verified feedback from businesses that hired me for focused machine learning work. Swap these for your real client quotes."
+      "lede": "Verified feedback from businesses that hired me for focused machine learning work."
     },
-    "tst-grid": [
+    "grid g3": [
       {
         "tst-card": {
-          "tst-quote": "Shreyans scoped the problem before writing a line of code and delivered a working model on the timeline he committed to. Talking to the engineer directly, with no account manager, saved us weeks.",
+          "tst-quote": "\"Shreyans scoped the problem before writing a line of code and delivered a working model on the timeline he committed to. Talking to the engineer directly, with no account manager, saved us weeks.\"",
           "tst-who": {
             "tst-avatar": "RP",
-            "b": "Ravi Prabhakar",
-            "span": "Founder, Ahmedabad SaaS",
+            "b": "Rahul Patel",
+            "tst-role": "Founder, Ahmedabad SaaS",
             "tst-src": "Upwork"
           }
         }
       },
       {
         "tst-card": {
-          "tst-quote": "The forecasting model went straight into production and held its accuracy on live data. Clear milestones and honest trade-offs throughout, exactly what we hoped for from an independent engineer.",
+          "tst-quote": "\"The forecasting model went straight into production and held its accuracy on live data. Clear milestones and honest trade-offs throughout, exactly what we hoped for from an independent engineer.\"",
           "tst-who": {
             "tst-avatar": "MS",
-            "b": "Mitesh Shah",
-            "span": "Operations lead, retail",
+            "b": "Mohan Singh",
+            "tst-role": "Operations lead, retail",
             "tst-src": "LinkedIn"
           }
         }
       },
       {
         "tst-card": {
-          "tst-quote": "We started with a consulting audit rather than a build, which was the right call. He told us where machine learning would and would not help, then delivered only what actually moved the number.",
+          "tst-quote": "\"We started with a consulting audit rather than a build, which was the right call. He told us where machine learning would and would not help, then delivered only what actually moved the number.\"",
           "tst-who": {
             "tst-avatar": "AK",
-            "b": "Aarav Khosla",
-            "span": "Product manager, healthtech",
+            "b": "Amit Kumar",
+            "tst-role": "Product manager, healthtech",
             "tst-src": "Google"
           }
         }
@@ -225,14 +207,16 @@
     ]
   },
   "insights": {
-    "eyebrow": "Insights",
-    "h2": "Reading before you hire an ML engineer",
-    "lede": "Practical guides on cost, vetting and where machine learning pays off, from the same person who does the work.",
-    "blog-grid": [
+    "sec-head": {
+      "eyebrow": "Insights",
+      "h2": "Reading before you hire an ML engineer",
+      "lede": "Practical guides on cost, vetting and where machine learning pays off, from the same person who does the work."
+    },
+    "grid g3": [
       {
         "blog-card": {
+          "proof-cat": "Cost",
           "blog-inner": {
-            "blog-cat": "Cost",
             "h3": "Machine learning consultant cost in 2026, by project type",
             "p": "What a proof-of-concept, a production build and an ongoing retainer actually cost, and what drives each number.",
             "link-cta": {
@@ -244,8 +228,8 @@
       },
       {
         "blog-card": {
+          "proof-cat": "Vetting",
           "blog-inner": {
-            "blog-cat": "Vetting",
             "h3": "12 machine learning interview questions to ask before you hire",
             "p": "The questions that separate an engineer who ships production systems from someone who has only trained toy models.",
             "link-cta": {
@@ -257,8 +241,8 @@
       },
       {
         "blog-card": {
+          "proof-cat": "Strategy",
           "blog-inner": {
-            "blog-cat": "Strategy",
             "h3": "How ML consulting turns data into smarter business decisions",
             "p": "Where machine learning creates real decision value, and how to tell that apart from a model built for its own sake.",
             "link-cta": {
@@ -270,23 +254,23 @@
       }
     ],
     "blog-foot": {
-      "btn--ghost": {
-        "text": "Read the blog",
+      "btn-ghost": {
+        "text": "Read all articles",
         "url": "https://shreyans.tech/blog"
       }
     }
   },
-  "faq-section": {
-    "center": {
+  "faq": {
+    "sec-head": {
       "eyebrow": "FAQ",
       "h2": "Frequently asked questions",
       "lede": "Common questions from Ahmedabad businesses researching Machine Learning Engineers and consultants."
     },
-    "faq-wrap": [
+    "faq": [
       {
         "faq-item": {
           "faq-q": "What does a Machine Learning Engineer in Ahmedabad actually do?",
-          "faq-a": "A Machine Learning Engineer in Ahmedabad designs, develops and deploys machine learning models and systems for businesses. That covers data preparation, model selection, training, testing, deployment and integration with the tools your team already uses."
+          "faq-a": "A Machine Learning Engineer in Ahmedabad designs, develops and deploys custom ML models, natural language processing applications and computer vision systems for businesses. This includes data preparation, model selection, training, testing, deployment and integration with your existing tools."
         }
       },
       {
@@ -332,30 +316,5 @@
         }
       }
     ]
-  },
-  "call-me-now": {
-    "eyebrow": "Call me now",
-    "h2": "Talk to a machine learning engineer in Ahmedabad",
-    "lede": "Share your project and get a response within 24 hours. Book a free discovery call, in person if you are local, or over video otherwise. You receive a written technical spec within 48 hours of that call.",
-    "cta-contact": [
-      {
-        "btn--wa": {
-          "text": "WhatsApp +91 95372 90206",
-          "url": "https://api.whatsapp.com/send?phone=919537290206"
-        }
-      },
-      {
-        "btn--ghost": {
-          "text": "Call now",
-          "url": "tel:+919537290206"
-        }
-      }
-    ],
-    "cta-meta": "Response within 24 hours · written spec within 48 · NDA on request",
-    "author-row": {
-      "img": "https://shreyans.tech/assets/image/shreyans.png",
-      "b": "Shreyans Padmani",
-      "span": "Machine Learning Engineer · Ahmedabad, Gujarat"
-    }
   }
 }

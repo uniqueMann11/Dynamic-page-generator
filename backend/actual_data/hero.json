@@ -1,95 +1,45 @@
 {
   "hero": {
-    "hero-badge": "Based in Ahmedabad, Gujarat · available for local meetings",
+    "eyebrow": "Direct access, no account layer",
     "h1": {
-      "h1-text": "Machine Learning Engineer",
-      "em": "in Ahmedabad",
-      "h1-suffix": ", direct access, real deployments"
+      "h1-text": "Hire a Machine Learning Engineer in Ahmedabad:",
+      "span": "custom ML models & production MLOps"
     },
     "hero-sub": "I build and deploy production machine learning systems for Ahmedabad and Gujarat businesses, and for clients internationally. You work with the engineer who writes the code, from discovery to deployment, not an account manager.",
-    "hero-stats": [
+    "creds": [
       {
-        "stat-chip": {
-          "b": "5+",
-          "span": "Years building ML"
+        "cred": {
+          "i": "Experience",
+          "b": "5+ years building ML"
         }
       },
       {
-        "stat-chip": {
-          "b": "12+",
-          "span": "Case studies"
+        "cred": {
+          "i": "Delivered",
+          "b": "12+ case studies"
         }
       },
       {
-        "stat-chip": {
-          "b": "24h",
-          "span": "Response time"
-        }
-      },
-      {
-        "stat-chip": {
-          "b": "48h",
-          "span": "Span written spec"
+        "cred": {
+          "i": "Turnaround",
+          "b": "48h written spec"
         }
       }
     ],
-    "hero-actions": [
+    "hero-cta": [
       {
-        "btn--primary": {
+        "btn-primary": {
           "text": "Discuss your ML project",
           "url": "#lets-talk"
         }
       },
       {
-        "btn--ghost": {
-          "text": "View case studies",
+        "btn-ghost": {
+          "text": "View 12 case studies",
           "url": "https://shreyans.tech/ai-case-studies"
         }
       }
     ],
-    "hero-note": "In-person meetings in Ahmedabad · video calls worldwide · NDA before any data",
-    "route-card": {
-      "route-title": "Who sits between you and the build",
-      "route-nodes": [
-        {
-          "route-node-you": {
-            "b": "Your business",
-            "span": "The problem, data and goals"
-          }
-        },
-        {
-          "route-node-me": {
-            "b": "Me, directly",
-            "span": "Discovery to deployment",
-            "tag": "1 HOP"
-          }
-        },
-        {
-          "route-node-other": {
-            "b": "Agency route",
-            "span": "Account manager, then a lead, then a builder",
-            "tag": "3+ HOPS"
-          }
-        }
-      ],
-      "route-foot": [
-        {
-          "text": "Proof-of-concept from",
-          "b": "$1,000"
-        },
-        {
-          "text": "Start in",
-          "b": "48 to 72h"
-        }
-      ]
-    }
-  },
-  "trustbar": {
-    "trust-item": [
-      "100% Upwork Job Success",
-      "Microsoft AI certified",
-      "NDA before any data",
-      "Written spec in 48 hours"
-    ]
+    "live": "In-person meetings in Ahmedabad, video calls worldwide, NDA before any data"
   }
 }

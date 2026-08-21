@@ -1,14 +1,14 @@
 {
-  "value-strip": {
-    "center": {
-      "eyebrow": "Why direct access wins",
+  "why-direct": {
+    "sec-head": {
+      "eyebrow": "Why direct access",
       "h2": "What you get working with me"
     },
-    "value-grid": [
+    "grid g4": [
       {
         "value-card": {
-          "h3": "Expert ML solutions",
-          "p": "Jaipur-based and available for local meetings, delivering tailored machine learning solutions to businesses across Rajasthan."
+          "h3": "Proven ML solutions",
+          "p": "Vadodara-based and available for local meetings, delivering tailored machine learning solutions to businesses across Gujarat's petrochemical, engineering and pharma sectors."
         }
       },
       {
@@ -31,25 +31,17 @@
       }
     ]
   },
-  "quick-answer": {
-    "prose-grid": {
+  "what-is": {
+    "sec-head": {
       "eyebrow": "Plain answer",
-      "h2": "What does a Machine Learning Engineer in Jaipur actually do?",
-      "answer-card": {
-        "tag": "Quick answer",
-        "p": "A Machine Learning Engineer in Jaipur designs, develops and deploys custom ML models, natural language processing applications and computer vision systems for businesses, then integrates them into the tools your team already uses."
-      },
-      "prose": {
-        "p": [
-          "Jaipur is a growing technology hub in Rajasthan, with a strong base of engineering talent and a fast-adopting business community. As an independent engineer, the focus is on delivering production-ready, integrated systems that move a business metric, not prototypes that stall after a demo.",
-          "The work spans the full lifecycle: framing the problem, preparing and validating data, selecting and training the right model, deploying it reliably, and monitoring it in production so accuracy holds as your data shifts. If you are still deciding whether machine learning fits at all, that assessment is part of the machine learning development services too."
-        ],
-        "checklist": [
-          "Custom models tied to a real business outcome, scoped before any build starts.",
-          "Deployment and MLOps, so the model runs reliably and keeps working after launch.",
-          "In-person collaboration for Jaipur clients who prefer a local working relationship."
-        ]
-      }
+      "h2": "What does a Machine Learning Engineer in Vadodara actually do?"
+    },
+    "tldr": {
+      "b": "Quick answer",
+      "p": [
+        "A Machine Learning Engineer in Vadodara designs, develops and deploys custom ML models, natural language processing applications and computer vision systems for businesses in petrochemicals, engineering and pharma, then integrates them into the tools your team already uses.",
+        "The work spans the full lifecycle: framing the problem, preparing and validating data, selecting and training the right model, deploying it reliably, and monitoring it in production so accuracy holds as your data shifts. If you are still deciding whether machine learning fits at all, that assessment is part of the work too."
+      ]
     }
   }
 }

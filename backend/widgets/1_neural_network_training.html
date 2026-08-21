@@ -6,41 +6,52 @@
   <title>Watching the AI Get Better With Practice</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600" rel="stylesheet" />
   <style>
-    :root {
-      --ink: #0B1120;
-      --ink-soft: #1E293B;
-      --body: #475569;
-      --muted: #64748B;
-      --line: #E7ECF3;
-      --line-soft: #EEF2F8;
+        :root, .svcp {
+      --ink: #0A1222;
+      --ink-soft: #1B2740;
+      --body: #48566E;
+      --muted: #6B7A93;
+      --line: #E6ECF4;
+      --line-soft: #EFF3F9;
       --surface: #FFFFFF;
-      --surface-alt: #F5F8FD;
-      --surface-tint: #EEF3FF;
-      --primary: #2456E6;
-      --primary-strong: #1740C0;
-      --primary-tint: #E7EEFF;
-      --green: #159A5B;
-      --green-tint: #E7F7EF;
-      --radius: 18px;
-      --radius-sm: 10px;
-      --ff-display: "Archivo", system-ui, sans-serif;
-      --ff-body: "Inter", system-ui, sans-serif;
-      --ff-mono: "JetBrains Mono", ui-monospace, monospace;
-      --shadow-md: 0 10px 30px -12px rgba(11, 17, 32, .18);
+      --soft: #F4F8FD;
+      --tint: #EAF0FF;
+      --blue: #2456E6;
+      --blue-strong: #1740C0;
+      --blue-tint: #E6EEFF;
+      --violet: #6D5EF6;
+      --violet-tint: #EDEAFE;
+      --mint: #0FA968;
+      --mint-tint: #E4F7EE;
+      --mint-deep: #0B7D4E;
+      --amber: #D97A18;
+      --amber-tint: #FCEFDD;
+      --rose: #E11D48;
+      --rose-tint: #FFE8EE;
+      --indigo: #4F46E5;
+      --sh-sm: 0 1px 2px rgba(10, 18, 34, .04), 0 2px 6px rgba(10, 18, 34, .05);
+      --sh-md: 0 14px 34px -16px rgba(10, 18, 34, .22);
+      --sh-lg: 0 30px 70px -28px rgba(36, 86, 230, .32);
+      --r: 18px;
+      --r-sm: 12px;
+      --maxw: 1200px;
+      --disp: "Plus Jakarta Sans", system-ui, sans-serif;
+      --bodyf: "Inter", system-ui, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--ff-body); background: #F0F4FA; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    body { font-family: var(--bodyf); background: #F0F4FA; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
 
     .vw-card {
       width: 100%;
       max-width: 520px;
       background: var(--surface);
       border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-md);
+      border-radius: var(--r);
+      box-shadow: var(--sh-md);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -58,7 +69,7 @@
     }
 
     .vw-top .t {
-      font-family: var(--ff-display);
+      font-family: var(--disp);
       font-size: 0.88rem;
       font-weight: 700;
       color: var(--ink);
@@ -72,34 +83,34 @@
       text-overflow: ellipsis;
     }
 
-    .vw-top .t svg { width: 16px; height: 16px; color: var(--primary); flex: none; }
+    .vw-top .t svg { width: 16px; height: 16px; color: var(--blue); flex: none; }
 
     .vw-live {
       display: flex;
       align-items: center;
       gap: 5px;
-      font-family: var(--ff-mono);
+      font-family: var(--mono);
       font-size: 0.62rem;
       font-weight: 600;
       color: var(--muted);
       flex: none;
     }
 
-    .vw-live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); position: relative; }
+    .vw-live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--mint); position: relative; }
     .vw-live-dot::after {
       content: ""; position: absolute; inset: -4px; border-radius: 50%;
-      background: var(--green); opacity: .35; animation: vw-pulse 1.7s ease-out infinite;
+      background: var(--mint); opacity: .35; animation: vw-pulse 1.7s ease-out infinite;
     }
     @keyframes vw-pulse { 0% { transform: scale(.6); opacity: .5; } 100% { transform: scale(2.4); opacity: 0; } }
 
     .vw-chip {
-      font-family: var(--ff-mono);
+      font-family: var(--mono);
       font-size: 0.66rem;
       font-weight: 600;
       padding: 3px 9px;
       border-radius: 6px;
-      background: var(--primary-tint);
-      color: var(--primary-strong);
+      background: var(--blue-tint);
+      color: var(--blue-strong);
       border: 1px solid rgba(36, 86, 230, 0.25);
       flex: none;
       white-space: nowrap;
@@ -113,9 +124,9 @@
     }
 
     .vw-scorecard {
-      background: var(--surface-alt);
+      background: var(--soft);
       border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
+      border-radius: var(--r-sm);
       padding: 12px 14px;
       display: flex;
       align-items: center;
@@ -124,48 +135,48 @@
     }
 
     .vw-sc-left { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-    .vw-sc-label { font-size: 0.72rem; font-weight: 600; color: var(--muted); text-transform: uppercase; font-family: var(--ff-mono); letter-spacing: .02em; }
-    .vw-sc-val { font-family: var(--ff-display); font-size: 1.3rem; font-weight: 800; color: var(--ink); }
-    .vw-sc-sub { font-size: 0.68rem; color: var(--green); font-weight: 600; }
+    .vw-sc-label { font-size: 0.72rem; font-weight: 600; color: var(--muted); text-transform: uppercase; font-family: var(--mono); letter-spacing: .02em; }
+    .vw-sc-val { font-family: var(--disp); font-size: 1.3rem; font-weight: 800; color: var(--ink); }
+    .vw-sc-sub { font-size: 0.68rem; color: var(--mint); font-weight: 600; }
 
     .vw-sc-badge {
-      background: var(--green-tint);
-      color: var(--green);
+      background: var(--mint-tint);
+      color: var(--mint);
       border: 1px solid rgba(21, 154, 91, 0.25);
       padding: 6px 12px;
       border-radius: 8px;
       text-align: right;
       flex: none;
     }
-    .vw-sc-badge b { display: block; font-size: 1.1rem; font-family: var(--ff-display); }
-    .vw-sc-badge span { font-size: 0.62rem; font-family: var(--ff-mono); }
+    .vw-sc-badge b { display: block; font-size: 1.1rem; font-family: var(--disp); }
+    .vw-sc-badge span { font-size: 0.62rem; font-family: var(--mono); }
 
     #txtAccuracyVal{
       font-size: 1rem;
     }
 
     .vw-chart-wrap {
-      background: var(--surface-alt);
+      background: var(--soft);
       border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
+      border-radius: var(--r-sm);
       padding: 12px 14px 8px;
     }
 
     .vw-chart-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
-    .vw-chart-label { font-family: var(--ff-mono); font-size: 0.66rem; color: var(--muted); text-transform: uppercase; letter-spacing: .03em; }
-    .vw-chart-now { font-family: var(--ff-mono); font-size: 0.68rem; color: var(--primary-strong); font-weight: 700; }
+    .vw-chart-label { font-family: var(--mono); font-size: 0.66rem; color: var(--muted); text-transform: uppercase; letter-spacing: .03em; }
+    .vw-chart-now { font-family: var(--mono); font-size: 0.68rem; color: var(--blue-strong); font-weight: 700; }
 
     .vw-chart { width: 100%; height: auto; display: block; }
     .vw-chart-area { fill: url(#vwGrad); }
-    .vw-chart-line { fill: none; stroke: var(--primary); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-    .vw-chart-dot { fill: var(--primary); filter: drop-shadow(0 0 4px rgba(36, 86, 230, .45)); transition: cx .5s ease, cy .5s ease; }
+    .vw-chart-line { fill: none; stroke: var(--blue); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .vw-chart-dot { fill: var(--blue); filter: drop-shadow(0 0 4px rgba(36, 86, 230, .45)); transition: cx .5s ease, cy .5s ease; }
     .vw-goal-line { stroke: #C7D2E3; stroke-width: 1; stroke-dasharray: 4 4; }
-    .vw-goal-text { fill: var(--muted); font-family: var(--ff-mono); font-size: 8px; }
+    .vw-goal-text { fill: var(--muted); font-family: var(--mono); font-size: 8px; }
 
-    .vw-chart-foot { display: flex; justify-content: space-between; font-size: 0.62rem; font-family: var(--ff-mono); color: var(--muted); margin-top: 2px; }
+    .vw-chart-foot { display: flex; justify-content: space-between; font-size: 0.62rem; font-family: var(--mono); color: var(--muted); margin-top: 2px; }
 
     .vw-steps-label {
-      font-family: var(--ff-mono);
+      font-family: var(--mono);
       font-size: 0.64rem;
       color: var(--muted);
       text-transform: uppercase;
@@ -176,27 +187,27 @@
     .vw-layers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 6px; }
 
     .vw-layer-card {
-      background: var(--surface-alt);
+      background: var(--soft);
       border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
+      border-radius: var(--r-sm);
       padding: 8px 6px;
       cursor: pointer;
       text-align: center;
       transition: border-color .2s, background .2s, box-shadow .2s;
     }
-    .vw-layer-card:hover { border-color: var(--primary); background: var(--surface-tint); }
-    .vw-layer-card.active { background: var(--primary-tint); border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary); }
+    .vw-layer-card:hover { border-color: var(--blue); background: var(--tint); }
+    .vw-layer-card.active { background: var(--blue-tint); border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
 
-    .vw-layer-title { font-family: var(--ff-display); font-size: 0.72rem; font-weight: 700; color: var(--ink); }
-    .vw-layer-sub { font-size: 0.58rem; color: var(--muted); font-family: var(--ff-mono); margin-top: 2px; }
+    .vw-layer-title { font-family: var(--disp); font-size: 0.72rem; font-weight: 700; color: var(--ink); }
+    .vw-layer-sub { font-size: 0.58rem; color: var(--muted); font-family: var(--mono); margin-top: 2px; }
 
     .vw-step-detail {
       font-size: 0.74rem;
       line-height: 1.4;
       color: var(--body);
-      background: var(--surface-alt);
+      background: var(--soft);
       border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
+      border-radius: var(--r-sm);
       margin-top: 6px;
       padding: 0 10px;
       max-height: 0;
@@ -209,9 +220,9 @@
     .vw-log-box {
       background: #090E17;
       border: 1px solid #1E293B;
-      border-radius: var(--radius-sm);
+      border-radius: var(--r-sm);
       padding: 10px 12px;
-      font-family: var(--ff-mono);
+      font-family: var(--mono);
       font-size: 0.68rem;
       color: #93C5FD;
       display: flex;
@@ -231,7 +242,7 @@
       gap: 10px;
       padding: 10px 18px;
       border-top: 1px solid var(--line-soft);
-      background: var(--surface-alt);
+      background: var(--soft);
       font-size: 0.72rem;
       color: var(--muted);
     }
@@ -250,8 +261,8 @@
       width: 210px; white-space: normal;
       background: var(--ink); color: #fff;
       padding: 7px 10px; border-radius: 8px;
-      font-size: 0.65rem; line-height: 1.35; font-family: var(--ff-body);
-      box-shadow: var(--shadow-md);
+      font-size: 0.65rem; line-height: 1.35; font-family: var(--bodyf);
+      box-shadow: var(--sh-md);
       opacity: 0; pointer-events: none;
       transition: opacity .15s ease;
       z-index: 5;
@@ -262,7 +273,7 @@
       background: var(--surface);
       border: 1px solid var(--line);
       color: var(--ink);
-      font-family: var(--ff-mono);
+      font-family: var(--mono);
       font-size: 0.65rem;
       font-weight: 600;
       padding: 4px 10px;
@@ -271,7 +282,7 @@
       transition: all 0.15s;
       flex: none;
     }
-    .vw-btn-mini:hover { background: var(--primary-tint); border-color: var(--primary); color: var(--primary); }
+    .vw-btn-mini:hover { background: var(--blue-tint); border-color: var(--blue); color: var(--blue); }
 
     @media (max-width: 480px) {
       .vw-layers-grid { grid-template-columns: repeat(2, 1fr); }

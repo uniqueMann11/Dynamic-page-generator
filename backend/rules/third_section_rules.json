@@ -1,69 +1,91 @@
 {
-  "what-I-build": {
-    "eyebrow": "Micro-label above services heading (e.g., 'What I build'). Max 3 words.",
-    "h2": "Section title introducing services in {{CITY}} (e.g., 'Machine learning services in {{CITY}}'). Must include {{CITY}}.",
-    "lede": "Introductory lede paragraph explaining direct delivery without account managers. Exactly 1-2 sentences.",
+  "services": {
+    "sec-head": {
+      "eyebrow": "Micro-label for services (e.g., 'What I offer'). Max 3 words.",
+      "h2": "Heading for core services in {{CITY}} (e.g., 'Machine learning services in {{CITY}}'). Must include {{CITY}}.",
+      "lede": "Lede sentence describing direct delivery without agency layers. Exactly 1 sentence."
+    },
     "svc-grid": [
       {
         "svc-card": {
-          "svc-num": "Two-digit item index starting from '01' to '06'.",
-          "h3": "Specific service title tailored to the target role (e.g., 'Custom ML Models', 'MLOps Development'). Max 3-4 words.",
-          "p": "Description of service scope, deliverables, and business value. Exactly 1-2 sentences."
+          "svc-num": "Two-digit zero-padded index string (e.g., '01', '02', '03', '04', '05', '06').",
+          "h3": "Service name (e.g., 'Custom ML Models', 'MLOps Development', 'Deep Learning Solutions', 'Recommendation Systems', 'Predictive Maintenance', 'ML Consulting Services'). Max 4 words.",
+          "p": "Clear description of deliverables, methodology, and local business impact in {{CITY}}. Exactly 1-2 sentences."
         }
       }
     ],
     "svc-explore": {
-      "span": "Header label for specialisation chips (e.g., 'Explore specialisations'). Max 3 words.",
+      "span": "Exploration lead-in text (e.g., 'Also explore related specialisations:').",
       "chip": [
         {
-          "text": "Specialisation keyword (e.g., 'Computer Vision', 'NLP'). Max 2 words.",
-          "url": "Target URL."
+          "text": "Specialisation link label (e.g., 'Computer Vision Developer', 'NLP Developer', 'AI Model Training').",
+          "url": "Target internal URL."
         }
       ]
     }
   },
+  "stack": {
+    "sec-head": {
+      "eyebrow": "Micro-label for tooling (e.g., 'Tooling'). Max 2 words.",
+      "h2": "Heading for technology stack (e.g., 'Technologies used in machine learning development'). Max 7 words.",
+      "lede": "Lede sentence describing tooling selection rationale. Exactly 1 sentence."
+    }
+  },
   "comparison": {
-    "eyebrow": "Micro-label for comparison section (e.g., 'The honest comparison'). Max 3 words.",
-    "h2": "Heading comparing independent specialist vs agency in {{CITY}} (e.g., 'Independent ML Engineer vs an ML company in {{CITY}}'). Must include {{CITY}}.",
-    "lede": "Summary paragraph framing when an independent specialist is better vs a large agency. Exactly 2-3 sentences.",
+    "sec-head": {
+      "eyebrow": "Micro-label for comparison (e.g., 'The honest comparison'). Max 3 words.",
+      "h2": "Heading contrasting independent engineer vs local company in {{CITY}} (e.g., 'Independent ML Engineer vs an ML company in {{CITY}}'). Must include {{CITY}}.",
+      "lede": "Balanced perspective acknowledging agencies while highlighting independent advantages. Exactly 1-2 sentences."
+    },
     "cmp": {
       "thead": [
-        "Column header names (e.g., 'Factor', 'Independent engineer (me)', 'Established local company', 'Overseas agency')."
+        "Factor",
+        "Independent ML Engineer (me, directly)",
+        "ML company in {{CITY}}"
       ],
       "tbody": [
         {
-          "th": "Comparison criteria factor (e.g., 'Cost', 'Access to the builder', 'Local availability').",
+          "th": "Comparison dimension (e.g., 'Point of contact', 'Cost efficiency', 'Communication lag', 'Turnaround speed', 'Accountability', 'Flexibility').",
           "td": [
-            "Evaluation string for each option under this factor."
+            "Advantage of working directly with the specialist (must begin with clean benefit).",
+            "Typical agency or company trade-off."
           ]
         }
       ]
     },
-    "btn--primary": {
-      "text": "CTA button text for quote request (e.g., 'Get a fixed quote for your project'). Max 6 words.",
-      "url": "Anchor link (e.g., '#lets-talk')."
+    "btn-primary": {
+      "text": "CTA button label (e.g., 'Get a fixed quote for your project'). Max 5 words.",
+      "url": "Target anchor link (e.g., '#lets-talk')."
     }
   },
   "local-context": {
     "ctx-grid": {
-      "eyebrow": "Micro-label for ecosystem section (e.g., 'Local context'). Max 2 words.",
-      "h2": "Heading describing local technology ecosystem (e.g., 'The {{CITY}} machine learning and technology ecosystem'). Must include {{CITY}}.",
+      "sec-head": {
+        "eyebrow": "Micro-label (e.g., 'Local context'). Max 2 words.",
+        "h2": "Heading describing {{CITY}} tech ecosystem (e.g., 'The {{CITY}} machine learning and technology ecosystem'). Must include {{CITY}}."
+      },
       "prose": {
         "p": [
-          "Paragraph detailing institutions, tech corridors, and business adoption in {{CITY}} and {{STATE}}. Exactly 2-3 sentences."
+          "Paragraph 1 describing the growing technology and AI landscape in {{CITY}}.",
+          "Paragraph 2 highlighting key tech hubs, academic institutions (e.g. {{LANDMARKS}}), and industry clusters in {{STATE}}.",
+          "Paragraph 3 explaining why local technical adoption helps businesses in {{CITY}} succeed."
         ]
       },
       "link-cta": {
-        "text": "CTA link text for local hiring (e.g., 'Hire an AI developer in {{CITY}}').",
+        "text": "Anchor link label (e.g., 'Hire an AI developer in {{CITY}}'). Must include {{CITY}}.",
         "url": "Target URL."
       },
-      "ctx-float": [
-        {
-          "b": "Badge title (e.g., 'Same time zone', 'Local meetings').",
-          "span": "Badge subtitle (e.g., 'Overlapping hours across India', 'In person across {{CITY}}')."
-        }
-      ],
-      "widget-title": "Caption for the local ecosystem widget/chart (e.g., {{CITY}} · ML ecosystem). Must include {{CITY}}."
+      "card": {
+        "why-tag": "Local innovation network badge (e.g., '{{STATE}} Innovation Network'). Max 4 words.",
+        "h3": "Collaboration card title (e.g., 'Local Collaboration & Hubs'). Max 4 words.",
+        "p": "Short summary of local collaboration advantages in {{CITY}}. Exactly 1 sentence.",
+        "checklist": [
+          "Key educational institution ties in {{CITY}} or {{STATE}}.",
+          "Industrial corridor connectivity in {{CITY}} (e.g. {{LANDMARKS}}).",
+          "Local meetings across business hubs in {{CITY}}.",
+          "Shared timezone advantage across India and global remote delivery."
+        ]
+      }
     }
   }
 }

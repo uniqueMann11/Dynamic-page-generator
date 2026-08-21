@@ -1,0 +1,301 @@
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .vw-card {
+    width: 100%;
+    max-width: 520px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .vw-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .vw-top .t {
+    font-family: var(--ff-display);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .vw-top .t svg { width: 16px; height: 16px; color: var(--primary); }
+
+  .vw-status-badge {
+    font-family: var(--ff-mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.25s;
+  }
+
+  .vw-status-badge.healthy {
+    background: var(--green-tint);
+    color: var(--green);
+    border: 1px solid rgba(21, 154, 91, 0.25);
+  }
+
+  .vw-status-badge.alert {
+    background: #FFE4E6;
+    color: #E11D48;
+    border: 1px solid rgba(225, 29, 72, 0.3);
+    animation: vw-pulse 1s infinite alternate;
+  }
+
+  @keyframes vw-pulse { from { opacity: 0.8; } to { opacity: 1; } }
+
+  .vw-body {
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .vw-chart-wrap {
+    background: #090E17;
+    border: 1px solid #1E293B;
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    position: relative;
+  }
+
+  .vw-chart-header {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--ff-mono);
+    font-size: 0.6rem;
+    color: #94A3B8;
+    margin-bottom: 6px;
+  }
+
+  .vw-svg-chart {
+    width: 100%;
+    height: 95px;
+    overflow: visible;
+  }
+
+  .vw-action-box {
+    background: var(--surface-alt);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .vw-action-title {
+    font-family: var(--ff-display);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .vw-action-sub {
+    font-size: 0.68rem;
+    color: var(--muted);
+  }
+
+  .vw-btn-action {
+    background: var(--primary);
+    color: #FFFFFF;
+    border: none;
+    font-family: var(--ff-mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 7px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .vw-btn-action:hover { background: var(--primary-strong); }
+  .vw-btn-action.alert-btn { background: #E11D48; }
+  .vw-btn-action.alert-btn:hover { background: #BE123C; }
+
+  .vw-metrics-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+
+  .vw-tile {
+    background: var(--surface-alt);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--radius-sm);
+    padding: 6px 8px;
+    text-align: center;
+  }
+
+  .vw-tile-val {
+    font-family: var(--ff-display);
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--ink);
+  }
+
+  .vw-tile-lbl {
+    font-family: var(--ff-mono);
+    font-size: 0.55rem;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .vw-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 18px;
+    border-top: 1px solid var(--line-soft);
+    background: var(--surface-alt);
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  @media (max-width: 480px) {
+    .vw-metrics-row { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="vw-card">
+  <div class="vw-top">
+    <span class="t">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+      Model Drift Monitor &mdash; Mysore
+    </span>
+    <div class="vw-status-badge healthy" id="statusBadge">
+      <span>&#10003; Production Healthy</span>
+    </div>
+  </div>
+
+  <div class="vw-body">
+    <div class="vw-chart-wrap">
+      <div class="vw-chart-header">
+        <span>Feature Distribution Drift (PSI) &mdash; Past 14 Days</span>
+        <span style="color: #F87171;">Alert Limit: PSI &gt; 0.20</span>
+      </div>
+
+      <svg class="vw-svg-chart" viewBox="0 0 400 95">
+        <defs>
+          <linearGradient id="safeGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#10B981" stop-opacity="0.15" />
+            <stop offset="100%" stop-color="#10B981" stop-opacity="0.02" />
+          </linearGradient>
+        </defs>
+
+        <rect x="0" y="35" width="400" height="60" fill="url(#safeGrad)" />
+
+        <line x1="0" y1="35" x2="400" y2="35" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="4 3" />
+        <text x="320" y="30" fill="#EF4444" font-family="monospace" font-size="9">ALERT THRESHOLD</text>
+
+        <polyline id="trendLine" points="20,80 60,78 100,75 140,80 180,76 220,72 260,74 300,68 340,70 380,68" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" />
+
+        <circle id="trendDot" cx="380" cy="68" r="4.5" fill="#10B981" stroke="#FFFFFF" stroke-width="2" />
+      </svg>
+    </div>
+
+    <div class="vw-action-box">
+      <div>
+        <div class="vw-action-title" id="actionHead">Feature Stability: Stable</div>
+        <div class="vw-action-sub" id="actionSub">No significant drift detected across 12 active features</div>
+      </div>
+      <button class="vw-btn-action" id="btnSimDrift">Simulate Data Drift</button>
+    </div>
+
+    <div class="vw-metrics-row">
+      <div class="vw-tile">
+        <div class="vw-tile-val" id="valShift" style="color: var(--green);">0.04 PSI</div>
+        <div class="vw-tile-lbl">Population Stability</div>
+      </div>
+      <div class="vw-tile">
+        <div class="vw-tile-val">12 Features</div>
+        <div class="vw-tile-lbl">Tracked Vitals</div>
+      </div>
+      <div class="vw-tile">
+        <div class="vw-tile-val" id="valActionReq">All Stable</div>
+        <div class="vw-tile-lbl">Action Required</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vw-foot">
+    <span>Serving Mysore &amp; Karnataka</span>
+    <span>Continuous model observability</span>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const btnSimDrift = document.getElementById("btnSimDrift");
+    const statusBadge = document.getElementById("statusBadge");
+    const trendLine = document.getElementById("trendLine");
+    const trendDot = document.getElementById("trendDot");
+    const actionHead = document.getElementById("actionHead");
+    const actionSub = document.getElementById("actionSub");
+    const valShift = document.getElementById("valShift");
+    const valActionReq = document.getElementById("valActionReq");
+
+    let isChanged = false;
+
+    btnSimDrift.addEventListener("click", () => {
+      isChanged = !isChanged;
+
+      if (isChanged) {
+        statusBadge.innerHTML = "<span>&#9888; Drift Alert</span>";
+        statusBadge.className = "vw-status-badge alert";
+
+        trendLine.setAttribute("points", "20,80 60,78 100,75 140,80 180,76 220,55 260,38 300,24 340,16 380,10");
+        trendLine.setAttribute("stroke", "#EF4444");
+
+        trendDot.setAttribute("cy", "10");
+        trendDot.setAttribute("fill", "#EF4444");
+
+        actionHead.textContent = "Feature Stability: Drift Detected";
+        actionSub.textContent = "Significant population shift in 3 features, retrain pipeline ready";
+        btnSimDrift.textContent = "Trigger Auto-Retrain";
+        btnSimDrift.className = "vw-btn-action alert-btn";
+
+        valShift.textContent = "0.28 PSI";
+        valShift.style.color = "#E11D48";
+        valActionReq.textContent = "Retrain Queued";
+        valActionReq.style.color = "var(--primary)";
+      } else {
+        statusBadge.innerHTML = "<span>&#10003; Production Healthy</span>";
+        statusBadge.className = "vw-status-badge healthy";
+
+        trendLine.setAttribute("points", "20,80 60,78 100,75 140,80 180,76 220,72 260,74 300,68 340,70 380,68");
+        trendLine.setAttribute("stroke", "#10B981");
+
+        trendDot.setAttribute("cy", "68");
+        trendDot.setAttribute("fill", "#10B981");
+
+        actionHead.textContent = "Feature Stability: Stable";
+        actionSub.textContent = "No significant drift detected across 12 active features";
+        btnSimDrift.textContent = "Simulate Data Drift";
+        btnSimDrift.className = "vw-btn-action";
+
+        valShift.textContent = "0.04 PSI";
+        valShift.style.color = "var(--green)";
+        valActionReq.textContent = "All Stable";
+        valActionReq.style.color = "var(--muted)";
+      }
+    });
+  })();
+</script>

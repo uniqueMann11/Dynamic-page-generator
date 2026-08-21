@@ -6,41 +6,52 @@
   <title>Keeping the AI Running Smoothly, 24/7</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600" rel="stylesheet" />
   <style>
-    :root {
-      --ink: #0B1120;
-      --ink-soft: #1E293B;
-      --body: #475569;
-      --muted: #64748B;
-      --line: #E7ECF3;
-      --line-soft: #EEF2F8;
+        :root, .svcp {
+      --ink: #0A1222;
+      --ink-soft: #1B2740;
+      --body: #48566E;
+      --muted: #6B7A93;
+      --line: #E6ECF4;
+      --line-soft: #EFF3F9;
       --surface: #FFFFFF;
-      --surface-alt: #F5F8FD;
-      --surface-tint: #EEF3FF;
-      --primary: #2456E6;
-      --primary-strong: #1740C0;
-      --primary-tint: #E7EEFF;
-      --green: #159A5B;
-      --green-tint: #E7F7EF;
-      --radius: 18px;
-      --radius-sm: 10px;
-      --ff-display: "Archivo", system-ui, sans-serif;
-      --ff-body: "Inter", system-ui, sans-serif;
-      --ff-mono: "JetBrains Mono", ui-monospace, monospace;
-      --shadow-md: 0 10px 30px -12px rgba(11, 17, 32, .18);
+      --soft: #F4F8FD;
+      --tint: #EAF0FF;
+      --blue: #2456E6;
+      --blue-strong: #1740C0;
+      --blue-tint: #E6EEFF;
+      --violet: #6D5EF6;
+      --violet-tint: #EDEAFE;
+      --mint: #0FA968;
+      --mint-tint: #E4F7EE;
+      --mint-deep: #0B7D4E;
+      --amber: #D97A18;
+      --amber-tint: #FCEFDD;
+      --rose: #E11D48;
+      --rose-tint: #FFE8EE;
+      --indigo: #4F46E5;
+      --sh-sm: 0 1px 2px rgba(10, 18, 34, .04), 0 2px 6px rgba(10, 18, 34, .05);
+      --sh-md: 0 14px 34px -16px rgba(10, 18, 34, .22);
+      --sh-lg: 0 30px 70px -28px rgba(36, 86, 230, .32);
+      --r: 18px;
+      --r-sm: 12px;
+      --maxw: 1200px;
+      --disp: "Plus Jakarta Sans", system-ui, sans-serif;
+      --bodyf: "Inter", system-ui, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--ff-body); background: #F0F4FA; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    body { font-family: var(--bodyf); background: #F0F4FA; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
 
     .vw-card {
       width: 100%;
       max-width: 520px;
       background: var(--surface);
       border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-md);
+      border-radius: var(--r);
+      box-shadow: var(--sh-md);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -55,7 +66,7 @@
     }
 
     .vw-top .t {
-      font-family: var(--ff-display);
+      font-family: var(--disp);
       font-size: 0.88rem;
       font-weight: 700;
       color: var(--ink);
@@ -65,13 +76,13 @@
     }
 
     .vw-status-pill {
-      font-family: var(--ff-mono);
+      font-family: var(--mono);
       font-size: 0.68rem;
       font-weight: 600;
       padding: 4px 10px;
       border-radius: 999px;
-      background: var(--green-tint);
-      color: var(--green);
+      background: var(--mint-tint);
+      color: var(--mint);
       border: 1px solid rgba(21, 154, 91, 0.25);
       display: flex;
       align-items: center;
@@ -82,8 +93,8 @@
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 8px var(--green);
+      background: var(--mint);
+      box-shadow: 0 0 8px var(--mint);
       animation: vw-pulse 2s infinite ease-in-out;
     }
 
@@ -115,33 +126,33 @@
     .vw-stage-icon {
       width: 42px;
       height: 42px;
-      border-radius: var(--radius-sm);
-      background: var(--surface-alt);
+      border-radius: var(--r-sm);
+      background: var(--soft);
       border: 1px solid var(--line);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--primary);
+      color: var(--blue);
       transition: all 0.2s;
     }
 
     .vw-stage-icon svg { width: 18px; height: 18px; }
 
     .vw-stage:hover .vw-stage-icon {
-      background: var(--surface-tint);
-      border-color: var(--primary);
+      background: var(--tint);
+      border-color: var(--blue);
       transform: translateY(-2px);
     }
 
     .vw-stage.active .vw-stage-icon {
-      background: var(--primary);
+      background: var(--blue);
       color: #FFFFFF;
-      border-color: var(--primary);
+      border-color: var(--blue);
       box-shadow: 0 4px 12px rgba(36, 86, 230, 0.3);
     }
 
     .vw-stage-title {
-      font-family: var(--ff-mono);
+      font-family: var(--mono);
       font-size: 0.62rem;
       font-weight: 600;
       color: var(--muted);
@@ -150,7 +161,7 @@
     }
 
     .vw-stage.active .vw-stage-title {
-      color: var(--primary-strong);
+      color: var(--blue-strong);
       font-weight: 700;
     }
 
@@ -161,16 +172,16 @@
     }
 
     .vw-arrow.highlight {
-      color: var(--primary);
+      color: var(--blue);
       animation: vw-slide 0.8s infinite;
     }
 
     @keyframes vw-slide { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(3px); } }
 
     .vw-action-card {
-      background: var(--surface-alt);
+      background: var(--soft);
       border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
+      border-radius: var(--r-sm);
       padding: 10px 14px;
       display: flex;
       align-items: center;
@@ -178,7 +189,7 @@
     }
 
     .vw-act-left h4 {
-      font-family: var(--ff-display);
+      font-family: var(--disp);
       font-size: 0.82rem;
       color: var(--ink);
     }
@@ -189,10 +200,10 @@
     }
 
     .vw-btn-action {
-      background: var(--primary);
+      background: var(--blue);
       color: #FFFFFF;
       border: none;
-      font-family: var(--ff-mono);
+      font-family: var(--mono);
       font-size: 0.68rem;
       font-weight: 600;
       padding: 7px 12px;
@@ -201,7 +212,7 @@
       transition: all 0.15s;
     }
 
-    .vw-btn-action:hover { background: var(--primary-strong); }
+    .vw-btn-action:hover { background: var(--blue-strong); }
 
     .vw-metrics-row {
       display: grid;
@@ -210,22 +221,22 @@
     }
 
     .vw-tile {
-      background: var(--surface-alt);
+      background: var(--soft);
       border: 1px solid var(--line-soft);
-      border-radius: var(--radius-sm);
+      border-radius: var(--r-sm);
       padding: 8px 6px;
       text-align: center;
     }
 
     .vw-tile-val {
-      font-family: var(--ff-display);
+      font-family: var(--disp);
       font-size: 1.05rem;
       font-weight: 800;
       color: var(--ink);
     }
 
     .vw-tile-lbl {
-      font-family: var(--ff-mono);
+      font-family: var(--mono);
       font-size: 0.55rem;
       color: var(--muted);
       text-transform: uppercase;
@@ -238,7 +249,7 @@
       justify-content: space-between;
       padding: 10px 18px;
       border-top: 1px solid var(--line-soft);
-      background: var(--surface-alt);
+      background: var(--soft);
       font-size: 0.72rem;
       color: var(--muted);
     }
@@ -306,7 +317,7 @@
       <!-- Plain Stats Grid -->
       <div class="vw-metrics-row">
         <div class="vw-tile">
-          <div class="vw-tile-val" id="valLatency" style="color: var(--green);">11 ms</div>
+          <div class="vw-tile-val" id="valLatency" style="color: var(--mint);">11 ms</div>
           <div class="vw-tile-lbl">Response Speed</div>
         </div>
         <div class="vw-tile">

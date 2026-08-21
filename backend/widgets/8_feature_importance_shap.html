@@ -6,43 +6,52 @@
   <title>Explaining Why the AI Decided That</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600" rel="stylesheet" />
   <style>
-    :root {
-      --ink: #0B1120;
-      --ink-soft: #1E293B;
-      --body: #475569;
-      --muted: #64748B;
-      --line: #E7ECF3;
-      --line-soft: #EEF2F8;
+        :root, .svcp {
+      --ink: #0A1222;
+      --ink-soft: #1B2740;
+      --body: #48566E;
+      --muted: #6B7A93;
+      --line: #E6ECF4;
+      --line-soft: #EFF3F9;
       --surface: #FFFFFF;
-      --surface-alt: #F5F8FD;
-      --surface-tint: #EEF3FF;
-      --primary: #2456E6;
-      --primary-strong: #1740C0;
-      --primary-tint: #E7EEFF;
-      --green: #159A5B;
-      --green-tint: #E7F7EF;
+      --soft: #F4F8FD;
+      --tint: #EAF0FF;
+      --blue: #2456E6;
+      --blue-strong: #1740C0;
+      --blue-tint: #E6EEFF;
+      --violet: #6D5EF6;
+      --violet-tint: #EDEAFE;
+      --mint: #0FA968;
+      --mint-tint: #E4F7EE;
+      --mint-deep: #0B7D4E;
+      --amber: #D97A18;
+      --amber-tint: #FCEFDD;
       --rose: #E11D48;
-      --rose-tint: #FFE4E6;
-      --radius: 18px;
-      --radius-sm: 10px;
-      --ff-display: "Archivo", system-ui, sans-serif;
-      --ff-body: "Inter", system-ui, sans-serif;
-      --ff-mono: "JetBrains Mono", ui-monospace, monospace;
-      --shadow-md: 0 10px 30px -12px rgba(11, 17, 32, .18);
+      --rose-tint: #FFE8EE;
+      --indigo: #4F46E5;
+      --sh-sm: 0 1px 2px rgba(10, 18, 34, .04), 0 2px 6px rgba(10, 18, 34, .05);
+      --sh-md: 0 14px 34px -16px rgba(10, 18, 34, .22);
+      --sh-lg: 0 30px 70px -28px rgba(36, 86, 230, .32);
+      --r: 18px;
+      --r-sm: 12px;
+      --maxw: 1200px;
+      --disp: "Plus Jakarta Sans", system-ui, sans-serif;
+      --bodyf: "Inter", system-ui, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--ff-body); background: #F0F4FA; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    body { font-family: var(--bodyf); background: #F0F4FA; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
 
     .vw-card {
       width: 100%;
       max-width: 520px;
       background: var(--surface);
       border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-md);
+      border-radius: var(--r);
+      box-shadow: var(--sh-md);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -57,7 +66,7 @@
     }
 
     .vw-top .t {
-      font-family: var(--ff-display);
+      font-family: var(--disp);
       font-size: 0.88rem;
       font-weight: 700;
       color: var(--ink);
@@ -66,16 +75,16 @@
       gap: 8px;
     }
 
-    .vw-top .t svg { width: 16px; height: 16px; color: var(--primary); }
+    .vw-top .t svg { width: 16px; height: 16px; color: var(--blue); }
 
     .vw-chip {
-      font-family: var(--ff-mono);
+      font-family: var(--mono);
       font-size: 0.66rem;
       font-weight: 600;
       padding: 3px 9px;
       border-radius: 6px;
-      background: var(--green-tint);
-      color: var(--green);
+      background: var(--mint-tint);
+      color: var(--mint);
       border: 1px solid rgba(21, 154, 91, 0.25);
     }
 
@@ -93,11 +102,11 @@
     }
 
     .vw-tab-btn {
-      background: var(--surface-alt);
+      background: var(--soft);
       border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
+      border-radius: var(--r-sm);
       padding: 7px 10px;
-      font-family: var(--ff-mono);
+      font-family: var(--mono);
       font-size: 0.68rem;
       font-weight: 600;
       color: var(--muted);
@@ -106,13 +115,13 @@
       transition: all 0.15s;
     }
 
-    .vw-tab-btn:hover { border-color: var(--primary); color: var(--ink); }
-    .vw-tab-btn.active { background: var(--primary-tint); border-color: var(--primary); color: var(--primary-strong); }
+    .vw-tab-btn:hover { border-color: var(--blue); color: var(--ink); }
+    .vw-tab-btn.active { background: var(--blue-tint); border-color: var(--blue); color: var(--blue-strong); }
 
     .vw-reasons-box {
-      background: var(--surface-alt);
+      background: var(--soft);
       border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
+      border-radius: var(--r-sm);
       padding: 12px;
       display: flex;
       flex-direction: column;
@@ -122,7 +131,7 @@
     .vw-rb-header {
       display: flex;
       justify-content: space-between;
-      font-family: var(--ff-mono);
+      font-family: var(--mono);
       font-size: 0.62rem;
       color: var(--muted);
       text-transform: uppercase;
@@ -141,7 +150,7 @@
       transition: background 0.15s;
     }
 
-    .vw-reason-row:hover { background: var(--surface-tint); }
+    .vw-reason-row:hover { background: var(--tint); }
 
     .vw-reason-name {
       font-size: 0.72rem;
@@ -168,24 +177,24 @@
       transition: width 0.35s ease;
     }
 
-    .vw-bar.pos { background: var(--green); }
+    .vw-bar.pos { background: var(--mint); }
     .vw-bar.neg { background: var(--rose); }
 
     .vw-reason-impact {
-      font-family: var(--ff-mono);
+      font-family: var(--mono);
       font-size: 0.68rem;
       font-weight: 700;
       width: 50px;
       text-align: right;
     }
 
-    .vw-reason-impact.pos { color: var(--green); }
+    .vw-reason-impact.pos { color: var(--mint); }
     .vw-reason-impact.neg { color: var(--rose); }
 
     .vw-decision-detail {
-      background: var(--surface-tint);
+      background: var(--tint);
       border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
+      border-radius: var(--r-sm);
       padding: 8px 12px;
       display: flex;
       justify-content: space-between;
@@ -200,22 +209,22 @@
     }
 
     .vw-tile {
-      background: var(--surface-alt);
+      background: var(--soft);
       border: 1px solid var(--line-soft);
-      border-radius: var(--radius-sm);
+      border-radius: var(--r-sm);
       padding: 6px 8px;
       text-align: center;
     }
 
     .vw-tile-val {
-      font-family: var(--ff-display);
+      font-family: var(--disp);
       font-size: 1rem;
       font-weight: 800;
       color: var(--ink);
     }
 
     .vw-tile-lbl {
-      font-family: var(--ff-mono);
+      font-family: var(--mono);
       font-size: 0.55rem;
       color: var(--muted);
       text-transform: uppercase;
@@ -227,7 +236,7 @@
       justify-content: space-between;
       padding: 10px 18px;
       border-top: 1px solid var(--line-soft);
-      background: var(--surface-alt);
+      background: var(--soft);
       font-size: 0.72rem;
       color: var(--muted);
     }
@@ -302,13 +311,13 @@
           <b id="txtSummaryTitle" style="color: var(--ink);">Main Reason for Approval:</b>
           <div id="txtSummarySub" style="color: var(--muted); font-size: 0.65rem;">Excellent debt management and credit history pushed confidence to 88%</div>
         </div>
-        <span class="vw-chip" id="chipBadge" style="background: var(--green-tint); color: var(--green);">Pass</span>
+        <span class="vw-chip" id="chipBadge" style="background: var(--mint-tint); color: var(--mint);">Pass</span>
       </div>
 
       <!-- Metrics Grid -->
       <div class="vw-metrics-row">
         <div class="vw-tile">
-          <div class="vw-tile-val" style="color: var(--green);">100%</div>
+          <div class="vw-tile-val" style="color: var(--mint);">100%</div>
           <div class="vw-tile-lbl">Transparent</div>
         </div>
         <div class="vw-tile">
@@ -356,8 +365,8 @@
       const data = {
         approved: {
           outcome: "Decision: Approved (88%)",
-          chipColor: "var(--green)",
-          chipBg: "var(--green-tint)",
+          chipColor: "var(--mint)",
+          chipBg: "var(--mint-tint)",
           chipText: "Pass",
           title: "Main Reason for Approval:",
           sub: "Excellent debt management and credit history pushed confidence to 88%",
