@@ -85,12 +85,6 @@ DESIGN_TOKENS = """
   /* :root --primary-tint → .svcp --blue-tint */
   --blue-tint: #E6EEFF;
 
-
-  /* Secondary colors */
-
-  --violet: #6D5EF6;
-  --violet-tint: #EDEAFE;
-
   /* :root --green → .svcp --mint */
   --mint: #0FA968;
 
